@@ -1,63 +1,52 @@
 ---
 import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline>
-  :root {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+	/* Light Mode Colors */
+	:root {
+		--aw-font-sans: 'Inter Variable';
+		--aw-font-serif: 'Inter Variable';
+		--aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+		/* Black and White Palette */
+		--aw-color-primary: rgb(16 16 16);    /* Black */
+		--aw-color-secondary: rgb(81 81 81);  /* Dark Gray */
+		--aw-color-accent: rgb(40 40 40);      /* Very Dark Gray */
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+		/* Text and Background */
+		--aw-color-text-heading: rgb(0 0 0);
+		--aw-color-text-default: rgb(16 16 16);
+		--aw-color-text-muted: rgb(16 16 16 / 66%);
+		--aw-color-bg-page: rgb(255 255 255); /* White */
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+		--aw-color-bg-page-dark: rgb(3 6 32); /* This is only used as a variable, not a direct color */
 
-    ::selection {
-      background-color: lavender;
-    }
-  }
+		::selection {
+			background-color: #e0e0e0; /* A light gray for selection */
+		}
+	}
 
-  .dark {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+	/* Dark Mode Colors */
+	.dark {
+		--aw-font-sans: 'Inter Variable';
+		--aw-font-serif: 'Inter Variable';
+		--aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+		/* Inverted Black and White Palette */
+		--aw-color-primary: rgb(255 255 255); /* White */
+		--aw-color-secondary: rgb(200 200 200);/* Light Gray */
+		--aw-color-accent: rgb(229 236 246);   /* Very Light Gray */
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+		/* Text and Background */
+		--aw-color-text-heading: rgb(247, 248, 248);
+		--aw-color-text-default: rgb(229 236 246);
+		--aw-color-text-muted: rgb(229 236 246 / 66%);
+		--aw-color-bg-page: rgb(16 16 16);   /* Black */
 
-    ::selection {
-      background-color: black;
-      color: snow;
-    }
-  }
+		::selection {
+			background-color: #444444;
+			color: snow;
+		}
+	}
 </style>
