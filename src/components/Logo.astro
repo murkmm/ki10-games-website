@@ -1,9 +1,26 @@
 ---
-import { SITE } from 'astrowind:config';
+// src/components/Logo.astro
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<a href="/" class="logo-link">
+  <img class="logo-light" src="/assets/Ki10_LOGO.png" alt="Ki10 Games Logo" width="180" height="60" />
+  <img class="logo-dark" src="/assets/Ki10_LOGO_Light.png" alt="Ki10 Games Logo" width="180" height="60" />
+</a>
+
+<style>
+  /* By default, show the light-mode logo and hide the dark-mode one */
+  .logo-dark {
+    display: none;
+  }
+  .logo-light {
+    display: block;
+  }
+
+  /* When the .dark class is active on the site, do the opposite */
+  :root.dark .logo-dark {
+    display: block;
+  }
+  :root.dark .logo-light {
+    display: none;
+  }
+</style>
