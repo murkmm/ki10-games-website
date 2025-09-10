@@ -86,10 +86,10 @@ export const headerData = {
       ],
     },
     {
-      text: 'Blog',
+      text: 'Devlog',
       links: [
         {
-          text: 'Blog List',
+          text: 'Devlog List',
           href: getBlogPermalink(),
         },
         {
