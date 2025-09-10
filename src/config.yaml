@@ -1,22 +1,20 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Ki10 Games
+  site: 'https://ki10games.com' # Add your live domain here
   base: '/'
   trailingSlash: false
-
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Ki10 Games
+    template: '%s — Ki10 Games'
+  description: 'An independent game development studio dedicated to creating high-quality, memorable player experiences.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Ki10 Games
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -44,7 +42,7 @@ apps:
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'devlog' # Blog main path, you can change this to "articles" (/articles)
       robots:
         index: true
 
