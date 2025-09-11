@@ -10,7 +10,7 @@ tags:
   - update
   - coming soon
 metadata:
-  canonical: https://ki10games.com/devlog/devlog_coming_soon
+  canonical: https://ki10games.com/devlog_coming_soon/
 ---
 
 Hey everyone,
