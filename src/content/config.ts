@@ -48,7 +48,9 @@ const metadataDefinition = () =>
 
 const postCollection = defineCollection({
   loader: glob({ pattern: ['*.md', '*.mdx'], base: 'src/data/post' }),
-  schema: ({ image }) => // 👈 Add `{ image }` here
+  schema: (
+    { image } // 👈 Add `{ image }` here
+  ) =>
     z.object({
       publishDate: z.date().optional(),
       updateDate: z.date().optional(),
