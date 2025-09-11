@@ -58,8 +58,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   <div
     class:list={[
       'relative text-default py-3 px-3 md:px-6 mx-auto w-full',
-      // --- ADDED flex AND justify-between HERE ---
-      'flex justify-between items-center',
+      'flex justify-between items-center', // This is the key fix for mobile
       {
         'md:flex md:justify-between': position !== 'center',
       },
