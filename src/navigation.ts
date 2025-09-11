@@ -22,6 +22,10 @@ export const headerData = {
       text: 'Devlog',
       href: getBlogPermalink(),
     },
+    {
+      text: 'Contact',
+      href: getPermalink('/contact'), // 👈 This is the new line
+    },
   ],
   actions: [], // This is empty to hide the header button
 };
