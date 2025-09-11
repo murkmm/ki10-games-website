@@ -1,115 +1,89 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Features from '~/components/widgets/Features.astro';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
-  title: 'Contact',
+  title: 'Contact | Ki10 Games',
 };
+
+// Array of your social links for easier management
+const socialLinks = [
+  { title: 'X (Twitter)', icon: 'tabler:brand-x', href: 'https://x.com/Ki10Games/' },
+  { title: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://youtube.com/@official.ki10games' },
+  { title: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@ki10.games' },
+  { title: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/NqtVzsmj3A' },
+  { title: 'Steam', icon: 'tabler:brand-steam', href: 'https://steamcommunity.com/groups/Ki10Games' },
+];
 ---
 
 <Layout metadata={metadata}>
-  <HeroText tagline="Contact" title="Here you'll find our newsletter and contact information" />
+  <HeroText tagline="Contact" title="Get in touch & follow our journey" />
 
-  <section class="py-12 sm:py-16 md:py-20 lg:py-24">
+  <section class="py-12 sm:py-16">
     <div class="mx-auto max-w-6xl px-4 md:px-6">
       <div class="text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">Recieve Updates!</h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Sign up for our newsletter below.</p>
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Join Our Mailing List</h2>
+        <p class="mt-4 text-lg text-muted">
+          Be the first to hear about new updates, release dates, and exclusive behind-the-scenes content.
+        </p>
       </div>
-
-      <div class="mt-12 mx-auto max-w-xl">
-        <div id="mc_embed_signup">
-          <form
-            action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            class="validate"
-            target="_blank"
-          >
-            <div id="mc_embed_signup_scroll">
-              <div class="mc-field-group">
-                <label for="mce-EMAIL" class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >Email Address <span class="asterisk">*</span></label
-                >
-                <input
-                  type="email"
-                  name="EMAIL"
-                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  id="mce-EMAIL"
-                  required
-                  value=""
-                  placeholder="Your email address"
-                />
-              </div>
-              <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group mt-4">
-                <div class="content__gdpr">
-                  <p class="text-sm !text-muted text-gray-600 dark:text-gray-400">
-                    We'll use your email to send you updates. Please let us know how you'd like to hear from us:
-                  </p>
-                  <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
-                    <label class="checkbox subfield flex items-center mt-2" for="gdpr_43380">
-                      <input
-                        type="checkbox"
-                        id="gdpr_43380"
-                        name="gdpr[43380]"
-                        class="gdpr h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        value="Y"
-                      />
-                      <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Dev Logs & Studio News</span>
-                    </label>
-                  </fieldset>
-                </div>
-              </div>
-              <div id="mce-responses" class="clear foot mt-4">
-                <div class="response" id="mce-error-response" style="display: none;"></div>
-                <div class="response" id="mce-success-response" style="display: none;"></div>
-              </div>
-              <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                <input type="text" name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d" tabindex="-1" value="" />
-              </div>
-              <div class="optionalParent mt-6">
-                <div class="clear foot">
-                  <input
-                    type="submit"
-                    name="subscribe"
-                    id="mc-embedded-subscribe"
-                    class="w-full btn btn-primary py-2 px-4 border border-transparent rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    value="Subscribe"
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <div class="mt-12 mx-auto max-w-xl"></div>
     </div>
   </section>
 
-  <Features2
-    title="Get In Touch!"
+  <Features
+    title="Direct Contact"
+    subtitle="For specific inquiries, here's how to reach us."
+    columns={2}
     items={[
       {
-        title: 'Email',
-        description: 'contact@ki10games.com',
+        title: 'General & Press Inquiries',
+        description: 'For any questions, feedback, media kits, or just to say hello.',
         icon: 'tabler:mail',
-      },
-      {
-        title: 'Social Media',
-        description: 'Follow us on X, Instagram, and Discord!',
-        icon: 'tabler:social',
+        callToAction: {
+          text: 'contact@ki10games.com',
+          href: 'mailto:contact@ki10games.com',
+        },
       },
       {
         title: 'Business Inquiries',
-        description: `For all business-related questions, partnerships, and collaborations, please contact us at business@ki10games.com.`,
+        description: 'For partnerships, collaborations, and other business-related questions.',
         icon: 'tabler:briefcase',
-      },
-      {
-        title: 'Press & Media',
-        description: 'For media kits and press inquiries, please email press@ki10games.com.',
-        icon: 'tabler:news',
+        callToAction: {
+          text: 'business@ki10games.com',
+          href: 'mailto:business@ki10games.com',
+        },
       },
     ]}
   />
+
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 md:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Follow Us</h2>
+        <p class="mt-4 text-lg text-muted">
+          Find us on your favorite platforms for the latest news and behind-the-scenes content.
+        </p>
+      </div>
+      <ul class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {
+          socialLinks.map((link) => (
+            <li class="text-center">
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition"
+              >
+                <Icon name={link.icon} class="w-12 h-12 mx-auto text-primary dark:text-white" />
+                <span class="mt-2 block text-sm font-medium text-default">{link.title}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
 </Layout>
