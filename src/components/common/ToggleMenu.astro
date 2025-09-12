@@ -27,3 +27,44 @@ const {
     ></span>
   </slot>
 </button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleMenuBtn = document.querySelector('[data-aw-toggle-menu]');
+    const menu = document.querySelector('#nav-menu'); // This should be the id of your <nav> element in Header.astro
+
+    if (!toggleMenuBtn || !menu) {
+      return;
+    }
+
+    let isExpanded = toggleMenuBtn.classList.contains('expanded');
+
+    const toggleMenu = () => {
+      isExpanded = !isExpanded;
+      toggleMenuBtn.setAttribute('aria-expanded', String(isExpanded));
+      toggleMenuBtn.classList.toggle('expanded'); // Toggles the animation for the icon
+      menu.classList.toggle('hidden'); // Toggles the visibility of the nav menu
+    };
+
+    toggleMenuBtn.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (event) => {
+      if (!isExpanded) {
+        return;
+      }
+
+      const isClickInsideMenu = menu.contains(event.target as Node);
+      const isClickOnToggleButton = toggleMenuBtn.contains(event.target as Node);
+
+      if (!isClickInsideMenu && !isClickOnToggleButton) {
+        toggleMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (isExpanded && event.key === 'Escape') {
+        toggleMenu();
+      }
+    });
+  });
+</script>
