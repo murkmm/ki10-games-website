@@ -31,40 +31,59 @@ const {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const toggleMenuBtn = document.querySelector('[data-aw-toggle-menu]');
-    const menu = document.querySelector('#nav-menu'); // This should be the id of your <nav> element in Header.astro
+    const menu = document.querySelector('#nav-menu');
 
     if (!toggleMenuBtn || !menu) {
       return;
     }
 
-    let isExpanded = toggleMenuBtn.classList.contains('expanded');
-
-    const toggleMenu = () => {
-      isExpanded = !isExpanded;
-      toggleMenuBtn.setAttribute('aria-expanded', String(isExpanded));
-      toggleMenuBtn.classList.toggle('expanded'); // Toggles the animation for the icon
-      menu.classList.toggle('hidden'); // Toggles the visibility of the nav menu
+    const openMenu = () => {
+      document.body.classList.add('menu-open');
+      toggleMenuBtn.classList.add('expanded');
+      toggleMenuBtn.setAttribute('aria-expanded', 'true');
+      menu.classList.remove('hidden');
     };
 
-    toggleMenuBtn.addEventListener('click', toggleMenu);
+    const closeMenu = () => {
+      document.body.classList.remove('menu-open');
+      toggleMenuBtn.classList.remove('expanded');
+      toggleMenuBtn.setAttribute('aria-expanded', 'false');
+      menu.classList.add('hidden');
+    };
+
+    toggleMenuBtn.addEventListener('click', () => {
+      if (document.body.classList.contains('menu-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
 
     document.addEventListener('click', (event) => {
-      if (!isExpanded) {
+      if (!document.body.classList.contains('menu-open')) {
         return;
       }
 
+      // FIX: Cast event.target to Node to resolve TypeScript error
       const isClickInsideMenu = menu.contains(event.target as Node);
       const isClickOnToggleButton = toggleMenuBtn.contains(event.target as Node);
 
       if (!isClickInsideMenu && !isClickOnToggleButton) {
-        toggleMenu();
+        closeMenu();
       }
     });
 
     document.addEventListener('keydown', (event) => {
-      if (isExpanded && event.key === 'Escape') {
-        toggleMenu();
+      if (document.body.classList.contains('menu-open') && event.key === 'Escape') {
+        closeMenu();
       }
     });
   });
 </script>
+
+<style is:global>
+  /* Prevent scrolling when the menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+</style>
