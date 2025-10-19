@@ -1,0 +1,74 @@
+---
+publishDate: 2025-10-19T15:00:00Z
+author: Mark
+title: 'Devlog #6: Tracking Our Prowess'
+excerpt: 'This week, we dive into a major new feature: the Map and Quest system! Learn how we help players track the all important Paw Prints of Prowess and get a peek at Kit’s new look.'
+image: '../../assets/images/devlog6-kit-model.jpg' # A collage of your logo sketches would be great here
+cardImage: '../../assets/images/devlog6-kit-model.jpg' # Same for the card
+category: Devlog
+tags:
+  - devlog
+  - quest system
+  - UI
+  - map
+  - collectibles
+  - character model
+metadata:
+  canonical: https://ki10games.com/devlog-5-trust-the-process
+---
+
+import { Image } from 'astro:assets';
+import mapUiScreenshot from '../../assets/images/devlog6-map-ui.jpg';
+import kitModelScreenshot from '../../assets/images/devlog6-kit-model.jpg';
+
+Welcome back to the Ki10 Games devlog!
+
+This week has been all about implementing core gameplay and quality of life systems. Specifically, I've been focused on bringing a functional **Map and Quest Log system** into the game to help players navigate the world and track their progress.
+
+### **Hunting for Paw Prints of Prowess**
+
+Our main collectible, the **Paw Prints of Prowess** (still a placeholder name and model, but we love the alliteration!), is what drives exploration in our levels. To make the pursuit of these collectibles fun and manageable, we needed a system to help players track them without just handing everything over.
+
+This new system handles several key functions:
+
+1.  **Vague Location Tracking:** The map will show a general area where the uncollected Paw Prints can be found. We want to encourage exploration, not just waypoint following, so it’s intentionally broad.
+2.  **A Helpful Nudge:** Each Paw Print will now have a **hint** attached to it in the quest log. This is a small piece of environmental or puzzle solving information to get the player started on collecting it.
+3.  **Collection Log:** Once collected, the Paw Print is marked as complete in the log, letting you see exactly what you’ve accomplished in that area.
+4.  **Quick Revisit:** A feature I'm particularly happy with is the ability to **teleport** back to the general area where a Paw Print was collected. This makes it easier to jump back into a favorite location or revisit a level to find an item you missed.
+
+Building out this system from the UI design for the log to the code that handles the map markers and teleportation was a major push, but it feels like a massive leap forward for the game's structure!
+
+<figure class="flex flex-col items-center">
+  <Image src={mapUiScreenshot} alt="A mockup of the new in-game map and quest log UI" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    A look at the new Map and Quest Log, showing a general area for a Paw Print and its hint (Of course with placeholder
+    art and designs).
+  </figcaption>
+</figure>
+
+### **A Proper Outfit for our Knight**
+
+In other news, our protagonist, **Kit**, has had a wardrobe change! For a while, we’ve been using a simple, robot model as a placeholder while Scott worked on KIT's design of our hero.
+
+I've finally completed the swap, and Kit’s **proper model** is now implemented in the game, it's not quite there yet and needs more work but it’s a huge morale boost to see the character we've been designing finally running around in the levels, it really helps the game start to feel _real_. Seeing the character art come to life is a massive win and gives us a great sense of direction for the levels and enemies to come.
+
+<figure class="flex flex-col items-center">
+  <Image
+    src={kitModelScreenshot}
+    alt="A high-quality render of the Kit character model"
+    class="max-w-full rounded-md"
+  />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Out with the old, in with the new! Kit's new model, ready for action.
+  </figcaption>
+</figure>
+
+Thanks for reading and see you next time,
+
+Mark
+
+---
+
+- **[Sign up for our newsletter](/contact)** to get updates sent directly to your inbox.
+- **[Join our Discord server](https://discord.gg/NqtVzsmj3A)** to chat with us, ask questions, and be part of our growing community.
+- **[Follow our Steam Community page](https://steamcommunity.com/groups/Ki10Games)** to stay up-to-date on development.
