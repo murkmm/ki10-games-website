@@ -1,0 +1,88 @@
+---
+publishDate: 2025-10-26T15:00:00Z
+author: Scott
+title: 'Devlog #7: Grass Rocks!'
+excerpt: 'This week, we have started to populate our world with grass and rocks! Journey through the process of creating, testing and comparing the different variations of terrain features we have been creating in the past week.'
+image: '../../assets/images/BlenderGrass.PNG'
+cardImage: '../../assets/images/BlenderGrass.PNG'
+category: Devlog
+tags:
+  - devlog
+  - environment art
+  - 3d modelling
+  - blender
+  - unity
+metadata:
+  canonical: https://ki10games.com/devlog-7-grass-rocks
+---
+
+import { Image } from 'astro:assets';
+
+import blenderGrassGif from '../../assets/images/blender-grass.gif';
+import rockGround from '../../assets/images/RockGround.PNG';
+import unityGrass from '../../assets/images/UnityGrass.PNG';
+import blenderGrass from '../../assets/images/BlenderGrass.PNG';
+
+Welcome back to the Ki10 Games devlog!
+
+This week has been all about populating the world with wildlife and terrain, focusing mainly on grass and rocks to start with before moving onto ground textures, trees, plants, etc. I’ve been experimenting with different methods of creating these rocks and grass features, focusing on not only how they look but the optimisation side of things too.
+
+### **Rock My World**
+
+When experimenting with rock assets, it has been really important that I stay loyal to the initial inspirations for our art style: **Crash Bandicoot 4: It’s About Time** and **Jak and Daxter: The Precursor Legacy**.
+
+However, it's equally important that we don't just create a clone of the assets used in those games. Capturing the smooth, almost toon-like surfaces and textures while creating our own unique look was a high priority.
+
+From modelling these rocks by hand to incorporating modifiers into the models, I eventually found a design that felt right! I'm happy with the outcome as it fits right into the style we envisioned from the beginning.
+
+<figure class="flex flex-col items-center">
+  <Image src={rockGround} alt="A very rocky rock asset placed on the ground texture" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">A very rocky rock.</figcaption>
+</figure>
+
+### **Don’t Be A Grass!**
+
+Alongside the rocks, I’ve been experimenting with different methods of creating **grass** for our game world.
+
+I've tested several approaches, including:
+
+1.  Creating grass purely using **Unity's built-in features**.
+2.  Importing individual grass models created in **Blender**.
+3.  Making use of **Geometry Nodes in Blender** to generate whole beds of grass at once.
+
+It’s been fun learning all of these different approaches and exploring which method would work best for the player experience! With the grass, it has been really important to not only bring environments to life with beautiful styles but to also ensure the game is **well optimised** and not sacrificing things like framerate for the sake of having something pretty to look at!
+
+<figure class="flex flex-col items-center">
+  <Image
+    src={blenderGrassGif}
+    alt="GIF showing the motion and placement of the Blender-created grass"
+    class="max-w-full rounded-md"
+  />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    A preview of the grass motion.
+  </figcaption>
+</figure>
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <Image src={unityGrass} alt="Grass created using Unity's built-in features" class="max-w-full rounded-md" />
+    </div>
+    <div class="md:w-1/2">
+      <Image src={blenderGrass} alt="Grass created using Blender's Geometry Nodes" class="max-w-full rounded-md" />
+    </div>
+  </div>
+  <figcaption class="mt-4 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Side-by-side comparison of the Unity (Left) and Blender (Right) WIP grass mini-projects.
+  </figcaption>
+</figure>
+
+Thanks for reading about rocks and grass,
+
+Scott
+
+---
+
+- **[Sign up for our newsletter](/contact)** to get updates sent directly to your inbox.
+- **[Join our Discord server](https://discord.gg/NqtVzsmj3A)** to chat with us, ask questions, and be part of our growing community.
+- **[Follow our Steam Community page](https://steamcommunity.com/groups/Ki10Games)** to stay up-to-date on development.
