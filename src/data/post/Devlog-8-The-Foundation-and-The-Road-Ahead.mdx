@@ -1,0 +1,100 @@
+---
+publishDate: 2025-11-02T15:00:00Z
+author: Mark
+title: 'Devlog #8: The Foundation and The Road Ahead'
+excerpt: 'After seven weeks of focused development logs, we pause to take stock. This week covers the massive amount of core systems we built behind the scenes and lays out our plan to create a public demo within six months.'
+image: '../../assets/images/kit-grass.jpg'
+cardImage: '../../assets/images/kit-grass.jpg'
+category: Devlog
+tags:
+  - devlog
+  - progress report
+  - KIT
+metadata:
+  canonical: https://ki10games.com/devlog-8-the-foundation-and-the-road-ahead
+---
+
+import { Image } from 'astro:assets';
+
+import kitgrass from '../../assets/images/kit-grass.jpg';
+import kitenemy from '../../assets/images/kit-enemy.jpg';
+import kitmapquest from '../../assets/images/kit-map-quest.jpg';
+
+Welcome back to the Ki10 Games devlog!
+
+Seven weeks ago, we kicked off these weekly updates with introductions to our story, character design, and camera work. Since then, we’ve covered iterative design for the logo, collectibles, and finally, terrain art with grass and rocks.
+
+This week, however we're pausing to to look back at all the hard work we put into KIT: Knight In Training including talking about stuff we did before we started documenting our efforts in these devlogs, and then we’ll clearly map out the next steps towards a public showing.
+
+### **Looking Back: The Unseen Development**
+
+While we’ve been busy showcasing visual progress, a huge amount of time has been dedicated to implementing the core features that make this a complete, playable game. This isn't just a collection of features; it’s a cohesive platform that we can now build upon rapidly.
+
+Here is a snapshot of the robust systems already implemented in KIT:
+
+- **Core Player Mechanics**
+  - Implemented foundational movement: **Jumping**, **double jump**, and **coyote time** (for forgiving jumps).
+  - KIT's **enemy-launching spin attack**.
+
+- **Level Interactivity & Hazards**
+  - Fully functional **breakable objects**.
+  - Various hazards including **stationary spike traps** and **moving saw traps**.
+  - Logic for toggling environmental objects (blocks, bridges) on/off via **buttons**.
+
+- **World Flow & Progression**
+  - **Level select hub** that tracks main collectibles (coins and paws).
+  - Sophisticated **content gating** logic (e.g., unlocking a level requires a certain amount of collectables or beating a certain stage).
+  - **Mid-level checkpoint feature** allowing players to resume from defined points in our levels, very useful if the player is missing an item in our expansive open areas.
+
+- **Polish & Presentation**
+  - Dynamic **Camera Manager** that switches camera types on the fly.
+  - Working **Pause/Options Menu**.
+  - Comprehensive **Music and SFX system**.
+  - An **end-of-level dioramas** summarising player performance and stats.
+
+- **Persistence & NPCs**
+  - A **save system** using save files to track players save data and progress.
+  - **NPC dialogue system** capable of triggering level events and side quests.
+  - Functional **Shop system** where purchased cosmetics can be applied to the main character.
+
+- **Variety**
+  - Fun **2D style side scrolling sections** to add some variety to levels.
+  - Basic **creature pick-up/drop system** (more on this in the future).
+
+<figure class="flex flex-col items-center">
+  <Image src={kitmapquest} alt="A screenshot of the map and quest system" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The map and quest system.
+  </figcaption>
+</figure>
+
+### **The Road Ahead: Demo in Six Months**
+
+With the engine humming, we are now shifting focus heavily toward content creation and polishing.
+
+Our immediate goal is clear: release a public demo within the next six months. This gives us a tangible target to aim for. We are hoping to get something into your hands quickly, but we’re focused on quality first, so we won't release anything until we're certain it’s ready!
+
+This means the next few months will be less about inventing new systems and more about using the systems we’ve built to create something really fun. Expect more dev logs with more demo previews and insights as we get closer to releasing it.
+
+<figure class="flex flex-col items-center">
+  <Image src={kitenemy} alt="KIT facing down an enemy" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    KIT facing down an enemy!.
+  </figcaption>
+</figure>
+
+### **A Quick Personal Update**
+
+Finally, a quick note from me, Mark. I’ve recently started a new position on the Tools Team at Cloud Imperium Games. While this is an incredibly exciting step in my career, I want to be perfectly clear: my heart and soul remains fully committed to finishing this project. The skills I gain will only make me a more efficient and better developer for this project. Rest assured, our weekly devlog schedule and commitment to this game will not waver!
+
+Thanks for sticking with us through these first few weeks. We're excited to show you what we can build on with this solid foundation
+
+Until next time!
+
+Mark
+
+---
+
+- **[Sign up for our newsletter](/contact)** to get updates sent directly to your inbox.
+- **[Join our Discord server](https://discord.gg/NqtVzsmj3A)** to chat with us, ask questions, and be part of our growing community.
+- **[Follow our Steam Community page](https://steamcommunity.com/groups/Ki10Games)** to stay up-to-date on development.
