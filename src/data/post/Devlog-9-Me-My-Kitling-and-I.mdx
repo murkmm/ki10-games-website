@@ -1,0 +1,96 @@
+---
+publishDate: 2025-12-14T15:00:00Z
+author: Mark
+title: 'Devlog #9: Me, My Kitling, and I'
+excerpt: 'Long time no speak! After settling into the new day job, we return to discuss feature creep, Scott’s "Trojan Horse" design tactics, and the introduction of a familiar creature garden mechanic.'
+image: '../../assets/images/kit-garden.jpg'
+cardImage: '../../assets/images/kit-garden.jpg'
+category: Devlog
+tags:
+  - devlog
+  - mechanics
+  - companions
+  - KIT
+metadata:
+  canonical: https://ki10games.com/devlog-9-me-my-kitling-and-i
+---
+
+import { Image } from 'astro:assets';
+
+import kitgarden from '../../assets/images/kit-garden.jpg';
+import kitcompanion from '../../assets/images/kit-companion.jpg';
+
+Long time no speak!
+
+In my last post, I mentioned I was starting a new day job, so it's been all hands on deck getting up to speed with that whole ball game. That doesn't mean the fun has stopped with **KIT**, though. This week I'm going to talk about a feature that was a bit contentious when Scott first brought it up to me.
+
+So, in honor of my dear friend Scott (hope you get well soon, buddy!), I'm going to talk about that feature today.
+
+### **The Art of Feature Creep**
+
+Scott is a sneaky lil' guy. Whenever we're discussing plans and our next tasks for the project, he'll always slip in something like _"Wouldn't it be cool if we could add this new thing?"_
+
+I'll usually tell him off (nicely!) and say we're **scope creeping** and that will be the end of it. Except, that's _not_ the end of it. Because like I said, he's a sneaky guy. He'll start "Trojan Horsing" elements of what he wants slowly into conversations with me until I start to warm up to the idea.
+
+This is a really slow process and I don't even realize it's happening. It usually starts with small requests like:
+
+- _"Can we have small little critters walking around the hub world for atmosphere?"_ -> **Sounds good to me! Done!**
+- _"What if we could pick them up and interact with them?"_ -> **I like that idea!** It makes the world seem more like it's populated with different creatures.
+
+It will go on like this until suddenly I realize I'm implementing a **Chao Garden from Sonic Adventure** into the game.
+
+### **The Creature Garden**
+
+Which brings me back to his original request: _"What if we added a creature garden like Sonic Adventure's Chao Garden?"_
+
+At first, I was very resistant. Sounds like a lot of work, and I didn't think they fit in story wise. But slowly but surely, he made me come around to the idea. However, I wasn't letting him get away with just shoe-horning a creature garden in that easily. I was going to make sure that it made sense for our game and kept the ambition in check!
+
+<figure class="flex flex-col items-center">
+  <Image src={kitgarden} alt="The prototype garden area" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The prototype garden area where critters roam.
+  </figcaption>
+</figure>
+
+### **Meeting the Kitlings**
+
+So, what have we landed on?
+
+At the moment, we have **cute little partner characters** that follow our main hero around. Story wise, these cute little guys are given to Knights in Training to assist them when carrying out their duties.
+
+Gameplay wise, they serve distinct functions:
+
+1.  They act as a **ranged attack** for our hero.
+2.  They can be used to **grab faraway objects**.
+3.  They can trigger **unreachable switches**.
+
+That's what we intend them to be as a baseline, anyway. We could think of many more uses for the little critters (more feature creep!).
+
+Back in the present, I've implemented a very basic system for these small companions. Here in this test level, they have their "garden area" that acts as their home base. They will wander round the area and look cute, and the player can pick them up and take them from their garden to start their adventure.
+
+<figure class="flex flex-col items-center">
+  <Image src={kitcompanion} alt="Player carrying a companion" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Testing the pick-up and carry mechanics.
+  </figcaption>
+</figure>
+
+### **Looking Ahead to 2026**
+
+Finally, I want to take a moment to sign off for the year.
+
+We have big plans for Ki10 Games in 2026, most importantly the launch of our planned public demo. We are committed to getting updates out to you a lot more regularly once we flip the calendar page.
+
+However, the road hasn't been without its bumps. With Scott currently in the hospital, things have been tougher than usual. I won't go in-depth on that right now I want to give him the space to write about that journey himself when he's ready but it has certainly been a hurdle for the team.
+
+That said, setbacks only make us more determined. We are going to come back stronger next year to deliver something special.
+
+Have a safe holiday, and we'll see you in 2026!
+
+Mark
+
+---
+
+- **[Sign up for our newsletter](/contact)** to get updates sent directly to your inbox.
+- **[Join our Discord server](https://discord.gg/NqtVzsmj3A)** to chat with us, ask questions, and be part of our growing community.
+- **[Follow our Steam Community page](https://steamcommunity.com/groups/Ki10Games)** to stay up-to-date on development.
