@@ -1,5 +1,6 @@
 {
-	"motd": "Logging test ",
+	"last_updated": 1769211033.345,
+	"motd": "Fixed MOTD upload",
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
