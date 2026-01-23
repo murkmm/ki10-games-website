@@ -3,26 +3,16 @@
 export async function GET() {
   const schedule = {
     schedule: {
-      "2026-01-23": [
-        "crash_bandicoot", 
-        "crash_bandicoot_2_cortex_strikes_back", 
-        "crash_bandicoot_warped"
-      ],
-      "2026-01-24": [
-        "halo_combat_evolved", 
-        "halo_2", 
-        "halo_3"
-      ]
+      '2026-01-23': ['crash_bandicoot', 'crash_bandicoot_2_cortex_strikes_back', 'crash_bandicoot_warped'],
+      '2026-01-24': ['halo_combat_evolved', 'halo_2', 'halo_3'],
     },
-    motd: "Live from AstroWind!"
+    motd: 'Live from AstroWind!',
   };
 
-  return new Response(
-    JSON.stringify(schedule), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
+  return new Response(JSON.stringify(schedule), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 }
