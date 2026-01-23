@@ -1,6 +1,7 @@
 {
-	"last_updated": 1769211132.882,
-	"motd": "Test 123",
+	"debug_check": "v1.0",
+	"last_updated": 1769211256,
+	"motd": "FINAL TEST",
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
