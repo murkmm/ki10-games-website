@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769278482,
+	"last_updated": 1769292535,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -15,6 +15,16 @@
 			],
 			"mode": "STANDARD",
 			"motd": "Crash Daily !"
+		},
+		"2026-01-25": {
+			"difficulty": "Normal",
+			"games": [
+				"halo_combat_evolved",
+				"halo_2_original",
+				"halo_3"
+			],
+			"mode": "STANDARD",
+			"motd": "Halo Sundays !"
 		}
 	}
 }
