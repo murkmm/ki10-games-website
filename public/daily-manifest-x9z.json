@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769257959,
+	"last_updated": 1769273194,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -7,13 +7,14 @@
 			"crash_bandicoot_warped"
 		],
 		"2026-01-24": {
-			"difficulty": "Easy",
+			"difficulty": "Expert",
 			"games": [
-				"crash_bandicoot_trivia",
-				"crash_bandicoot_2_cortex_strikes_back",
-				"crash_bandicoot_warped"
+				"crash_team_racing_ps1",
+				"crash_bandicoot_4_its_about_time",
+				"crash_bandicoot"
 			],
-			"motd": "Crash Test Daily"
+			"mode": "SUDDEN_DEATH",
+			"motd": "New mode daily test"
 		}
 	}
 }
