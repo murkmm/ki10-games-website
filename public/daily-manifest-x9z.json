@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769278375,
+	"last_updated": 1769278482,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -13,7 +13,7 @@
 				"crash_bandicoot_4_its_about_time",
 				"crash_bandicoot"
 			],
-			"mode": "SUDDEN_DEATH",
+			"mode": "STANDARD",
 			"motd": "Crash Daily !"
 		}
 	}
