@@ -1,7 +1,7 @@
 {
 	"debug_check": "v1.0",
-	"last_updated": 1769211634,
-	"motd": "Welcome to the Crash Daily",
+	"last_updated": 1769254848,
+	"motd": "2nd Daily Test",
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -9,9 +9,9 @@
 			"crash_bandicoot_warped"
 		],
 		"2026-01-24": [
-			"halo_combat_evolved",
-			"halo_2",
-			"halo_3"
+			"spyro_the_dragon_ps1",
+			"super_mario_odyssey_speedrun_quiz",
+			"jak_and_daxter_tpl"
 		]
 	}
 }
