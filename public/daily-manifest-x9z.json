@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769342757,
+	"last_updated": 1769358935,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -19,21 +19,21 @@
 		"2026-01-25": {
 			"difficulty": "Easy",
 			"mode": "STANDARD",
-			"motd": "Halo Sundays !",
+			"motd": "Hello Kitty Daily Challenge",
 			"shops": [
 				{
-					"game": "halo_reach",
+					"game": "hello_kitty_roller_rescue",
 					"peri": "rumble_pack"
 				},
 				{
-					"game": "halo_5_guardians",
+					"game": "hello_kitty_party_pals",
 					"peri": "expansion_pak"
 				}
 			],
 			"starters": [
-				"halo_combat_evolved",
-				"halo_2_original",
-				"halo_3"
+				"hello_kitty_island_adventure",
+				"hello_kitty_kruisers",
+				"hello_kitty_parade"
 			]
 		}
 	}
