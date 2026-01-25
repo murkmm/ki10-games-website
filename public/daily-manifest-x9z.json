@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769358935,
+	"last_updated": 1769360284,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -34,6 +34,26 @@
 				"hello_kitty_island_adventure",
 				"hello_kitty_kruisers",
 				"hello_kitty_parade"
+			]
+		},
+		"2026-01-26": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Call of Duty Booty",
+			"shops": [
+				{
+					"game": "call_of_duty_advanced_warfare",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "call_of_duty_wwii",
+					"peri": "expansion_pak"
+				}
+			],
+			"starters": [
+				"call_of_duty_4_modern_warfare",
+				"cod_black_ops_2010",
+				"call_of_duty_ghosts"
 			]
 		}
 	}
