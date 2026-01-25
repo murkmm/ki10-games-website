@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769292535,
+	"last_updated": 1769342757,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -17,14 +17,24 @@
 			"motd": "Crash Daily !"
 		},
 		"2026-01-25": {
-			"difficulty": "Normal",
-			"games": [
+			"difficulty": "Easy",
+			"mode": "STANDARD",
+			"motd": "Halo Sundays !",
+			"shops": [
+				{
+					"game": "halo_reach",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "halo_5_guardians",
+					"peri": "expansion_pak"
+				}
+			],
+			"starters": [
 				"halo_combat_evolved",
 				"halo_2_original",
 				"halo_3"
-			],
-			"mode": "STANDARD",
-			"motd": "Halo Sundays !"
+			]
 		}
 	}
 }
