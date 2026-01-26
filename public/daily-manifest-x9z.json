@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769360284,
+	"last_updated": 1769464410,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -37,23 +37,23 @@
 			]
 		},
 		"2026-01-26": {
-			"difficulty": "Normal",
-			"mode": "STANDARD",
-			"motd": "Call of Duty Booty",
+			"difficulty": "Easy",
+			"mode": "INFLATION",
+			"motd": "Fortnite",
 			"shops": [
 				{
-					"game": "call_of_duty_advanced_warfare",
+					"game": "",
 					"peri": "rumble_pack"
 				},
 				{
-					"game": "call_of_duty_wwii",
+					"game": "",
 					"peri": "expansion_pak"
 				}
 			],
 			"starters": [
-				"call_of_duty_4_modern_warfare",
-				"cod_black_ops_2010",
-				"call_of_duty_ghosts"
+				"fortnite_trivia_archive",
+				"fortnite_trivia_archive",
+				"fortnite_trivia_archive"
 			]
 		}
 	}
