@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769464410,
+	"last_updated": 1769464585,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -54,6 +54,26 @@
 				"fortnite_trivia_archive",
 				"fortnite_trivia_archive",
 				"fortnite_trivia_archive"
+			]
+		},
+		"2026-01-27": {
+			"difficulty": "Hard",
+			"mode": "TIME_ATTACK",
+			"motd": "Tuesday Trivia Day",
+			"shops": [
+				{
+					"game": "merlin_apex_archive_v1",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "fortnite_trivia_archive",
+					"peri": "expansion_pak"
+				}
+			],
+			"starters": [
+				"merlin_rust_archive_001",
+				"dayz_chernarus_survival_catnip",
+				"warzone_iconic_archive_001"
 			]
 		}
 	}
