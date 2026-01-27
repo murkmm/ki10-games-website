@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769464585,
+	"last_updated": 1769545597,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -57,23 +57,24 @@
 			]
 		},
 		"2026-01-27": {
-			"difficulty": "Hard",
-			"mode": "TIME_ATTACK",
-			"motd": "Tuesday Trivia Day",
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Rosies Special Pokemon Daily !",
+			"share_text": "Proved their eevee Knowledge !",
 			"shops": [
 				{
-					"game": "merlin_apex_archive_v1",
+					"game": "",
 					"peri": "rumble_pack"
 				},
 				{
-					"game": "fortnite_trivia_archive",
+					"game": "",
 					"peri": "expansion_pak"
 				}
 			],
 			"starters": [
-				"merlin_rust_archive_001",
-				"dayz_chernarus_survival_catnip",
-				"warzone_iconic_archive_001"
+				"pokemon_legends_za_unreleased_era",
+				"pokemon_tcg_pocket_sensory_quiz",
+				"eevee_sensory_quiz"
 			]
 		}
 	}
