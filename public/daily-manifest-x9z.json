@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769545597,
+	"last_updated": 1769546420,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -60,7 +60,7 @@
 			"difficulty": "Normal",
 			"mode": "STANDARD",
 			"motd": "Rosies Special Pokemon Daily !",
-			"share_text": "Proved their eevee Knowledge !",
+			"share_text": "Proved their Eevee knowledge !",
 			"shops": [
 				{
 					"game": "",
@@ -72,9 +72,9 @@
 				}
 			],
 			"starters": [
-				"pokemon_legends_za_unreleased_era",
-				"pokemon_tcg_pocket_sensory_quiz",
-				"eevee_sensory_quiz"
+				"pokemon_legends_za_trivia_v1",
+				"eevee_trivia_challenge",
+				"pokemon_sword_shield_gen8"
 			]
 		}
 	}
