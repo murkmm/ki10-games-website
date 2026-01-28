@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769546486,
+	"last_updated": 1769635129,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -96,6 +96,27 @@
 				"halo_ce_vibe_check_001",
 				"halo_2_master_chief",
 				"halo_3_nostalgia_trivia"
+			]
+		},
+		"2026-01-29": {
+			"difficulty": "Hard",
+			"mode": "SUDDEN_DEATH",
+			"motd": "MORE TESTING",
+			"share_text": "Pokemon  madness !",
+			"shops": [
+				{
+					"game": "",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "",
+					"peri": "expansion_pak"
+				}
+			],
+			"starters": [
+				"eevee_trivia_challenge",
+				"pokemon_legends_za_trivia_v1",
+				"pokemon_sword_shield_gen8"
 			]
 		}
 	}
