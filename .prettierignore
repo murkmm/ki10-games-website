@@ -3,3 +3,4 @@ node_modules
 .github
 .changeset
 public/daily-manifest-x9z.json
+public/skillcheck
