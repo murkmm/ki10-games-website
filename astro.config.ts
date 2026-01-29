@@ -27,10 +27,10 @@ export default defineConfig({
   // Keep this server block (good practice)
   server: {
     headers: {
-      "Cross-Origin-Opener-Policy": "same-origin",
-      "Cross-Origin-Embedder-Policy": "require-corp",
-      "Cross-Origin-Resource-Policy": "cross-origin"
-    }
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Resource-Policy': 'cross-origin',
+    },
   },
 
   integrations: [
@@ -93,11 +93,11 @@ export default defineConfig({
     // --- THIS IS THE FIX ---
     plugins: [
       {
-        name: "configure-response-headers",
+        name: 'configure-response-headers',
         configureServer: (server) => {
           server.middlewares.use((_req, res, next) => {
-            res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-            res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+            res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+            res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
             next();
           });
         },
