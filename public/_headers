@@ -1,2 +1,7 @@
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# UPDATED: Match the folder name exactly
+/skillcheck/*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp

@@ -24,6 +24,15 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  // Keep this server block (good practice)
+  server: {
+    headers: {
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Resource-Policy": "cross-origin"
+    }
+  },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -81,6 +90,20 @@ export default defineConfig({
   },
 
   vite: {
+    // --- THIS IS THE FIX ---
+    plugins: [
+      {
+        name: "configure-response-headers",
+        configureServer: (server) => {
+          server.middlewares.use((_req, res, next) => {
+            res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+            res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+            next();
+          });
+        },
+      },
+    ],
+    // -----------------------
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),

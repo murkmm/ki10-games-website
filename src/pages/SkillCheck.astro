@@ -1,0 +1,88 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Play Skill Check',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="w-full flex flex-col items-center justify-center py-12 px-4 bg-neutral-950 text-white min-h-screen">
+    <div class="text-center mb-6">
+      <h1
+        class="text-4xl md:text-5xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 mb-2"
+      >
+        SKILL CHECK
+      </h1>
+      <p class="text-neutral-400 text-sm tracking-widest uppercase">Daily Game Trivia</p>
+    </div>
+
+    <div
+      id="game-container"
+      class="relative w-full max-w-[400px] aspect-[9/16] bg-black rounded-2xl shadow-2xl border-[6px] border-neutral-800 ring-1 ring-white/10 overflow-hidden"
+    >
+      <iframe
+        id="game-iframe"
+        src="/skillcheck/index.html"
+        class="absolute inset-0 w-full h-full"
+        frameborder="0"
+        allowfullscreen="true"
+        allow="autoplay; fullscreen; geolocation; microphone; camera; midi"></iframe>
+    </div>
+
+    <div class="mt-6 flex flex-col items-center gap-4">
+      <button
+        id="fullscreen-btn"
+        class="flex items-center gap-2 px-6 py-3 bg-neutral-800 hover:bg-neutral-700 active:scale-95 transition-all rounded-full border border-neutral-700 shadow-lg group"
+      >
+        <svg
+          class="w-5 h-5 text-neutral-400 group-hover:text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+        </svg>
+        <span class="text-sm font-bold tracking-wide text-neutral-200">FULLSCREEN</span>
+      </button>
+
+      <div class="flex items-center gap-6 text-xs font-mono text-neutral-500">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          <span>TOUCH ENABLED</span>
+        </div>
+        <div class="w-px h-4 bg-neutral-800"></div>
+        <div class="flex items-center gap-2">
+          <span>🖱️ MOUSE SUPPORTED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // CLIENT-SIDE LOGIC FOR FULLSCREEN
+  const btn = document.getElementById('fullscreen-btn');
+  const iframe = document.getElementById('game-iframe');
+
+  if (btn && iframe) {
+    btn.addEventListener('click', () => {
+      // 1. Standard Modern Browsers
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      }
+      // 2. Safari / Old Chrome (Use bracket notation to bypass TS check)
+      else if (iframe['webkitRequestFullscreen']) {
+        iframe['webkitRequestFullscreen']();
+      }
+      // 3. IE11 / Old Edge
+      else if (iframe['msRequestFullscreen']) {
+        iframe['msRequestFullscreen']();
+      }
+    });
+  }
+</script>
