@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769635129,
+	"last_updated": 1769721816,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -117,6 +117,27 @@
 				"eevee_trivia_challenge",
 				"pokemon_legends_za_trivia_v1",
 				"pokemon_sword_shield_gen8"
+			]
+		},
+		"2026-01-30": {
+			"difficulty": "Easy",
+			"mode": "STANDARD",
+			"motd": "Crash Firday !",
+			"share_text": "CRASHING INTO A TOP SCORE !",
+			"shops": [
+				{
+					"game": "doctor_neo_cortex_trivia",
+					"peri": "expansion_pak"
+				},
+				{
+					"game": "n_sanity_beach_trivia_20",
+					"peri": "rumble_pack"
+				}
+			],
+			"starters": [
+				"crash_bandicoot_character_trivia",
+				"warp_room_crash_2_trivia",
+				"coco_bandicoot_cb2_trivia"
 			]
 		}
 	}
