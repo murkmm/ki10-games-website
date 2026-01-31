@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769721816,
+	"last_updated": 1769873031,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -138,6 +138,45 @@
 				"crash_bandicoot_character_trivia",
 				"warp_room_crash_2_trivia",
 				"coco_bandicoot_cb2_trivia"
+			]
+		},
+		"2026-01-31": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Halo New system test",
+			"share_text": "Finished The Fight",
+			"shops": [
+				{
+					"game": "guilty_spark",
+					"peri": "expansion_pak"
+				},
+				{
+					"game": "johnson",
+					"peri": "rumble_pack"
+				}
+			],
+			"starters": [
+				"master_chief",
+				"cortana",
+				"warthog",
+				"ghost",
+				"energy_sword",
+				"assault_rifle",
+				"reach",
+				"truth",
+				"installation_07",
+				"assault_on_the_control_room",
+				"flood",
+				"arbiter",
+				"installation_04",
+				"needler",
+				"scorpion",
+				"johnson",
+				"battle_rifle",
+				"high_charity",
+				"banshee",
+				"gravemind",
+				"guilty_spark"
 			]
 		}
 	}
