@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769863737,
+	"last_updated": 1769865418,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -147,11 +147,11 @@
 			"share_text": "Finished The Fight",
 			"shops": [
 				{
-					"game": "",
+					"game": "rocket_launcher",
 					"peri": "expansion_pak"
 				},
 				{
-					"game": "",
+					"game": "forward_unto_dawn",
 					"peri": "rumble_pack"
 				}
 			],
