@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769865418,
+	"last_updated": 1769869116,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -147,35 +147,34 @@
 			"share_text": "Finished The Fight",
 			"shops": [
 				{
-					"game": "rocket_launcher",
+					"game": "blood_gulch",
 					"peri": "expansion_pak"
 				},
 				{
-					"game": "forward_unto_dawn",
+					"game": "magnum",
 					"peri": "rumble_pack"
 				}
 			],
 			"starters": [
 				"master_chief",
-				"warthog",
-				"energy_sword",
-				"pillar_of_autumn",
-				"ringworld",
-				"gravemind",
-				"scorpion",
-				"sgt._johnson",
-				"assault_rifle",
-				"covenant",
-				"arbiter",
 				"cortana",
-				"plasma_pistol",
-				"the_flood",
+				"arbiter",
+				"assault_rifle",
+				"energy_sword",
+				"warthog",
+				"pelican",
+				"installation_07",
+				"high_charity",
+				"gravemind",
+				"truth",
+				"sergeant_johnson",
+				"battle_rifle",
+				"needler",
 				"rocket_launcher",
-				"forward_unto_dawn",
-				"unsc",
-				"prophet_of_truth",
-				"reach",
-				"needler"
+				"ghost",
+				"phantom",
+				"scorpion",
+				"reach"
 			]
 		}
 	}
