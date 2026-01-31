@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769721816,
+	"last_updated": 1769863737,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -138,6 +138,44 @@
 				"crash_bandicoot_character_trivia",
 				"warp_room_crash_2_trivia",
 				"coco_bandicoot_cb2_trivia"
+			]
+		},
+		"2026-01-31": {
+			"difficulty": "Expert",
+			"mode": "STANDARD",
+			"motd": "Halo New system test",
+			"share_text": "Finished The Fight",
+			"shops": [
+				{
+					"game": "",
+					"peri": "expansion_pak"
+				},
+				{
+					"game": "",
+					"peri": "rumble_pack"
+				}
+			],
+			"starters": [
+				"master_chief",
+				"warthog",
+				"energy_sword",
+				"pillar_of_autumn",
+				"ringworld",
+				"gravemind",
+				"scorpion",
+				"sgt._johnson",
+				"assault_rifle",
+				"covenant",
+				"arbiter",
+				"cortana",
+				"plasma_pistol",
+				"the_flood",
+				"rocket_launcher",
+				"forward_unto_dawn",
+				"unsc",
+				"prophet_of_truth",
+				"reach",
+				"needler"
 			]
 		}
 	}
