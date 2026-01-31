@@ -1,13 +1,13 @@
-/_astro/*
-  Cache-Control: public, max-age=31536000, immutable
+# Root directory headers
+/*
+  Access-Control-Allow-Origin: *
 
-# 1. Security Headers for the whole game folder (Required for Godot 4)
+# The folder where your game lives
 /skillcheck/*
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: require-corp
 
-# 2. Compression Rule (Required for the Gzip Trick)
-# This allows you to upload the compressed ~6MB file but name it .wasm
+# The specific WASM file (Must match the URL path exactly)
 /skillcheck/index.wasm
   Content-Encoding: gzip
   Content-Type: application/wasm
