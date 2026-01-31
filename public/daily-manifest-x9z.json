@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769869116,
+	"last_updated": 1769873031,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -141,40 +141,42 @@
 			]
 		},
 		"2026-01-31": {
-			"difficulty": "Expert",
+			"difficulty": "Normal",
 			"mode": "STANDARD",
 			"motd": "Halo New system test",
 			"share_text": "Finished The Fight",
 			"shops": [
 				{
-					"game": "blood_gulch",
+					"game": "guilty_spark",
 					"peri": "expansion_pak"
 				},
 				{
-					"game": "magnum",
+					"game": "johnson",
 					"peri": "rumble_pack"
 				}
 			],
 			"starters": [
 				"master_chief",
 				"cortana",
-				"arbiter",
-				"assault_rifle",
-				"energy_sword",
 				"warthog",
-				"pelican",
-				"installation_07",
-				"high_charity",
-				"gravemind",
-				"truth",
-				"sergeant_johnson",
-				"battle_rifle",
-				"needler",
-				"rocket_launcher",
 				"ghost",
-				"phantom",
+				"energy_sword",
+				"assault_rifle",
+				"reach",
+				"truth",
+				"installation_07",
+				"assault_on_the_control_room",
+				"flood",
+				"arbiter",
+				"installation_04",
+				"needler",
 				"scorpion",
-				"reach"
+				"johnson",
+				"battle_rifle",
+				"high_charity",
+				"banshee",
+				"gravemind",
+				"guilty_spark"
 			]
 		}
 	}
