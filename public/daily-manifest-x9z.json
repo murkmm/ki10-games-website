@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769941339,
+	"last_updated": 1769982506,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -221,6 +221,55 @@
 				"nurse_joy",
 				"gym_badges",
 				"poké_ball"
+			]
+		},
+		"2026-02-02": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Mario Kart Mondays !",
+			"share_text": "Avoided the blue shell !",
+			"shops": [
+				{
+					"game": "toad",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "yoshi",
+					"peri": "expansion_pak"
+				}
+			],
+			"showcase": [
+				"luigi",
+				"mario",
+				"peach"
+			],
+			"starters": [
+				"mario",
+				"bowser",
+				"kart",
+				"gliding",
+				"fire_flower",
+				"blue_shell",
+				"rainbow_road",
+				"banana",
+				"coconut_mall",
+				"feather",
+				"coin",
+				"dry_bones",
+				"standard_kart",
+				"super_star",
+				"lakitu",
+				"mushroom",
+				"waluigi",
+				"wario_stadium",
+				"piranha_plant",
+				"lightning",
+				"luigi",
+				"peach",
+				"donkey_kong",
+				"wario",
+				"rosalina",
+				"shy_guy"
 			]
 		}
 	}
