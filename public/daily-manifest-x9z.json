@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769873031,
+	"last_updated": 1769941339,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -177,6 +177,50 @@
 				"banshee",
 				"gravemind",
 				"guilty_spark"
+			]
+		},
+		"2026-02-01": {
+			"difficulty": "Easy",
+			"mode": "STANDARD",
+			"motd": "Gotta Catch Em All !",
+			"share_text": "Filled the Pokedex",
+			"shops": [
+				{
+					"game": "charizard",
+					"peri": "expansion_pak"
+				},
+				{
+					"game": "master_ball",
+					"peri": "rumble_pack"
+				}
+			],
+			"showcase": [
+				"pikachu",
+				"charizard",
+				"pokédex"
+			],
+			"starters": [
+				"pikachu",
+				"red",
+				"s.s._anne",
+				"lavender_town",
+				"mewtwo",
+				"brock",
+				"bicycle",
+				"team_rocket",
+				"elite_four",
+				"surf",
+				"blue",
+				"pokédex",
+				"cinnabar_island",
+				"oak",
+				"cynthia",
+				"potions",
+				"tms",
+				"mt._silver",
+				"nurse_joy",
+				"gym_badges",
+				"poké_ball"
 			]
 		}
 	}
