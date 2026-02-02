@@ -1,5 +1,5 @@
 {
-	"last_updated": 1769982506,
+	"last_updated": 1770065724,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -270,6 +270,63 @@
 				"wario",
 				"rosalina",
 				"shy_guy"
+			]
+		},
+		"2026-02-03": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Prepare to Die Edition",
+			"share_text": "Bonfire Lit",
+			"shops": [
+				{
+					"game": "sewer_rat",
+					"peri": "rumble_pack"
+				},
+				{
+					"game": "gaping_dragon",
+					"peri": "expansion_pak"
+				}
+			],
+			"showcase": [
+				"artorias",
+				"chosen_undead",
+				"gwyn"
+			],
+			"starters": [
+				"chosen_undead",
+				"artorias",
+				"anor_londo",
+				"moonlight_greatsword",
+				"sif",
+				"firelink_shrine",
+				"solaire",
+				"gwyn",
+				"zweihander",
+				"bonfire",
+				"seath",
+				"quelaag",
+				"asylum_demon",
+				"taurus_demon",
+				"bell_gargoyle",
+				"capra_demon",
+				"iron_golem",
+				"titanite_demon",
+				"pinwheel",
+				"four_kings",
+				"chaos_eater",
+				"dragon",
+				"lautrec",
+				"siegmeyer",
+				"andre",
+				"priscilla",
+				"patches",
+				"frampt",
+				"kirk",
+				"reah",
+				"domhnall",
+				"logan",
+				"oswald",
+				"quelana"
 			]
 		}
 	}
