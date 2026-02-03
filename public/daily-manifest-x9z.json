@@ -1,5 +1,5 @@
 {
-	"last_updated": 1770065724,
+	"last_updated": 1770159247,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -327,6 +327,51 @@
 				"logan",
 				"oswald",
 				"quelana"
+			]
+		},
+		"2026-02-04": {
+			"difficulty": "Easy",
+			"mode": "STANDARD",
+			"motd": "Nook Inc. Debt Repayment",
+			"share_text": "0 Bells remaining on my loan!",
+			"shops": [
+				{
+					"game": "kapp'n",
+					"peri": "expansion_pak"
+				},
+				{
+					"game": "lottie",
+					"peri": "rumble_pack"
+				}
+			],
+			"showcase": [
+				"isabelle",
+				"tom_nook",
+				"k.k._slider"
+			],
+			"starters": [
+				"tom_nook",
+				"isabelle",
+				"the_museum",
+				"k.k._slider",
+				"redd",
+				"bell_bag",
+				"stalk_market",
+				"net",
+				"gyroid",
+				"resident_services",
+				"dodo_airlines",
+				"flick",
+				"blathers",
+				"celeste",
+				"sable",
+				"brewster",
+				"gulliver",
+				"c.j.",
+				"reese",
+				"cyrus",
+				"leif",
+				"harvey"
 			]
 		}
 	}
