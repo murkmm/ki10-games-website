@@ -18696,138 +18696,51 @@
 	],
 	"peripherals": [
 		{
-			"color": "#33FF33",
-			"condition": "ALWAYS",
-			"desc": "Eliminates the cathode-ray glare and radiation artifacts. A clear view of your metrics.",
-			"id": "restored_pip_screen",
+			"color": "#FFC300",
+			"condition": "STACK_1",
+			"desc": "Grants a bonus of 400 points to your total score when only a single cartridge is loaded.",
+			"id": "specialist_targeting_scope",
 			"keywords": [
-				"utility",
-				"reliability",
-				"tech"
-			],
-			"logic_type": "FLAT",
-			"logic_val": 300.0,
-			"name": "Restored Pip-Boy Screen",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#0A0A5C",
-			"condition": "HARD_ONLY",
-			"desc": "When you're the toughest guy in the Capital Wasteland, you perform better. A multiplier for when the challenge is real.",
-			"id": "tunnel_snake_lining",
-			"keywords": [
-				"risk",
-				"swagger",
-				"combat"
-			],
-			"logic_type": "MULT",
-			"logic_val": 2.0,
-			"name": "Tunnel Snake Jacket Lining",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#6495ED",
-			"condition": "STACK_3",
-			"desc": "A perfect dispenser for coordinating your cognition-enhancers (Berry, Grape, and Orange).",
-			"id": "optimized_mentat_tray",
-			"keywords": [
-				"chem",
-				"synergy",
-				"intelligence"
-			],
-			"logic_type": "FLAT",
-			"logic_val": 1000.0,
-			"name": "Optimized Mentat Tray",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#F0E68C",
-			"condition": "ALWAYS",
-			"desc": "High in carbs, low in radiation. A reliable, pre-war snack that always provides a small boost.",
-			"id": "sugar_bombs_ration",
-			"keywords": [
-				"food",
-				"pre_war",
-				"utility"
-			],
-			"logic_type": "FLAT",
-			"logic_val": 300.0,
-			"name": "Sugar Bombs Ration Pack",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#32CD32",
-			"condition": "HARD_ONLY",
-			"desc": "A crude, unstable syringe rig designed to administer performance drugs. Only effective when operating under extreme stress.",
-			"id": "mutagenic_injector",
-			"keywords": [
-				"chemical",
-				"unstable",
-				"risk"
-			],
-			"logic_type": "MULT",
-			"logic_val": 2.0,
-			"name": "F.E.V. Injector Rig",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#4169E1",
-			"condition": "STACK_3",
-			"desc": "This specialized crate is designed to safely house three (and only three) perfectly intact Quantum bottles for maximum archival value.",
-			"id": "quantum_display_crate",
-			"keywords": [
-				"collectible",
-				"rare",
-				"synergy"
-			],
-			"logic_type": "FLAT",
-			"logic_val": 1000.0,
-			"name": "Nuka-Cola Quantum Crate",
-			"type": "PERIPHERAL"
-		},
-		{
-			"color": "#A0522D",
-			"condition": "ALWAYS",
-			"desc": "Boosts focus. Better than a Sugar Bombs breakfast.",
-			"id": "mentats_jar",
-			"keywords": [
-				"chem",
-				"intelligence",
-				"consumable"
+				"Pip-Boy",
+				"Precision",
+				"Focus",
+				"Retro"
 			],
 			"logic_type": "FLAT",
 			"logic_val": 400.0,
-			"name": "Mentats Jar",
+			"name": "Targeting Scope 1-A",
 			"type": "PERIPHERAL"
 		},
 		{
-			"color": "#000000",
-			"condition": "HARD_ONLY",
-			"desc": "Don't ask if you'll survive—it's impolite. Just trust the plastic.",
-			"id": "lucky_8_ball",
+			"color": "#C70039",
+			"condition": "STACK_3",
+			"desc": "Applies a 1.75x multiplier to the final score when playing a triple cartridge stack.",
+			"id": "gambler_triple_stack",
 			"keywords": [
-				"luck",
-				"challenge",
-				"novelty"
+				"Jury-Rigged",
+				"High-Risk",
+				"Luck",
+				"Energy"
 			],
 			"logic_type": "MULT",
 			"logic_val": 1.75,
-			"name": "Lucky 8-Ball",
+			"name": "Jury-Rigged Matrix",
 			"type": "PERIPHERAL"
 		},
 		{
-			"color": "#FFD700",
-			"condition": "STACK_3",
-			"desc": "When properly calibrated, this HUD removes all atmospheric distortion.",
-			"id": "t51b_targeting_module",
+			"color": "#1AA78F",
+			"condition": "HARD_ONLY",
+			"desc": "Provides a raw point bonus of 750 points upon correctly answering a Hard difficulty question.",
+			"id": "expert_enclave_chip",
 			"keywords": [
-				"power_armor",
-				"military",
-				"integration"
+				"Pre-War Tech",
+				"Enclave",
+				"Logic",
+				"Data"
 			],
 			"logic_type": "FLAT",
-			"logic_val": 1100.0,
-			"name": "T-51b Targeting Module",
+			"logic_val": 750.0,
+			"name": "Enclave Logic Board",
 			"type": "PERIPHERAL"
 		}
 	],
@@ -19319,7 +19232,7 @@
 					"name": "Capital Defenders"
 				},
 				{
-					"bonus": 3500,
+					"bonus": 3500.0,
 					"items": [
 						"Fawkes",
 						"Star Paladin Cross",
