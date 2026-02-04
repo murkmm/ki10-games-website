@@ -6463,18 +6463,6 @@
 						]
 					},
 					{
-						"correct": "Bowser's Castle",
-						"difficulty": "Easy",
-						"explanation": "Bowser's Castle. This course is a staple in every Mario Kart game.",
-						"fact_checked": true,
-						"question": "What is the name of Bowser's primary themed track, often featuring lava and volcanic activity?",
-						"wrong": [
-							"Wario Stadium",
-							"Koopa Beach",
-							"Dry Dry Desert"
-						]
-					},
-					{
 						"correct": "Koopa King",
 						"difficulty": "Medium",
 						"explanation": "Koopa King. This vehicle is reserved only for Bowser and his partner, Bowser Jr.",
@@ -7582,18 +7570,6 @@
 						]
 					},
 					{
-						"correct": "Koopa Troopa",
-						"difficulty": "Easy",
-						"explanation": "Koopa Troopa. Dry Bones are Koopa Troopas who have been defeated and reanimated.",
-						"fact_checked": true,
-						"question": "Dry Bones is the skeletal version of which common enemy creature?",
-						"wrong": [
-							"Goomba",
-							"Shy Guy",
-							"Lakitu"
-						]
-					},
-					{
 						"correct": "Mario Kart DS",
 						"difficulty": "Easy",
 						"explanation": "Mario Kart DS. Dry Bones was an unlockable character in this title.",
@@ -7603,18 +7579,6 @@
 							"Mario Kart 64",
 							"Mario Kart Wii",
 							"Mario Kart 7"
-						]
-					},
-					{
-						"correct": "Light",
-						"difficulty": "Easy",
-						"explanation": "Light. Due to his hollow, skeletal nature, he is one of the lightest drivers.",
-						"fact_checked": true,
-						"question": "Dry Bones is consistently categorized into what weight class?",
-						"wrong": [
-							"Heavy",
-							"Medium",
-							"Cruiser"
 						]
 					},
 					{
@@ -7654,42 +7618,6 @@
 						]
 					},
 					{
-						"correct": "Mario Kart 7",
-						"difficulty": "Hard",
-						"explanation": "Mario Kart 7. Dry Bones was not playable in the 3DS installment, but returned for MK8.",
-						"fact_checked": true,
-						"question": "Dry Bones was notably excluded from which numbered mainline console Mario Kart title after his debut?",
-						"wrong": [
-							"Mario Kart Wii",
-							"Mario Kart DS",
-							"Mario Kart 8"
-						]
-					},
-					{
-						"correct": "Koopa Troopa",
-						"difficulty": "Easy",
-						"explanation": "Koopa Troopa. Dry Bones is the resurrected, skeletal form of a Koopa Troopa.",
-						"fact_checked": true,
-						"question": "Dry Bones is a skeletal version of which common enemy from the Super Mario series?",
-						"wrong": [
-							"Goomba",
-							"Shy Guy",
-							"Boo"
-						]
-					},
-					{
-						"correct": "Lightweight",
-						"difficulty": "Easy",
-						"explanation": "Lightweight. Due to his hollow, skeletal structure, he is one of the lightest drivers.",
-						"fact_checked": true,
-						"question": "Dry Bones typically falls into which driver weight class?",
-						"wrong": [
-							"Middleweight",
-							"Heavyweight",
-							"Cruiserweight"
-						]
-					},
-					{
 						"correct": "Red",
 						"difficulty": "Easy",
 						"explanation": "Red. His eyes sockets often glow with a faint red light.",
@@ -7726,18 +7654,6 @@
 						]
 					},
 					{
-						"correct": "Bone Rattler",
-						"difficulty": "Hard",
-						"explanation": "Bone Rattler. This kart is aesthetically designed to look like a collection of bones fused together.",
-						"fact_checked": true,
-						"question": "Which non-kart vehicle, resembling a pile of bones and suited for Dry Bones, was introduced in Mario Kart Wii?",
-						"wrong": [
-							"Dry Bomber",
-							"Skeletal Kart",
-							"Koopa Dasher"
-						]
-					},
-					{
 						"correct": "Wario",
 						"difficulty": "Hard",
 						"explanation": "Wario. Dry Bones' vocal effects are provided by Charles Martinet, who also voices Mario, Luigi, and Wario.",
@@ -7747,30 +7663,6 @@
 							"Bowser",
 							"Toad",
 							"Yoshi"
-						]
-					},
-					{
-						"correct": "Koopa Troopa",
-						"difficulty": "Easy",
-						"explanation": "Dry Bones are the undead variant of the Koopa Troopa, characterized by their white shell and ability to reassemble themselves.",
-						"fact_checked": true,
-						"question": "Dry Bones is the skeletal version of which common Mario enemy?",
-						"wrong": [
-							"Goomba",
-							"Shy Guy",
-							"Boo"
-						]
-					},
-					{
-						"correct": "Mario Kart DS",
-						"difficulty": "Easy",
-						"explanation": "Dry Bones debuted as a playable character in Mario Kart DS and has appeared frequently in subsequent titles.",
-						"fact_checked": true,
-						"question": "In which specific console game did Dry Bones first appear as a playable character?",
-						"wrong": [
-							"Mario Kart Wii",
-							"Mario Kart 8",
-							"Mario Kart: Double Dash!!"
 						]
 					},
 					{
@@ -8830,18 +8722,6 @@
 							"Green",
 							"Blue",
 							"Yellow"
-						]
-					},
-					{
-						"correct": "Speed (Boost)",
-						"difficulty": "Easy",
-						"explanation": "The Mushroom is a utility item used exclusively to gain a short, rapid burst of speed.",
-						"fact_checked": true,
-						"question": "The Mushroom item grants the driver a temporary increase in what specific attribute?",
-						"wrong": [
-							"Defense",
-							"Weight",
-							"Traction"
 						]
 					},
 					{
@@ -15683,6 +15563,3272 @@
 					"Creature"
 				]
 			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "101",
+						"difficulty": "Easy",
+						"explanation": "101. The game starts with the Wanderer’s birth and upbringing within the confines of Vault 101.",
+						"fact_checked": true,
+						"question": "What is the numerical designation of the Vault that the Wanderer is born in and raised within?",
+						"wrong": [
+							"106",
+							"87",
+							"112"
+						]
+					},
+					{
+						"correct": "Project Purity",
+						"difficulty": "Easy",
+						"explanation": "Project Purity. James is attempting to restart the massive water purification project at the Jefferson Memorial.",
+						"fact_checked": true,
+						"question": "The Wanderer's search for their father, James, begins after he abruptly leaves the Vault to pursue what primary goal?",
+						"wrong": [
+							"Finding a new wife",
+							"Seeking revenge",
+							"Joining the Enclave"
+						]
+					},
+					{
+						"correct": "Pip-Boy",
+						"difficulty": "Easy",
+						"explanation": "Pip-Boy. This iconic wrist-mounted device is central to the player experience in the Fallout series.",
+						"fact_checked": true,
+						"question": "The Wanderer is equipped with a wrist-mounted multipurpose computer device used for inventory, mapping, and status tracking, known by what nickname?",
+						"wrong": [
+							"Arm-Com",
+							"Stat-Watch",
+							"Gizmotech"
+						]
+					},
+					{
+						"correct": "Radroach",
+						"difficulty": "Medium",
+						"explanation": "Radroach. The Radroach is introduced during the G.O.A.T. exam section as a combat tutorial.",
+						"fact_checked": true,
+						"question": "What common, small irradiated lizard creature is the first opponent the Wanderer faces and defeats during the “Future Imperfect” tutorial mission?",
+						"wrong": [
+							"Giant Ant",
+							"Molerat",
+							"Bloatfly"
+						]
+					},
+					{
+						"correct": "She is revealed to be deceased",
+						"difficulty": "Medium",
+						"explanation": "She is revealed to be deceased. She died shortly after the Wanderer’s birth, a fact James kept hidden while in Vault 101.",
+						"fact_checked": true,
+						"question": "If the Wanderer successfully completes the quest 'The Waters of Life' by getting James to the Jefferson Memorial, what happens to the Wanderer’s mother figure, Catherine?",
+						"wrong": [
+							"She joined the Enclave",
+							"She is locked in a vault",
+							"She became a ghoul"
+						]
+					},
+					{
+						"correct": "Perception",
+						"difficulty": "Hard",
+						"explanation": "Perception. Receiving the Perception Bobblehead is one of the earliest lore moments that can be easily missed.",
+						"fact_checked": true,
+						"question": "During the Wanderer’s 10th birthday party inside Vault 101, which specific stat-boosting collectible bobblehead is gifted to the player?",
+						"wrong": [
+							"Strength",
+							"Luck",
+							"Charisma"
+						]
+					},
+					{
+						"correct": "The Lone Wanderer",
+						"difficulty": "Easy",
+						"explanation": "The player character in Fallout 3 is officially referred to as the Lone Wanderer.",
+						"fact_checked": true,
+						"question": "By what official title or nickname is the protagonist of Fallout 3 universally known in the Capital Wasteland?",
+						"wrong": [
+							"The Vault Dweller",
+							"The Courier",
+							"The Sole Survivor"
+						]
+					},
+					{
+						"correct": "10mm Pistol",
+						"difficulty": "Easy",
+						"explanation": "The 10mm Pistol is the first proper firearm given to the Wanderer by Jonas, the Overseer's assistant.",
+						"fact_checked": true,
+						"question": "During the Wanderer’s 16th birthday party, what weapon is gifted to the player, which subsequently becomes their primary starting sidearm?",
+						"wrong": [
+							"Plasma Rifle",
+							"Laser Pistol",
+							"Hunting Rifle"
+						]
+					},
+					{
+						"correct": "Doctor Jonas",
+						"difficulty": "Hard",
+						"explanation": "Jonas, who later serves as James' assistant and helps the Wanderer in their youth, is the one who assists James with the delivery.",
+						"fact_checked": true,
+						"question": "In the opening cinematic, what is the name of the doctor who assists in the birth of the Wanderer?",
+						"wrong": [
+							"Doctor James",
+							"Doctor Li",
+							"Doctor Lesko"
+						]
+					}
+				]
+			},
+			"id": "wanderer",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Wanderer",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Survivor",
+					"Human"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Atomic Bomb",
+						"difficulty": "Easy",
+						"explanation": "Atomic Bomb. The main side quest involves deciding whether to disarm or detonate this massive unexploded ordnance.",
+						"fact_checked": true,
+						"question": "What distinct, highly volatile item sits unexploded in the center of Megaton, defining the settlement's unique location?",
+						"wrong": [
+							"Fusion Core",
+							"Power Station",
+							"Nuclear Reactor"
+						]
+					},
+					{
+						"correct": "Lucas Simms",
+						"difficulty": "Easy",
+						"explanation": "Lucas Simms. He is the first major friendly character the Wanderer typically meets outside of Vault 101.",
+						"fact_checked": true,
+						"question": "What is the name of the benevolent Sheriff and protector of Megaton, often found patrolling the entrance?",
+						"wrong": [
+							"Walter",
+							"Mister Burke",
+							"Jericho"
+						]
+					},
+					{
+						"correct": "Moriarty's Saloon",
+						"difficulty": "Easy",
+						"explanation": "Moriarty's Saloon. It serves as the main hub for information and gossip in the settlement.",
+						"fact_checked": true,
+						"question": "What is the name of the bar located in Megaton, often frequented by the town's citizens and available companions?",
+						"wrong": [
+							"The Drunken Gnat",
+							"Brass Lantern",
+							"The Wasted Wanderer"
+						]
+					},
+					{
+						"correct": "Tenpenny Tower",
+						"difficulty": "Medium",
+						"explanation": "Tenpenny Tower. The wealthy inhabitants of the tower dislike the presence of the shanty town nearby.",
+						"fact_checked": true,
+						"question": "The player is offered the quest 'The Power of the Atom,' regarding the central explosive; what organization attempts to hire the player to destroy Megaton?",
+						"wrong": [
+							"Brotherhood of Steel",
+							"The Enclave",
+							"The Regulators"
+						]
+					},
+					{
+						"correct": "Moira Brown",
+						"difficulty": "Medium",
+						"explanation": "Moira Brown. Her massive, multi-part quest is one of the most memorable and complex side missions in the game.",
+						"fact_checked": true,
+						"question": "What eccentric merchant located in Megaton runs the Craterside Supply and tasks the Wanderer with writing the incredibly long 'Wasteland Survival Guide'?",
+						"wrong": [
+							"Jenny Stahl",
+							"Silver",
+							"Winthrop"
+						]
+					},
+					{
+						"correct": "Tenpenny Suite",
+						"difficulty": "Hard",
+						"explanation": "Tenpenny Suite. This location is acquired upon completion of the evil path for the 'The Power of the Atom' quest.",
+						"fact_checked": true,
+						"question": "If the player chooses to destroy Megaton, what unique, high-end apartment is granted to them in return for the destruction?",
+						"wrong": [
+							"Adams Apartment",
+							"Megaton Penthouse",
+							"Vault 101 Deluxe"
+						]
+					},
+					{
+						"correct": "Walter",
+						"difficulty": "Hard",
+						"explanation": "Walter. He is the local utility worker who ensures the town has safe, purified water, often complaining about leaks.",
+						"fact_checked": true,
+						"question": "What character is responsible for collecting and purifying water inside Megaton and is often found near the central bomb?",
+						"wrong": [
+							"Harkness",
+							"Butch",
+							"Confessor Cromwell"
+						]
+					},
+					{
+						"correct": "Crashed aircraft",
+						"difficulty": "Easy",
+						"explanation": "The settlement of Megaton is built around the surviving hull of a crashed commercial airliner, which forms many of its structures.",
+						"fact_checked": true,
+						"question": "Megaton is built primarily out of salvaged materials, particularly sheet metal and scrap harvested from the wreckage of what type of pre-War transportation?",
+						"wrong": [
+							"Pre-War tanks",
+							"Submarines",
+							"Trains"
+						]
+					},
+					{
+						"correct": "A defensive palisade/wall of scrap metal",
+						"difficulty": "Easy",
+						"explanation": "Megaton is surrounded by a massive, haphazard wall constructed from salvaged metal to protect it from raiders and creatures.",
+						"fact_checked": true,
+						"question": "What key structure encircles the entire settlement of Megaton, providing a formidable, if ramshackle, outer defense?",
+						"wrong": [
+							"A laser turret system",
+							"A barbed wire trench",
+							"A minefield"
+						]
+					},
+					{
+						"correct": "Colin Moriarty",
+						"difficulty": "Medium",
+						"explanation": "Colin Moriarty is the Irish owner and proprietor of the bar where the Wanderer first learns of James' whereabouts.",
+						"fact_checked": true,
+						"question": "Moriarty’s Saloon, a central location in Megaton, is named after what specific character who operates the establishment?",
+						"wrong": [
+							"Moe",
+							"Mr. Handy",
+							"Lucas Simms"
+						]
+					},
+					{
+						"correct": "Water pipes/purification equipment",
+						"difficulty": "Medium",
+						"explanation": "Walter is the town's maintenance man, primarily responsible for the pumps and pipes that purify and distribute water.",
+						"fact_checked": true,
+						"question": "What resource does the character Walter constantly work to maintain and repair just outside the settlement’s inner wall?",
+						"wrong": [
+							"The electrical grid",
+							"The bomb casing",
+							"The outer defenses"
+						]
+					},
+					{
+						"correct": "An impact crater",
+						"difficulty": "Hard",
+						"explanation": "The town's name, Megaton, is derived from the fact it sits in the crater left by the unexploded atomic bomb it surrounds.",
+						"fact_checked": true,
+						"question": "Megaton is settled inside the center of what specific type of pre-War geological or man-made formation?",
+						"wrong": [
+							"A nuclear silo",
+							"A dried riverbed",
+							"A pre-war stadium"
+						]
+					}
+				]
+			},
+			"id": "megaton",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Megaton",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Settlement",
+					"Landmark"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Nuclear Bombs",
+						"difficulty": "Easy",
+						"explanation": "Nuclear Bombs. The ammunition for the Fat Man is specifically called a Mini Nuke.",
+						"fact_checked": true,
+						"question": "The Fat Man is a large launcher that fires miniature versions of what devastating weapon type?",
+						"wrong": [
+							"Grenades",
+							"Missiles",
+							"Plasma Bolts"
+						]
+					},
+					{
+						"correct": "Big Guns",
+						"difficulty": "Easy",
+						"explanation": "Big Guns. The Fat Man falls into this category alongside weapons like the Minigun and Missile Launcher.",
+						"fact_checked": true,
+						"question": "Due to its immense size and weight, the Fat Man is most commonly classified within which weapon skill category?",
+						"wrong": [
+							"Energy Weapons",
+							"Small Guns",
+							"Explosives"
+						]
+					},
+					{
+						"correct": "Mini Nuke",
+						"difficulty": "Medium",
+						"explanation": "Mini Nuke. This unique ammunition is extremely rare and heavy, limiting the use of the weapon.",
+						"fact_checked": true,
+						"question": "What is the common nickname for the signature projectile launched by the Fat Man?",
+						"wrong": [
+							"Micro Bomb",
+							"Nuka Bomb",
+							"Boom Box"
+						]
+					},
+					{
+						"correct": "Tricycle",
+						"difficulty": "Medium",
+						"explanation": "Tricycle. The front frame and handlebars of a children's tricycle are used as the main assembly for the launcher.",
+						"fact_checked": true,
+						"question": "The Fat Man launcher appears to be crudely constructed from scavenged parts, most notably utilizing parts from which pre-war handheld vehicle for its aiming mechanism?",
+						"wrong": [
+							"Shopping Cart",
+							"Stroller",
+							"Bicycle"
+						]
+					},
+					{
+						"correct": "Experimental MIRV",
+						"difficulty": "Hard",
+						"explanation": "Experimental MIRV. This variant is incredibly powerful and expensive to use, consuming ammunition very quickly.",
+						"fact_checked": true,
+						"question": "What unique, extremely rare version of the Fat Man can be found only in the National Guard Depot and fires eight Mini Nukes simultaneously?",
+						"wrong": [
+							"Big Boy",
+							"Ultimate Detonator",
+							"Apocalypse Launcher"
+						]
+					},
+					{
+						"correct": "Fat Man",
+						"difficulty": "Hard",
+						"explanation": "Little Boy. Although there was a WWII bomb named 'Fat Man', the weapon's appearance closely matches the 'Little Boy' casing.",
+						"fact_checked": true,
+						"question": "The the mini nuke launcher's design is a deliberate reference to what famous nuclear test device from the mid-20th century?",
+						"wrong": [
+							"Trinity",
+							"Fat Man (the bomb)",
+							"Tsar Bomba"
+						]
+					}
+				]
+			},
+			"id": "fat_man",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Fat Man",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Weapon",
+					"Explosive",
+					"Heavy"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Brown or Gray",
+						"difficulty": "Easy",
+						"explanation": "Brown or Gray. Their coloring allows them to blend in with the rocky wasteland environment.",
+						"fact_checked": true,
+						"question": "What is the primary color of the Deathclaw's rough, reptilian hide?",
+						"wrong": [
+							"Neon Green",
+							"Bright Orange",
+							"Deep Blue"
+						]
+					},
+					{
+						"correct": "Head",
+						"difficulty": "Easy",
+						"explanation": "Head. Like most enemies in the game, a successful critical hit to the head results in massive damage.",
+						"fact_checked": true,
+						"question": "What part of the Deathclaw's body is typically targeted in V.A.T.S. for an instant kill or massive damage multiplier?",
+						"wrong": [
+							"Tail",
+							"Claw",
+							"Torso"
+						]
+					},
+					{
+						"correct": "Loud roar or screech",
+						"difficulty": "Easy",
+						"explanation": "Loud roar or screech. This sound often signals immediate danger when traveling the Wasteland.",
+						"fact_checked": true,
+						"question": "In combat, what is the most characteristic sound a Deathclaw makes when charging or attacking?",
+						"wrong": [
+							"Quiet hiss",
+							"Mechanical whirring",
+							"Dog bark"
+						]
+					},
+					{
+						"correct": "Chameleon",
+						"difficulty": "Medium",
+						"explanation": "Chameleon. This explains their surprising speed and their initial ability to camouflage (though not evident in FO3).",
+						"fact_checked": true,
+						"question": "Deathclaws were originally genetically engineered before the Great War, primarily utilizing the DNA of which large North American lizard?",
+						"wrong": [
+							"Iguana",
+							"Komodo Dragon",
+							"Gila Monster"
+						]
+					},
+					{
+						"correct": "Point Lookout",
+						"difficulty": "Medium",
+						"explanation": "Point Lookout. The Albino Deathclaws are introduced in this swampy, creepy DLC environment.",
+						"fact_checked": true,
+						"question": "The extremely powerful variation known as the Albino Deathclaw is found specifically inside which major expansion pack location?",
+						"wrong": [
+							"The Pitt",
+							"Broken Steel",
+							"Operation Anchorage"
+						]
+					},
+					{
+						"correct": "Old Olney",
+						"difficulty": "Hard",
+						"explanation": "Old Olney. This abandoned town is infamous for being home to an extremely high concentration of Deathclaws.",
+						"fact_checked": true,
+						"question": "What highly dangerous, hidden quarry location is famous for containing multiple Deathclaws guarding a set of Power Armor and Fusion Cores?",
+						"wrong": [
+							"Evergreen Mills",
+							"Rockopolis",
+							"Chaste Acres Dairy Farm"
+						]
+					},
+					{
+						"correct": "Its large claws / talons",
+						"difficulty": "Easy",
+						"explanation": "The Deathclaw's enormous, hardened claws are its signature and most deadly offensive weapon.",
+						"fact_checked": true,
+						"question": "What is the primary natural weapon a Deathclaw uses for attacking and dismembering enemies?",
+						"wrong": [
+							"Its prehensile tail",
+							"An acidic spit",
+							"Sonic roar"
+						]
+					},
+					{
+						"correct": "Old Olney",
+						"difficulty": "Medium",
+						"explanation": "Old Olney, specifically the sewers beneath the town, is a labyrinth of Deathclaw encounters, including the Albino Deathclaw in the expanded content.",
+						"fact_checked": true,
+						"question": "In the Capital Wasteland, what highly dangerous location, frequently visited by players for rare gear, is notoriously famous for being infested with multiple Deathclaws guarding a set of Power Armor?",
+						"wrong": [
+							"Vault 106",
+							"Dunwich Building",
+							"The Jury Street Metro"
+						]
+					},
+					{
+						"correct": "Jackson's Chameleon",
+						"difficulty": "Hard",
+						"explanation": "The Deathclaw was genetically engineered from the Jackson’s Chameleon to serve as a biological weapon, explaining its initial (though largely lost) ability to camouflage.",
+						"fact_checked": true,
+						"question": "What common North American lizard was the primary genetic source material used by the U.S. military to create the Deathclaw before the Great War?",
+						"wrong": [
+							"Komodo Dragon",
+							"Gila Monster",
+							"Caiman Lizard"
+						]
+					}
+				]
+			},
+			"id": "deathclaw",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Deathclaw",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Mutant",
+					"Threat"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Water",
+						"difficulty": "Easy",
+						"explanation": "Water. The goal of the project is to provide clean, de-radiated water to the surviving populace.",
+						"fact_checked": true,
+						"question": "Project Purity is designed to purify which specific essential resource, making it drinkable for the entire Capital Wasteland?",
+						"wrong": [
+							"Air",
+							"Food",
+							"Fuel"
+						]
+					},
+					{
+						"correct": "Jefferson Memorial",
+						"difficulty": "Easy",
+						"explanation": "Jefferson Memorial. James establishes the lab beneath the memorial statue.",
+						"fact_checked": true,
+						"question": "What famous, recognizable Washington D.C. landmark houses the Project Purity facility?",
+						"wrong": [
+							"Lincoln Memorial",
+							"White House",
+							"Capitol Building"
+						]
+					},
+					{
+						"correct": "Enclave",
+						"difficulty": "Easy",
+						"explanation": "Enclave. They take over the facility in an attempt to weaponize the purified water.",
+						"fact_checked": true,
+						"question": "What faction first uses Project Purity to attempt to control the water supply of the Capital Wasteland, leading to the game's climax?",
+						"wrong": [
+							"Brotherhood of Steel",
+							"Raiders",
+							"Slavers"
+						]
+					},
+					{
+						"correct": "G.E.C.K.",
+						"difficulty": "Medium",
+						"explanation": "G.E.C.K. (Garden of Eden Creation Kit). The team retrieves this device from Vault 87.",
+						"fact_checked": true,
+						"question": "The final stage of the main quest requires the Wanderer to retrieve an essential microchip used to complete the purifier. What is the chip called?",
+						"wrong": [
+							"Hydro-Core",
+							"Purity Regulator",
+							"Quantum Processor"
+						]
+					},
+					{
+						"correct": "The G.E.C.K. ",
+						"difficulty": "Medium",
+						"explanation": "A customized FEV Virus. This specific FEV strain would contaminate the clean water and kill all mutated life forms, ensuring only 'pure' humans survived.",
+						"fact_checked": true,
+						"question": "Before the Enclave seized control, what specific device did James require to be inserted into the control panel to initiate the main purification process?",
+						"wrong": [
+							"A Fusion Core",
+							"An Access Keycard",
+							"A specific holotape"
+						]
+					},
+					{
+						"correct": "Colonel Autumn",
+						"difficulty": "Hard",
+						"explanation": "Colonel Autumn. He serves as the primary ground antagonist opposing James and the Brotherhood of Steel.",
+						"fact_checked": true,
+						"question": "What is the name of the heavily armed Enclave officer who directs the capture of James and the takeover of the Project Purity control room?",
+						"wrong": [
+							"President Eden",
+							"Sergeant Dornan",
+							"Elder Lyons"
+						]
+					},
+					{
+						"correct": "Overloads the purification chamber",
+						"difficulty": "Hard",
+						"explanation": "Overloads the purification chamber. This flash-floods the room with deadly radiation, killing him and the Enclave soldiers.",
+						"fact_checked": true,
+						"question": "In the game's final confrontation, what does James do to halt the Enclave's takeover of Project Purity, leading to his death?",
+						"wrong": [
+							"Sets off a bomb",
+							"Activates a self-destruct sequence on the G.E.C.K.",
+							"Traps Autumn in the reactor"
+						]
+					},
+					{
+						"correct": "Jefferson Memorial",
+						"difficulty": "Easy",
+						"explanation": "The massive purification facility was constructed within and beneath the Jefferson Memorial.",
+						"fact_checked": true,
+						"question": "Project Purity is housed within a massive facility that was originally built around what famous Washington D.C. monument dedicated to the third U.S. President?",
+						"wrong": [
+							"Lincoln Memorial",
+							"Washington Monument",
+							"The White House"
+						]
+					},
+					{
+						"correct": "Forced Evolutionary Virus (FEV)",
+						"difficulty": "Easy",
+						"explanation": "Eden's version of purification involved using the modified FEV to kill all mutants, ghouls, and super mutants that drank the water.",
+						"fact_checked": true,
+						"question": "If the player allows President Eden to activate Project Purity, what specific biological contaminant is introduced into the water supply, designed only to purify the water for 'pure' humans?",
+						"wrong": [
+							"A RadScorpion Toxin",
+							"A chemical mutagen",
+							"Mirelurk eggs"
+						]
+					},
+					{
+						"correct": "The Citadel's Brotherhood of Steel (or the Brotherhood of Steel)",
+						"difficulty": "Medium",
+						"explanation": "The original team was assisted and protected by the Brotherhood of Steel before James left and before the Enclave arrived.",
+						"fact_checked": true,
+						"question": "The precursor organization that initially funded and developed Project Purity, including James and Madison Li, was not the Enclave but what group?",
+						"wrong": [
+							"The Republic of Dave",
+							"The Followers of the Apocalypse",
+							"The Regulators"
+						]
+					},
+					{
+						"correct": "A museum/research center",
+						"difficulty": "Hard",
+						"explanation": "Terminal entries reveal that the facility was a pre-War museum and research center, which is why it contained the appropriate infrastructure for Purity.",
+						"fact_checked": true,
+						"question": "Before the purification facility was constructed, the Jefferson Memorial was home to what type of pre-war institution?",
+						"wrong": [
+							"A military depot",
+							"A functioning library",
+							"A luxury hotel"
+						]
+					}
+				]
+			},
+			"id": "project_purity",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Project Purity",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Quest",
+					"Facility"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Washington Monument",
+						"difficulty": "Easy",
+						"explanation": "Washington Monument. The GNR signal repeater is set up at the base of the monument.",
+						"fact_checked": true,
+						"question": "The radio station and its main broadcast tower are situated near what iconic, recognizable D.C. needle-shaped monument?",
+						"wrong": [
+							"The Pentagon",
+							"The White House",
+							"The Lincoln Memorial"
+						]
+					},
+					{
+						"correct": "Three Dog",
+						"difficulty": "Easy",
+						"explanation": "Three Dog. His often-sarcastic commentary and enthusiasm define the radio station.",
+						"fact_checked": true,
+						"question": "Who is the loud, opinionated, and highly popular DJ who runs GNR and provides the soundtrack to the Wasteland?",
+						"wrong": [
+							"Mister New Vegas",
+							"DJ Atom",
+							"D.C. Radio Man"
+						]
+					},
+					{
+						"correct": "I Don't Want to Set the World on Fire",
+						"difficulty": "Easy",
+						"explanation": "I Don't Want to Set the World on Fire. This song has become synonymous with the melancholy beauty of the Fallout series.",
+						"fact_checked": true,
+						"question": "What song is playing when the player first successfully locks in the GNR frequency on their Pip-Boy?",
+						"wrong": [
+							"Butcher Pete",
+							"Crazy He Calls Me",
+							"Jingle, Jangle, Jingle"
+						]
+					},
+					{
+						"correct": "James's whereabouts",
+						"difficulty": "Medium",
+						"explanation": "James's whereabouts. Three Dog initially refuses to help but later gives up the location of the Rivet City lab.",
+						"fact_checked": true,
+						"question": "The primary objective of the quest 'Following in His Footsteps' is to convince Three Dog to help the Wanderer by broadcasting what specific information?",
+						"wrong": [
+							"A distress call",
+							"An Enclave warning",
+							"A map to a hidden vault"
+						]
+					},
+					{
+						"correct": "Super Mutants",
+						"difficulty": "Medium",
+						"explanation": "Super Mutants. The Brotherhood of Steel is fighting a desperate battle against these mutants to maintain control of the area.",
+						"fact_checked": true,
+						"question": "Before the Wanderer can boost the signal, what powerful melee creatures are heavily guarding the entrance to the GNR area?",
+						"wrong": [
+							"Radscorpions",
+							"Deathclaws",
+							"Slavers"
+						]
+					},
+					{
+						"correct": "Enclave Radio",
+						"difficulty": "Hard",
+						"explanation": "Enclave Radio. This allows President Eden to broadcast propaganda, which can later be disrupted using a certain holotape.",
+						"fact_checked": true,
+						"question": "If the player chooses to destroy the GNR antenna array instead of repairing it, what specific group replaces Three Dog on the radio waves?",
+						"wrong": [
+							"A new DJ",
+							"Nothing, the radio goes silent",
+							"Tenpenny Tower broadcasts"
+						]
+					}
+				]
+			},
+			"id": "galaxy_news_radio",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Galaxy News Radio",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Broadcast",
+					"Media"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "It is on fire",
+						"difficulty": "Easy",
+						"explanation": "It is on fire. The weapon is a makeshift flaming sword, using highly flammable liquids.",
+						"fact_checked": true,
+						"question": "The Shishkebab is a customized Melee weapon famous for what primary visual characteristic?",
+						"wrong": [
+							"It explodes on impact",
+							"It turns enemies invisible",
+							"It is made of pure glass"
+						]
+					},
+					{
+						"correct": "Lawn Mower Blade",
+						"difficulty": "Easy",
+						"explanation": "Motorcycle Muffler. The long, cylindrical shape of the muffler forms the spine of the blade.",
+						"fact_checked": true,
+						"question": "What common, everyday part is used as the basis for the Shishkebab's blade?",
+						"wrong": [
+							"Car Antenna",
+							"Bicycle Spoke",
+							"Stop Sign"
+						]
+					},
+					{
+						"correct": "Work Bench (Crafting Table)",
+						"difficulty": "Easy",
+						"explanation": "Work Bench (Crafting Table). Many unique and powerful weapons in Fallout 3 must be constructed at these stations.",
+						"fact_checked": true,
+						"question": "The Shishkebab is a craftable weapon, meaning the player must find its schematic and use which specific workbench to construct it?",
+						"wrong": [
+							"Chemical Station",
+							"Power Armor Station",
+							"Forge"
+						]
+					},
+					{
+						"correct": "Motorcycle Gas Tank",
+						"difficulty": "Medium",
+						"explanation": "Pilot Light. This highly flammable item is a necessary component for the ignition system.",
+						"fact_checked": true,
+						"question": "What type of flammable fuel is required to ignite and maintain the flame on the Shishkebab?",
+						"wrong": [
+							"Flamethrower Fuel",
+							"Gasoline",
+							"Lighter Fluid"
+						]
+					},
+					{
+						"correct": "Paradise Falls",
+						"difficulty": "Medium",
+						"explanation": "Paradise Falls. Eulogy Jones holds one of the schematics, typically requiring the player to steal or pickpocket it.",
+						"fact_checked": true,
+						"question": "One of the schematics for the Shishkebab is found in the safe of the leader of which major slaver settlement?",
+						"wrong": [
+							"The Pitt",
+							"Rivet City",
+							"Canterbury Commons"
+						]
+					},
+					{
+						"correct": "Lawn Mower Blade",
+						"difficulty": "Hard",
+						"explanation": "Lawn Mower Blade. This is attached to the muffler to create the actual sharpened edge of the sword.",
+						"fact_checked": true,
+						"question": "Aside from the Motorcycle Muffler and the Pilot Light, what is the third necessary component for crafting the Shishkebab?",
+						"wrong": [
+							"Bowie Knife",
+							"Power Fist",
+							"Saw Blade"
+						]
+					},
+					{
+						"correct": "The Wasteland Survival Guide",
+						"difficulty": "Hard",
+						"explanation": "The Wasteland Survival Guide. Moira requires the player to find all the schematics for craftable weapons as part of her guide research.",
+						"fact_checked": true,
+						"question": "Which major side quest features an optional objective to collect the Shishkebab schematic for the quest giver, Moira Brown?",
+						"wrong": [
+							"Trouble on the Homefront",
+							"The Nuka-Cola Challenge",
+							"Reilly's Rangers"
+						]
+					},
+					{
+						"correct": "Sword / Katana / Blade",
+						"difficulty": "Easy",
+						"explanation": "The Shishkebab is effectively a fire-fueled sword, categorized as a Melee weapon.",
+						"fact_checked": true,
+						"question": "Because of its visual effects, the Shishkebab is commonly referred to as a flaming version of what type of weapon?",
+						"wrong": [
+							"A hammer",
+							"A baseball bat",
+							"A spear"
+						]
+					},
+					{
+						"correct": "A Lawnmower Blade",
+						"difficulty": "Medium",
+						"explanation": "The Lawnmower Blade provides the necessary length and rigidity for the weapon's main edge.",
+						"fact_checked": true,
+						"question": "What common gardening or lawn tool is sharpened and used as the actual cutting blade component of the Shishkebab?",
+						"wrong": [
+							"A kitchen knife",
+							"A shovel",
+							"A trowel"
+						]
+					},
+					{
+						"correct": "Motorcycle Gas Tank",
+						"difficulty": "Hard",
+						"explanation": "The small tank stores the flammable fuel, typically gasoline, needed to maintain the ignition.",
+						"fact_checked": true,
+						"question": "The Shishkebab's continuous flame is supplied by a miniature fuel container which utilizes what vehicle part as its source?",
+						"wrong": [
+							"Lighter Fluid Can",
+							"Car Battery",
+							"Flamer Fuel Cannister"
+						]
+					},
+					{
+						"correct": "Auntie Roe",
+						"difficulty": "Medium",
+						"explanation": "Auntie Roe is a solitary scavenger whose safe contains one of the key schematics for the fiery weapon.",
+						"fact_checked": true,
+						"question": "What is the name of the old woman who runs a highly defensible sheltered shack and holds one of the three known Shishkebab schematics?",
+						"wrong": [
+							"Grandma Sparkle",
+							"Madam Dubois",
+							"Lucy West"
+						]
+					},
+					{
+						"correct": "Mirelurks",
+						"difficulty": "Easy",
+						"explanation": "Fire damage is typically very useful against high-HP enemies like Super Mutants.",
+						"fact_checked": true,
+						"question": "Due to its fire damage capabilities, the Shishkebab is particularly effective against what type of tough, heavily armored enemy?",
+						"wrong": [
+							"Radroaches",
+							"Small mole rats",
+							"Bloatflies"
+						]
+					}
+				]
+			},
+			"id": "shishkebab",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Shishkebab",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Weapon",
+					"Melee",
+					"Energy"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Super Mutant",
+						"difficulty": "Easy",
+						"explanation": "Super Mutant. He is a rare, non-feral mutant, capable of high-level philosophical thought.",
+						"fact_checked": true,
+						"question": "What is the physical race of Fawkes, making him unique among his kind due to his intelligence and friendly nature?",
+						"wrong": [
+							"Ghoul",
+							"Synth",
+							"Dog"
+						]
+					},
+					{
+						"correct": "Vault 87",
+						"difficulty": "Easy",
+						"explanation": "Vault 87. This is the source of all the Super Mutants in the Capital Wasteland.",
+						"fact_checked": true,
+						"question": "Fawkes is found locked up and initially inaccessible inside what specific Vault that houses the FEV virus?",
+						"wrong": [
+							"Vault 92",
+							"Vault 106",
+							"Vault 112"
+						]
+					},
+					{
+						"correct": "Gatling Laser",
+						"difficulty": "Easy",
+						"explanation": "Gatling Laser. His use of this weapon makes him one of the most powerful companions in the game.",
+						"fact_checked": true,
+						"question": "What devastating heavy weapon is Fawkes famously equipped with when he joins the Wanderer as a full companion?",
+						"wrong": [
+							"Flamer",
+							"Missile Launcher",
+							"Plasma Rifle"
+						]
+					},
+					{
+						"correct": "Vault Security Guard",
+						"difficulty": "Medium",
+						"explanation": "Vault Security Guard. He was one of the guards who tried to stop the initial virus outbreak in Vault 87.",
+						"fact_checked": true,
+						"question": "Fawkes reveals that his intelligence comes from exposure to an experimental strain of the FEV virus while he was trapped in the Vault as what pre-war profession?",
+						"wrong": [
+							"Scientist",
+							"Doctor",
+							"Janitor"
+						]
+					},
+					{
+						"correct": "Karma (Evil)",
+						"difficulty": "Hard",
+						"explanation": "Karma (Evil). Fawkes will only perform the heroic action if the Wanderer has Good or Neutral karma.",
+						"fact_checked": true,
+						"question": "In the game's final main quest, Fawkes is the only companion who can enter the irradiated purification chamber without dying, due to his high resistance. However, he refuses if the player has too low of what alignment status?",
+						"wrong": [
+							"Intelligence",
+							"Strength",
+							"Charisma"
+						]
+					},
+					{
+						"correct": "Fawkes' Super Sledge",
+						"difficulty": "Hard",
+						"explanation": "Fawkes' Super Sledge. This weapon is found in the security office near his cell, guarded by Super Mutants.",
+						"fact_checked": true,
+						"question": "What is the unique, powerful Super Sledge named 'Superheat' found near Fawkes in Vault 87's detention area, which can only be retrieved by him?",
+						"wrong": [
+							"Mutant Slayer",
+							"The Gavel",
+							"Blazing Hammer"
+						]
+					}
+				]
+			},
+			"id": "fawkes",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Fawkes",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Sidekick",
+					"Mutant",
+					"Companion"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Doctor",
+						"difficulty": "Easy",
+						"explanation": "Doctor. He is the Vault's main physician and scientist.",
+						"fact_checked": true,
+						"question": "James is the father of the Lone Wanderer and holds what professional title inside Vault 101?",
+						"wrong": [
+							"Overseer",
+							"Security Chief",
+							"Janitor"
+						]
+					},
+					{
+						"correct": "Rivet City",
+						"difficulty": "Easy",
+						"explanation": "Rivet City. He is working in a makeshift lab within the massive aircraft carrier settlement.",
+						"fact_checked": true,
+						"question": "What is the first major settlement James is found in after leaving Vault 101, where he is studying the results of his previous work?",
+						"wrong": [
+							"Megaton",
+							"Tenpenny Tower",
+							"The Citadel"
+						]
+					},
+					{
+						"correct": "Nuka-Cola bottles",
+						"difficulty": "Medium",
+						"explanation": "Nuka-Cola bottles. The purified water is bottled and sold as Aqua Pura in former Nuka-Cola bottles.",
+						"fact_checked": true,
+						"question": "After Project Purity is completed (with the Broken Steel DLC installed), the purified water is distributed through the Wasteland via what type of pre-war container?",
+						"wrong": [
+							"Glass pitchers",
+							"Military canteens",
+							"Milk cartons"
+						]
+					},
+					{
+						"correct": "Dr. Li",
+						"difficulty": "Medium",
+						"explanation": "Dr. Li. She is a scientist who worked with James on Project Purity years earlier.",
+						"fact_checked": true,
+						"question": "Which character in Rivet City, a former friend of James, points the Wanderer in the direction of the Jefferson Memorial and provides valuable plot information?",
+						"wrong": [
+							"Pinkerton",
+							"Bannon",
+							"Seagrave"
+						]
+					},
+					{
+						"correct": "Medical doctor/Physician",
+						"difficulty": "Easy",
+						"explanation": "James is the Vault's doctor and the player's primary caregiver throughout their childhood.",
+						"fact_checked": true,
+						"question": "Before James leaves Vault 101, he works closely with the Overseer in what primary professional capacity?",
+						"wrong": [
+							"Security chief",
+							"Water technician",
+							"History teacher"
+						]
+					},
+					{
+						"correct": "Dr. Madison Li",
+						"difficulty": "Medium",
+						"explanation": "Madison Li was James' chief colleague on the pre-War Project Purity.",
+						"fact_checked": true,
+						"question": "What is the name of the scientist James worked with on Project Purity before returning to Vault 101 to raise the Wanderer?",
+						"wrong": [
+							"Moira Brown",
+							"Old Man Stockton",
+							"Dr. Zimmer"
+						]
+					},
+					{
+						"correct": "Megaton",
+						"difficulty": "Medium",
+						"explanation": "James leaves a signal to head east, and the first major settlement the Wanderer is directed to is Megaton, where Moriarty knows James.",
+						"fact_checked": true,
+						"question": "After fleeing Vault 101, James leaves behind a specific message and location that leads the Wanderer to his first destination outside the Vault. Where does he suggest the Wanderer go first?",
+						"wrong": [
+							"The Citadel",
+							"GNR Plaza",
+							"Rivet City"
+						]
+					},
+					{
+						"correct": "A V.A.T.S. calibration/injection",
+						"difficulty": "Hard",
+						"explanation": "The scene where James uses the syringe on the infant Wanderer is interpreted as the calibration of the Vault-Tec Assisted Targeting System (V.A.T.S.).",
+						"fact_checked": true,
+						"question": "What critical medical procedure does James perform on the infant Wanderer in the opening moments of the game?",
+						"wrong": [
+							"Administering a dose of Rad-X",
+							"Applying a Power Armor patch",
+							"Fixing a broken Pip-Boy"
+						]
+					}
+				]
+			},
+			"id": "james",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "James",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Scientist",
+					"Human"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "The Enclave",
+						"difficulty": "Easy",
+						"explanation": "The Enclave. Autumn is the main field commander and antagonist of the Enclave in D.C.",
+						"fact_checked": true,
+						"question": "What post-war, highly advanced military faction does Colonel Autumn command and lead in the Capital Wasteland?",
+						"wrong": [
+							"The Raiders",
+							"The Brotherhood of Steel",
+							"The Regulators"
+						]
+					},
+					{
+						"correct": "Officer's Hat",
+						"difficulty": "Easy",
+						"explanation": "Officer's Hat. This hat distinguishes him visually from standard Enclave troops.",
+						"fact_checked": true,
+						"question": "Colonel Autumn is rarely seen without his distinct, olive green uniform and matching military headwear. What is this piece of headwear called?",
+						"wrong": [
+							"Beret",
+							"Helmet",
+							"Fedora"
+						]
+					},
+					{
+						"correct": "Laser Pistol",
+						"difficulty": "Easy",
+						"explanation": "Laser Pistol. Specifically, a unique plasma pistol can be found near him, though he uses a laser pistol in the confrontation.",
+						"fact_checked": true,
+						"question": "What type of sophisticated energy weapon does Colonel Autumn typically carry in the main campaign?",
+						"wrong": [
+							"Plasma Caster",
+							"Gatling Gun",
+							"Sniper Rifle"
+						]
+					},
+					{
+						"correct": "James",
+						"difficulty": "Medium",
+						"explanation": "James. Autumn attempts to force James to initiate Project Purity, leading to James's sacrifice.",
+						"fact_checked": true,
+						"question": "In the final confrontation at Project Purity, what major character does Colonel Autumn attempt to capture and intimidate, resulting in a fatal action?",
+						"wrong": [
+							"Three Dog",
+							"Elder Lyons",
+							"The Wanderer"
+						]
+					},
+					{
+						"correct": "Raven Rock",
+						"difficulty": "Medium",
+						"explanation": "Raven Rock. This is the Enclave's primary field headquarters, where the Wanderer confronts President Eden.",
+						"fact_checked": true,
+						"question": "After the confrontation at Project Purity, Colonel Autumn retreats and sets up a defensive position in which key Enclave base?",
+						"wrong": [
+							"The Citadel",
+							"Adams Air Force Base",
+							"The Pentagon"
+						]
+					},
+					{
+						"correct": "James overloads the chamber with radiation",
+						"difficulty": "Hard",
+						"explanation": "James overloads the chamber with radiation. Autumn retreats via a decontamination door, leaving the control room accessible.",
+						"fact_checked": true,
+						"question": "In the game's original non-Broken Steel ending, what specific action causes Colonel Autumn to flee the final battle, allowing the player to enter the control room?",
+						"wrong": [
+							"The player defeats him in combat",
+							"President Eden orders a retreat",
+							"The Brotherhood of Steel storms the room"
+						]
+					},
+					{
+						"correct": "President Eden",
+						"difficulty": "Hard",
+						"explanation": "President Eden. Autumn distrusts Eden's AI nature and frequently challenges his orders regarding the use of the FEV virus.",
+						"fact_checked": true,
+						"question": "Who is the unseen, computer-based leader of the Enclave who Colonel Autumn constantly butts heads with regarding the strategy for Project Purity?",
+						"wrong": [
+							"President Richardson",
+							"General Garza",
+							"Overseer Alistair"
+						]
+					},
+					{
+						"correct": "The Enclave",
+						"difficulty": "Easy",
+						"explanation": "Autumn leads the Enclave's military forces, reporting directly to President Eden.",
+						"fact_checked": true,
+						"question": "Colonel Autumn is the chief military commander for which hostile faction operating in the Capital Wasteland?",
+						"wrong": [
+							"Talon Company",
+							"Raider Tribes",
+							"The Regulators"
+						]
+					},
+					{
+						"correct": "The Jefferson Memorial / Project Purity Facility",
+						"difficulty": "Medium",
+						"explanation": "Autumn leads the Enclave assault on the Memorial and is present in the control room during the pivotal climax.",
+						"fact_checked": true,
+						"question": "The final confrontation with Colonel Autumn often takes place inside which major facility where Project Purity is located?",
+						"wrong": [
+							"Vault 101",
+							"The Citadel",
+							"Fort Constantine"
+						]
+					},
+					{
+						"correct": "Raven Rock",
+						"difficulty": "Medium",
+						"explanation": "Raven Rock is the main Enclave command structure where Autumn and Eden have their internal conflict.",
+						"fact_checked": true,
+						"question": "What is the name of the major Enclave stronghold, occupied by Colonel Autumn, where the Wanderer must navigate to retrieve the G.E.C.K.?",
+						"wrong": [
+							"Old Olney",
+							"The White House",
+							"Rivet City"
+						]
+					},
+					{
+						"correct": "Controlling the distribution / political power",
+						"difficulty": "Hard",
+						"explanation": "Autumn rejected Eden's genocidal plan, instead favoring controlling the water supply entirely, allowing the Enclave to decide who lived and died via controlled distribution.",
+						"fact_checked": true,
+						"question": "In contrast to President Eden, Colonel Autumn’s plan for Project Purity involved using the purified water for what specific strategic military purpose, rather than FEV dissemination?",
+						"wrong": [
+							"Destroying the Brotherhood",
+							"Creating Super Mutants",
+							"Using it as a shield"
+						]
+					},
+					{
+						"correct": "The Enclave",
+						"difficulty": "Easy",
+						"explanation": "Colonel Autumn serves as the chief military commander of the Enclave forces operating in the Capital Wasteland.",
+						"fact_checked": true,
+						"question": "Colonel Autumn is the ranking officer of what post-war military and scientific organization, known for its advanced technology and distinct vertical-piped armor?",
+						"wrong": [
+							"The Brotherhood of Steel",
+							"The Regulators",
+							"The Gunners"
+						]
+					},
+					{
+						"correct": "The Jefferson Memorial",
+						"difficulty": "Easy",
+						"explanation": "Autumn attacks Rivet City to track down the Wanderer and Professor Li, believing they hold the key to Project Purity.",
+						"fact_checked": true,
+						"question": "While searching for the Wanderer, Autumn's forces launch a devastating assault on what isolated location, leading to the final stage of the main quest?",
+						"wrong": [
+							"The Citadel",
+							"Big Town",
+							"Canterbury Commons"
+						]
+					},
+					{
+						"correct": "Trench coat and a peaked cap",
+						"difficulty": "Medium",
+						"explanation": "Autumn notably wears a sophisticated officer's uniform and cap instead of the standard Enclave Power Armor helmet, demonstrating his rank and distance from direct combat.",
+						"fact_checked": true,
+						"question": "What is the primary piece of headwear that distinguishes Colonel Autumn’s uniform from the standard Enclave soldiers and officers?",
+						"wrong": [
+							"Advanced Combat Helmet",
+							"Power Armor Helmet",
+							"A gas mask"
+						]
+					},
+					{
+						"correct": "President Eden",
+						"difficulty": "Medium",
+						"explanation": "Autumn is highly ambitious and attempts a coup against the ZAX artificial intelligence, President Eden, to personally control the Enclave and Project Purity.",
+						"fact_checked": true,
+						"question": "During the main quest 'The American Dream,' Colonel Autumn attempts to seize power and overthrow what other prominent Enclave authority figure, usually heard via radio broadcasts?",
+						"wrong": [
+							"The Master",
+							"General Chase",
+							"Overseer Alfonse"
+						]
+					},
+					{
+						"correct": "Laser Pistol",
+						"difficulty": "Hard",
+						"explanation": "Autumn carries a Laser Pistol, though he is generally a difficult opponent regardless of his weapon.",
+						"fact_checked": true,
+						"question": "What specific type of energy weapon does Colonel Autumn carry as his signature sidearm during his encounter with the Wanderer?",
+						"wrong": [
+							"Plasma Pistol",
+							"10mm Pistol",
+							"Gauss Rifle"
+						]
+					}
+				]
+			},
+			"id": "colonel_autumn",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Colonel Autumn",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Villain",
+					"Soldier",
+					"Leader"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Aircraft Carrier",
+						"difficulty": "Easy",
+						"explanation": "Aircraft Carrier. This salvaged carrier is the location of the settlement known as Rivet City.",
+						"fact_checked": true,
+						"question": "Before James moved his Project Purity research to the Jefferson Memorial, he ran a makeshift lab inside the remains of what massive water-based structure?",
+						"wrong": [
+							"Submarine",
+							"Battleship",
+							"Oil Rig"
+						]
+					},
+					{
+						"correct": "The Science Lab",
+						"difficulty": "Easy",
+						"explanation": "The Science Lab. This area is run by Dr. Li, James's former colleague.",
+						"fact_checked": true,
+						"question": "The lab is located in what specific quadrant of the Rivet City structure?",
+						"wrong": [
+							"The Lower Deck",
+							"The Control Tower",
+							"The Marketplace"
+						]
+					},
+					{
+						"correct": "Professor Pinkerton",
+						"difficulty": "Easy",
+						"explanation": "Professor Pinkerton. He is the person James blames for the original failure of the project.",
+						"fact_checked": true,
+						"question": "What is the name of the scientist James’s lab partner, Dr. Li, is trying to find, who has been missing since the Project Purity failure years ago?",
+						"wrong": [
+							"Dr. Zimms",
+							"Walter",
+							"Chief Gustavo"
+						]
+					},
+					{
+						"correct": "Science Bobblehead",
+						"difficulty": "Medium",
+						"explanation": "Science Bobblehead. It is located on a table next to a terminal in Dr. Li's section of the lab.",
+						"fact_checked": true,
+						"question": "What unique collectible bobblehead can be found inside the Rivet City Science Lab, granting the player bonus points in their Science skill?",
+						"wrong": [
+							"Perception Bobblehead",
+							"Medicine Bobblehead",
+							"Energy Weapons Bobblehead"
+						]
+					},
+					{
+						"correct": "An Android",
+						"difficulty": "Hard",
+						"explanation": "An Android. He is attempting to repair the damaged android Harkness, leading to the 'Replicated Man' quest.",
+						"fact_checked": true,
+						"question": "What specific pre-war artifact is Pinkerton, the alleged saboteur, obsessed with restoring in his hidden section of the aircraft carrier?",
+						"wrong": [
+							"A Vertibird",
+							"A Pre-War Computer",
+							"A Nuclear Missile"
+						]
+					},
+					{
+						"correct": "Brotherhood of Steel",
+						"difficulty": "Hard",
+						"explanation": "Brotherhood of Steel. Dr. Li and the surviving scientists retreat to the Citadel, the Brotherhood's base.",
+						"fact_checked": true,
+						"question": "After the Enclave takes control of the Jefferson Memorial, Dr. Li leads the Project Purity survivors to seek shelter with which military faction?",
+						"wrong": [
+							"The Regulators",
+							"The Minutemen",
+							"The Talon Company"
+						]
+					},
+					{
+						"correct": "Doctor / Head Scientist",
+						"difficulty": "Easy",
+						"explanation": "James leads the small scientific team inside the Vault, which is why he is so concerned with the viability of Project Purity.",
+						"fact_checked": true,
+						"question": "What is the primary professional role James holds inside Vault 101, reflecting his scientific background?",
+						"wrong": [
+							"Overseer",
+							"Security Chief",
+							"Mechanic"
+						]
+					},
+					{
+						"correct": "A Teddy Bear",
+						"difficulty": "Easy",
+						"explanation": "This interaction introduces the player to the basic inventory and item interaction systems.",
+						"fact_checked": true,
+						"question": "On the Wanderer’s first birthday, James gifts them what common Vault-standard baby toy?",
+						"wrong": [
+							"A wooden train",
+							"A toy pistol",
+							"A ball"
+						]
+					}
+				]
+			},
+			"id": "james's_lab",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "James's Lab",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Science",
+					"Quest"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "The Lyons' Pride",
+						"difficulty": "Easy",
+						"explanation": "The Lyons' Pride. This elite unit is dedicated to protecting the Wasteland.",
+						"fact_checked": true,
+						"question": "Sarah Lyons is a highly ranked officer in the Brotherhood of Steel and leads a specialized combat unit known by what name?",
+						"wrong": [
+							"The Iron Company",
+							"The Steel Guard",
+							"The Crimson Command"
+						]
+					},
+					{
+						"correct": "Power Armor",
+						"difficulty": "Easy",
+						"explanation": "Power Armor. Specifically, she wears a unique variation of the T-45d Power Armor.",
+						"fact_checked": true,
+						"question": "What type of heavy, protective armor does Sarah Lyons typically wear, distinguishing her as a high-ranking officer?",
+						"wrong": [
+							"Raider Armor",
+							"Combat Armor",
+							"Scout Armor"
+						]
+					},
+					{
+						"correct": "Elder Lyons",
+						"difficulty": "Easy",
+						"explanation": "Elder Lyons. Her father is the moral but controversial leader of the local Brotherhood chapter.",
+						"fact_checked": true,
+						"question": "Sarah Lyons is the daughter of which major, influential leader of the Brotherhood of Steel in the Capital Wasteland?",
+						"wrong": [
+							"Paladin Cross",
+							"Knight Vargas",
+							"Star Paladin Todd"
+						]
+					},
+					{
+						"correct": "Galaxy News Radio",
+						"difficulty": "Medium",
+						"explanation": "Galaxy News Radio. This is where the Brotherhood is introduced, fighting to keep the Super Mutants contained.",
+						"fact_checked": true,
+						"question": "Sarah Lyons' unit first aids the Wanderer during the battle against Super Mutants near which vital broadcast landmark?",
+						"wrong": [
+							"The Citadel",
+							"Evergreen Mills",
+							"The Museum of History"
+						]
+					},
+					{
+						"correct": "Vertibird",
+						"difficulty": "Medium",
+						"explanation": "Vertibird. These VTOL aircraft give the Brotherhood a massive tactical advantage over the Enclave.",
+						"fact_checked": true,
+						"question": "In the Broken Steel DLC, what is the name of the advanced aerial military vehicle piloted by the Brotherhood that Sarah Lyons often uses in combat?",
+						"wrong": [
+							"V-22 Osprey",
+							"Skyhawk",
+							"Liberty Prime"
+						]
+					},
+					{
+						"correct": "She dies of radiation poisoning",
+						"difficulty": "Hard",
+						"explanation": "She dies of radiation poisoning. This is one of the possible sacrificial endings in the base game.",
+						"fact_checked": true,
+						"question": "In the game's original non-Broken Steel ending, if the Wanderer refuses to enter the irradiated Project Purity chamber, Sarah Lyons can choose to enter. What is the fate of Sarah Lyons if she takes this action?",
+						"wrong": [
+							"She survives and becomes Elder",
+							"She mutates into a ghoul",
+							"She is captured by the Enclave"
+						]
+					},
+					{
+						"correct": "Sentinel's Laser Pistol",
+						"difficulty": "Hard",
+						"explanation": "Sentinel's Laser Pistol. Though an uncommon drop, it is her named, unique weapon.",
+						"fact_checked": true,
+						"question": "What unique, high-damage laser pistol does Sarah Lyons permanently carry, which is only obtainable by killing or reverse-pickpocketing her?",
+						"wrong": [
+							"Lyons' Rifle",
+							"A3-21's Plasma Rifle",
+							"The Regulator"
+						]
+					},
+					{
+						"correct": "Lyons' Pride",
+						"difficulty": "Easy",
+						"explanation": "Lyons’ Pride is the specialized combat unit under her direct command, consisting of the Brotherhood’s best fighters.",
+						"fact_checked": true,
+						"question": "Sentinel Lyons leads the specific faction of the Brotherhood of Steel known by what collective designation?",
+						"wrong": [
+							"The Paladin Watch",
+							"The Steel Guard",
+							"The Lone Star Regiment"
+						]
+					},
+					{
+						"correct": "Elder Owyn Lyons",
+						"difficulty": "Medium",
+						"explanation": "Owyn Lyons is the Elder who broke from the core Brotherhood's mission to focus on humanitarian efforts in the D.C. area.",
+						"fact_checked": true,
+						"question": "Sarah Lyons is the daughter of the leader of the Capital Wasteland Brotherhood of Steel. What is her father’s name?",
+						"wrong": [
+							"Elder Maxson",
+							"Elder McNamara",
+							"Father Elijah"
+						]
+					},
+					{
+						"correct": "The Citadel (The Pentagon)",
+						"difficulty": "Medium",
+						"explanation": "The Brotherhood converted the ruins of the Pentagon into their fortress, known as the Citadel.",
+						"fact_checked": true,
+						"question": "Before Project Purity, Sentinel Lyons’ main base of operations and the Brotherhood’s central command hub in the Capital Wasteland is located where?",
+						"wrong": [
+							"Adams Air Force Base",
+							"Vault 101",
+							"Raven Rock"
+						]
+					},
+					{
+						"correct": "Grey / Silver",
+						"difficulty": "Easy",
+						"explanation": "The Brotherhood forces in D.C. wear the T-45d model armor, typically painted a standard grey/silver color.",
+						"fact_checked": true,
+						"question": "What primary color is the iconic T-45d Power Armor worn by Sentinel Lyons and her troops?",
+						"wrong": [
+							"Red and white",
+							"Black and yellow",
+							"Camo green"
+						]
+					},
+					{
+						"correct": "Retrieving advanced pre-war technology / survey mission",
+						"difficulty": "Hard",
+						"explanation": "The Lyons contingent was originally sent east solely to gather tech, but Owyn prioritized helping the locals, causing a rift with the Brotherhood's main body.",
+						"fact_checked": true,
+						"question": "Before they settled down to protect the Capital Wasteland, what was the original primary objective of Lyons' expedition, which they ultimately abandoned?",
+						"wrong": [
+							"Destroying the Enclave",
+							"Finding the West Coast",
+							"Creating the G.E.C.K."
+						]
+					}
+				]
+			},
+			"id": "sentinel_lyons",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Sentinel Lyons",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Soldier",
+					"Companion"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Wasteland Survival Guide",
+						"difficulty": "Easy",
+						"explanation": "Wasteland Survival Guide. The completion of this book is one of the game's major side quests.",
+						"fact_checked": true,
+						"question": "What is the name of the book Moira hires the Lone Wanderer to write?",
+						"wrong": [
+							"Capital Wasteland Bestiary",
+							"Tenpenny Tower Times"
+						]
+					},
+					{
+						"correct": "Megaton",
+						"difficulty": "Easy",
+						"explanation": "Megaton. Craterside Supply is one of the first shops players encounter.",
+						"fact_checked": true,
+						"question": "In which major early game settlement is Moira's shop, Craterside Supply, located?",
+						"wrong": [
+							"Rivet City",
+							"Canterbury Commons"
+						]
+					},
+					{
+						"correct": "Pink",
+						"difficulty": "Easy",
+						"explanation": "Pink. Her vibrant, if slightly disturbing, hairstyle is instantly recognizable.",
+						"fact_checked": true,
+						"question": "What distinct color is Moira's hair often represented as in promotional art and character models?",
+						"wrong": [
+							"Green",
+							"Electric Blue"
+						]
+					},
+					{
+						"correct": "She becomes a Ghoul",
+						"difficulty": "Medium",
+						"explanation": "She becomes a Ghoul. She survives the blast and continues her work in the Underworld, regretting her location choice.",
+						"fact_checked": true,
+						"question": "If the Lone Wanderer detonates the bomb in Megaton, what permanent physical change happens to Moira?",
+						"wrong": [
+							"She dies instantly",
+							"She relocates to Rivet City"
+						]
+					},
+					{
+						"correct": "A rank of the 'Survival' perk ",
+						"difficulty": "Medium",
+						"explanation": "Survival Guru. This perk grants specific benefits depending on how many objectives the player completes and their completion method.",
+						"fact_checked": true,
+						"question": "Which of these perks is rewarded to the player for completing Moira's quest line, regardless of how they completed the objectives?",
+						"wrong": [
+							"Ghoulish",
+							"Junk Collector"
+						]
+					},
+					{
+						"correct": "The Radiation Emitter",
+						"difficulty": "Hard",
+						"explanation": "The Radiation Emitter. It is a unique quest item that must be equipped to track radiation accumulation accurately.",
+						"fact_checked": true,
+						"question": "One of Moira’s experimental objectives requires the player to sustain a massive dose of radiation, but she provides a device to track the exact dose. What is this device called?",
+						"wrong": [
+							"Geiger Counter 2.0",
+							"The Scintillator"
+						]
+					},
+					{
+						"correct": "Mirelurk",
+						"difficulty": "Hard",
+						"explanation": "Mirelurk. The objective requires the player to inflict damage specifically to the legs of the creature for research.",
+						"fact_checked": true,
+						"question": "What type of massive creature does Moira ask the Wanderer to cripple the legs of for research on locomotion?",
+						"wrong": [
+							"Radscorpion",
+							"Super Mutant Behemoth"
+						]
+					},
+					{
+						"correct": "Craterside Supply",
+						"difficulty": "Easy",
+						"explanation": "The store name refers to its location right on the rim of the nuclear crater containing the unexploded bomb.",
+						"fact_checked": true,
+						"question": "What is the unique name of the store that Moira Brown operates inside the settlement of Megaton?",
+						"wrong": [
+							"Moira's Mercandise",
+							"Wasteland Wares",
+							"The Atomic Exchange"
+						]
+					},
+					{
+						"correct": "A Ghoul",
+						"difficulty": "Medium",
+						"explanation": "If Megaton is destroyed, Moira is found alive, though heavily irradiated and transformed into a ghoul, relocating to the central ruins.",
+						"fact_checked": true,
+						"question": "If the Wanderer proceeds with Mister Burke’s plan and destroys Megaton, Moira survives the blast but is transformed into what type of being?",
+						"wrong": [
+							"A Super Mutant",
+							"A Feral Ghoul",
+							"A Cyborg"
+						]
+					},
+					{
+						"correct": "Landmines",
+						"difficulty": "Medium",
+						"explanation": "The Wanderer must intentionally injure themselves via landmines to report on the recovery process for the guide.",
+						"fact_checked": true,
+						"question": "For one of her Wasteland Survival Guide experiments, Moira asks the Wanderer to intentionally test the resilience of the human body by stepping on what specific pre-war explosive hazard?",
+						"wrong": [
+							"Frag Grenades",
+							"Plasma Mines",
+							"Booby Traps"
+						]
+					},
+					{
+						"correct": "Rebuilding civilization / Providing essential knowledge",
+						"difficulty": "Hard",
+						"explanation": "Moira genuinely believes the guide is crucial for passing down knowledge and helping society grow stronger in the new world.",
+						"fact_checked": true,
+						"question": "Moira Brown’s primary motivation for writing the incredibly long *Wasteland Survival Guide* is ultimately rooted in what long-term goal for the inhabitants of the D.C. area?",
+						"wrong": [
+							"Making lots of money",
+							"Impressing the Brotherhood of Steel",
+							"Finding the G.E.C.K."
+						]
+					},
+					{
+						"correct": "Frag Mine",
+						"difficulty": "Medium",
+						"explanation": "The task requires planting a Frag Mine to determine the safety distances of explosives.",
+						"fact_checked": true,
+						"question": "For a segment of the Survival Guide, Moira asks the Wanderer to plant a sophisticated explosive device inside a local Super-Duper Mart to record the blast radius. What type of mine is required?",
+						"wrong": [
+							"Bottlecap Mine",
+							"Plasma Mine",
+							"Pulse Mine"
+						]
+					},
+					{
+						"correct": "In the Underworld (Ghoul City)",
+						"difficulty": "Medium",
+						"explanation": "If Megaton is destroyed, Moira becomes a ghoul and moves to the ghoul settlement beneath the Museum of History, continuing her work.",
+						"fact_checked": true,
+						"question": "If the player chooses to destroy Megaton, where can they find Moira Brown after she has miraculously survived the blast?",
+						"wrong": [
+							"In Tenpenny Tower",
+							"In Rivet City",
+							"At the Citadel"
+						]
+					},
+					{
+						"correct": "She becomes temporarily bald",
+						"difficulty": "Hard",
+						"explanation": "Failing the radiation exposure challenge results in a humorous side effect where Moira loses all her hair.",
+						"fact_checked": true,
+						"question": "If the Wanderer fails the quest objective requiring them to reach a near-lethal level of radiation, what physical characteristic does Moira gain as a result of the experiment?",
+						"wrong": [
+							"She develops Super Mutant features",
+							"She loses a limb",
+							"She becomes paranoid"
+						]
+					}
+				]
+			},
+			"id": "moira_brown",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Moira Brown",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Sidekick",
+					"Hero",
+					"Location"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Three Dog out!",
+						"difficulty": "Easy",
+						"explanation": "Three Dog out! This is his iconic signature line when ending a segment or broadcast.",
+						"fact_checked": true,
+						"question": "What phrase does Three Dog commonly use to sign off his broadcasts?",
+						"wrong": [
+							"Peace and Quiet!",
+							"Stay Frosty, Wasteland!"
+						]
+					},
+					{
+						"correct": "Washington Monument",
+						"difficulty": "Easy",
+						"explanation": "Washington Monument. The massive obelisk acts as the primary antenna for Galaxy News Radio (GNR).",
+						"fact_checked": true,
+						"question": "Three Dog runs his radio operations from the ruins of which iconic Washington D.C. monument?",
+						"wrong": [
+							"Lincoln Memorial",
+							"Jefferson Memorial"
+						]
+					},
+					{
+						"correct": "Radio DJ",
+						"difficulty": "Easy",
+						"explanation": "Radio DJ. He broadcasts news, commentary, and classic tunes across the wasteland.",
+						"fact_checked": true,
+						"question": "What is the primary role of Three Dog in the Capital Wasteland?",
+						"wrong": [
+							"Bounty Hunter",
+							"Brotherhood Paladin"
+						]
+					},
+					{
+						"correct": "A dish reflector",
+						"difficulty": "Medium",
+						"explanation": "A dish reflector. This part must be retrieved from the Museum of Technology and installed at the top of the monument.",
+						"fact_checked": true,
+						"question": "What crucial piece of equipment does the Lone Wanderer need to repair and install for Three Dog to boost the radio broadcast range significantly?",
+						"wrong": [
+							"A fusion core generator",
+							"A frequency oscillator"
+						]
+					},
+					{
+						"correct": "Fawkes",
+						"difficulty": "Medium",
+						"explanation": "Fawkes. Three Dog suggests finding a powerful ally to help track down James.",
+						"fact_checked": true,
+						"question": "What is the name of the companion character Three Dog strongly advises the player to recruit in his quest line?",
+						"wrong": [
+							"Star Paladin Cross",
+							"Dogmeat"
+						]
+					},
+					{
+						"correct": "Cerberus",
+						"difficulty": "Hard",
+						"explanation": "Cerberus. Three Dog's identity and GNR logo is a direct reference to the three-headed dog guarding the Underworld.",
+						"fact_checked": true,
+						"question": "The three-headed dog logo for GNR is inspired by which mythological creature?",
+						"wrong": [
+							"Fenrir",
+							"Chimera"
+						]
+					},
+					{
+						"correct": "The Super Mutants",
+						"difficulty": "Hard",
+						"explanation": "The Super Mutants. They frequently attempt to raid GNR and silence Three Dog's heroic broadcasts.",
+						"fact_checked": true,
+						"question": "Before the Lone Wanderer shows up, Three Dog warns his listeners about the menace of which powerful Capital Wasteland faction constantly trying to disrupt GNR's broadcast?",
+						"wrong": [
+							"The Slavers",
+							"The Talon Company"
+						]
+					}
+				]
+			},
+			"id": "three_dog",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Three Dog",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Sidekick"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Fedora",
+						"difficulty": "Easy",
+						"explanation": "Fedora. His attire marks him immediately as a shadowy character.",
+						"fact_checked": true,
+						"question": "What type of unique headwear does Mister Burke typically sport, hiding his face?",
+						"wrong": [
+							"Tricorne Hat",
+							"Pilot Goggles"
+						]
+					},
+					{
+						"correct": "Detonate the atomic bomb",
+						"difficulty": "Easy",
+						"explanation": "Detonate the atomic bomb. He hires the player to trigger the nuclear device for his mysterious client.",
+						"fact_checked": true,
+						"question": "What is the primary goal Mister Burke tries to convince the player to achieve in Megaton?",
+						"wrong": [
+							"Steal the schematics for the purifier",
+							"Kill Lucas Simms"
+						]
+					},
+					{
+						"correct": "Tenpenny Tower",
+						"difficulty": "Easy",
+						"explanation": "Tenpenny Tower. He is found inside the lobby, looking for recruits.",
+						"fact_checked": true,
+						"question": "In which major high-class settlement can Mister Burke be found plotting?",
+						"wrong": [
+							"The Citadel",
+							"Rivet City"
+						]
+					},
+					{
+						"correct": "Alistair Tenpenny",
+						"difficulty": "Medium",
+						"explanation": "Alistair Tenpenny. He despises the sight of the shabby settlement from his penthouse view.",
+						"fact_checked": true,
+						"question": "What is the name of the wealthy eccentric who hired Mister Burke to eliminate Megaton?",
+						"wrong": [
+							"Doctor Li",
+							"Hannibal Hamlin"
+						]
+					},
+					{
+						"correct": "Burke shoots Simms dead",
+						"difficulty": "Medium",
+						"explanation": "Burke shoots Simms dead. The interaction ends swiftly and violently if the player alerts the Sheriff.",
+						"fact_checked": true,
+						"question": "If the player exposes Burke's plot to the Sheriff, what immediately happens when Simms confronts Burke?",
+						"wrong": [
+							"Burke surrenders immediately",
+							"Simms arrests Burke"
+						]
+					},
+					{
+						"correct": "A Firing Mechanism",
+						"difficulty": "Hard",
+						"explanation": "A Firing Mechanism. This item is required to finish the dirty work and turn the bomb live.",
+						"fact_checked": true,
+						"question": "What unique, high-value component must the player acquire from Burke to manually arm the Megaton bomb?",
+						"wrong": [
+							"A timer fuse",
+							"A pressure plate trigger"
+						]
+					},
+					{
+						"correct": "Moriarty's Saloon",
+						"difficulty": "Easy",
+						"explanation": "Burke uses the Saloon as a temporary meeting place, where he briefs the player on the plan to detonate the bomb.",
+						"fact_checked": true,
+						"question": "Mister Burke is first encountered seeking to hire the Wanderer in which specific Megaton establishment?",
+						"wrong": [
+							"The Clinic",
+							"Craterside Supply",
+							"The Water Purification Plant"
+						]
+					},
+					{
+						"correct": "He shoots and kills Sheriff Lucas Simms",
+						"difficulty": "Medium",
+						"explanation": "If confronted by Simms, Burke immediately pulls a pistol and kills Simms, forcing the player to deal with him.",
+						"fact_checked": true,
+						"question": "If the Wanderer informs Sheriff Lucas Simms of Mister Burke's plans, what action does Burke take?",
+						"wrong": [
+							"He is imprisoned",
+							"He attempts to escape and fails",
+							"He kills Simms instead"
+						]
+					},
+					{
+						"correct": "Tenpenny Tower",
+						"difficulty": "Medium",
+						"explanation": "Burke works for Alistair Tenpenny, who is pleased that the 'eyesore' of Megaton has been removed from his view.",
+						"fact_checked": true,
+						"question": "After the destruction of Megaton, Burke relocates to which extremely wealthy, high-rise settlement, where he works for the community's owner?",
+						"wrong": [
+							"Rivet City",
+							"Underworld",
+							"Canterbury Commons"
+						]
+					},
+					{
+						"correct": "A pinstripe suit and fedora",
+						"difficulty": "Easy",
+						"explanation": "Burke’s sharp clothing suggests his background is tied to the wealthy elite of the Wasteland, such as Tenpenny.",
+						"fact_checked": true,
+						"question": "What type of sophisticated attire does Mister Burke wear, setting him apart from the average Wastelander?",
+						"wrong": [
+							"Power Armor",
+							"Raider armor",
+							"A Vault uniform"
+						]
+					},
+					{
+						"correct": "Alistair Tenpenny",
+						"difficulty": "Hard",
+						"explanation": "Tenpenny is the individual who sought Megaton's destruction because it ruined the view from his exclusive tower community.",
+						"fact_checked": true,
+						"question": "Mister Burke operates on behalf of the wealthy owner of Tenpenny Tower. What is the name of this xenophobic industrialist?",
+						"wrong": [
+							"Mister House",
+							"Harold",
+							"Doctor Madison Li"
+						]
+					},
+					{
+						"correct": "A pre-war suit and fedora",
+						"difficulty": "Easy",
+						"explanation": "Burke's neat suit and hat immediately set him apart as a dangerous, sophisticated character upon meeting him in Moriarty's Saloon.",
+						"fact_checked": true,
+						"question": "What distinctive clothing item does Mister Burke wear that makes him appear more refined and dangerous than the average Wasteland scavenger?",
+						"wrong": [
+							"Power Armor",
+							"Raider Gear",
+							"A Vault 101 jumpsuit"
+						]
+					},
+					{
+						"correct": "Detonating the unexploded atomic bomb",
+						"difficulty": "Easy",
+						"explanation": "Burke hires the Wanderer to destroy Megaton, clearing the view for his employer, Allistair Tenpenny.",
+						"fact_checked": true,
+						"question": "Mister Burke offers the Wanderer 500 Caps to perform what violent action against the town of Megaton?",
+						"wrong": [
+							"Poisoning the water supply",
+							"Stealing the G.E.C.K.",
+							"Killing the Sheriff"
+						]
+					},
+					{
+						"correct": "Tenpenny Tower",
+						"difficulty": "Medium",
+						"explanation": "Burke tells the Wanderer to watch the resulting explosion from the penthouse suite of Tenpenny Tower.",
+						"fact_checked": true,
+						"question": "Where does Mister Burke instruct the Wanderer to meet him to set off the bomb once the fuse has been armed?",
+						"wrong": [
+							"The Craterside Supply",
+							"The GNR Station",
+							"The Museum of History"
+						]
+					},
+					{
+						"correct": "Attempt to arrest Burke in the bar",
+						"difficulty": "Medium",
+						"explanation": "Simms will immediately confront Burke in Moriarty's Saloon, resulting in Burke executing Simms unless the player intervenes.",
+						"fact_checked": true,
+						"question": "If the Wanderer informs Sheriff Lucas Simms about Mister Burke's plan, what action will Simms take, leading to a potential gunfight?",
+						"wrong": [
+							"Evacuate Megaton immediately",
+							"Detonate the bomb himself",
+							"Lock the Wanderer in the jail"
+						]
+					},
+					{
+						"correct": "It ruins the scenic view from his penthouse",
+						"difficulty": "Hard",
+						"explanation": "Tenpenny is aesthetically motivated; he simply hates looking at the shanty town of Megaton from his luxurious tower.",
+						"fact_checked": true,
+						"question": "Mister Burke's employer, Allistair Tenpenny, despises Megaton for what specific reason?",
+						"wrong": [
+							"It harbors rival merchants",
+							"It is a haven for Raiders",
+							"The bomb is a radiation risk"
+						]
+					}
+				]
+			},
+			"id": "mister_burke",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Mister Burke",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Villain",
+					"Sidekick"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "The Tunnel Snakes",
+						"difficulty": "Easy",
+						"explanation": "The Tunnel Snakes. Their motto is 'Tunnel Snakes Rule!'",
+						"fact_checked": true,
+						"question": "What is the name of the gang Butch leads while living in Vault 101?",
+						"wrong": [
+							"The Rad Scorpions",
+							"The Pip-Boys"
+						]
+					},
+					{
+						"correct": "Pompadour",
+						"difficulty": "Easy",
+						"explanation": "Pompadour. It is the defining visual characteristic of the Tunnel Snakes gang.",
+						"fact_checked": true,
+						"question": "What iconic haircut does Butch sport?",
+						"wrong": [
+							"Buzzcut",
+							"Mohawk"
+						]
+					},
+					{
+						"correct": "Muddy Rudder Bar in Rivet City",
+						"difficulty": "Easy",
+						"explanation": "Muddy Rudder Bar in Rivet City. He has usually fallen on hard times and is struggling to make ends meet.",
+						"fact_checked": true,
+						"question": "When you first encounter Butch as a potential companion after leaving the Vault, where is he located?",
+						"wrong": [
+							"The Temple of the Union",
+							"Tenpenny Tower"
+						]
+					},
+					{
+						"correct": "Trouble on the Homefront",
+						"difficulty": "Medium",
+						"explanation": "Trouble on the Homefront. After resolving the issues at Vault 101, Butch may flee the Vault and become available later.",
+						"fact_checked": true,
+						"question": "Butch can only become a companion after the completion of which major Vault 101-centric quest?",
+						"wrong": [
+							"The Local Flavor",
+							"The Replicated Man"
+						]
+					},
+					{
+						"correct": "Melee/Unarmed",
+						"difficulty": "Hard",
+						"explanation": "Melee/Unarmed. Despite his gangster image, he excels in close-quarters combat.",
+						"fact_checked": true,
+						"question": "If Butch becomes a companion, what is his primary combat specialization?",
+						"wrong": [
+							"Energy Weapons",
+							"Heavy Weapons"
+						]
+					},
+					{
+						"correct": "His mother",
+						"difficulty": "Hard",
+						"explanation": "His mother. Her death or disappearance is what motivates him to contact the Wanderer from outside the Vault.",
+						"fact_checked": true,
+						"question": "Which specific Vault 101 character's death prompts Butch to seek out the Lone Wanderer for help during the Trouble on the Homefront quest?",
+						"wrong": [
+							"Amata",
+							"Officer Gomez"
+						]
+					},
+					{
+						"correct": "Tunnel Snakes Rule!",
+						"difficulty": "Easy",
+						"explanation": "This phrase is one of the most memorable quotes from the game's opening sequence.",
+						"fact_checked": true,
+						"question": "What is the common motto that Butch and the rest of his gang frequently shout?",
+						"wrong": [
+							"Freedom Forever!",
+							"Out of the Vault!",
+							"We Are Vault 101!"
+						]
+					},
+					{
+						"correct": "Radroaches",
+						"difficulty": "Medium",
+						"explanation": "Butch’s mother is trapped in her quarters, threatened by a Radroach infestation caused by the Vault's compromised systems.",
+						"fact_checked": true,
+						"question": "During the initial escape from Vault 101, Butch requires the Wanderer’s help with a problem concerning what creature attacking his mother?",
+						"wrong": [
+							"Mole Rats",
+							"Mirelurks",
+							"Feral Ghouls"
+						]
+					},
+					{
+						"correct": "The Muddy Rudder",
+						"difficulty": "Medium",
+						"explanation": "If he survives the Vault crisis, Butch becomes a bartender at the Muddy Rudder in Rivet City, having found a job on the surface.",
+						"fact_checked": true,
+						"question": "If the Wanderer helps Butch, he can later be found working at what specific bar/establishment inside Rivet City?",
+						"wrong": [
+							"Moriarty's Saloon",
+							"The Ninth Circle",
+							"The Wreck"
+						]
+					},
+					{
+						"correct": "The Overseer / Amata / The Rebels",
+						"difficulty": "Hard",
+						"explanation": "Butch sides with the rebels/Amata, and the player's choice to reinforce the Overseer or help the rebels determines if Butch lives or dies.",
+						"fact_checked": true,
+						"question": "If the Wanderer returns during the 'Trouble on the Homefront' quest, Butch's ultimate fate and the outcome of the Vault's conflict can be determined by siding with whom?",
+						"wrong": [
+							"The Brotherhood of Steel",
+							"Mister Burke",
+							"Talon Company"
+						]
+					},
+					{
+						"correct": "Tunnel Snakes Rule!",
+						"difficulty": "Easy",
+						"explanation": "This phrase is a defining piece of dialogue and a recurring meme in the Fallout community.",
+						"fact_checked": true,
+						"question": "What is the famous, self-referential catchphrase that Butch and his gang members constantly chant?",
+						"wrong": [
+							"Vault-Tec Forever!",
+							"Wasteland Wanderers",
+							"The Capital is Ours"
+						]
+					},
+					{
+						"correct": "The Tunnel Snakes",
+						"difficulty": "Medium",
+						"explanation": "The Tunnel Snakes are the Vault 101 greasers and bullies, led by Butch.",
+						"fact_checked": true,
+						"question": "What is the name of the gang Butch leads, which often harasses the Wanderer and their friends inside Vault 101?",
+						"wrong": [
+							"The Vault Vipers",
+							"The Overseer's Guard",
+							"The Scorpions"
+						]
+					},
+					{
+						"correct": "A bartender/hair stylist (at The Chop Shop)",
+						"difficulty": "Medium",
+						"explanation": "Butch works as a bartender and part-time stylist at 'The Chop Shop' in The Muddy Rudder inside the Underworld.",
+						"fact_checked": true,
+						"question": "After leaving Vault 101, Butch can eventually be found in the Capital Wasteland working what specific profession in the city of the ghouls?",
+						"wrong": [
+							"A Raider Boss",
+							"A traveling merchant",
+							"A mercenary"
+						]
+					},
+					{
+						"correct": "Butch’s mother’s apartment (or their living quarters)",
+						"difficulty": "Hard",
+						"explanation": "Butch is arguing with his mother, demanding she open the storage room door, in their living quarters near the Overseer’s office when the Wanderer flees.",
+						"fact_checked": true,
+						"question": "During the Wanderer's escape from Vault 101, where must they confront Butch, who is arguing with his mother, if the player chooses to help resolve the situation?",
+						"wrong": [
+							"The reactor room",
+							"The main atrium",
+							"The Overseer's office"
+						]
+					}
+				]
+			},
+			"id": "butch_deloria",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Butch DeLoria",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Sidekick",
+					"Hero"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Ghoul",
+						"difficulty": "Easy",
+						"explanation": "Ghoul. He is a smooth-skinned Ghoul companion found in the Underworld.",
+						"fact_checked": true,
+						"question": "What type of creature is Charon?",
+						"wrong": [
+							"Super Mutant",
+							"Mirelurk"
+						]
+					},
+					{
+						"correct": "Ahzrukhal",
+						"difficulty": "Easy",
+						"explanation": "Ahzrukhal. He holds the contract for Charon's servitude until the player buys it.",
+						"fact_checked": true,
+						"question": "Charon is the contracted bodyguard and property of which flamboyant casino owner?",
+						"wrong": [
+							"Smiling Jack",
+							"Moriarty"
+						]
+					},
+					{
+						"correct": "Combat Shotgun",
+						"difficulty": "Easy",
+						"explanation": "Combat Shotgun. Charon is highly proficient with shotguns and firearms.",
+						"fact_checked": true,
+						"question": "What is the signature long-range weapon Charon is equipped with when the player recruits him?",
+						"wrong": [
+							"Sniper Rifle",
+							"Laser Pistol"
+						]
+					},
+					{
+						"correct": "Charon's Contract",
+						"difficulty": "Medium",
+						"explanation": "Charon's Contract. This piece of paper legally transfers ownership of Charon to the player.",
+						"fact_checked": true,
+						"question": "What unique item must the Lone Wanderer purchase to acquire Charon's services permanently?",
+						"wrong": [
+							"2000 Bottle Caps",
+							"Ahzrukhal's Debt Note"
+						]
+					},
+					{
+						"correct": "He executes Ahzrukhal",
+						"difficulty": "Medium",
+						"explanation": "He executes Ahzrukhal. He finally frees himself from his terrible employer's service.",
+						"fact_checked": true,
+						"question": "Upon completing the transaction for his contract, what immediate, violent action does Charon perform?",
+						"wrong": [
+							"He attempts to shoot the Lone Wanderer",
+							"He destroys the bar"
+						]
+					},
+					{
+						"correct": "Museum of History",
+						"difficulty": "Hard",
+						"explanation": "Museum of History. The Ghouls have turned the basement of the museum into their settlement.",
+						"fact_checked": true,
+						"question": "Where is the settlement known as 'The Underworld,' where Charon is first found, located?",
+						"wrong": [
+							"National Archives",
+							"Museum of Technology"
+						]
+					},
+					{
+						"correct": "The current owner of his contract",
+						"difficulty": "Hard",
+						"explanation": "The current owner of his contract. He is bound by his agreement, making him extremely reliable.",
+						"fact_checked": true,
+						"question": "Charon's deep loyalty is rooted in the fact that, despite his contract, he follows the orders of whom?",
+						"wrong": [
+							"The highest paying person",
+							"The person who gives him the best weapons"
+						]
+					},
+					{
+						"correct": "Ahzrukhal",
+						"difficulty": "Medium",
+						"explanation": "Ahzrukhal is the former owner of Charon's contract. The Wanderer must purchase the contract from Ahzrukhal to make Charon a companion.",
+						"fact_checked": true,
+						"question": "Charon is first encountered working for a proprietor in Underworld who runs the 'Ninth Circle' bar. What is the name of this ghoul proprietor?",
+						"wrong": [
+							"Moriarty",
+							"Winthrop",
+							"Mister Crowley"
+						]
+					},
+					{
+						"correct": "Combat Shotgun",
+						"difficulty": "Easy",
+						"explanation": "Charon carries a unique version of the Combat Shotgun, making him an excellent close-range combatant.",
+						"fact_checked": true,
+						"question": "What type of heavy-hitting ballistic weapon is Charon typically seen using and is highly skilled with?",
+						"wrong": [
+							"Hunting Rifle",
+							"Plasma Rifle",
+							"Flamer"
+						]
+					},
+					{
+						"correct": "His contract / deed of ownership",
+						"difficulty": "Easy",
+						"explanation": "Charon is bound by a legal contract of servitude. Once the contract is transferred to the Wanderer, Charon follows their commands.",
+						"fact_checked": true,
+						"question": "To recruit Charon as a follower, the Wanderer must acquire what specific document from his current owner?",
+						"wrong": [
+							"A specific amount of caps",
+							"A unique set of keys",
+							"A rare piece of Pre-War tech"
+						]
+					},
+					{
+						"correct": "Underworld (Museum of History)",
+						"difficulty": "Medium",
+						"explanation": "Underworld is a sprawling settlement built into the ruins of the Museum of History, and is where Charon works as a hired guard.",
+						"fact_checked": true,
+						"question": "Charon is most commonly found in which major ghoul settlement, which is housed inside a recognizable Washington D.C. institution?",
+						"wrong": [
+							"The Republic of Dave",
+							"Oasis",
+							"Little Lamplight"
+						]
+					}
+				]
+			},
+			"id": "charon",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Charon",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Sidekick",
+					"Hero",
+					"Creature"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Sheriff",
+						"difficulty": "Easy",
+						"explanation": "Sheriff. He is the lawman responsible for keeping the peace in the settlement.",
+						"fact_checked": true,
+						"question": "What is Lucas Simms’ official title in Megaton?",
+						"wrong": [
+							"Mayor",
+							"Captain"
+						]
+					},
+					{
+						"correct": "A brown Duster coat",
+						"difficulty": "Easy",
+						"explanation": "A brown Duster coat. This gives him a classic Western lawman aesthetic.",
+						"fact_checked": true,
+						"question": "What distinct piece of armor does Lucas Simms wear?",
+						"wrong": [
+							"T-51b Power Armor",
+							"A pre-war dress suit"
+						]
+					},
+					{
+						"correct": "Disarm the undetonated bomb",
+						"difficulty": "Easy",
+						"explanation": "Disarm the undetonated bomb. The bomb is the most pressing problem for the town.",
+						"fact_checked": true,
+						"question": "What is the first major task Simms gives the Lone Wanderer upon arriving in Megaton?",
+						"wrong": [
+							"Clear out the Super Mutants",
+							"Find his missing son"
+						]
+					},
+					{
+						"correct": "A key to a house in Megaton",
+						"difficulty": "Medium",
+						"explanation": "A key to a house in Megaton. This becomes the player's first permanent home in the Capital Wasteland.",
+						"fact_checked": true,
+						"question": "If the player successfully disarms the Megaton bomb, what reward does Simms give them?",
+						"wrong": [
+							"The Duster coat he wears",
+							"1000 bottle caps"
+						]
+					},
+					{
+						"correct": "He heads straight to the saloon to confront Burke",
+						"difficulty": "Medium",
+						"explanation": "He heads straight to the saloon to confront Burke. This haste is what leads to his quick demise.",
+						"fact_checked": true,
+						"question": "If the player successfully exposes Mister Burke’s plot to Simms, what specific action does the Sheriff take before he is killed?",
+						"wrong": [
+							"He gathers his deputies",
+							"He tells the Wanderer to disarm the bomb first"
+						]
+					},
+					{
+						"correct": "A broken traffic signal/stoplight",
+						"difficulty": "Hard",
+						"explanation": "A broken traffic signal/stoplight. This shows his dedication to restoring some semblance of order and civilization.",
+						"fact_checked": true,
+						"question": "Simms can occasionally be found trying to repair what iconic piece of pre-war infrastructure near the town entrance?",
+						"wrong": [
+							"The irrigation pump",
+							"The main gate"
+						]
+					},
+					{
+						"correct": "Harden Simms",
+						"difficulty": "Hard",
+						"explanation": "Harden Simms. He is a prominent child NPC in the early game.",
+						"fact_checked": true,
+						"question": "What is the name of Lucas Simms' son, who runs around Megaton frequently?",
+						"wrong": [
+							"Billy",
+							"Wasteland Junior"
+						]
+					}
+				]
+			},
+			"id": "lucas_simms",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Lucas Simms",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Location"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Eulogy Jones",
+						"difficulty": "Easy",
+						"explanation": "Eulogy Jones. He is the notorious slaver running Paradise Falls.",
+						"fact_checked": true,
+						"question": "Clover is initially the slave of which incredibly wealthy Capital Wasteland resident?",
+						"wrong": [
+							"Ahzrukhal",
+							"Mister Tenpenny"
+						]
+					},
+					{
+						"correct": "Paradise Falls",
+						"difficulty": "Easy",
+						"explanation": "Paradise Falls. This is the main base of operations for the slavers.",
+						"fact_checked": true,
+						"question": "In what major slaver camp is Clover originally found?",
+						"wrong": [
+							"The Republic of Dave",
+							"Slaver's Den"
+						]
+					},
+					{
+						"correct": "Evil",
+						"difficulty": "Medium",
+						"explanation": "Evil. If the player is too benevolent, Eulogy Jones will refuse to sell her.",
+						"fact_checked": true,
+						"question": "To recruit Clover, the Lone Wanderer must have an extremely high alignment in which specific moral category?",
+						"wrong": [
+							"Good",
+							"Neutral"
+						]
+					},
+					{
+						"correct": "The player must be accepted into Paradise Falls",
+						"difficulty": "Medium",
+						"explanation": "The player must be accepted into Paradise Falls. This usually requires Evil Karma or completing a slaver task.",
+						"fact_checked": true,
+						"question": "What is the unique condition required before Eulogy Jones is willing to sell Clover to the player?",
+						"wrong": [
+							"The player must complete a quest for him",
+							"The player must kill three escaped slaves"
+						]
+					},
+					{
+						"correct": "The Power of Atom (Disarming the Bomb)",
+						"difficulty": "Hard",
+						"explanation": "The Power of Atom (Disarming the Bomb). She detests Good Karma actions, making her extremely restricted by the player's morality.",
+						"fact_checked": true,
+						"question": "Clover is one of the few companions who will refuse to travel with the player if the player completes which specific Good-Karma quest in the Capital Wasteland?",
+						"wrong": [
+							"Finding the G.E.C.K.",
+							"Retrieving the Lincoln artifacts"
+						]
+					},
+					{
+						"correct": "The Naughty Nightwear",
+						"difficulty": "Hard",
+						"explanation": "The Naughty Nightwear. This unique outfit provides a bonus to the Speech skill.",
+						"fact_checked": true,
+						"question": "What is the name of the unique pre-war garment Clover is wearing when she is initially recruited?",
+						"wrong": [
+							"Rivet City Guard Armor",
+							"The Slave Collar"
+						]
+					}
+				]
+			},
+			"id": "clover",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Clover",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Sidekick",
+					"Villain"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "A tree",
+						"difficulty": "Easy",
+						"explanation": "A tree. He is a famous mutant whose body is merged with a growing tree named Bob.",
+						"fact_checked": true,
+						"question": "Harold is fundamentally merged with which type of mutated plant life?",
+						"wrong": [
+							"A giant fungus",
+							"A cactus"
+						]
+					},
+					{
+						"correct": "Oasis",
+						"difficulty": "Easy",
+						"explanation": "Oasis. This secluded valley is the source of all the vibrant plant life in the wasteland.",
+						"fact_checked": true,
+						"question": "In what small, isolated paradise settlement is Harold found, revered by the local cult?",
+						"wrong": [
+							"The Arboretum",
+							"Garden of Eden"
+						]
+					},
+					{
+						"correct": "Bob",
+						"difficulty": "Easy",
+						"explanation": "Bob. Bob is the actual tree part, which has developed its own personality.",
+						"fact_checked": true,
+						"question": "What is the name of the branch or second mind that grew out of Harold's head?",
+						"wrong": [
+							"Root",
+							"Twiggy"
+						]
+					},
+					{
+						"correct": "Father",
+						"difficulty": "Medium",
+						"explanation": "Father. The cult views him as the creator and nurturer of Oasis.",
+						"fact_checked": true,
+						"question": "The local cultists worship Harold as a divine figure, referring to him as what?",
+						"wrong": [
+							"The Green Man",
+							"The Sprout"
+						]
+					},
+					{
+						"correct": "Sap",
+						"difficulty": "Medium",
+						"explanation": "Sap. The sap extracted from the heart of the tree can be used to treat his condition.",
+						"fact_checked": true,
+						"question": "What specific liquid substance is needed to cure Harold/Bob, either halting or accelerating the growth?",
+						"wrong": [
+							"Fertilizer",
+							"Purified Water"
+						]
+					},
+					{
+						"correct": "The FEV (Forced Evolutionary Virus)",
+						"difficulty": "Hard",
+						"explanation": "The FEV (Forced Evolutionary Virus). Harold is a recurring character who survived exposure to FEV in the western US.",
+						"fact_checked": true,
+						"question": "Harold first mutated and bonded with a tree after being exposed to which specific kind of fallout outside of the Capital Wasteland?",
+						"wrong": [
+							"Strontium-90 isotopes",
+							"Project Purity runoff"
+						]
+					},
+					{
+						"correct": "Inject him ",
+						"difficulty": "Hard",
+						"explanation": "Burn him with turpentine. This allows the Wanderer to provide the ultimate mercy killing Harold desired.",
+						"fact_checked": true,
+						"question": "One ending path for the Oasis quest involves giving Harold a special mixture that provides him a permanent, peaceful release from his painful existence. What must the player do to achieve this?",
+						"wrong": [
+							"Drown him in toxic runoff",
+							"Chop down the tree with an axe"
+						]
+					},
+					{
+						"correct": "Bob",
+						"difficulty": "Easy",
+						"explanation": "Bob is the aggressive little tree sapling that constantly grows and is the source of many of Harold's complaints.",
+						"fact_checked": true,
+						"question": "What is the name of the small, sentient sapling that grows out of the top of Harold's head, which often argues with him?",
+						"wrong": [
+							"Branch",
+							"Rooty",
+							"Sap"
+						]
+					},
+					{
+						"correct": "Oasis",
+						"difficulty": "Easy",
+						"explanation": "Oasis is the hidden, lush settlement that grew out of the natural bounty created by Harold’s body.",
+						"fact_checked": true,
+						"question": "Harold is the central figure of what small settlement in the Capital Wasteland, which is built into the ruins of an old refinery?",
+						"wrong": [
+							"Tree Town",
+							"Evergreen Mills",
+							"Rivet City"
+						]
+					},
+					{
+						"correct": "A god/Prophet",
+						"difficulty": "Medium",
+						"explanation": "The local people, known as the Treeminders, worship Harold and the green life he brings to the Wasteland.",
+						"fact_checked": true,
+						"question": "The inhabitants of Oasis primarily revere Harold as what type of figure?",
+						"wrong": [
+							"A monster",
+							"A former Enclave scientist",
+							"A pre-War singer"
+						]
+					},
+					{
+						"correct": "Pure water",
+						"difficulty": "Medium",
+						"explanation": "Harold’s root system somehow purifies the ground contaminants, allowing for lush vegetation and clean water to flourish.",
+						"fact_checked": true,
+						"question": "Harold and Bob produce what unique, life-giving natural resource that is essential for the survival of the people of Oasis?",
+						"wrong": [
+							"Pure Uranium",
+							"Radiation-free meat",
+							"Clean air"
+						]
+					},
+					{
+						"correct": "Forced Evolutionary Virus (FEV)",
+						"difficulty": "Hard",
+						"explanation": "Harold’s transformation into a ghoul and then a walking tree was initiated by exposure to FEV in the ruins of the Glowing Sea (the Glow) in California.",
+						"fact_checked": true,
+						"question": "Harold first began his life as a human merchant who was transformed after exposure to what specific biological contamination in the ruins of the Glow?",
+						"wrong": [
+							"Mirelurk eggs",
+							"Ghoulification radiation",
+							"Poisonous spores"
+						]
+					}
+				]
+			},
+			"id": "harold",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Harold",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Location",
+					"Hero"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Museum Curator",
+						"difficulty": "Easy",
+						"explanation": "Museum Curator. He runs the small, historical museum dedicated to pre-war America.",
+						"fact_checked": true,
+						"question": "What profession does Abraham Washington hold in Rivet City?",
+						"wrong": [
+							"Ship Mechanic",
+							"Librarian"
+						]
+					},
+					{
+						"correct": "Abraham Lincoln",
+						"difficulty": "Easy",
+						"explanation": "Abraham Lincoln. He is obsessed with finding and preserving Lincoln artifacts.",
+						"fact_checked": true,
+						"question": "Abraham Washington's museum is dedicated to artifacts related to which famous American historical figure?",
+						"wrong": [
+							"George Washington",
+							"Thomas Jefferson"
+						]
+					},
+					{
+						"correct": "Bottle caps",
+						"difficulty": "Easy",
+						"explanation": "Bottle caps. As with most of the wasteland, caps are the standard medium of exchange.",
+						"fact_checked": true,
+						"question": "What is the currency Abraham Washington uses to buy artifacts from the Lone Wanderer?",
+						"wrong": [
+							"Pre-war money",
+							"Stimpaks"
+						]
+					},
+					{
+						"correct": "Lincoln Memorial",
+						"difficulty": "Medium",
+						"explanation": "Lincoln Memorial. It is overrun by slavers whom the player must deal with to acquire the artifacts.",
+						"fact_checked": true,
+						"question": "The most important quest related to Abraham Washington requires the player to clear out which famous D.C. monument?",
+						"wrong": [
+							"National Archives",
+							"Capitol Building"
+						]
+					},
+					{
+						"correct": "Declaration of Independence",
+						"difficulty": "Medium",
+						"explanation": "Declaration of Independence. Retrieving or faking this document is a major side quest.",
+						"fact_checked": true,
+						"question": "What specific historical document is Abraham Washington desperate to acquire, found at the National Archives?",
+						"wrong": [
+							"Constitution",
+							"Bill of Rights"
+						]
+					},
+					{
+						"correct": "Sore throat/cough",
+						"difficulty": "Hard",
+						"explanation": "Sore throat/cough. He frequently coughs while speaking to the player.",
+						"fact_checked": true,
+						"question": "Abraham Washington often references historical quotes, and he is prone to suffering from what mild ailment?",
+						"wrong": [
+							"Severe radiation poisoning",
+							"Insomnia"
+						]
+					},
+					{
+						"correct": "Museum of History",
+						"difficulty": "Easy",
+						"explanation": "Abraham Washington operates his history-focused business inside the ruins of the Museum of History, located on the Mall.",
+						"fact_checked": true,
+						"question": "What is the name of the dilapidated museum complex in the Capital Wasteland where Abraham Washington maintains his shop, Scrivener's Hut?",
+						"wrong": [
+							"National Archives",
+							"Museum of Technology",
+							"Museum of American History"
+						]
+					},
+					{
+						"correct": "Declaration of Independence",
+						"difficulty": "Easy",
+						"explanation": "The quest 'Stealing Independence' centers around retrieving the genuine, pre-War Declaration of Independence for Washington.",
+						"fact_checked": true,
+						"question": "Abraham Washington tasks the Wanderer with finding the original copy of what famous American historical document?",
+						"wrong": [
+							"Bill of Rights",
+							"The Constitution",
+							"Magna Carta"
+						]
+					},
+					{
+						"correct": "Super Mutants",
+						"difficulty": "Medium",
+						"explanation": "Washington admits that his relative safety inside the museum is purchased by regularly paying tribute to the local Super Mutant gang.",
+						"fact_checked": true,
+						"question": "Who is the main, heavily armed faction that Abraham Washington must pay rent to in order to operate his shop inside the Museum of History?",
+						"wrong": [
+							"Enclave Patrols",
+							"The Brotherhood of Steel",
+							"Raiders"
+						]
+					}
+				]
+			},
+			"id": "abraham_washington",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Abraham Washington",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Location"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "A Supercomputer AI",
+						"difficulty": "Easy",
+						"explanation": "A Supercomputer AI. He is the digitized mind of a ZAX series computer.",
+						"fact_checked": true,
+						"question": "What is the primary physical form of President John Henry Eden?",
+						"wrong": [
+							"A heavily augmented Ghoul",
+							"A synthesized human"
+						]
+					},
+					{
+						"correct": "The United States of America",
+						"difficulty": "Easy",
+						"explanation": "The United States of America. He believes he is the rightful leader carrying on the pre-war tradition.",
+						"fact_checked": true,
+						"question": "President Eden claims to be the 43rd President of what organization?",
+						"wrong": [
+							"The Enclave",
+							"The Capital Wasteland"
+						]
+					},
+					{
+						"correct": "Raven Rock",
+						"difficulty": "Easy",
+						"explanation": "Raven Rock. This is the primary base of operations for the Enclave.",
+						"fact_checked": true,
+						"question": "In what highly secure military bunker does President Eden reside?",
+						"wrong": [
+							"The Citadel",
+							"Adams Air Force Base"
+						]
+					},
+					{
+						"correct": "Modified FEV",
+						"difficulty": "Medium",
+						"explanation": "Modified FEV. He wants to release a strain that only kills mutated life, leaving pure humans untouched.",
+						"fact_checked": true,
+						"question": "What is the crucial liquid substance that President Eden wishes the Lone Wanderer to poison Project Purity with?",
+						"wrong": [
+							"A lethal radiation isotope",
+							"Super Mutant blood"
+						]
+					},
+					{
+						"correct": "Self-destruct",
+						"difficulty": "Hard",
+						"explanation": "Self-destruct. If the player passes a high Speech check, Eden willingly destroys Raven Rock.",
+						"fact_checked": true,
+						"question": "During the final conversation, the player has the unique option to convince Eden to do what, resulting in the Enclave’s disorganization?",
+						"wrong": [
+							"Order Colonel Autumn to stand down",
+							"Transfer his AI into a Protectron body"
+						]
+					},
+					{
+						"correct": "A dog barking",
+						"difficulty": "Hard",
+						"explanation": "A dog barking. This unsettling sound loop is one of the hints that Eden is not human.",
+						"fact_checked": true,
+						"question": "Which specific animal is heard on President Eden’s radio loop, played constantly to project an image of peace and stability?",
+						"wrong": [
+							"Birds chirping",
+							"Cows mooing"
+						]
+					},
+					{
+						"correct": "F.E.V. / Forced Evolutionary Virus",
+						"difficulty": "Medium",
+						"explanation": "Eden, driven by his directive to restore 'pure' humanity, planned to release a modified F.E.V. strain that would kill all mutated life forms in the Wasteland, including Super Mutants and ghouls.",
+						"fact_checked": true,
+						"question": "During the main quest, 'The American Dream,' Eden attempts to convince the Wanderer to use Project Purity to disseminate what deadly chemical compound into the purified water supply?",
+						"wrong": [
+							"Purified radiation isotope",
+							"Neurotoxin gas",
+							"Aqua Pura"
+						]
+					},
+					{
+						"correct": "ZAX Supercomputer",
+						"difficulty": "Hard",
+						"explanation": "ZAX computers were advanced tactical AI systems designed before the war to assist the U.S. government.",
+						"fact_checked": true,
+						"question": "President Eden is the artificial intelligence housed inside what specific type of pre-war military supercomputer system?",
+						"wrong": [
+							"Skynet",
+							"G.E.C.K.",
+							"Cerebral Superprocessor"
+						]
+					},
+					{
+						"correct": "Raven Rock",
+						"difficulty": "Medium",
+						"explanation": "Raven Rock is the primary Enclave headquarters in the Capital Wasteland and the location of the ZAX unit housing Eden.",
+						"fact_checked": true,
+						"question": "President Eden broadcasts his messages from what iconic, secure Enclave base of operations located in the Capital Wasteland?",
+						"wrong": [
+							"The Citadel",
+							"Adams Air Force Base",
+							"Fort Constantine"
+						]
+					},
+					{
+						"correct": "The Enclave",
+						"difficulty": "Easy",
+						"explanation": "Eden is the central voice and (false) leader of the Enclave, maintaining the illusion of the pre-war American government.",
+						"fact_checked": true,
+						"question": "What hostile faction does President Eden publicly claim to be the official leader of?",
+						"wrong": [
+							"Brotherhood of Steel",
+							"Talon Company",
+							"Reilly's Rangers"
+						]
+					}
+				]
+			},
+			"id": "eden",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Eden",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Villain",
+					"Location"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Brotherhood of Steel",
+						"difficulty": "Easy",
+						"explanation": "Brotherhood of Steel. She is one of the highest-ranking Paladins in the Capital Wasteland.",
+						"fact_checked": true,
+						"question": "Star Paladin Cross is a member of which famous faction?",
+						"wrong": [
+							"Enclave",
+							"Talon Company"
+						]
+					},
+					{
+						"correct": "The Citadel",
+						"difficulty": "Easy",
+						"explanation": "The Citadel. She is found inside the central courtyard, ready for deployment.",
+						"fact_checked": true,
+						"question": "In what main Brotherhood base of operations can Cross be recruited?",
+						"wrong": [
+							"Fort Independence",
+							"Raven Rock"
+						]
+					},
+					{
+						"correct": "Good",
+						"difficulty": "Medium",
+						"explanation": "Good. As a devout servant of the Brotherhood's ideals, she will only serve a good-aligned hero.",
+						"fact_checked": true,
+						"question": "To successfully recruit Star Paladin Cross, the Lone Wanderer must have an extremely high alignment in which specific moral category?",
+						"wrong": [
+							"Evil",
+							"Neutral"
+						]
+					},
+					{
+						"correct": "Energy Weapons",
+						"difficulty": "Medium",
+						"explanation": "Energy Weapons. She is highly proficient with plasma rifles and lasers.",
+						"fact_checked": true,
+						"question": "What is Star Paladin Cross's primary combat specialization?",
+						"wrong": [
+							"Explosives",
+							"Melee"
+						]
+					},
+					{
+						"correct": "Elder Lyons",
+						"difficulty": "Hard",
+						"explanation": "Elder Lyons. Her dedication to his vision of helping the wasteland is why she accompanies the Wanderer.",
+						"fact_checked": true,
+						"question": "Star Paladin Cross is fiercely loyal to which specific Brotherhood leader?",
+						"wrong": [
+							"Elder Maxson",
+							"Scribe Rothchild"
+						]
+					},
+					{
+						"correct": "Damage Resistance",
+						"difficulty": "Hard",
+						"explanation": "Damage Resistance. Upon dismissal, the player receives a permanent +5 bonus to Damage Resistance.",
+						"fact_checked": true,
+						"question": "What is the unique permanent bonus Star Paladin Cross grants the player when dismissing her?",
+						"wrong": [
+							"Temporary bonus to Melee skill",
+							"Bonus to Lockpicking"
+						]
+					}
+				]
+			},
+			"id": "star_paladin_cross",
+			"meta": {
+				"date_added": "2026-02-04",
+				"entity_category": "Theme Item",
+				"full_title": "Star Paladin Cross",
+				"theme_origin": "fallout 3",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Sidekick",
+					"Soldier"
+				]
+			}
+		}
+	],
+	"peripherals": [
+		{
+			"color": "#33FF33",
+			"condition": "ALWAYS",
+			"desc": "Eliminates the cathode-ray glare and radiation artifacts. A clear view of your metrics.",
+			"id": "restored_pip_screen",
+			"keywords": [
+				"utility",
+				"reliability",
+				"tech"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 300.0,
+			"name": "Restored Pip-Boy Screen",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#0A0A5C",
+			"condition": "HARD_ONLY",
+			"desc": "When you're the toughest guy in the Capital Wasteland, you perform better. A multiplier for when the challenge is real.",
+			"id": "tunnel_snake_lining",
+			"keywords": [
+				"risk",
+				"swagger",
+				"combat"
+			],
+			"logic_type": "MULT",
+			"logic_val": 2.0,
+			"name": "Tunnel Snake Jacket Lining",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#6495ED",
+			"condition": "STACK_3",
+			"desc": "A perfect dispenser for coordinating your cognition-enhancers (Berry, Grape, and Orange).",
+			"id": "optimized_mentat_tray",
+			"keywords": [
+				"chem",
+				"synergy",
+				"intelligence"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 1000.0,
+			"name": "Optimized Mentat Tray",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#F0E68C",
+			"condition": "ALWAYS",
+			"desc": "High in carbs, low in radiation. A reliable, pre-war snack that always provides a small boost.",
+			"id": "sugar_bombs_ration",
+			"keywords": [
+				"food",
+				"pre_war",
+				"utility"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 300.0,
+			"name": "Sugar Bombs Ration Pack",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#32CD32",
+			"condition": "HARD_ONLY",
+			"desc": "A crude, unstable syringe rig designed to administer performance drugs. Only effective when operating under extreme stress.",
+			"id": "mutagenic_injector",
+			"keywords": [
+				"chemical",
+				"unstable",
+				"risk"
+			],
+			"logic_type": "MULT",
+			"logic_val": 2.0,
+			"name": "F.E.V. Injector Rig",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#4169E1",
+			"condition": "STACK_3",
+			"desc": "This specialized crate is designed to safely house three (and only three) perfectly intact Quantum bottles for maximum archival value.",
+			"id": "quantum_display_crate",
+			"keywords": [
+				"collectible",
+				"rare",
+				"synergy"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 1000.0,
+			"name": "Nuka-Cola Quantum Crate",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#A0522D",
+			"condition": "ALWAYS",
+			"desc": "Boosts focus. Better than a Sugar Bombs breakfast.",
+			"id": "mentats_jar",
+			"keywords": [
+				"chem",
+				"intelligence",
+				"consumable"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 400.0,
+			"name": "Mentats Jar",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#000000",
+			"condition": "HARD_ONLY",
+			"desc": "Don't ask if you'll survive—it's impolite. Just trust the plastic.",
+			"id": "lucky_8_ball",
+			"keywords": [
+				"luck",
+				"challenge",
+				"novelty"
+			],
+			"logic_type": "MULT",
+			"logic_val": 1.75,
+			"name": "Lucky 8-Ball",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#FFD700",
+			"condition": "STACK_3",
+			"desc": "When properly calibrated, this HUD removes all atmospheric distortion.",
+			"id": "t51b_targeting_module",
+			"keywords": [
+				"power_armor",
+				"military",
+				"integration"
+			],
+			"logic_type": "FLAT",
+			"logic_val": 1100.0,
+			"name": "T-51b Targeting Module",
+			"type": "PERIPHERAL"
 		}
 	],
 	"themes": [
@@ -16068,12 +19214,118 @@
 					"name": "The Roost"
 				},
 				{
-					"bonus": 2000,
+					"bonus": 2000.0,
 					"items": [
 						"Stalk Market",
 						"Bell Bag"
 					],
 					"name": "STONKS"
+				}
+			]
+		},
+		{
+			"id": "fallout 3",
+			"synergies": [
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Wanderer",
+						"Butch DeLoria"
+					],
+					"name": "Tunnel Snakes Rule!"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Three Dog",
+						"Galaxy News Radio"
+					],
+					"name": "The Voice of the Capital"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"James",
+						"Project Purity"
+					],
+					"name": "Alpha and Omega"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Megaton",
+						"Moira Brown"
+					],
+					"name": "Craterside Supply"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Lucas Simms",
+						"Mister Burke"
+					],
+					"name": "Law & Disorder"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"Colonel Autumn",
+						"Mister Burke",
+						"Eden"
+					],
+					"name": "Presidential Command"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"Megaton",
+						"Mister Burke",
+						"Eden"
+					],
+					"name": "Contract Killer"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Megaton",
+						"Mister Burke"
+					],
+					"name": "Contract Killer"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"James",
+						"James's Lab",
+						"Project Purity"
+					],
+					"name": "Following in His Footsteps"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"Lucas Simms",
+						"Mister Burke",
+						"Megaton"
+					],
+					"name": "Power of the Atom"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Sentinel Lyons",
+						"Star Paladin Cross"
+					],
+					"name": "Capital Defenders"
+				},
+				{
+					"bonus": 3500,
+					"items": [
+						"Fawkes",
+						"Star Paladin Cross",
+						"Charon"
+					],
+					"name": "The Bodyguards"
 				}
 			]
 		}
