@@ -1,5 +1,5 @@
 {
-	"last_updated": 1770159247,
+	"last_updated": 1770241211,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -372,6 +372,56 @@
 				"cyrus",
 				"leif",
 				"harvey"
+			]
+		},
+		"2026-02-05": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Tunnel Snakes Rule!",
+			"share_text": "War... War never changes",
+			"shops": [
+				{
+					"p1": "restored_pip_screen",
+					"p2": "tunnel_snake_lining"
+				},
+				{
+					"p1": "optimized_mentat_tray",
+					"p2": "sugar_bombs_ration"
+				},
+				{
+					"p1": "t51b_targeting_module",
+					"p2": "mentats_jar"
+				}
+			],
+			"showcase": [
+				"three_dog",
+				"wanderer",
+				"colonel_autumn"
+			],
+			"starters": [
+				"wanderer",
+				"megaton",
+				"fat_man",
+				"deathclaw",
+				"project_purity",
+				"galaxy_news_radio",
+				"shishkebab",
+				"fawkes",
+				"james",
+				"colonel_autumn",
+				"james's_lab",
+				"sentinel_lyons",
+				"moira_brown",
+				"three_dog",
+				"mister_burke",
+				"butch_deloria",
+				"charon",
+				"lucas_simms",
+				"clover",
+				"harold",
+				"abraham_washington",
+				"eden",
+				"star_paladin_cross"
 			]
 		}
 	}
