@@ -4,3 +4,4 @@ node_modules
 .changeset
 public/daily-manifest-x9z.json
 public/skillcheck
+public/ghost_database.json
