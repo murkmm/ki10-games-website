@@ -1,5 +1,5 @@
 {
-	"last_updated": 1770241211,
+	"last_updated": 1770242271,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -381,16 +381,16 @@
 			"share_text": "War... War never changes",
 			"shops": [
 				{
-					"p1": "restored_pip_screen",
-					"p2": "tunnel_snake_lining"
+					"p1": "specialist_targeting_scope",
+					"p2": "rumble_pack"
 				},
 				{
-					"p1": "optimized_mentat_tray",
-					"p2": "sugar_bombs_ration"
+					"p1": "gambler_triple_stack",
+					"p2": "expansion_pak"
 				},
 				{
-					"p1": "t51b_targeting_module",
-					"p2": "mentats_jar"
+					"p1": "expert_enclave_chip",
+					"p2": "expansion_pak"
 				}
 			],
 			"showcase": [
