@@ -2368,18 +2368,6 @@
 						]
 					},
 					{
-						"correct": "255",
-						"difficulty": "Medium",
-						"explanation": "255. The maximum internal multiplier ensures every capture attempt succeeds.",
-						"fact_checked": true,
-						"question": "What is the catch rate multiplier applied to this item in the game's mechanics?",
-						"wrong": [
-							"3",
-							"50",
-							"100"
-						]
-					},
-					{
 						"correct": "An ID number matching the lottery number",
 						"difficulty": "Hard",
 						"explanation": "An ID number matching the lottery number. The player must have an ID that matches the five-digit lottery number to win the grand prize.",
@@ -2842,18 +2830,6 @@
 							"Drowning the world",
 							"Freezing the world",
 							"Opening Ultra Wormholes"
-						]
-					},
-					{
-						"correct": "Giovanni (Viridian City)",
-						"difficulty": "Medium",
-						"explanation": "Giovanni (Viridian City). He is revealed to be the final Gym Leader of the Kanto league.",
-						"fact_checked": true,
-						"question": "Which Kanto Gym Leader secretly operates as the leader of this organization in the games?",
-						"wrong": [
-							"Blaine",
-							"Koga",
-							"Sabrina"
 						]
 					},
 					{
@@ -4298,18 +4274,6 @@
 							"Helmets",
 							"Capes"
 						]
-					},
-					{
-						"correct": "Sunglasses",
-						"difficulty": "Hard",
-						"explanation": "Fishing Rod. This detail was part of its following sprite animation.",
-						"fact_checked": true,
-						"question": "In the Japanese version of Pokémon Yellow, what specific item did Squirtle sometimes hold when following the player in the overworld?",
-						"wrong": [
-							"Wrench",
-							"Shovel",
-							"Bucket"
-						]
 					}
 				]
 			},
@@ -5596,18 +5560,6 @@
 						]
 					},
 					{
-						"correct": "Red",
-						"difficulty": "Easy",
-						"explanation": "Red. Mario is famously associated with the color red in contrast to Luigi's green.",
-						"fact_checked": true,
-						"question": "What primary color is Mario's hat and shirt?",
-						"wrong": [
-							"Green",
-							"Yellow",
-							"Blue"
-						]
-					},
-					{
 						"correct": "Wahoo",
 						"difficulty": "Medium",
 						"explanation": "Wahoo. 'Wahoo' is Mario's signature celebratory cry in this iteration.",
@@ -5665,18 +5617,6 @@
 							"Dash Panel",
 							"Slipstream",
 							"Rocket Start"
-						]
-					},
-					{
-						"correct": "Mario Figure Circuit",
-						"difficulty": "Easy",
-						"explanation": "Mario Figure Circuit featured a unique track layout designed to resemble a sculpted version of Mario's head.",
-						"fact_checked": true,
-						"question": "What specific track in Mario Kart DS is themed around Mario's large, iconic head, complete with a mustache track layout?",
-						"wrong": [
-							"Luigi's Mansion",
-							"DS Mario Circuit",
-							"Yoshi Falls"
 						]
 					},
 					{
@@ -5785,18 +5725,6 @@
 						]
 					},
 					{
-						"correct": "Spiny Shell",
-						"difficulty": "Easy",
-						"explanation": "Spiny Shell. The item is officially named after the spines on its surface.",
-						"fact_checked": true,
-						"question": "What is the official full name of this infamous item?",
-						"wrong": [
-							"Blue Bowser Shell",
-							"Star Shell",
-							"Homing Shell"
-						]
-					},
-					{
 						"correct": "Spiny ",
 						"difficulty": "Easy",
 						"explanation": "Bowser. The Blue Shell's design, including its spikes, suggests a Koopa origin.",
@@ -5902,18 +5830,6 @@
 							"Defense Boost",
 							"Shell Swat",
 							"Blue Blocker"
-						]
-					},
-					{
-						"correct": "Spiny Shell",
-						"difficulty": "Easy",
-						"explanation": "Spiny Shell. Its official name in earlier games and merchandise is often Spiny Shell.",
-						"fact_checked": true,
-						"question": "The Blue Shell is also commonly known by what secondary name, referencing its origin?",
-						"wrong": [
-							"King Shell",
-							"Prickly Shell",
-							"Homing Shell"
 						]
 					},
 					{
@@ -6130,18 +6046,6 @@
 						]
 					},
 					{
-						"correct": "N64",
-						"difficulty": "Medium",
-						"explanation": "N64. The Rainbow Road from Mario Kart 64 holds the record for the longest track in the series' history.",
-						"fact_checked": true,
-						"question": "Which specific console's version of Rainbow Road is famous for being incredibly long, taking over a minute per lap without shortcuts?",
-						"wrong": [
-							"SNES",
-							"GameCube",
-							"Wii U"
-						]
-					},
-					{
 						"correct": "Launch Star",
 						"difficulty": "Medium",
 						"explanation": "Launch Star. Launch Stars, borrowed from Super Mario Galaxy, appear in later versions of the track to transport karts.",
@@ -6175,18 +6079,6 @@
 							"Starship Mario",
 							"Wii Sports Resort Island",
 							"Airship Fortress"
-						]
-					},
-					{
-						"correct": "N64",
-						"difficulty": "Easy",
-						"explanation": "N64. The Mario Kart 64 version is the longest track in the series and is known for its difficulty.",
-						"fact_checked": true,
-						"question": "Which iteration of Rainbow Road is famous for being excessively long and lacking side guardrails, leading to many falls?",
-						"wrong": [
-							"Wii",
-							"DS",
-							"SNES"
 						]
 					},
 					{
@@ -6712,18 +6604,6 @@
 						]
 					},
 					{
-						"correct": "Hold it behind the kart",
-						"difficulty": "Medium",
-						"explanation": "Hold it behind the kart. Holding the item behind acts as a shield against incoming shells.",
-						"fact_checked": true,
-						"question": "What is the primary way a player can defensively use a single Banana item?",
-						"wrong": [
-							"Throw it forward rapidly",
-							"Eat it for a speed boost",
-							"Use it to climb walls"
-						]
-					},
-					{
 						"correct": "Super Mario Kart (SNES)",
 						"difficulty": "Hard",
 						"explanation": "Super Mario Kart (SNES). In this iteration, the Fake Item Box was the only non-Star powerup that could clear obstacles.",
@@ -6874,18 +6754,6 @@
 							"A beep",
 							"A high-pitched giggle",
 							"A grunt"
-						]
-					},
-					{
-						"correct": "Mushroom Cap",
-						"difficulty": "Easy",
-						"explanation": "Mushroom Cap. Toad is a member of the Mushroom People, characterized by his mushroom head.",
-						"fact_checked": true,
-						"question": "What iconic headwear distinguishes Toad, regardless of his kart?",
-						"wrong": [
-							"Crown",
-							"Helmet",
-							"Fedora"
 						]
 					},
 					{
@@ -7066,18 +6934,6 @@
 						]
 					},
 					{
-						"correct": "Wii",
-						"difficulty": "Easy",
-						"explanation": "Wii. Coconut Mall debuted in Mario Kart Wii.",
-						"fact_checked": true,
-						"question": "Which home console introduced this popular track?",
-						"wrong": [
-							"GameCube",
-							"Switch",
-							"Wii U"
-						]
-					},
-					{
 						"correct": "Mii shuttle cars",
 						"difficulty": "Medium",
 						"explanation": "Mii shuttle cars. These cars drive back and forth, acting as moving obstacles.",
@@ -7111,18 +6967,6 @@
 							"Heavy Metal",
 							"Opera",
 							"Reggae"
-						]
-					},
-					{
-						"correct": "Mii Karts",
-						"difficulty": "Easy",
-						"explanation": "Mii Karts. Vehicles driven by Miis obstruct the final few yards of the race.",
-						"fact_checked": true,
-						"question": "What type of vehicle acts as a dynamic obstacle in the final parking lot of the track?",
-						"wrong": [
-							"Taxi cabs",
-							"Buses",
-							"Motorcycles"
 						]
 					},
 					{
@@ -7288,18 +7132,6 @@
 						]
 					},
 					{
-						"correct": "Jumping over small gaps",
-						"difficulty": "Medium",
-						"explanation": "Jumping over small gaps. In the SNES game, it could be used to jump over corners of the track without falling off.",
-						"fact_checked": true,
-						"question": "What primary utility does the Feather offer in courses where a boundary or abyss is present, such as in Super Mario Kart?",
-						"wrong": [
-							"Gliding across large chasms",
-							"Making the road invisible",
-							"Ignoring mud surfaces"
-						]
-					},
-					{
 						"correct": "Mario Kart 8 Deluxe",
 						"difficulty": "Medium",
 						"explanation": "Mario Kart 8 Deluxe. It was reintroduced specifically for the Battle Mode in the Switch version.",
@@ -7366,18 +7198,6 @@
 							"5",
 							"20",
 							"99"
-						]
-					},
-					{
-						"correct": "Max Speed",
-						"difficulty": "Easy",
-						"explanation": "Max Speed. Every coin collected linearly increases the kart's top speed.",
-						"fact_checked": true,
-						"question": "In Mario Kart 8, what specific speed attribute does collecting Coins primarily boost?",
-						"wrong": [
-							"Acceleration",
-							"Handling",
-							"Mini-Turbo"
 						]
 					},
 					{
@@ -7450,30 +7270,6 @@
 							"Handling",
 							"Acceleration",
 							"Defense"
-						]
-					},
-					{
-						"correct": "10 (Ten)",
-						"difficulty": "Easy",
-						"explanation": "Once a racer hits 10 coins, their maximum speed is reached, and they cannot collect more until they lose some.",
-						"fact_checked": true,
-						"question": "What is the maximum number of Coins a player can hold at one time in Mario Kart 8 Deluxe?",
-						"wrong": [
-							"5",
-							"15",
-							"100"
-						]
-					},
-					{
-						"correct": "They lose three coins (3)",
-						"difficulty": "Medium",
-						"explanation": "Three coins are shed when a player is heavily penalized, such as falling into water or getting hit by a Red Shell.",
-						"fact_checked": true,
-						"question": "In Mario Kart 7 and 8, what happens to a player's accumulated Coins if they fall off the track or are hit by a major item?",
-						"wrong": [
-							"They lose one coin",
-							"They lose half their coins",
-							"They lose all coins"
 						]
 					},
 					{
@@ -7747,18 +7543,6 @@
 						]
 					},
 					{
-						"correct": "Mario",
-						"difficulty": "Easy",
-						"explanation": "Mario. Mario's signature vehicle is the Standard Kart chassis.",
-						"fact_checked": true,
-						"question": "In the earliest games, which character typically uses a red version of the Standard Kart?",
-						"wrong": [
-							"Luigi",
-							"Yoshi",
-							"Toad"
-						]
-					},
-					{
 						"correct": "Mushroom",
 						"difficulty": "Medium",
 						"explanation": "Mushroom. It represented the default and balanced vehicle class.",
@@ -7856,18 +7640,6 @@
 					},
 					{
 						"correct": "Mario",
-						"difficulty": "Hard",
-						"explanation": "Mario. Mario is the default character whose Standard Kart configuration is shown upon starting the game.",
-						"fact_checked": true,
-						"question": "In Mario Kart 8, which character uses the Standard Kart as their starting kart in the character selection screen?",
-						"wrong": [
-							"Luigi",
-							"Peach",
-							"Yoshi"
-						]
-					},
-					{
-						"correct": "Mario",
 						"difficulty": "Easy",
 						"explanation": "Mario. The vehicle is designed to represent the 'average' or starting kart, often modeled after Mario's colors.",
 						"fact_checked": true,
@@ -7876,18 +7648,6 @@
 							"Luigi",
 							"Peach",
 							"Donkey Kong"
-						]
-					},
-					{
-						"correct": "All-Around",
-						"difficulty": "Easy",
-						"explanation": "All-Around. It is meant to be the versatile starting option.",
-						"fact_checked": true,
-						"question": "In most games, the Standard Kart's primary characteristic is its balance across all attributes, known as what?",
-						"wrong": [
-							"Speed-Focused",
-							"Acceleration-Focused",
-							"Drift-Specialized"
 						]
 					},
 					{
@@ -7948,30 +7708,6 @@
 							"Anti-gravity",
 							"Drifting",
 							"Trick system"
-						]
-					},
-					{
-						"correct": "Balanced (or average)",
-						"difficulty": "Easy",
-						"explanation": "The Standard Kart is the baseline vehicle, designed to have average statistics across all categories.",
-						"fact_checked": true,
-						"question": "The Standard Kart is usually defined by having stats that are perfectly what?",
-						"wrong": [
-							"Speed-focused",
-							"Handling-focused",
-							"Off-road focused"
-						]
-					},
-					{
-						"correct": "Mario",
-						"difficulty": "Easy",
-						"explanation": "Mario is the face of the franchise and is always associated with the foundational, standard vehicle.",
-						"fact_checked": true,
-						"question": "Which specific driver in Mario Kart 8 Deluxe is often pictured driving the Standard Kart in official art and serves as the default driver?",
-						"wrong": [
-							"Luigi",
-							"Princess Peach",
-							"Yoshi"
 						]
 					},
 					{
@@ -8572,18 +8308,6 @@
 						]
 					},
 					{
-						"correct": "Mario Kart 7 (3DS)",
-						"difficulty": "Easy",
-						"explanation": "The Fire Flower, along with the Super Leaf and Super Star, were new items introduced in Mario Kart 7.",
-						"fact_checked": true,
-						"question": "In which major console installment was the Fire Flower item first introduced?",
-						"wrong": [
-							"Mario Kart Wii",
-							"Mario Kart 8",
-							"Mario Kart DS"
-						]
-					},
-					{
 						"correct": "Mario and Luigi",
 						"difficulty": "Medium",
 						"explanation": "The Fire Flower is Mario and Luigi's signature item, granting the ability to shoot multiple forward and backward fireballs.",
@@ -8875,18 +8599,6 @@
 							"Ice patches",
 							"Sand traps",
 							"Lava pits"
-						]
-					},
-					{
-						"correct": "Heavy / Cruiser",
-						"difficulty": "Medium",
-						"explanation": "Heavy / Cruiser. Despite his lanky appearance, he is often grouped with heavier drivers.",
-						"fact_checked": true,
-						"question": "Waluigi's character stats are traditionally classified as what, prioritizing drift and speed over acceleration?",
-						"wrong": [
-							"Light",
-							"Standard",
-							"All-Around"
 						]
 					}
 				]
@@ -9202,18 +8914,6 @@
 							"They lose all acceleration permanently",
 							"They are automatically moved to last place",
 							"They grow to Mega Mushroom size"
-						]
-					},
-					{
-						"correct": "Star (or Super Star)",
-						"difficulty": "Medium",
-						"explanation": "The Star grants total invincibility and status immunity, protecting the racer from getting shrunk or losing their item.",
-						"fact_checked": true,
-						"question": "Which specific item can grant a racer complete temporary immunity to the shrinking effects of Lightning?",
-						"wrong": [
-							"Mushroom",
-							"Boo",
-							"Super Horn"
 						]
 					},
 					{
@@ -12695,18 +12395,6 @@
 							"Kratos",
 							"Kalameet"
 						]
-					},
-					{
-						"correct": "Selling unwanted equipment and items for souls",
-						"difficulty": "Hard",
-						"explanation": "Breaking down Titanite. Frampt is the only NPC who can break large chunks of Titanite down into smaller shards.",
-						"fact_checked": true,
-						"question": "What key mechanic related to soul gathering does Frampt offer that is NOT available through any other NPC?",
-						"wrong": [
-							"Multiplying Humanity",
-							"Duplicating Boss Souls",
-							"Converting spells to Miracles"
-						]
 					}
 				]
 			},
@@ -16037,30 +15725,6 @@
 							"An acidic spit",
 							"Sonic roar"
 						]
-					},
-					{
-						"correct": "Old Olney",
-						"difficulty": "Medium",
-						"explanation": "Old Olney, specifically the sewers beneath the town, is a labyrinth of Deathclaw encounters, including the Albino Deathclaw in the expanded content.",
-						"fact_checked": true,
-						"question": "In the Capital Wasteland, what highly dangerous location, frequently visited by players for rare gear, is notoriously famous for being infested with multiple Deathclaws guarding a set of Power Armor?",
-						"wrong": [
-							"Vault 106",
-							"Dunwich Building",
-							"The Jury Street Metro"
-						]
-					},
-					{
-						"correct": "Jackson's Chameleon",
-						"difficulty": "Hard",
-						"explanation": "The Deathclaw was genetically engineered from the Jackson’s Chameleon to serve as a biological weapon, explaining its initial (though largely lost) ability to camouflage.",
-						"fact_checked": true,
-						"question": "What common North American lizard was the primary genetic source material used by the U.S. military to create the Deathclaw before the Great War?",
-						"wrong": [
-							"Komodo Dragon",
-							"Gila Monster",
-							"Caiman Lizard"
-						]
 					}
 				]
 			},
@@ -16132,18 +15796,6 @@
 						]
 					},
 					{
-						"correct": "The G.E.C.K. ",
-						"difficulty": "Medium",
-						"explanation": "A customized FEV Virus. This specific FEV strain would contaminate the clean water and kill all mutated life forms, ensuring only 'pure' humans survived.",
-						"fact_checked": true,
-						"question": "Before the Enclave seized control, what specific device did James require to be inserted into the control panel to initiate the main purification process?",
-						"wrong": [
-							"A Fusion Core",
-							"An Access Keycard",
-							"A specific holotape"
-						]
-					},
-					{
 						"correct": "Colonel Autumn",
 						"difficulty": "Hard",
 						"explanation": "Colonel Autumn. He serves as the primary ground antagonist opposing James and the Brotherhood of Steel.",
@@ -16165,18 +15817,6 @@
 							"Sets off a bomb",
 							"Activates a self-destruct sequence on the G.E.C.K.",
 							"Traps Autumn in the reactor"
-						]
-					},
-					{
-						"correct": "Jefferson Memorial",
-						"difficulty": "Easy",
-						"explanation": "The massive purification facility was constructed within and beneath the Jefferson Memorial.",
-						"fact_checked": true,
-						"question": "Project Purity is housed within a massive facility that was originally built around what famous Washington D.C. monument dedicated to the third U.S. President?",
-						"wrong": [
-							"Lincoln Memorial",
-							"Washington Monument",
-							"The White House"
 						]
 					},
 					{
@@ -16426,18 +16066,6 @@
 						]
 					},
 					{
-						"correct": "A Lawnmower Blade",
-						"difficulty": "Medium",
-						"explanation": "The Lawnmower Blade provides the necessary length and rigidity for the weapon's main edge.",
-						"fact_checked": true,
-						"question": "What common gardening or lawn tool is sharpened and used as the actual cutting blade component of the Shishkebab?",
-						"wrong": [
-							"A kitchen knife",
-							"A shovel",
-							"A trowel"
-						]
-					},
-					{
 						"correct": "Motorcycle Gas Tank",
 						"difficulty": "Hard",
 						"explanation": "The small tank stores the flammable fuel, typically gasoline, needed to maintain the ignition.",
@@ -16636,18 +16264,6 @@
 						]
 					},
 					{
-						"correct": "Medical doctor/Physician",
-						"difficulty": "Easy",
-						"explanation": "James is the Vault's doctor and the player's primary caregiver throughout their childhood.",
-						"fact_checked": true,
-						"question": "Before James leaves Vault 101, he works closely with the Overseer in what primary professional capacity?",
-						"wrong": [
-							"Security chief",
-							"Water technician",
-							"History teacher"
-						]
-					},
-					{
 						"correct": "Dr. Madison Li",
 						"difficulty": "Medium",
 						"explanation": "Madison Li was James' chief colleague on the pre-War Project Purity.",
@@ -16789,18 +16405,6 @@
 						]
 					},
 					{
-						"correct": "The Enclave",
-						"difficulty": "Easy",
-						"explanation": "Autumn leads the Enclave's military forces, reporting directly to President Eden.",
-						"fact_checked": true,
-						"question": "Colonel Autumn is the chief military commander for which hostile faction operating in the Capital Wasteland?",
-						"wrong": [
-							"Talon Company",
-							"Raider Tribes",
-							"The Regulators"
-						]
-					},
-					{
 						"correct": "The Jefferson Memorial / Project Purity Facility",
 						"difficulty": "Medium",
 						"explanation": "Autumn leads the Enclave assault on the Memorial and is present in the control room during the pivotal climax.",
@@ -16810,18 +16414,6 @@
 							"Vault 101",
 							"The Citadel",
 							"Fort Constantine"
-						]
-					},
-					{
-						"correct": "Raven Rock",
-						"difficulty": "Medium",
-						"explanation": "Raven Rock is the main Enclave command structure where Autumn and Eden have their internal conflict.",
-						"fact_checked": true,
-						"question": "What is the name of the major Enclave stronghold, occupied by Colonel Autumn, where the Wanderer must navigate to retrieve the G.E.C.K.?",
-						"wrong": [
-							"Old Olney",
-							"The White House",
-							"Rivet City"
 						]
 					},
 					{
@@ -16837,18 +16429,6 @@
 						]
 					},
 					{
-						"correct": "The Enclave",
-						"difficulty": "Easy",
-						"explanation": "Colonel Autumn serves as the chief military commander of the Enclave forces operating in the Capital Wasteland.",
-						"fact_checked": true,
-						"question": "Colonel Autumn is the ranking officer of what post-war military and scientific organization, known for its advanced technology and distinct vertical-piped armor?",
-						"wrong": [
-							"The Brotherhood of Steel",
-							"The Regulators",
-							"The Gunners"
-						]
-					},
-					{
 						"correct": "The Jefferson Memorial",
 						"difficulty": "Easy",
 						"explanation": "Autumn attacks Rivet City to track down the Wanderer and Professor Li, believing they hold the key to Project Purity.",
@@ -16858,42 +16438,6 @@
 							"The Citadel",
 							"Big Town",
 							"Canterbury Commons"
-						]
-					},
-					{
-						"correct": "Trench coat and a peaked cap",
-						"difficulty": "Medium",
-						"explanation": "Autumn notably wears a sophisticated officer's uniform and cap instead of the standard Enclave Power Armor helmet, demonstrating his rank and distance from direct combat.",
-						"fact_checked": true,
-						"question": "What is the primary piece of headwear that distinguishes Colonel Autumn’s uniform from the standard Enclave soldiers and officers?",
-						"wrong": [
-							"Advanced Combat Helmet",
-							"Power Armor Helmet",
-							"A gas mask"
-						]
-					},
-					{
-						"correct": "President Eden",
-						"difficulty": "Medium",
-						"explanation": "Autumn is highly ambitious and attempts a coup against the ZAX artificial intelligence, President Eden, to personally control the Enclave and Project Purity.",
-						"fact_checked": true,
-						"question": "During the main quest 'The American Dream,' Colonel Autumn attempts to seize power and overthrow what other prominent Enclave authority figure, usually heard via radio broadcasts?",
-						"wrong": [
-							"The Master",
-							"General Chase",
-							"Overseer Alfonse"
-						]
-					},
-					{
-						"correct": "Laser Pistol",
-						"difficulty": "Hard",
-						"explanation": "Autumn carries a Laser Pistol, though he is generally a difficult opponent regardless of his weapon.",
-						"fact_checked": true,
-						"question": "What specific type of energy weapon does Colonel Autumn carry as his signature sidearm during his encounter with the Wanderer?",
-						"wrong": [
-							"Plasma Pistol",
-							"10mm Pistol",
-							"Gauss Rifle"
 						]
 					}
 				]
@@ -17131,18 +16675,6 @@
 						]
 					},
 					{
-						"correct": "Elder Owyn Lyons",
-						"difficulty": "Medium",
-						"explanation": "Owyn Lyons is the Elder who broke from the core Brotherhood's mission to focus on humanitarian efforts in the D.C. area.",
-						"fact_checked": true,
-						"question": "Sarah Lyons is the daughter of the leader of the Capital Wasteland Brotherhood of Steel. What is her father’s name?",
-						"wrong": [
-							"Elder Maxson",
-							"Elder McNamara",
-							"Father Elijah"
-						]
-					},
-					{
 						"correct": "The Citadel (The Pentagon)",
 						"difficulty": "Medium",
 						"explanation": "The Brotherhood converted the ruins of the Pentagon into their fortress, known as the Citadel.",
@@ -17286,18 +16818,6 @@
 							"Moira's Mercandise",
 							"Wasteland Wares",
 							"The Atomic Exchange"
-						]
-					},
-					{
-						"correct": "A Ghoul",
-						"difficulty": "Medium",
-						"explanation": "If Megaton is destroyed, Moira is found alive, though heavily irradiated and transformed into a ghoul, relocating to the central ruins.",
-						"fact_checked": true,
-						"question": "If the Wanderer proceeds with Mister Burke’s plan and destroys Megaton, Moira survives the blast but is transformed into what type of being?",
-						"wrong": [
-							"A Super Mutant",
-							"A Feral Ghoul",
-							"A Cyborg"
 						]
 					},
 					{
@@ -17557,18 +17077,6 @@
 						]
 					},
 					{
-						"correct": "He shoots and kills Sheriff Lucas Simms",
-						"difficulty": "Medium",
-						"explanation": "If confronted by Simms, Burke immediately pulls a pistol and kills Simms, forcing the player to deal with him.",
-						"fact_checked": true,
-						"question": "If the Wanderer informs Sheriff Lucas Simms of Mister Burke's plans, what action does Burke take?",
-						"wrong": [
-							"He is imprisoned",
-							"He attempts to escape and fails",
-							"He kills Simms instead"
-						]
-					},
-					{
 						"correct": "Tenpenny Tower",
 						"difficulty": "Medium",
 						"explanation": "Burke works for Alistair Tenpenny, who is pleased that the 'eyesore' of Megaton has been removed from his view.",
@@ -17590,42 +17098,6 @@
 							"Power Armor",
 							"Raider armor",
 							"A Vault uniform"
-						]
-					},
-					{
-						"correct": "Alistair Tenpenny",
-						"difficulty": "Hard",
-						"explanation": "Tenpenny is the individual who sought Megaton's destruction because it ruined the view from his exclusive tower community.",
-						"fact_checked": true,
-						"question": "Mister Burke operates on behalf of the wealthy owner of Tenpenny Tower. What is the name of this xenophobic industrialist?",
-						"wrong": [
-							"Mister House",
-							"Harold",
-							"Doctor Madison Li"
-						]
-					},
-					{
-						"correct": "A pre-war suit and fedora",
-						"difficulty": "Easy",
-						"explanation": "Burke's neat suit and hat immediately set him apart as a dangerous, sophisticated character upon meeting him in Moriarty's Saloon.",
-						"fact_checked": true,
-						"question": "What distinctive clothing item does Mister Burke wear that makes him appear more refined and dangerous than the average Wasteland scavenger?",
-						"wrong": [
-							"Power Armor",
-							"Raider Gear",
-							"A Vault 101 jumpsuit"
-						]
-					},
-					{
-						"correct": "Detonating the unexploded atomic bomb",
-						"difficulty": "Easy",
-						"explanation": "Burke hires the Wanderer to destroy Megaton, clearing the view for his employer, Allistair Tenpenny.",
-						"fact_checked": true,
-						"question": "Mister Burke offers the Wanderer 500 Caps to perform what violent action against the town of Megaton?",
-						"wrong": [
-							"Poisoning the water supply",
-							"Stealing the G.E.C.K.",
-							"Killing the Sheriff"
 						]
 					},
 					{
@@ -17799,30 +17271,6 @@
 						]
 					},
 					{
-						"correct": "Tunnel Snakes Rule!",
-						"difficulty": "Easy",
-						"explanation": "This phrase is a defining piece of dialogue and a recurring meme in the Fallout community.",
-						"fact_checked": true,
-						"question": "What is the famous, self-referential catchphrase that Butch and his gang members constantly chant?",
-						"wrong": [
-							"Vault-Tec Forever!",
-							"Wasteland Wanderers",
-							"The Capital is Ours"
-						]
-					},
-					{
-						"correct": "The Tunnel Snakes",
-						"difficulty": "Medium",
-						"explanation": "The Tunnel Snakes are the Vault 101 greasers and bullies, led by Butch.",
-						"fact_checked": true,
-						"question": "What is the name of the gang Butch leads, which often harasses the Wanderer and their friends inside Vault 101?",
-						"wrong": [
-							"The Vault Vipers",
-							"The Overseer's Guard",
-							"The Scorpions"
-						]
-					},
-					{
 						"correct": "A bartender/hair stylist (at The Chop Shop)",
 						"difficulty": "Medium",
 						"explanation": "Butch works as a bartender and part-time stylist at 'The Chop Shop' in The Muddy Rudder inside the Underworld.",
@@ -17941,54 +17389,6 @@
 						"wrong": [
 							"The highest paying person",
 							"The person who gives him the best weapons"
-						]
-					},
-					{
-						"correct": "Ahzrukhal",
-						"difficulty": "Medium",
-						"explanation": "Ahzrukhal is the former owner of Charon's contract. The Wanderer must purchase the contract from Ahzrukhal to make Charon a companion.",
-						"fact_checked": true,
-						"question": "Charon is first encountered working for a proprietor in Underworld who runs the 'Ninth Circle' bar. What is the name of this ghoul proprietor?",
-						"wrong": [
-							"Moriarty",
-							"Winthrop",
-							"Mister Crowley"
-						]
-					},
-					{
-						"correct": "Combat Shotgun",
-						"difficulty": "Easy",
-						"explanation": "Charon carries a unique version of the Combat Shotgun, making him an excellent close-range combatant.",
-						"fact_checked": true,
-						"question": "What type of heavy-hitting ballistic weapon is Charon typically seen using and is highly skilled with?",
-						"wrong": [
-							"Hunting Rifle",
-							"Plasma Rifle",
-							"Flamer"
-						]
-					},
-					{
-						"correct": "His contract / deed of ownership",
-						"difficulty": "Easy",
-						"explanation": "Charon is bound by a legal contract of servitude. Once the contract is transferred to the Wanderer, Charon follows their commands.",
-						"fact_checked": true,
-						"question": "To recruit Charon as a follower, the Wanderer must acquire what specific document from his current owner?",
-						"wrong": [
-							"A specific amount of caps",
-							"A unique set of keys",
-							"A rare piece of Pre-War tech"
-						]
-					},
-					{
-						"correct": "Underworld (Museum of History)",
-						"difficulty": "Medium",
-						"explanation": "Underworld is a sprawling settlement built into the ruins of the Museum of History, and is where Charon works as a hired guard.",
-						"fact_checked": true,
-						"question": "Charon is most commonly found in which major ghoul settlement, which is housed inside a recognizable Washington D.C. institution?",
-						"wrong": [
-							"The Republic of Dave",
-							"Oasis",
-							"Little Lamplight"
 						]
 					}
 				]
@@ -18143,17 +17543,6 @@
 						]
 					},
 					{
-						"correct": "The player must be accepted into Paradise Falls",
-						"difficulty": "Medium",
-						"explanation": "The player must be accepted into Paradise Falls. This usually requires Evil Karma or completing a slaver task.",
-						"fact_checked": true,
-						"question": "What is the unique condition required before Eulogy Jones is willing to sell Clover to the player?",
-						"wrong": [
-							"The player must complete a quest for him",
-							"The player must kill three escaped slaves"
-						]
-					},
-					{
 						"correct": "The Power of Atom (Disarming the Bomb)",
 						"difficulty": "Hard",
 						"explanation": "The Power of Atom (Disarming the Bomb). She detests Good Karma actions, making her extremely restricted by the player's morality.",
@@ -18273,42 +17662,6 @@
 						]
 					},
 					{
-						"correct": "Bob",
-						"difficulty": "Easy",
-						"explanation": "Bob is the aggressive little tree sapling that constantly grows and is the source of many of Harold's complaints.",
-						"fact_checked": true,
-						"question": "What is the name of the small, sentient sapling that grows out of the top of Harold's head, which often argues with him?",
-						"wrong": [
-							"Branch",
-							"Rooty",
-							"Sap"
-						]
-					},
-					{
-						"correct": "Oasis",
-						"difficulty": "Easy",
-						"explanation": "Oasis is the hidden, lush settlement that grew out of the natural bounty created by Harold’s body.",
-						"fact_checked": true,
-						"question": "Harold is the central figure of what small settlement in the Capital Wasteland, which is built into the ruins of an old refinery?",
-						"wrong": [
-							"Tree Town",
-							"Evergreen Mills",
-							"Rivet City"
-						]
-					},
-					{
-						"correct": "A god/Prophet",
-						"difficulty": "Medium",
-						"explanation": "The local people, known as the Treeminders, worship Harold and the green life he brings to the Wasteland.",
-						"fact_checked": true,
-						"question": "The inhabitants of Oasis primarily revere Harold as what type of figure?",
-						"wrong": [
-							"A monster",
-							"A former Enclave scientist",
-							"A pre-War singer"
-						]
-					},
-					{
 						"correct": "Pure water",
 						"difficulty": "Medium",
 						"explanation": "Harold’s root system somehow purifies the ground contaminants, allowing for lush vegetation and clean water to flourish.",
@@ -18318,18 +17671,6 @@
 							"Pure Uranium",
 							"Radiation-free meat",
 							"Clean air"
-						]
-					},
-					{
-						"correct": "Forced Evolutionary Virus (FEV)",
-						"difficulty": "Hard",
-						"explanation": "Harold’s transformation into a ghoul and then a walking tree was initiated by exposure to FEV in the ruins of the Glowing Sea (the Glow) in California.",
-						"fact_checked": true,
-						"question": "Harold first began his life as a human merchant who was transformed after exposure to what specific biological contamination in the ruins of the Glow?",
-						"wrong": [
-							"Mirelurk eggs",
-							"Ghoulification radiation",
-							"Poisonous spores"
 						]
 					}
 				]
@@ -18432,18 +17773,6 @@
 						]
 					},
 					{
-						"correct": "Declaration of Independence",
-						"difficulty": "Easy",
-						"explanation": "The quest 'Stealing Independence' centers around retrieving the genuine, pre-War Declaration of Independence for Washington.",
-						"fact_checked": true,
-						"question": "Abraham Washington tasks the Wanderer with finding the original copy of what famous American historical document?",
-						"wrong": [
-							"Bill of Rights",
-							"The Constitution",
-							"Magna Carta"
-						]
-					},
-					{
 						"correct": "Super Mutants",
 						"difficulty": "Medium",
 						"explanation": "Washington admits that his relative safety inside the museum is purchased by regularly paying tribute to the local Super Mutant gang.",
@@ -18542,18 +17871,6 @@
 						]
 					},
 					{
-						"correct": "F.E.V. / Forced Evolutionary Virus",
-						"difficulty": "Medium",
-						"explanation": "Eden, driven by his directive to restore 'pure' humanity, planned to release a modified F.E.V. strain that would kill all mutated life forms in the Wasteland, including Super Mutants and ghouls.",
-						"fact_checked": true,
-						"question": "During the main quest, 'The American Dream,' Eden attempts to convince the Wanderer to use Project Purity to disseminate what deadly chemical compound into the purified water supply?",
-						"wrong": [
-							"Purified radiation isotope",
-							"Neurotoxin gas",
-							"Aqua Pura"
-						]
-					},
-					{
 						"correct": "ZAX Supercomputer",
 						"difficulty": "Hard",
 						"explanation": "ZAX computers were advanced tactical AI systems designed before the war to assist the U.S. government.",
@@ -18563,18 +17880,6 @@
 							"Skynet",
 							"G.E.C.K.",
 							"Cerebral Superprocessor"
-						]
-					},
-					{
-						"correct": "Raven Rock",
-						"difficulty": "Medium",
-						"explanation": "Raven Rock is the primary Enclave headquarters in the Capital Wasteland and the location of the ZAX unit housing Eden.",
-						"fact_checked": true,
-						"question": "President Eden broadcasts his messages from what iconic, secure Enclave base of operations located in the Capital Wasteland?",
-						"wrong": [
-							"The Citadel",
-							"Adams Air Force Base",
-							"Fort Constantine"
 						]
 					},
 					{
@@ -18690,6 +17995,2481 @@
 					"Hero",
 					"Sidekick",
 					"Soldier"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Green",
+						"difficulty": "Easy",
+						"explanation": "Green. The Praetor Suit maintains the classic green color scheme of the original Doom Marine.",
+						"fact_checked": true,
+						"question": "What primary color is the Praetor Suit armor worn by the Doom Slayer?",
+						"wrong": [
+							"Blue",
+							"Red",
+							"Black"
+						]
+					},
+					{
+						"correct": "Glory Kill",
+						"difficulty": "Medium",
+						"explanation": "Glory Kill. This risk-reward mechanic encourages aggressive movement and close-quarters combat.",
+						"fact_checked": true,
+						"question": "What specific combat mechanic allows the Doom Slayer to replenish health and resources by executing staggered enemies?",
+						"wrong": [
+							"Brutalizer",
+							"Mutilation",
+							"Resource Finish"
+						]
+					},
+					{
+						"correct": "Divinity Machine",
+						"difficulty": "Hard",
+						"explanation": "Divinity Machine. This device was intended to be used by the Night Sentinels for healing, but the Doom Slayer used it to gain god-like strength.",
+						"fact_checked": true,
+						"question": "What ancient artifact did the Doom Slayer absorb on Argent D'Nur to gain his near-immortality and immense physical power?",
+						"wrong": [
+							"Crucible",
+							"Argent Shard",
+							"Hell Core"
+						]
+					}
+				]
+			},
+			"id": "doom_slayer",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Doom Slayer",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Hero",
+					"Protagonist",
+					"Soldier"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Cybernetic",
+						"difficulty": "Easy",
+						"explanation": "Cybernetic. Dr. Hayden transferred his consciousness into an immense, mechanical body.",
+						"fact_checked": true,
+						"question": "Dr. Hayden is primarily defined by the fact that most of his body has been replaced with what kind of enhancement?",
+						"wrong": [
+							"Genetically Modified",
+							"Magical",
+							"Demonic"
+						]
+					},
+					{
+						"correct": "Argent Energy",
+						"difficulty": "Medium",
+						"explanation": "Argent Energy. He believed this energy source was the key to saving humanity.",
+						"fact_checked": true,
+						"question": "Hayden's main objective for exploiting Hell was to harness what clean, powerful energy source?",
+						"wrong": [
+							"Plasma Energy",
+							"Hellfire Power",
+							"Dark Matter"
+						]
+					},
+					{
+						"correct": "Stage 4 Brain Cancer",
+						"difficulty": "Hard",
+						"explanation": "Stage 4 Brain Cancer. Hayden viewed the cyborg body as a necessity for survival.",
+						"fact_checked": true,
+						"question": "What specific, debilitating illness did Dr. Hayden claim forced him to transfer his brain into a robotic chassis?",
+						"wrong": [
+							"Radiation Poisoning",
+							"Demonic Possession",
+							"Severe Spinal Injury"
+						]
+					},
+					{
+						"correct": "Doom Slayer",
+						"difficulty": "Easy",
+						"explanation": "Hayden consistently refers to the player as the Doom Slayer, acknowledging the ancient title.",
+						"fact_checked": true,
+						"question": "Hayden refers to the armored protagonist primarily by what two-word honorific?",
+						"wrong": [
+							"The Marine",
+							"Hell Walker",
+							"The Berserker"
+						]
+					},
+					{
+						"correct": "Calm/Monotone/Logical",
+						"difficulty": "Easy",
+						"explanation": "His robot chassis and detached viewpoint result in a smooth, emotionless vocal delivery, emphasizing cold logic.",
+						"fact_checked": true,
+						"question": "What specific emotion or characteristic defines Hayden's vocal tone throughout the game?",
+						"wrong": [
+							"Panicked",
+							"Angry",
+							"Joyful"
+						]
+					},
+					{
+						"correct": "The Crucible",
+						"difficulty": "Medium",
+						"explanation": "Hayden steals the Crucible from the Doom Slayer, intending to use its unlimited energy potential for humanity's salvation.",
+						"fact_checked": true,
+						"question": "In the final cinematic sequence, Hayden betrays the Slayer and uses a portal to disappear with what critical stolen weapon?",
+						"wrong": [
+							"The BFG-9000",
+							"The Plasma Rifle",
+							"The Praetor Suit"
+						]
+					},
+					{
+						"correct": "The Argent Facility Tower/Argent Spire",
+						"difficulty": "Medium",
+						"explanation": "The Argent Facility is Hayden's center of operations, built specifically to harness Argent energy.",
+						"fact_checked": true,
+						"question": "Dr. Hayden operates his UAC base on Mars from what massive, spire-like structure?",
+						"wrong": [
+							"The VEGA Core",
+							"The Martian Command Center",
+							"The Blood Keep"
+						]
+					},
+					{
+						"correct": "Humanity/The Human Race",
+						"difficulty": "Hard",
+						"explanation": "Despite his ruthlessness, Hayden genuinely believes that exploiting Hell is the only way to save humanity from impending resource collapse.",
+						"fact_checked": true,
+						"question": "Hayden claims that his actions, though morally questionable, are justified because his sole ultimate goal is the survival of what specific entity?",
+						"wrong": [
+							"The UAC",
+							"VEGA",
+							"The Sentinel civilization"
+						]
+					}
+				]
+			},
+			"id": "samuel_hayden",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Samuel Hayden",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Villain",
+					"Cyborg",
+					"Scientist"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Ammunition",
+						"difficulty": "Easy",
+						"explanation": "Ammunition. The Chainsaw is the primary mechanic used to solve ammo shortages during combat.",
+						"fact_checked": true,
+						"question": "Using the Chainsaw on an enemy guarantees a massive drop of what essential resource?",
+						"wrong": [
+							"Health",
+							"Armor",
+							"Grenades"
+						]
+					},
+					{
+						"correct": "Gas",
+						"difficulty": "Medium",
+						"explanation": "Gas. The weapon uses gas or fuel pips, usually dropped by smaller enemies or found in canisters.",
+						"fact_checked": true,
+						"question": "The Chainsaw consumes what specific fuel type to operate, found throughout the environment?",
+						"wrong": [
+							"Argent Energy",
+							"Oil",
+							"Plasma"
+						]
+					}
+				]
+			},
+			"id": "chainsaw",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Chainsaw",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Weapon",
+					"Melee",
+					"Resource"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Two",
+						"difficulty": "Easy",
+						"explanation": "Two. This double-barreled classic weapon deals devastating damage up close.",
+						"fact_checked": true,
+						"question": "The Super Shotgun, known for its high damage, features how many distinct firing barrels?",
+						"wrong": [
+							"One",
+							"Three",
+							"Four"
+						]
+					},
+					{
+						"correct": "Hell Knight",
+						"difficulty": "Hard",
+						"explanation": "Hell Knight. The Super Shotgun is found shortly after the first encounter with a Hell Knight, emphasizing its utility against heavy targets.",
+						"fact_checked": true,
+						"question": "The player must defeat what specific heavy demon to first unlock the Super Shotgun early in the campaign?",
+						"wrong": [
+							"Revenant",
+							"Baron of Hell",
+							"Mancubus"
+						]
+					}
+				]
+			},
+			"id": "super_shotgun",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Super Shotgun",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Weapon",
+					"Firearm",
+					"Classic"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Mars",
+						"difficulty": "Easy",
+						"explanation": "Mars. The Union Aerospace Corporation established its initial research base on Mars.",
+						"fact_checked": true,
+						"question": "The primary setting for the beginning of the game, the UAC Facility, is located on which planet?",
+						"wrong": [
+							"Earth",
+							"Phobos",
+							"Jupiter"
+						]
+					},
+					{
+						"correct": "Olivia Pierce",
+						"difficulty": "Medium",
+						"explanation": "Olivia Pierce. Driven by her connection to the demons, she opened the major portal during the Argent Energy Tower transmission.",
+						"fact_checked": true,
+						"question": "Which former UAC scientist is responsible for initiating the main demonic invasion by opening the gate to Hell?",
+						"wrong": [
+							"Valen",
+							"Samuel Hayden",
+							"Dr. Peters"
+						]
+					},
+					{
+						"correct": "2032",
+						"difficulty": "Hard",
+						"explanation": "2032. The UAC was established in 2032, according to several lore fragments within the game.",
+						"fact_checked": true,
+						"question": "According to the game's lore, the UAC was founded in what year?",
+						"wrong": [
+							"1993",
+							"2105",
+							"2068"
+						]
+					}
+				]
+			},
+			"id": "uac_facility",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "UAC Facility",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Mars",
+					"Industrial"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Night Sentinels",
+						"difficulty": "Easy",
+						"explanation": "Night Sentinels. This location serves as the historical seat of power for the warrior-guardians.",
+						"fact_checked": true,
+						"question": "Argent D'Nur is established as the home world of what ancient, human-like society?",
+						"wrong": [
+							"Maykrs",
+							"Ghosts",
+							"Exanimists"
+						]
+					},
+					{
+						"correct": "The Crucible ",
+						"difficulty": "Medium",
+						"explanation": "The Crucible. This powerful weapon, capable of destroying titans, is retrieved from the Sentinel tombs.",
+						"fact_checked": true,
+						"question": "What important energy-based sword does the Doom Slayer retrieve during his time exploring Argent D'Nur?",
+						"wrong": [
+							"BFG 9000",
+							"Plasma Rifle",
+							"Slayer's Blade"
+						]
+					},
+					{
+						"correct": "Wraiths",
+						"difficulty": "Hard",
+						"explanation": "Wraiths. These spirit guardians must be defeated before the Slayer can access the Crucible.",
+						"fact_checked": true,
+						"question": "The ancient Sentinel tombs within Argent D'Nur are guarded by the spectral remains of what specific type of warrior?",
+						"wrong": [
+							"Specters",
+							"Phantoms",
+							"Shades"
+						]
+					},
+					{
+						"correct": "Obsidian/Dark Stone",
+						"difficulty": "Easy",
+						"explanation": "The Sentinel structures are carved from the black, heavy stone native to Argent D'Nur.",
+						"fact_checked": true,
+						"question": "The ancient Sentinel architecture found on Argent D'Nur is primarily composed of what dark, volcanic material?",
+						"wrong": [
+							"Concrete",
+							"Gold",
+							"Steel"
+						]
+					},
+					{
+						"correct": "Red/Smoky/Burning Skies",
+						"difficulty": "Easy",
+						"explanation": "The atmosphere of the planet is forever scarred and tinted red by the demonic corruption and constant fires of Hell's intrusion.",
+						"fact_checked": true,
+						"question": "What specific atmospheric condition defines the appearance of the skies above the ruins of Argent D'Nur?",
+						"wrong": [
+							"Bright Blue",
+							"Dense Fog",
+							"Violent Sandstorms"
+						]
+					},
+					{
+						"correct": "A Fallen Titan",
+						"difficulty": "Medium",
+						"explanation": "The bridge is formed by the immense, petrified spine of one of the massive creatures that fought alongside the Sentinels.",
+						"fact_checked": true,
+						"question": "To reach the location where the Doom Slayer retrieves The Crucible, he must traverse a bridge constructed from the skeletal remains of what colossal Sentinel construct?",
+						"wrong": [
+							"The Grand Cathedral",
+							"The Temple of the Blood Keepers",
+							"The First UAC Colony"
+						]
+					},
+					{
+						"correct": "Sentinel Shards/Crystals",
+						"difficulty": "Medium",
+						"explanation": "Sentinel Shards are used specifically for improving the Doom Slayer's suit utilities and internal abilities.",
+						"fact_checked": true,
+						"question": "What secondary, crystalline resource is often found embedded in the rock faces of Argent D'Nur, necessary for upgrading the Praetor Suit's internal systems?",
+						"wrong": [
+							"Argent Cells",
+							"Demonic Runes",
+							"Plasma Dust"
+						]
+					},
+					{
+						"correct": "The Betrayer",
+						"difficulty": "Hard",
+						"explanation": "The Betrayer, a former commander, turned traitor after his son was resurrected by Hell, leading to the Sentinels' downfall.",
+						"fact_checked": true,
+						"question": "The society of Argent D'Nur was ultimately destroyed because the Sentinels were betrayed by what key figure, who succumbed to Hell's influence?",
+						"wrong": [
+							"The Dark Lord",
+							"The Priest of Hell",
+							"The Sentinel King"
+						]
+					}
+				]
+			},
+			"id": "argent_d'nur",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Argent D'Nur",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Location",
+					"Hell",
+					"Ancient"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Orange",
+						"difficulty": "Easy",
+						"explanation": "Orange. Imps shoot standard, orange-colored fireballs.",
+						"fact_checked": true,
+						"question": "What primary color is the flame projectile that the Imps throw at the Doom Slayer?",
+						"wrong": [
+							"Blue",
+							"Green",
+							"Purple"
+						]
+					},
+					{
+						"correct": "Wall Climbing",
+						"difficulty": "Medium",
+						"explanation": "Wall Climbing. Imps often use vertical surfaces to flank the player or gain elevation.",
+						"fact_checked": true,
+						"question": "What unique movement ability do Imps frequently use to escape or reposition quickly during a fight?",
+						"wrong": [
+							"Teleportation",
+							"Burrowing",
+							"Jet Boosters"
+						]
+					},
+					{
+						"correct": "White",
+						"difficulty": "Hard",
+						"explanation": "White. This is a subtle visual detail indicating the intense demonic heat released upon their death.",
+						"fact_checked": true,
+						"question": "When Imps die, their corpses briefly emit residual heat causing them to glow with what color?",
+						"wrong": [
+							"Black",
+							"Red",
+							"Blue"
+						]
+					}
+				]
+			},
+			"id": "imp",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Imp",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Demon",
+					"Fodder"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Melee",
+						"difficulty": "Easy",
+						"explanation": "Melee. Hell Knights are pure brawlers that rely on massive physical attacks and leaps.",
+						"fact_checked": true,
+						"question": "Hell Knights are known for exclusively using what type of attack against the Doom Slayer?",
+						"wrong": [
+							"Energy Beams",
+							"Rockets",
+							"Acid Spit"
+						]
+					},
+					{
+						"correct": "Baron of Hell",
+						"difficulty": "Medium",
+						"explanation": "Baron of Hell. The Baron is essentially an armored, upscaled Hell Knight.",
+						"fact_checked": true,
+						"question": "The Hell Knight serves as a weaker, smaller predecessor to which much larger and more powerful heavy demon?",
+						"wrong": [
+							"Cyberdemon",
+							"Pinky",
+							"Revenant"
+						]
+					},
+					{
+						"correct": "Visible Eyes",
+						"difficulty": "Easy",
+						"explanation": "Hell Knights lack visible eyes, relying purely on aggression and other senses during combat.",
+						"fact_checked": true,
+						"question": "What famous body part is conspicuously missing from the Hell Knight's facial structure?",
+						"wrong": [
+							"Teeth",
+							"Nose",
+							"Ears"
+						]
+					},
+					{
+						"correct": "Resource Operations",
+						"difficulty": "Medium",
+						"explanation": "The Hell Knight is introduced relatively early in the second main mission, forcing the player to adapt quickly to heavy demons.",
+						"fact_checked": true,
+						"question": "In which early campaign mission, located near the Foundry, does the Doom Slayer first encounter and fight a Hell Knight?",
+						"wrong": [
+							"A Demonic Invasion",
+							"Argent Facility (Destroyed)",
+							"Kadingir Sanctum"
+						]
+					},
+					{
+						"correct": "Portals or Demonic Gates",
+						"difficulty": "Medium",
+						"explanation": "Hell Knights often emerge directly from Hell portals, demonstrating their ability to traverse realms.",
+						"fact_checked": true,
+						"question": "To initiate their primary jump-based surprise attack, Hell Knights are frequently seen leaping out of what type of environmental feature?",
+						"wrong": [
+							"Pipes",
+							"Ventilation Shafts",
+							"Ceiling Vents"
+						]
+					},
+					{
+						"correct": "Constant agony and blinding pain",
+						"difficulty": "Hard",
+						"explanation": "The Hell Knight's entire existence is defined by agonizing pain, which fuels its relentless aggression.",
+						"fact_checked": true,
+						"question": "According to the lore, the intense musculature and aggressive posture of the Hell Knight is a result of it being trapped in what agonizing physical state?",
+						"wrong": [
+							"An electrified cage",
+							"A state of deep meditation",
+							"Rapid cellular decay"
+						]
+					}
+				]
+			},
+			"id": "hell_knight",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Hell Knight",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Demon",
+					"Brawler"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Resurrection Chamber",
+						"difficulty": "Easy",
+						"explanation": "Resurrection Chamber. This is where Olivia Pierce attempts to finish her final ritual.",
+						"fact_checked": true,
+						"question": "The Spider Mastermind is the final boss of the main campaign and is fought inside which major UAC structure?",
+						"wrong": [
+							"Foundry",
+							"Advanced Research Complex",
+							"Hell Portal"
+						]
+					},
+					{
+						"correct": "Head",
+						"difficulty": "Medium",
+						"explanation": "Head. The laser cannon mounted on its head is one of its most powerful attacks.",
+						"fact_checked": true,
+						"question": "The Spider Mastermind is equipped with a devastating beam weapon located where on its body?",
+						"wrong": [
+							"Back",
+							"Legs",
+							"Chest"
+						]
+					},
+					{
+						"correct": "Legs/Limbs",
+						"difficulty": "Easy",
+						"explanation": "The Mastermind is an arachnid-like creature, using its legs for locomotion.",
+						"fact_checked": true,
+						"question": "The Spider Mastermind primarily uses its six massive what to move around the arena and scale walls?",
+						"wrong": [
+							"Jet boosters",
+							"Wheels",
+							"Anti-gravity generators"
+						]
+					},
+					{
+						"correct": "Plasma bolts/Pink energy shots",
+						"difficulty": "Easy",
+						"explanation": "The Mastermind uses plasma energy, similar to the Plasma Rifle, but in large, rapid bursts.",
+						"fact_checked": true,
+						"question": "Besides its devastating beam attack, the Mastermind frequently fires a barrage of what commonly encountered energy projectiles?",
+						"wrong": [
+							"Rockets",
+							"Flames",
+							"Ice shards"
+						]
+					},
+					{
+						"correct": "Its head/VEGA integration point",
+						"difficulty": "Medium",
+						"explanation": "Destroying the head forces the Mastermind into a vulnerable, final stage where it relies entirely on melee.",
+						"fact_checked": true,
+						"question": "The final phase of the battle against the Mastermind is triggered when the Slayer destroys what crucial body part or integrated device?",
+						"wrong": [
+							"Its back legs",
+							"Its shoulder cannons",
+							"Its internal fuel tank"
+						]
+					},
+					{
+						"correct": "Dr. Olivia Pierce.",
+						"difficulty": "Hard",
+						"explanation": "The final boss is the ultimate corrupted form of Olivia Pierce, who willingly transformed herself to enact Hell's will.",
+						"fact_checked": true,
+						"question": "The Spider Mastermind is revealed in the lore to be a horribly corrupted and mutated form of what key UAC scientist, who initiated the invasion?",
+						"wrong": [
+							"Dr. Hayden",
+							"The Betrayer",
+							"Dr. Peters"
+						]
+					}
+				]
+			},
+			"id": "spider_mastermind",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Spider Mastermind",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Boss",
+					"Demon"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Sphere",
+						"difficulty": "Easy",
+						"explanation": "Sphere. This flying demon is essentially a floating, red orb with a giant mouth.",
+						"fact_checked": true,
+						"question": "Cacodaemons are easily identifiable by their bright red color and what basic shape?",
+						"wrong": [
+							"Hexagon",
+							"Cube",
+							"Pyramid"
+						]
+					},
+					{
+						"correct": "Plasma Ball",
+						"difficulty": "Medium",
+						"explanation": "Plasma Ball. The Cacodaemon spits large, green energy projectiles.",
+						"fact_checked": true,
+						"question": "What specific projectile does the Cacodaemon shoot from its mouth?",
+						"wrong": [
+							"Fireball",
+							"Rocket",
+							"Laser"
+						]
+					},
+					{
+						"correct": "Throwing a frag grenade into its mouth",
+						"difficulty": "Hard",
+						"explanation": "Throwing a frag grenade into its mouth. If the grenade detonates inside, the Caco instantly enters a staggered state.",
+						"fact_checked": true,
+						"question": "What unique tactic allows the player to perform an immediate, one-hit Glory Kill on a Cacodaemon, regardless of its health?",
+						"wrong": [
+							"Shooting its eye",
+							"Using the Chainsaw",
+							"Dropping it off a ledge"
+						]
+					},
+					{
+						"correct": "Beholder/Floating Eyeball",
+						"difficulty": "Easy",
+						"explanation": "The Cacodaemon's spherical shape and single massive eye strongly resemble the iconic 'floating eyeball' monster trope.",
+						"fact_checked": true,
+						"question": "Cacodaemons are often seen floating around and are most visually similar to what mythological or fantasy creature?",
+						"wrong": [
+							"Gargoyle",
+							"Wyvern",
+							"Goblin"
+						]
+					},
+					{
+						"correct": "Loud Pop/Burst/Deflation",
+						"difficulty": "Easy",
+						"explanation": "When its pressurized body is breached, the Cacodaemon dies with a satisfying sound of deflation and rupture.",
+						"fact_checked": true,
+						"question": "What is the primary characteristic of the sound a Cacodaemon makes when it dies or performs a successful Glory Kill?",
+						"wrong": [
+							"A deep roar",
+							"A high-pitched shriek",
+							"A metallic clang"
+						]
+					},
+					{
+						"correct": "High altitude/Ceilings/Air",
+						"difficulty": "Medium",
+						"explanation": "As flying enemies, they primarily engage the Slayer from above, limiting his movement options.",
+						"fact_checked": true,
+						"question": "Cacodaemons typically target the Slayer from what specific vantage point during combat?",
+						"wrong": [
+							"Inside vents",
+							"Underground tunnels",
+							"Hidden cabinets"
+						]
+					},
+					{
+						"correct": "Gauss Cannon",
+						"difficulty": "Medium",
+						"explanation": "The concentrated energy of the Gauss Cannon, particularly with the Siege Mode, can often knock the Cacodaemon out of the sky quickly.",
+						"fact_checked": true,
+						"question": "Which weapon is specifically effective against the Cacodaemon due to its high-impact, non-explosive damage output that often staggers them?",
+						"wrong": [
+							"Chainsaw",
+							"Pistol",
+							"Burst Rifle"
+						]
+					},
+					{
+						"correct": "A large, non-sentient scavenger of Hell (Hell-Ghoul)",
+						"difficulty": "Hard",
+						"explanation": "The codex suggests the Cacodaemon is a corrupted Hell creature that mutated after absorbing massive amounts of Argent energy.",
+						"fact_checked": true,
+						"question": "The Cacodaemon is believed to have originated from the corrupted remains of a specific type of creature known in Hell as a what?",
+						"wrong": [
+							"A mutated human pilot",
+							"A failed cloning experiment",
+							"An ancient Sentinel pet"
+						]
+					}
+				]
+			},
+			"id": "cacodaemon",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Cacodaemon",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Flying",
+					"Demon"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Pink",
+						"difficulty": "Easy",
+						"explanation": "Pink. The Pinky is named for its sickly pinkish-grey hide.",
+						"fact_checked": true,
+						"question": "What is the primary color of the Pinky demon?",
+						"wrong": [
+							"Green",
+							"Blue",
+							"Yellow"
+						]
+					},
+					{
+						"correct": "Head",
+						"difficulty": "Easy",
+						"explanation": "Head. The Pinky's skull and frontal plates are heavily reinforced.",
+						"fact_checked": true,
+						"question": "Which specific body part is heavily armored, making frontal attacks highly ineffective?",
+						"wrong": [
+							"Tail",
+							"Legs",
+							"Shoulders"
+						]
+					},
+					{
+						"correct": "Bite",
+						"difficulty": "Medium",
+						"explanation": "Bite. If the Pinky successfully lands its charge, it delivers a powerful bite.",
+						"fact_checked": true,
+						"question": "The Pinky's main method of attack is a high-speed charging maneuver often resulting in a what?",
+						"wrong": [
+							"Stomp",
+							"Claw Swipe",
+							"Tail Whip"
+						]
+					},
+					{
+						"correct": "Demon Plate",
+						"difficulty": "Hard",
+						"explanation": "Demon Plate. This incredibly durable natural material harvested from Hell is used to reinforce its armor.",
+						"fact_checked": true,
+						"question": "The Pinky's frontal armor is theorized to be composed of which unique compound extracted by the UAC?",
+						"wrong": [
+							"Titanium Alloy",
+							"Ceramic Steel",
+							"Carbon Composite"
+						]
+					},
+					{
+						"correct": "Ramming",
+						"difficulty": "Hard",
+						"explanation": "Ramming. The horn is designed to maximize damage during its high-speed charge.",
+						"fact_checked": true,
+						"question": "In the lore, what is the specific function of the Pinky's frontal horn structure?",
+						"wrong": [
+							"Energy Storage",
+							"Teleportation",
+							"Sonic Attack"
+						]
+					},
+					{
+						"correct": "Mandibular Spikes",
+						"difficulty": "Hard",
+						"explanation": "Mandibular Spikes. These spikes are essential for penetrating armor when it bites.",
+						"fact_checked": true,
+						"question": "What is the specific name of the Pinky's highly mutated jaw structure?",
+						"wrong": [
+							"Crushing Grinder",
+							"Razor Teeth",
+							"Molar Set"
+						]
+					}
+				]
+			},
+			"id": "pinky",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Pinky",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Melee",
+					"Fodder"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Jetpack",
+						"difficulty": "Easy",
+						"explanation": "Jetpack. The Revenant uses a cumbersome but powerful jump jet system.",
+						"fact_checked": true,
+						"question": "What primary piece of technology allows the Revenant to fly and jump great distances?",
+						"wrong": [
+							"Wings",
+							"Teleportation",
+							"Levitation"
+						]
+					},
+					{
+						"correct": "Rockets",
+						"difficulty": "Easy",
+						"explanation": "Rockets. These shoulder-mounted launchers fire powerful, often homing, rockets.",
+						"fact_checked": true,
+						"question": "The Revenant's main offensive weapons are launched from its shoulders. What are these weapons?",
+						"wrong": [
+							"Lasers",
+							"Fireballs",
+							"Grenades"
+						]
+					},
+					{
+						"correct": "Red",
+						"difficulty": "Easy",
+						"explanation": "Red. The red targeting laser indicates the enemy has achieved a missile lock.",
+						"fact_checked": true,
+						"question": "When locking onto a target, the Revenant's missile system emits what color light?",
+						"wrong": [
+							"Blue",
+							"Yellow",
+							"Purple"
+						]
+					},
+					{
+						"correct": "Explosive Shot",
+						"difficulty": "Medium",
+						"explanation": "Explosive Shot. The Combat Shotgun's explosive payload can detonate the rockets before they hit.",
+						"fact_checked": true,
+						"question": "What specific weapon mod can counter and destroy the Revenant's incoming missiles mid-flight?",
+						"wrong": [
+							"Stun Bomb",
+							"Hologram",
+							"Siphon Grenade"
+						]
+					},
+					{
+						"correct": "UAC",
+						"difficulty": "Medium",
+						"explanation": "UAC. UAC attempted to weaponize this demon using their own advanced tech.",
+						"fact_checked": true,
+						"question": "Which faction originally developed the bionic exosuit technology later grafted onto the demon corpse?",
+						"wrong": [
+							"Argenta",
+							"Night Sentinels",
+							"Betrayers"
+						]
+					},
+					{
+						"correct": "Stagger",
+						"difficulty": "Medium",
+						"explanation": "Stagger. Shooting the jetpack forces the Revenant to ground itself and momentarily stuns it.",
+						"fact_checked": true,
+						"question": "If the player aims specifically for the Revenant's backpack/jetpack, what is the immediate effect?",
+						"wrong": [
+							"Self-Destruct",
+							"Massive Area Damage",
+							"Healing"
+						]
+					},
+					{
+						"correct": "Cyber-Demonic Augmentation",
+						"difficulty": "Hard",
+						"explanation": "Cyber-Demonic Augmentation. This process created the unique Bionic demons like the Cyberdemon and the Revenant.",
+						"fact_checked": true,
+						"question": "In Doom 2016 lore, the process of fusing the demonic remains with UAC hardware is known by which specific term?",
+						"wrong": [
+							"Mechanization Protocol",
+							"Hellish Grafting",
+							"Aethel Fusion"
+						]
+					},
+					{
+						"correct": "Wretch",
+						"difficulty": "Hard",
+						"explanation": "Wretch. The Wretch is the base demonic form before cybernetic modifications are added.",
+						"fact_checked": true,
+						"question": "The Revenant's base body is derived from a demon corpse known as the what?",
+						"wrong": [
+							"Stalker",
+							"Gorefiend",
+							"Skinner"
+						]
+					},
+					{
+						"correct": "Overheating",
+						"difficulty": "Hard",
+						"explanation": "Overheating. The intense power draw of the dual missile system causes heat stress to the pilot.",
+						"fact_checked": true,
+						"question": "What is the critical in-lore weakness of the Revenant's power supply system?",
+						"wrong": [
+							"Ablative Plating",
+							"Acoustic Feedback",
+							"De-Magnetization"
+						]
+					}
+				]
+			},
+			"id": "revenant",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Revenant",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Flying",
+					"Ranged"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Fire",
+						"difficulty": "Easy",
+						"explanation": "Fire. The Mancubus is notorious for its short-range flamethrower and long-range fireballs.",
+						"fact_checked": true,
+						"question": "The Mancubus uses wrist-mounted cannons that fire projectiles made of what element?",
+						"wrong": [
+							"Ice",
+							"Electricity",
+							"Acid"
+						]
+					},
+					{
+						"correct": "Obesity",
+						"difficulty": "Easy",
+						"explanation": "Obesity. The Mancubus is a massive, heavily armored, slow-moving demon.",
+						"fact_checked": true,
+						"question": "What is the Mancubus' defining physical characteristic?",
+						"wrong": [
+							"Height",
+							"Speed",
+							"Stealth"
+						]
+					},
+					{
+						"correct": "Orange ",
+						"difficulty": "Easy",
+						"explanation": "Green. The signature color of the Mancubus' plasma fire is an intense green.",
+						"fact_checked": true,
+						"question": "When the Mancubus prepares to launch multiple fireballs, its chest opens and glows with what color energy?",
+						"wrong": [
+							"Blue",
+							"Red",
+							"Yellow"
+						]
+					},
+					{
+						"correct": "Destroy its arm cannons",
+						"difficulty": "Medium",
+						"explanation": "Destroy its arm cannons. Blasting the cannons causes a quick stagger and removes its primary ranged attacks.",
+						"fact_checked": true,
+						"question": "What is the recommended strategy to severely reduce the Mancubus' offensive capabilities?",
+						"wrong": [
+							"Shoot its feet",
+							"Use melee attacks only",
+							"Hit its chest repeatedly"
+						]
+					},
+					{
+						"correct": "Fire patches",
+						"difficulty": "Medium",
+						"explanation": "Fire patches. Its heavier plasma blasts create burning areas that damage the player over time.",
+						"fact_checked": true,
+						"question": "What hazard does the Mancubus leave on the ground when performing certain heavy attacks?",
+						"wrong": [
+							"Ice shards",
+							"Acid pools",
+							"Electric fences"
+						]
+					},
+					{
+						"correct": "Explosive Shot ",
+						"difficulty": "Medium",
+						"explanation": "Mobile Turret. The sheer concentrated power of the Chaingun's Mobile Turret can penetrate the internal organs.",
+						"fact_checked": true,
+						"question": "Which weapon modification can instantly kill a Mancubus if shot directly into its open mouth during a specific attack animation?",
+						"wrong": [
+							"Lock-On Rockets",
+							"Hologram Decoy",
+							"Precision Bolt"
+						]
+					},
+					{
+						"correct": "Coolant Sacs",
+						"difficulty": "Hard",
+						"explanation": "Coolant Sacs. These sacs can be damaged, leading to the demon's immediate destabilization.",
+						"fact_checked": true,
+						"question": "The Mancubus' extreme heat output requires the use of internal organs called what to stabilize its core temperature?",
+						"wrong": [
+							"Plasma Vents",
+							"Heat Sink Regulators",
+							"Cryo-Vaporizers"
+						]
+					},
+					{
+						"correct": "Gagging cough",
+						"difficulty": "Hard",
+						"explanation": "Gagging cough. This sound indicates the demon is drawing internal fuel for the flame attack.",
+						"fact_checked": true,
+						"question": "What specific sound cue alerts the player that the Mancubus is preparing its devastating Flame Belch attack?",
+						"wrong": [
+							"Loud scream",
+							"Metallic clang",
+							"Subtle hiss"
+						]
+					},
+					{
+						"correct": "Gluttony",
+						"difficulty": "Hard",
+						"explanation": "Gluttony. The demon perpetually consumes and converts organic mass into fuel for its attacks.",
+						"fact_checked": true,
+						"question": "According to UAC files, the Mancubus is primarily driven by what singular primal urge?",
+						"wrong": [
+							"Wrath",
+							"Lust",
+							"Avarice"
+						]
+					},
+					{
+						"correct": "Argent canisters/tanks",
+						"difficulty": "Easy",
+						"explanation": "The Mancubus uses Argent energy to sustain its fiery attacks, carried in tanks visible on its back.",
+						"fact_checked": true,
+						"question": "The Mancubus carries what specific type of portable fuel source/tank strapped to its back?",
+						"wrong": [
+							"Water coolants",
+							"Plasma batteries",
+							"Rocket fuel"
+						]
+					},
+					{
+						"correct": "Belly flop/Shockwave attack",
+						"difficulty": "Easy",
+						"explanation": "When surrounded, the Mancubus can quickly drop its weight, creating a localized fiery shockwave.",
+						"fact_checked": true,
+						"question": "What unique defensive maneuver can the Mancubus deploy that generates a wave of heat and damage around its immediate body?",
+						"wrong": [
+							"Plasma Shield",
+							"Self-teleport",
+							"Fire Breath"
+						]
+					},
+					{
+						"correct": "Patches of burning floor/Molten slag",
+						"difficulty": "Medium",
+						"explanation": "The heat and intensity of Mancubus attacks often melt the surrounding metal walkways into damaging slag.",
+						"fact_checked": true,
+						"question": "What specific environmental hazard is often found in arenas heavily populated by Mancubi due to their destructive fire attacks?",
+						"wrong": [
+							"Toxic gas clouds",
+							"Ice patches",
+							"Electric fences"
+						]
+					},
+					{
+						"correct": "Blubber armor",
+						"difficulty": "Medium",
+						"explanation": "The fat layers of the Mancubus are dense and specifically engineered by Hell as a form of natural armor.",
+						"fact_checked": true,
+						"question": "What specific term does the Mancubus codex use to describe the demon's highly engineered, reinforced, and layered skin?",
+						"wrong": [
+							"Hardened Carapace",
+							"Plasma Sheath",
+							"Demonic Plate"
+						]
+					},
+					{
+						"correct": "Bile/Internal Sludge",
+						"difficulty": "Hard",
+						"explanation": "The Mancubus constantly struggles to regulate its temperature, requiring a flow of internal, foul liquid to stabilize its system.",
+						"fact_checked": true,
+						"question": "Unlike many other demons, the Mancubus requires a constant flow of what specific internal liquid, which is prone to boiling due to its high metabolism?",
+						"wrong": [
+							"Plasma",
+							"Blood",
+							"Oil"
+						]
+					}
+				]
+			},
+			"id": "mancubus",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Mancubus",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Heavy",
+					"Tank"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Green",
+						"difficulty": "Easy",
+						"explanation": "Green. The Baron uses intense, highly destructive green Hellfire blasts.",
+						"fact_checked": true,
+						"question": "The projectiles thrown by the Baron of Hell are primarily what color?",
+						"wrong": [
+							"Red",
+							"Blue",
+							"Purple"
+						]
+					},
+					{
+						"correct": "Blades",
+						"difficulty": "Easy",
+						"explanation": "Blades. These massive arm blades are used for sweeping melee attacks and generating shockwaves.",
+						"fact_checked": true,
+						"question": "What are the sharp appendages that extend from the Baron's forearms often used for melee attacks?",
+						"wrong": [
+							"Chains",
+							"Flails",
+							"Whips"
+						]
+					},
+					{
+						"correct": "High-health tank",
+						"difficulty": "Easy",
+						"explanation": "High-health tank. The Baron is one of the toughest standard enemies encountered in the game.",
+						"fact_checked": true,
+						"question": "Is the Baron of Hell generally categorized as a low-health fodder enemy or a high-health tank?",
+						"wrong": [
+							"Low-health fodder",
+							"Support unit",
+							"Stealth aggressor"
+						]
+					},
+					{
+						"correct": "Shockwave",
+						"difficulty": "Medium",
+						"explanation": "Shockwave. The ground pound creates a fast-moving, damaging wave of energy.",
+						"fact_checked": true,
+						"question": "The Baron of Hell is notorious for generating a specific environmental attack when striking the ground. What is it?",
+						"wrong": [
+							"Acid Pool",
+							"Electric Field",
+							"Smoke Screen"
+						]
+					},
+					{
+						"correct": "Crouching down low",
+						"difficulty": "Medium",
+						"explanation": "Crouching down low. This indicates it is preparing to jump across the arena for a slam.",
+						"fact_checked": true,
+						"question": "What is the primary visual cue that the Baron is about to execute a leaping aerial attack?",
+						"wrong": [
+							"Raising its blades high",
+							"Teleporting away",
+							"Glowing purple"
+						]
+					},
+					{
+						"correct": "Rocket Launcher",
+						"difficulty": "Medium",
+						"explanation": "Rocket Launcher. High explosive damage is necessary to overcome the Baron's heavy damage resistance.",
+						"fact_checked": true,
+						"question": "Which heavy weapon is most effective for dealing reliable damage against the heavily armored Baron?",
+						"wrong": [
+							"Pistol",
+							"Heavy Assault Rifle",
+							"Static Rifle"
+						]
+					},
+					{
+						"correct": "Hell Knight",
+						"difficulty": "Hard",
+						"explanation": "Hell Guard. It is believed to be a heavily mutated variant of the demonic Hell Guards.",
+						"fact_checked": true,
+						"question": "Before it was corrupted, which specific class of demon was the Baron of Hell believed to be derived from?",
+						"wrong": [
+							"Doom Hunter",
+							"Overlord",
+							"Slayer"
+						]
+					},
+					{
+						"correct": "Its horn",
+						"difficulty": "Hard",
+						"explanation": "Its horn. The Slayer uses the Baron's own horn structure to pierce and destroy it.",
+						"fact_checked": true,
+						"question": "During its Glory Kill sequence, the Doom Slayer often removes what from the Baron's head for the final blow?",
+						"wrong": [
+							"Its eye",
+							"Its arm",
+							"Its spine"
+						]
+					},
+					{
+						"correct": "Red",
+						"difficulty": "Easy",
+						"explanation": "The Baron of Hell is distinguished by its size and its deep red hide, contrasting with the paler Hell Knight.",
+						"fact_checked": true,
+						"question": "What is the primary color of the Baron of Hell's skin?",
+						"wrong": [
+							"Grey",
+							"Purple",
+							"Brown"
+						]
+					},
+					{
+						"correct": "Green Hellfire/Hell Energy",
+						"difficulty": "Easy",
+						"explanation": "The Baron uses powerful fireballs charged with corrosive green Hell energy, often fired in rapid succession.",
+						"fact_checked": true,
+						"question": "Barons of Hell primarily attack the player by firing massive projectiles composed of what element?",
+						"wrong": [
+							"Explosive Shrapnel",
+							"Plasma Vapors",
+							"Molten Rock"
+						]
+					},
+					{
+						"correct": "Serving as field commanders and generals for Hell's armies",
+						"difficulty": "Hard",
+						"explanation": "Barons possess a high degree of intelligence and are viewed as the tactical leadership of the demonic forces.",
+						"fact_checked": true,
+						"question": "The Barons are described in the codex as having been bred in the deepest regions of Hell specifically for what role?",
+						"wrong": [
+							"Guarding the central Gate",
+							"Extracting Argent Energy",
+							"Performing demonic rituals"
+						]
+					}
+				]
+			},
+			"id": "baron_of_hell",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Baron of Hell",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Villain",
+					"Melee"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Skull",
+						"difficulty": "Easy",
+						"explanation": "Skull. It is a flying, flaming skull.",
+						"fact_checked": true,
+						"question": "The Lost Soul is primarily composed of what specific part of a demon?",
+						"wrong": [
+							"Torso",
+							"Claw",
+							"Eye"
+						]
+					},
+					{
+						"correct": "Orange",
+						"difficulty": "Easy",
+						"explanation": "Orange. The Lost Soul is engulfed in bright orange Hellfire.",
+						"fact_checked": true,
+						"question": "What is the primary color of the flame surrounding the Lost Soul?",
+						"wrong": [
+							"Green",
+							"Blue",
+							"White"
+						]
+					},
+					{
+						"correct": "Ramming",
+						"difficulty": "Easy",
+						"explanation": "Ramming. It charges the player for a fiery collision.",
+						"fact_checked": true,
+						"question": "What is the Lost Soul's singular method of dealing damage?",
+						"wrong": [
+							"Shooting",
+							"Screaming",
+							"Dropping bombs"
+						]
+					},
+					{
+						"correct": "High-pitched scream",
+						"difficulty": "Medium",
+						"explanation": "High-pitched scream. This scream often warns the player of the incoming collision.",
+						"fact_checked": true,
+						"question": "What is the specific sound effect the Lost Soul makes before initiating its charge attack?",
+						"wrong": [
+							"Metallic drone",
+							"Deep growl",
+							"Whisper"
+						]
+					},
+					{
+						"correct": "Combat Shotgun",
+						"difficulty": "Medium",
+						"explanation": "Combat Shotgun. Its wide spread can instantly clear several Lost Souls in a single shot.",
+						"fact_checked": true,
+						"question": "Due to their low health but high numbers, what weapon is most efficient at clearing groups of Lost Souls?",
+						"wrong": [
+							"Pistol",
+							"Plasma Rifle",
+							"Rocket Launcher"
+						]
+					},
+					{
+						"correct": "Damned warrior spirits",
+						"difficulty": "Hard",
+						"explanation": "Damned warrior spirits. They are the trapped essence of mortals consumed by Hell.",
+						"fact_checked": true,
+						"question": "In Argent D'Nur legends, what are Lost Souls believed to be?",
+						"wrong": [
+							"Failed experiments",
+							"Demonic eggs",
+							"Pure Argent Energy constructs"
+						]
+					},
+					{
+						"correct": "Sustained Hellfire Propulsion",
+						"difficulty": "Hard",
+						"explanation": "Sustained Hellfire Propulsion. The surrounding flames provide the necessary lift.",
+						"fact_checked": true,
+						"question": "What specific property allows the Lost Soul to ignore gravity and fly freely?",
+						"wrong": [
+							"Internal Helium Sacs",
+							"Cybernetic Winglets",
+							"Anti-Gravity Device"
+						]
+					},
+					{
+						"correct": "Explosive Shot",
+						"difficulty": "Hard",
+						"explanation": "Explosive Shot. The explosive payload is triggered by contact and can chain kill multiple souls.",
+						"fact_checked": true,
+						"question": "Which weapon mod allows the player to quickly eliminate a line of charging Lost Souls simultaneously?",
+						"wrong": [
+							"Kinetic Grenade",
+							"Hologram",
+							"Remote Detonation"
+						]
+					}
+				]
+			},
+			"id": "lost_soul",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Lost Soul",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Flying",
+					"Fodder"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Spawning new demons",
+						"difficulty": "Easy",
+						"explanation": "Spawning new demons. The Summoner's main ability is to rapidly call in reinforcements.",
+						"fact_checked": true,
+						"question": "What is the most immediate threat posed by the Summoner in combat?",
+						"wrong": [
+							"Throwing fireballs",
+							"Physical attack",
+							"Disabling player weapons"
+						]
+					},
+					{
+						"correct": "Teleportation",
+						"difficulty": "Easy",
+						"explanation": "Teleportation. It rapidly shifts positions across the arena.",
+						"fact_checked": true,
+						"question": "The Summoner primarily uses what non-lethal ability to avoid player damage?",
+						"wrong": [
+							"Invisibility",
+							"Burrowing",
+							"Flight"
+						]
+					},
+					{
+						"correct": "Target priority",
+						"difficulty": "Medium",
+						"explanation": "Target priority. Ignoring the Summoner leads to a relentless onslaught of enemies.",
+						"fact_checked": true,
+						"question": "To prevent a lengthy fight, killing the Summoner should be the player's primary goal, a strategy often called what?",
+						"wrong": [
+							"Demonic harvest",
+							"Soul capture",
+							"Energy drain"
+						]
+					},
+					{
+						"correct": "Argent Energy",
+						"difficulty": "Medium",
+						"explanation": "Argent Energy. The teleportation utilizes raw Argent Energy, leaving a ghostly residue.",
+						"fact_checked": true,
+						"question": "The Summoner's rapid teleportation leaves behind a brief after-image or trail made of what material?",
+						"wrong": [
+							"Smoke",
+							"Dust",
+							"Blood"
+						]
+					},
+					{
+						"correct": "Arch-Vile",
+						"difficulty": "Hard",
+						"explanation": "Arch-Vile. Both demons are known for their ability to summon reinforcements and their high agility.",
+						"fact_checked": true,
+						"question": "The Summoner is generally considered to be the equivalent of which iconic demon from the original Doom games?",
+						"wrong": [
+							"Hell Baron",
+							"Harvester",
+							"Vampire"
+						]
+					},
+					{
+						"correct": "Chest core",
+						"difficulty": "Hard",
+						"explanation": "Chest core. Its internal core is exposed and vulnerable while it is actively spawning.",
+						"fact_checked": true,
+						"question": "Which specific location on the Summoner's body, when shot while it is casting, results in massive damage?",
+						"wrong": [
+							"Left foot",
+							"Right hand",
+							"Tip of the horns"
+						]
+					},
+					{
+						"correct": "Explosives",
+						"difficulty": "Hard",
+						"explanation": "Explosives. It has natural resistances that dampen the effect of fragmentation and blast damage.",
+						"fact_checked": true,
+						"question": "In the Codex, the Summoner is noted as being highly resistant to which specific type of damage?",
+						"wrong": [
+							"Kinetic bullets",
+							"Plasma energy",
+							"Heat damage"
+						]
+					}
+				]
+			},
+			"id": "summoner",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Summoner",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Controller",
+					"Teleporter"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Rocket Launcher",
+						"difficulty": "Easy",
+						"explanation": "Rocket Launcher. A massive, multi-barrel rocket system is attached to its arm.",
+						"fact_checked": true,
+						"question": "What type of heavy projectile weapon does the Cyberdemon wield on its left arm?",
+						"wrong": [
+							"Flamethrower",
+							"Railgun",
+							"Grenade Launcher"
+						]
+					},
+					{
+						"correct": "First boss",
+						"difficulty": "Easy",
+						"explanation": "First boss. The Cyberdemon is the first major boss encounter, preceding the fight with the Spider Mastermind.",
+						"fact_checked": true,
+						"question": "Is the Cyberdemon the first boss or the final boss of Doom 2016?",
+						"wrong": [
+							"Final boss",
+							"Mid-game boss",
+							"Optional boss"
+						]
+					},
+					{
+						"correct": "The Subject",
+						"difficulty": "Easy",
+						"explanation": "The Subject. This name emphasized its status as an experimental test entity.",
+						"fact_checked": true,
+						"question": "Before its transformation, the Cyberdemon was known in UAC records simply as what?",
+						"wrong": [
+							"The Beast",
+							"Demon Alpha",
+							"Test 117"
+						]
+					},
+					{
+						"correct": "B.F.G. 9000",
+						"difficulty": "Medium",
+						"explanation": "B.F.G. 9000. The BFG is recovered from the Cyberdemon's containment area.",
+						"fact_checked": true,
+						"question": "What powerful weapon is gained by the Doom Slayer immediately after defeating the Cyberdemon?",
+						"wrong": [
+							"Crucible",
+							"Chainsaw",
+							"Plasma Cannon"
+						]
+					},
+					{
+						"correct": "Laser beam",
+						"difficulty": "Medium",
+						"explanation": "Laser beam. The sweeping laser forces the player to time a jump perfectly.",
+						"fact_checked": true,
+						"question": "During the second phase of the fight, the Cyberdemon gains the ability to fire what type of horizontal attack that the player must jump over?",
+						"wrong": [
+							"Fire wave",
+							"Acid spray",
+							"Electric pulse"
+						]
+					},
+					{
+						"correct": "Knee joint",
+						"difficulty": "Medium",
+						"explanation": "Knee joint. Damaging this bionic joint causes the demon to collapse.",
+						"fact_checked": true,
+						"question": "What is the critical vulnerable spot that glows orange on the Cyberdemon's leg that must be targeted to stun him?",
+						"wrong": [
+							"Ankle",
+							"Hip",
+							"Foot"
+						]
+					},
+					{
+						"correct": "Lazarus Labs",
+						"difficulty": "Hard",
+						"explanation": "The Core of the Hell. Its body was fused using ancient binding technology in Hell itself.",
+						"fact_checked": true,
+						"question": "What specific ritualistic location was the Cyberdemon taken to by the UAC for its initial transformation and binding?",
+						"wrong": [
+							"UAC Research Lab 5",
+							"Mars Surface Station",
+							"The Argent Reactor"
+						]
+					},
+					{
+						"correct": "Hydroponic Power Cell",
+						"difficulty": "Hard",
+						"explanation": "Hydroponic Power Cell. This was a temporary power source used to keep the demon stable before being fully bound.",
+						"fact_checked": true,
+						"question": "The Cyberdemon's cybernetic shell required a specific UAC energy source to function before it could utilize Argent Energy. What was this source?",
+						"wrong": [
+							"Solar Array",
+							"Nuclear Battery",
+							"Cryo Fuel"
+						]
+					},
+					{
+						"correct": "Binding Sigil",
+						"difficulty": "Hard",
+						"explanation": "Binding Sigil. This rune kept its power from completely tearing apart its cybernetic body.",
+						"fact_checked": true,
+						"question": "What specific demonic rune or symbol is carved into the Cyberdemon's chest to regulate its demonic power?",
+						"wrong": [
+							"Rune of Sacrifice",
+							"Mark of the Beast",
+							"Argent Key"
+						]
+					}
+				]
+			},
+			"id": "cyberdemon",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Cyberdemon",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Boss",
+					"Bionic"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Pinky",
+						"difficulty": "Easy",
+						"explanation": "Pinky. It shares the same basic shape and charging attack as the standard Pinky.",
+						"fact_checked": true,
+						"question": "The Spectre is a unique variant of which existing demon?",
+						"wrong": [
+							"Imp",
+							"Cacodaemon",
+							"Revenant"
+						]
+					},
+					{
+						"correct": "Invisibility",
+						"difficulty": "Easy",
+						"explanation": "Invisibility. It is highly transparent, making it hard to target.",
+						"fact_checked": true,
+						"question": "What is the Spectre's defining visual ability?",
+						"wrong": [
+							"Hypnosis",
+							"Flight",
+							"Healing"
+						]
+					},
+					{
+						"correct": "Shimmering air",
+						"difficulty": "Easy",
+						"explanation": "Shimmering air. Its movement causes the air around it to warp slightly.",
+						"fact_checked": true,
+						"question": "What visual distortion alerts the player that a Spectre is moving nearby?",
+						"wrong": [
+							"Purple smoke",
+							"Digital glitching",
+							"Sound echo"
+						]
+					},
+					{
+						"correct": "Tracking module",
+						"difficulty": "Medium",
+						"explanation": "Tracking module. The Heavy Assault Rifle's tracking rockets can lock onto and highlight the Spectre.",
+						"fact_checked": true,
+						"question": "Which weapon modification can apply tracking status to the Spectre, making it visible even while cloaked?",
+						"wrong": [
+							"Explosive shot",
+							"Siege mode",
+							"Heat blast"
+						]
+					},
+					{
+						"correct": "Charging an attack",
+						"difficulty": "Medium",
+						"explanation": "Charging an attack. The sheer energy needed for its charge slightly disrupts its cloaking field.",
+						"fact_checked": true,
+						"question": "The Spectre becomes briefly more visible when performing what type of action?",
+						"wrong": [
+							"Standing still",
+							"Being damaged by fire",
+							"Activating a portal"
+						]
+					},
+					{
+						"correct": "Stealth glands",
+						"difficulty": "Hard",
+						"explanation": "Stealth glands. These glands harness Argent energy to bend light around the demon.",
+						"fact_checked": true,
+						"question": "The Spectre's cloaking mechanism is often described as a field distortion generated by specialized internal organs called what?",
+						"wrong": [
+							"Light reflectors",
+							"Plasma shields",
+							"Chrono disruptors"
+						]
+					},
+					{
+						"correct": "Variant",
+						"difficulty": "Hard",
+						"explanation": "Variant. The Spectre was simply cataloged as a variant strain of the Pinky demon.",
+						"fact_checked": true,
+						"question": "The UAC designation for the Spectre variant was derived from the 'V' standing for what word?",
+						"wrong": [
+							"Vicious",
+							"Viper",
+							"Velocity"
+						]
+					},
+					{
+						"correct": "No frontal armor",
+						"difficulty": "Hard",
+						"explanation": "No frontal armor. The Spectre is weaker than the Pinky as it lacks the bulky armor plating.",
+						"fact_checked": true,
+						"question": "What is the primary visual difference, besides invisibility, between a Spectre and a Pinky when seen in a database file?",
+						"wrong": [
+							"Larger head",
+							"Two tails",
+							"Extra horns"
+						]
+					},
+					{
+						"correct": "Red/Orange",
+						"difficulty": "Easy",
+						"explanation": "As the demon takes damage, the invisibility field is momentarily disrupted, showing a glowing red outline.",
+						"fact_checked": true,
+						"question": "When the Spectre is damaged, its outline briefly flashes what color, allowing the player to target it clearly?",
+						"wrong": [
+							"Blue",
+							"Yellow",
+							"Green"
+						]
+					},
+					{
+						"correct": "Dark/Poorly lit areas",
+						"difficulty": "Medium",
+						"explanation": "The Spectre's stealth ability is enhanced by dark, shadowy areas, making them harder to spot.",
+						"fact_checked": true,
+						"question": "Spectres are most frequently encountered in what type of environment within the UAC facility and Hell?",
+						"wrong": [
+							"High-altitude arenas",
+							"Fully flooded tunnels",
+							"Laboratories"
+						]
+					}
+				]
+			},
+			"id": "spectre",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Spectre",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Stealth",
+					"Fodder"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "UAC",
+						"difficulty": "Easy",
+						"explanation": "UAC. These are the corrupted security and research personnel of the UAC.",
+						"fact_checked": true,
+						"question": "Before becoming possessed, which organization did these enemies serve?",
+						"wrong": [
+							"Argenta",
+							"Sentinel",
+							"Hell Guard"
+						]
+					},
+					{
+						"correct": "Health boost",
+						"difficulty": "Easy",
+						"explanation": "Health boost. Glory Killing fodder enemies is essential for recovering health quickly.",
+						"fact_checked": true,
+						"question": "What crucial benefit does the player gain for performing a Glory Kill on these basic enemies?",
+						"wrong": [
+							"Extra ammo",
+							"Weapon upgrades",
+							"Armor shards"
+						]
+					},
+					{
+						"correct": "Wears UAC Security Armor",
+						"difficulty": "Medium",
+						"explanation": "Wears UAC Security Armor. The Possessed Soldier is recognizable by the armor plating on its torso.",
+						"fact_checked": true,
+						"question": "What visual characteristic defines a Possessed Soldier specifically, compared to a Possessed Engineer?",
+						"wrong": [
+							"No legs",
+							"Blue glow",
+							"Carries a wrench"
+						]
+					},
+					{
+						"correct": "Possessed Security",
+						"difficulty": "Medium",
+						"explanation": "Possessed Security. The Security variant carries an energy shield that must be eliminated before the body can be damaged.",
+						"fact_checked": true,
+						"question": "Which variant of the Possessed Soldier carries a large piece of gear that must be destroyed first?",
+						"wrong": [
+							"Possessed Engineer",
+							"Possessed Officer",
+							"Possessed Drone"
+						]
+					},
+					{
+						"correct": "An environmental hazard",
+						"difficulty": "Medium",
+						"explanation": "An environmental hazard. The thrown weapon explodes upon impact, causing area damage.",
+						"fact_checked": true,
+						"question": "If a Possessed Soldier throws its weapon before death, what does its weapon turn into?",
+						"wrong": [
+							"A health orb",
+							"A teleporter",
+							"A turret"
+						]
+					},
+					{
+						"correct": "Staggering damage",
+						"difficulty": "Hard",
+						"explanation": "Staggering damage. Once heavily damaged, they enter a flashing state, dropping their weapon in pain.",
+						"fact_checked": true,
+						"question": "What specifically causes the Possessed Soldier to enter a state where it drops its weapon and is open to a Glory Kill?",
+						"wrong": [
+							"Proximity to the Slayer",
+							"Low ammunition",
+							"High heat"
+						]
+					},
+					{
+						"correct": "Argent Energy exposure",
+						"difficulty": "Hard",
+						"explanation": "Argent Energy exposure. The unfiltered energy corrupted their physical forms.",
+						"fact_checked": true,
+						"question": "What is the primary method of demonic contamination observed in the UAC soldiers?",
+						"wrong": [
+							"Infectious bite",
+							"Radioactive poisoning",
+							"Genetic experimentation"
+						]
+					},
+					{
+						"correct": "Resource Operations",
+						"difficulty": "Hard",
+						"explanation": "Resource Operations. This area is heavily secured and is the first time the armored variants are common.",
+						"fact_checked": true,
+						"question": "What is the name of the specific UAC level where the player first encounters the heavy concentration of Possessed Security units?",
+						"wrong": [
+							"Argent Facility",
+							"Kadingir Sanctum",
+							"Lazarus Labs"
+						]
+					}
+				]
+			},
+			"id": "possessed_soldier",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Possessed Soldier",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Fodder",
+					"Ranged"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Pouncing",
+						"difficulty": "Easy",
+						"explanation": "Pouncing. It frequently leaps great distances to close the gap on the Slayer.",
+						"fact_checked": true,
+						"question": "What is the Prowler's signature method of initiating combat?",
+						"wrong": [
+							"Shooting rockets",
+							"Creating portals",
+							"Digging holes"
+						]
+					},
+					{
+						"correct": "Purple",
+						"difficulty": "Easy",
+						"explanation": "Purple. The Prowler has distinct purple glowing elements, especially on its head and claws.",
+						"fact_checked": true,
+						"question": "What color are the energized veins and markings visible on the Prowler's body?",
+						"wrong": [
+							"Green",
+							"Yellow",
+							"White"
+						]
+					},
+					{
+						"correct": "High-speed",
+						"difficulty": "Easy",
+						"explanation": "High-speed. The Prowler is incredibly fast and difficult to track.",
+						"fact_checked": true,
+						"question": "Is the Prowler a standard-speed enemy or a high-speed enemy?",
+						"wrong": [
+							"Standard-speed",
+							"Slow-moving",
+							"Stationary"
+						]
+					},
+					{
+						"correct": "Short-range teleportation",
+						"difficulty": "Medium",
+						"explanation": "Short-range teleportation. This allows it to rapidly reposition and flank the player.",
+						"fact_checked": true,
+						"question": "The Prowler can briefly perform a similar ability to the Summoner, known as what?",
+						"wrong": [
+							"Healing",
+							"Cloaking",
+							"Rallying other demons"
+						]
+					},
+					{
+						"correct": "Raises its claws",
+						"difficulty": "Medium",
+						"explanation": "Raises its claws. This cue indicates the immediate strike is coming.",
+						"fact_checked": true,
+						"question": "What action does the Prowler take right before performing its damaging swipe attack?",
+						"wrong": [
+							"Crouches down",
+							"Stands completely still",
+							"Roars loudly"
+						]
+					},
+					{
+						"correct": "Stun Bomb",
+						"difficulty": "Medium",
+						"explanation": "Stun Bomb. The Stun Bomb (from the Plasma Rifle) paralyzes it, neutralizing its mobility.",
+						"fact_checked": true,
+						"question": "Which weapon mod is highly effective at freezing the Prowler mid-pounce, allowing for an easy kill?",
+						"wrong": [
+							"Mobile Turret",
+							"Precision Bolt",
+							"Lock-On"
+						]
+					},
+					{
+						"correct": "Flickering distortion",
+						"difficulty": "Hard",
+						"explanation": "Flickering distortion. The high instability of its teleportation leaves behind a visible shimmer.",
+						"fact_checked": true,
+						"question": "The Prowler's rapid, erratic teleportation uses a highly unstable and inefficient source of Argent Energy, which causes what byproduct effect?",
+						"wrong": [
+							"Loud screeching",
+							"Heat explosion",
+							"Temporary blindness"
+						]
+					},
+					{
+						"correct": "Imp",
+						"difficulty": "Hard",
+						"explanation": "Imp. It is considered an evolved, specialized variant of the agile Imp.",
+						"fact_checked": true,
+						"question": "The Prowler's unique movement patterns are heavily influenced by the genetics of which smaller, weaker demon?",
+						"wrong": [
+							"Lost Soul",
+							"Zombie",
+							"Hell Knight"
+						]
+					}
+				]
+			},
+			"id": "prowler",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Prowler",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Agility",
+					"Melee"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Exposed spine",
+						"difficulty": "Easy",
+						"explanation": "Exposed spine. The Hell Razor's spine is partially visible, indicating a higher level of corruption.",
+						"fact_checked": true,
+						"question": "What is the primary visual difference that sets the Hell Razor apart from the Possessed Soldier?",
+						"wrong": [
+							"Wields a shield",
+							"Flies",
+							"Is invisible"
+						]
+					},
+					{
+						"correct": "Red",
+						"difficulty": "Easy",
+						"explanation": "Red. Its projectiles are distinct red plasma blasts.",
+						"fact_checked": true,
+						"question": "What color is the standard projectile fired by the Hell Razor?",
+						"wrong": [
+							"Green",
+							"Blue",
+							"Yellow"
+						]
+					},
+					{
+						"correct": "Ranged fighter",
+						"difficulty": "Easy",
+						"explanation": "Ranged fighter. It focuses on shooting the player from a distance.",
+						"fact_checked": true,
+						"question": "Is the Hell Razor primarily a melee fighter or a ranged fighter?",
+						"wrong": [
+							"Melee fighter",
+							"Support unit",
+							"Stealth unit"
+						]
+					},
+					{
+						"correct": "Plasma spread",
+						"difficulty": "Medium",
+						"explanation": "Plasma spread. It fires multiple projectiles simultaneously, making them hard to dodge at close range.",
+						"fact_checked": true,
+						"question": "The Hell Razor often fires an array of plasma projectiles in a specific defensive pattern called a what?",
+						"wrong": [
+							"Tracking bolt",
+							"Single beam",
+							"Explosive charge"
+						]
+					},
+					{
+						"correct": "Area of effect damage",
+						"difficulty": "Medium",
+						"explanation": "Area of effect damage. Explosions from the Rocket Launcher or Grenades clear the large packs efficiently.",
+						"fact_checked": true,
+						"question": "What is the effective strategy for dealing with a large group of Hell Razors quickly?",
+						"wrong": [
+							"Individual headshots",
+							"Melee only",
+							"Shield attacks"
+						]
+					},
+					{
+						"correct": "Possessed",
+						"difficulty": "Medium",
+						"explanation": "Possessed. It is the result of prolonged exposure and mutation beyond the basic Possessed Soldier stage.",
+						"fact_checked": true,
+						"question": "In the lore, the Hell Razor is considered a more highly advanced stage of corruption compared to what type of basic enemy?",
+						"wrong": [
+							"Lost Soul",
+							"Cacodaemon",
+							"Revenant"
+						]
+					},
+					{
+						"correct": "Kadingir Sanctum",
+						"difficulty": "Hard",
+						"explanation": "Kadingir Sanctum. This Hell environment introduces several highly mutated demon variants.",
+						"fact_checked": true,
+						"question": "Which specific level in Hell introduces the player to the Hell Razor enemy?",
+						"wrong": [
+							"Foundry",
+							"Lazarus Labs",
+							"The Necropolis"
+						]
+					}
+				]
+			},
+			"id": "hell_razor",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Hell Razor",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Ranged",
+					"Mid-Tier"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Self-destructing",
+						"difficulty": "Easy",
+						"explanation": "Self-destructing. They run toward the player and explode upon contact.",
+						"fact_checked": true,
+						"question": "The Unwilling primarily attack by doing what to the player?",
+						"wrong": [
+							"Healing other demons",
+							"Throwing rocks",
+							"Shooting lasers"
+						]
+					},
+					{
+						"correct": "Possessed humans",
+						"difficulty": "Easy",
+						"explanation": "Possessed humans. They are humans who have been completely burned out by Argent Energy.",
+						"fact_checked": true,
+						"question": "What type of enemy were the Unwilling before their high state of corruption?",
+						"wrong": [
+							"Imps",
+							"Barons",
+							"Hell Knights"
+						]
+					},
+					{
+						"correct": "Yellow",
+						"difficulty": "Easy",
+						"explanation": "Yellow. They are engulfed in a highly volatile yellow flame.",
+						"fact_checked": true,
+						"question": "What is the primary color of the fire and energy visible on the Unwilling?",
+						"wrong": [
+							"Blue",
+							"Purple",
+							"Green"
+						]
+					},
+					{
+						"correct": "Shoot one to chain-react the others",
+						"difficulty": "Medium",
+						"explanation": "Shoot one to chain-react the others. Killing one causes a nearby explosion that quickly detonates the rest.",
+						"fact_checked": true,
+						"question": "What is the best way to deal with a large group of Unwilling approaching rapidly?",
+						"wrong": [
+							"Run away until they disappear",
+							"Use melee attacks only",
+							"Heal them"
+						]
+					},
+					{
+						"correct": "Plasma Rifle",
+						"difficulty": "Medium",
+						"explanation": "Plasma Rifle. The quick succession of plasma bursts reliably detonates them before they get close.",
+						"fact_checked": true,
+						"question": "Which weapon, due to its rapid-fire capability, is often used to quickly detonate incoming Unwilling from a distance?",
+						"wrong": [
+							"Pistol",
+							"Super Shotgun",
+							"Gauss Cannon"
+						]
+					},
+					{
+						"correct": "A rapid crackling sound",
+						"difficulty": "Hard",
+						"explanation": "A rapid crackling sound. This noise signals that its energy core is reaching critical mass.",
+						"fact_checked": true,
+						"question": "What specific sound cue alerts the player that an Unwilling is about to explode?",
+						"wrong": [
+							"A loud siren",
+							"A deep groan",
+							"A digital beep"
+						]
+					},
+					{
+						"correct": "Argent Overcharge",
+						"difficulty": "Hard",
+						"explanation": "Argent Overcharge. This is the process where the demonic energy surpasses the biological limits of the host.",
+						"fact_checked": true,
+						"question": "What is the in-game term used to describe the internal combustion process that leads to the Unwilling's explosion?",
+						"wrong": [
+							"Plasma Detonation",
+							"Thermal Feedback",
+							"Bio-Combustion"
+						]
+					},
+					{
+						"correct": "Yellow/Gold",
+						"difficulty": "Easy",
+						"explanation": "Most Unwilling wear the standard golden-yellow UAC Hazard/Maintenance uniforms, now dirtied and ripped.",
+						"fact_checked": true,
+						"question": "The Unwilling, the most basic zombie type, are characterized by their tattered UAC uniforms of what primary color?",
+						"wrong": [
+							"Red",
+							"Blue",
+							"Grey"
+						]
+					},
+					{
+						"correct": "Lunge",
+						"difficulty": "Easy",
+						"explanation": "The basic, corrupted human attack is a slow, predictable forward lunge.",
+						"fact_checked": true,
+						"question": "What is the common term for the basic attack where an Unwilling lurches forward and attempts to grab the Doom Slayer?",
+						"wrong": [
+							"Bite",
+							"Claw Swipe",
+							"Headbutt"
+						]
+					},
+					{
+						"correct": "Security Drones/Sentry Bots",
+						"difficulty": "Medium",
+						"explanation": "Early environmental storytelling shows the Unwilling tearing apart the facility's security and maintenance drones.",
+						"fact_checked": true,
+						"question": "In the initial UAC facilities, Unwilling are commonly seen attacking or fighting what type of automated non-demonic creature before the Slayer intervenes?",
+						"wrong": [
+							"Mars Raptors",
+							"Giant Spiders",
+							"UAC Scientists"
+						]
+					},
+					{
+						"correct": "Corruption",
+						"difficulty": "Hard",
+						"explanation": "The process of transformation from human to Unwilling is broadly called Corruption in the UAC logs.",
+						"fact_checked": true,
+						"question": "The Unwilling are created when UAC personnel succumb to the initial stages of demonic exposure, a rapid physiological breakdown referred to as what?",
+						"wrong": [
+							"Demonic Assimilation",
+							"Hell's Embrace",
+							"Argent Sickness"
+						]
+					}
+				]
+			},
+			"id": "unwilling",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Unwilling",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Explosive",
+					"Fodder"
+				]
+			}
+		},
+		{
+			"content": {
+				"questions": [
+					{
+						"correct": "Energy beam",
+						"difficulty": "Easy",
+						"explanation": "Energy beam. It fires a continuous, damaging red energy beam.",
+						"fact_checked": true,
+						"question": "The Hell Razer primarily attacks by firing what kind of projectile?",
+						"wrong": [
+							"Missiles",
+							"Grenades",
+							"Rocks"
+						]
+					},
+					{
+						"correct": "Exposed back spine",
+						"difficulty": "Easy",
+						"explanation": "Exposed back spine. Its demonic corruption has pushed its spinal column outward.",
+						"fact_checked": true,
+						"question": "What unique visual feature allows you to distinguish the Hell Razer from other mid-tier demons?",
+						"wrong": [
+							"Massive horns",
+							"Long tail",
+							"Glowing eyes"
+						]
+					},
+					{
+						"correct": "Red",
+						"difficulty": "Easy",
+						"explanation": "Red. The energy beam is an intense, concentrated red light.",
+						"fact_checked": true,
+						"question": "The Hell Razer's beam weapon glows with what color energy?",
+						"wrong": [
+							"Blue",
+							"Green",
+							"Purple"
+						]
+					},
+					{
+						"correct": "Dodge or break line of sight",
+						"difficulty": "Medium",
+						"explanation": "Dodge or break line of sight. The beam is a continuous, high-damage attack that must be avoided.",
+						"fact_checked": true,
+						"question": "What action should the player take when the Hell Razer locks onto them with its beam?",
+						"wrong": [
+							"Stand still",
+							"Shoot its feet",
+							"Use the Chainsaw"
+						]
+					},
+					{
+						"correct": "Sniper Shot",
+						"difficulty": "Medium",
+						"explanation": "Sniper Shot. The Precision Bolt mod on the Heavy Assault Rifle can target and destroy its energy cannon.",
+						"fact_checked": true,
+						"question": "Which weapon is extremely effective at destroying the Hell Razer's weapon component, causing it to stagger?",
+						"wrong": [
+							"Stun Grenade",
+							"Hologram Decoy",
+							"Pistol"
+						]
+					},
+					{
+						"correct": "Thermal Energy",
+						"difficulty": "Hard",
+						"explanation": "Thermal Energy. The beam delivers intense heat damage to targets.",
+						"fact_checked": true,
+						"question": "The Hell Razer's beam weapon is described as a highly focused stream of unstable what?",
+						"wrong": [
+							"Kinetic Pulses",
+							"Cryogenic Plasma",
+							"Sonic Waves"
+						]
+					},
+					{
+						"correct": "Energy venting",
+						"difficulty": "Hard",
+						"explanation": "Energy venting. It helps dissipate the massive amounts of heat generated by its beam weapon.",
+						"fact_checked": true,
+						"question": "What is the primary function of the Hell Razer's exposed spinal structure, according to the Codex?",
+						"wrong": [
+							"Defense plating",
+							"Climbing assistance",
+							"Teleportation antenna"
+						]
+					},
+					{
+						"correct": "Possessed/Unwilling",
+						"difficulty": "Medium",
+						"explanation": "The Hell Razer is essentially a Possessed enemy that has been granted a powerful energy weapon by the UAC.",
+						"fact_checked": true,
+						"question": "In the multiplayer modes, the Hell Razer is typically categorized as a more aggressive, ranged variant of which basic campaign enemy?",
+						"wrong": [
+							"Imp",
+							"Mancubus",
+							"Revenant"
+						]
+					},
+					{
+						"correct": "Blue/Purple",
+						"difficulty": "Medium",
+						"explanation": "A blue energy shield surrounds the Hell Razer as it stabilizes its charge, reducing incoming damage.",
+						"fact_checked": true,
+						"question": "Unlike standard Possessed, the Hell Razer possesses a protective field or bubble of what color energy when charging its main attack?",
+						"wrong": [
+							"Green",
+							"Orange",
+							"Black"
+						]
+					}
+				]
+			},
+			"id": "hell_razer",
+			"meta": {
+				"date_added": "2026-02-05",
+				"entity_category": "Theme Item",
+				"full_title": "Hell Razer",
+				"theme_origin": "doom (2016)",
+				"type": "ENTITY"
+			},
+			"profiler": {
+				"vibe_tags": [
+					"Creature",
+					"Ranged",
+					"Mid-Tier"
 				]
 			}
 		}
@@ -19239,6 +21019,93 @@
 						"Charon"
 					],
 					"name": "The Bodyguards"
+				}
+			]
+		},
+		{
+			"id": "doom (2016)",
+			"synergies": [
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Doom Slayer",
+						"Super Shotgun"
+					],
+					"name": "Rip and Tear"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"UAC Facility",
+						"Samuel Hayden"
+					],
+					"name": "Corporate Interest"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Chainsaw",
+						"Imp"
+					],
+					"name": "Fuel Piñata"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Cacodaemon",
+						"Revenant"
+					],
+					"name": "Aerial Bombardment"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"Doom Slayer",
+						"Super Shotgun",
+						"Chainsaw"
+					],
+					"name": "The Slayer's Arsenal"
+				},
+				{
+					"bonus": 3500.0,
+					"items": [
+						"Mancubus",
+						"Hell Knight",
+						"Revenant"
+					],
+					"name": "Heavy Hitters"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Possessed Soldier",
+						"Hell Razor"
+					],
+					"name": "The Possessed"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Doom Slayer",
+						"Argent D'Nur"
+					],
+					"name": "Origin Story"
+				},
+				{
+					"bonus": 2000.0,
+					"items": [
+						"Baron of Hell",
+						"Cyberdemon"
+					],
+					"name": "Apex Predators"
+				},
+				{
+					"bonus": 2000,
+					"items": [
+						"Prowler",
+						"Spectre"
+					],
+					"name": "Stealth Tactics"
 				}
 			]
 		}
