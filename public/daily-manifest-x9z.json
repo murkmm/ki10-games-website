@@ -1,5 +1,5 @@
 {
-	"last_updated": 1770242271,
+	"last_updated": 1770330370,
 	"schedule": {
 		"2026-01-23": [
 			"crash_bandicoot",
@@ -422,6 +422,56 @@
 				"abraham_washington",
 				"eden",
 				"star_paladin_cross"
+			]
+		},
+		"2026-02-06": {
+			"difficulty": "Normal",
+			"mode": "STANDARD",
+			"motd": "Doom (2016): Hell on Mars",
+			"share_text": "Rip and Tear, until it is done. 🩸💀",
+			"shops": [
+				{
+					"p1": "doom_praetor_chip",
+					"p2": "doom_periph_001"
+				},
+				{
+					"p1": "doom_carnage_engine",
+					"p2": "doom_periph_002"
+				},
+				{
+					"p1": "doom_argent_focus",
+					"p2": "doom_periph_003"
+				}
+			],
+			"showcase": [
+				"doom_slayer",
+				"cacodaemon",
+				"cyberdemon"
+			],
+			"starters": [
+				"samuel_hayden",
+				"chainsaw",
+				"super_shotgun",
+				"uac_facility",
+				"argent_d'nur",
+				"imp",
+				"hell_knight",
+				"spider_mastermind",
+				"cacodaemon",
+				"pinky",
+				"revenant",
+				"mancubus",
+				"baron_of_hell",
+				"lost_soul",
+				"summoner",
+				"cyberdemon",
+				"spectre",
+				"possessed_soldier",
+				"prowler",
+				"hell_razor",
+				"unwilling",
+				"hell_razer",
+				"doom_slayer"
 			]
 		}
 	}
