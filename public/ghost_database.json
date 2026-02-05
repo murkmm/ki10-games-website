@@ -20522,6 +20522,84 @@
 			"logic_val": 750.0,
 			"name": "Enclave Logic Board",
 			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#FF0000",
+			"desc": "A firmware override extracted from the Praetor Suit, forcing optimal performance tolerances. If you can handle the intensity of true Ultra-Violence, the rewards are exponential.",
+			"effect_id": "EFF_HARD_BOOST",
+			"id": "doom_praetor_chip",
+			"keywords": [
+				"Praetor",
+				"Difficulty",
+				"Score"
+			],
+			"name": "Praetor Calibration Chip",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#AA00AA",
+			"desc": "This repurposed Hell-tech device feeds directly off the frantic pace of continuous combat, generating point bonuses as long as the slaughter does not cease. Maintain the momentum.",
+			"effect_id": "EFF_STREAK_FLAT",
+			"id": "doom_carnage_engine",
+			"keywords": [
+				"Momentum",
+				"Hell-Tech",
+				"Streak"
+			],
+			"name": "The Carnage Engine",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#00FF00",
+			"desc": "Designed to channel maximum available energy into a single stream. Sacrifices versatility for an overwhelming, singular payload. Dedication yields destructive results.",
+			"effect_id": "EFF_STACK_1",
+			"id": "doom_argent_focus",
+			"keywords": [
+				"Argent",
+				"Focus",
+				"Specialization"
+			],
+			"name": "Argent Focus Array",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#8B0000",
+			"desc": "A bio-integrated filter system designed to increase adrenaline and neural feedback the longer the user remains bathed in viscera. The Slayer maintains maximum efficiency only when momentum is unbroken.",
+			"effect_id": "EFF_STREAK_FLAT",
+			"id": "doom_periph_001",
+			"keywords": [
+				"Hell",
+				"Bio-Tech",
+				"Kinetic"
+			],
+			"name": "The Gore Shroud",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#333333",
+			"desc": "UAC experimental hardware designed to override conventional safety limiters. It offers maximum data extraction and score multiplier, but only when operating under parameters that guarantee immediate, catastrophic failure should the user fail.",
+			"effect_id": "EFF_HARD_BOOST",
+			"id": "doom_periph_002",
+			"keywords": [
+				"UAC",
+				"Overclock",
+				"Challenge"
+			],
+			"name": "Nightmare Protocol Chip (NPC-84)",
+			"type": "PERIPHERAL"
+		},
+		{
+			"color": "#99752D",
+			"desc": "A salvaged component from the old World Spear. This matrix synchronizes three separate power sources within the Praetor Suit, achieving a total power output far exceeding the sum of its parts.",
+			"effect_id": "EFF_STACK_3",
+			"id": "doom_periph_003",
+			"keywords": [
+				"Praetor",
+				"Synergy",
+				"Artifact"
+			],
+			"name": "Praetor Unification Matrix",
+			"type": "PERIPHERAL"
 		}
 	],
 	"themes": [
@@ -21100,7 +21178,7 @@
 					"name": "Apex Predators"
 				},
 				{
-					"bonus": 2000,
+					"bonus": 2000.0,
 					"items": [
 						"Prowler",
 						"Spectre"
