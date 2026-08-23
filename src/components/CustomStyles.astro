@@ -9,21 +9,23 @@ import '@fontsource-variable/inter';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    /* Black and White Palette */
-    --aw-color-primary: rgb(16 16 16); /* Black */
-    --aw-color-secondary: rgb(81 81 81); /* Dark Gray */
-    --aw-color-accent: rgb(40 40 40); /* Very Dark Gray */
+    /* Mono base, ember accent. Orange threads through the Ki10 kitten,
+       Skill Check's badge and Boop n Burn's lava, so it carries the whole slate. */
+    --aw-color-primary: rgb(194 65 12); /* Ember 700, buttons, links (4.9:1 on white) */
+    --aw-color-secondary: rgb(154 52 18); /* Ember 800, taglines, button hover (6.5:1) */
+    --aw-color-accent: rgb(234 88 12); /* Ember 600, decorative only */
 
     /* Text and Background */
     --aw-color-text-heading: rgb(0 0 0);
     --aw-color-text-default: rgb(16 16 16);
     --aw-color-text-muted: rgb(16 16 16 / 66%);
     --aw-color-bg-page: rgb(255 255 255); /* White */
+    --aw-color-bg-subtle: rgb(250 249 248);
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    --aw-color-bg-page-dark: rgb(16 16 16);
 
     ::selection {
-      background-color: #e0e0e0;
+      background-color: rgb(255 237 213);
     }
   }
 
@@ -33,19 +35,20 @@ import '@fontsource-variable/inter';
     --aw-font-serif: 'Inter Variable';
     --aw-font-heading: 'Inter Variable';
 
-    /* Inverted Black and White Palette */
-    --aw-color-primary: rgb(40 40 40);
-    --aw-color-secondary: rgb(200 200 200);
-    --aw-color-accent: rgb(229 236 246);
+    /* Same ember accent, tuned for contrast against the near-black page. */
+    --aw-color-primary: rgb(194 65 12); /* Ember 700, white button text stays 4.9:1 */
+    --aw-color-secondary: rgb(234 88 12); /* Ember 600, brighter on hover (5.9:1 on page) */
+    --aw-color-accent: rgb(251 146 60); /* Ember 400, decorative only */
 
     /* Text and Background */
     --aw-color-text-heading: rgb(247, 248, 248);
     --aw-color-text-default: rgb(229 236 246);
     --aw-color-text-muted: rgb(229 236 246 / 66%);
     --aw-color-bg-page: rgb(16 16 16); /* Black */
+    --aw-color-bg-subtle: rgb(24 24 24);
 
     ::selection {
-      background-color: #444444;
+      background-color: rgb(124 45 18);
       color: snow;
     }
   }

@@ -1,0 +1,57 @@
+---
+import { SITE } from 'astrowind:config';
+import { games, type Game } from '~/data/games';
+
+export interface Props {
+  /** When set, also emits a VideoGame entry for this game. */
+  game?: Game;
+}
+
+const { game } = Astro.props;
+
+const siteUrl = new URL(SITE.base ?? '/', SITE.site).toString().replace(/\/$/, '');
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: 'Ki10 Games',
+  url: siteUrl,
+  logo: `${siteUrl}/assets/Ki10_LOGO.png`,
+  description:
+    'Ki10 Games is a two person independent game studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn.',
+  foundingDate: '2024-04',
+  foundingLocation: { '@type': 'Place', name: 'United Kingdom' },
+  email: 'contact@ki10games.com',
+  founder: [
+    { '@type': 'Person', name: 'Mark McManus', jobTitle: 'Game Design & QA' },
+    { '@type': 'Person', name: 'Scott Hamilton', jobTitle: 'Art & World Building' },
+  ],
+  sameAs: [
+    'https://x.com/Ki10Games/',
+    'https://youtube.com/@official.ki10games',
+    'https://www.tiktok.com/@ki10.games',
+    'https://discord.gg/NqtVzsmj3A',
+    'https://steamcommunity.com/groups/Ki10Games',
+  ],
+};
+
+const toVideoGame = (entry: Game) => ({
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  '@id': `${siteUrl}/projects/${entry.slug}#game`,
+  name: entry.title,
+  url: `${siteUrl}/projects/${entry.slug}`,
+  description: entry.pitch,
+  genre: entry.genre,
+  gamePlatform: entry.platforms,
+  publisher: { '@id': `${siteUrl}/#organization` },
+  author: { '@id': `${siteUrl}/#organization` },
+  ...(entry.links.length > 0 ? { sameAs: entry.links.map((link) => link.href) } : {}),
+});
+
+// The homepage carries the studio plus its catalogue; a game page carries just that game.
+const blocks = game ? [organization, toVideoGame(game)] : [organization, ...games.map(toVideoGame)];
+---
+
+{blocks.map((block) => <script type="application/ld+json" set:html={JSON.stringify(block)} is:inline />)}

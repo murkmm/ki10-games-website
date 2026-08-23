@@ -37,7 +37,10 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      // Mailchimp confirmation pages are noindex — keep them out of the sitemap too.
+      filter: (page) => !/\/(thankyou|welcome)\/?$/.test(page),
+    }),
     mdx(),
     icon({
       include: {

@@ -8,17 +8,17 @@ site:
 metadata:
   title:
     default: Ki10 Games
-    template: '%s — Ki10 Games'
-  description: 'An independent game development studio dedicated to creating high-quality, memorable player experiences.'
+    template: '%s | Ki10 Games'
+  description: 'Ki10 Games is a two person independent game studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn.'
   robots:
     index: true
     follow: true
   openGraph:
     site_name: Ki10 Games
     images:
-      - url: '~/assets/images/KIT-temp-logo.jpg'
+      - url: '~/assets/images/og-ki10-games.png'
         width: 1200
-        height: 628
+        height: 630
     type: website
   twitter:
     handle: '@Ki10Games'
@@ -65,6 +65,11 @@ analytics:
   vendors:
     googleAnalytics:
       id: null # or "G-XXXXXXXXXX"
+    plausible:
+      # Cookieless and GDPR friendly, so no cookie banner needed.
+      # Sign up at plausible.io, add ki10games.com, then put the domain here.
+      domain: null # or "ki10games.com"
+      src: 'https://plausible.io/js/script.js'
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

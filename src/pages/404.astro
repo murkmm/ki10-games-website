@@ -1,24 +1,44 @@
 ---
-import Layout from '~/layouts/Layout.astro';
-import { getHomePermalink } from '~/utils/permalinks';
+import Layout from '~/layouts/PageLayout.astro';
 
-const title = `Error 404`;
+const metadata = {
+  title: 'Page not found',
+  robots: { index: false },
+};
+
+const suggestions = [
+  { text: 'Our games', href: '/projects' },
+  { text: 'The devlog', href: '/devlog' },
+  { text: 'About the studio', href: '/about' },
+  { text: 'Get in touch', href: '/contact' },
+];
 ---
 
-<Layout metadata={{ title }}>
-  <section class="flex items-center h-full p-16">
-    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-      <div class="max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
-        </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
-        <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
-        </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
-      </div>
-    </div>
+<Layout metadata={metadata}>
+  <section class="mx-auto max-w-2xl px-4 py-20 text-center md:px-6 md:py-28">
+    <p class="font-heading text-7xl font-bold tracking-tighter text-primary md:text-8xl dark:text-accent">
+      <span class="sr-only">Error</span>404
+    </p>
+
+    <h1 class="mt-6 font-heading text-3xl font-bold tracking-tight md:text-4xl">This page went out of bounds.</h1>
+
+    <p class="mt-4 text-lg text-muted">
+      The page you're after doesn't exist any more, or maybe never did. Here's where everything else lives:
+    </p>
+
+    <ul class="mt-8 flex flex-wrap justify-center gap-3">
+      {
+        suggestions.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="inline-block rounded-full border border-gray-300 px-5 py-2 text-sm font-medium transition hover:border-primary hover:text-primary dark:border-white/20 dark:hover:border-accent dark:hover:text-accent"
+            >
+              {item.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>

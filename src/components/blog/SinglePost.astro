@@ -9,6 +9,7 @@ import { getPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
 
 import type { Post } from '~/types';
+import { getAuthorByName } from '~/data/authors';
 
 export interface Props {
   post: Post;
@@ -16,6 +17,8 @@ export interface Props {
 }
 
 const { post, url } = Astro.props;
+
+const authorPage = getAuthorByName(post.author);
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
@@ -34,7 +37,13 @@ const { post, url } = Astro.props;
               <>
                 {' '}
                 · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-                <span class="inline-block">{post.author}</span>
+                {authorPage ? (
+                  <a href={`/author/${authorPage.slug}`} class="inline-block hover:text-primary dark:hover:text-accent">
+                    {post.author}
+                  </a>
+                ) : (
+                  <span class="inline-block">{post.author}</span>
+                )}
               </>
             )
           }
@@ -91,7 +100,7 @@ const { post, url } = Astro.props;
       }
     </header>
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
+      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-accent prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
     >
       <slot />
     </div>

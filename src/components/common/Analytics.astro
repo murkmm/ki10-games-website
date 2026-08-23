@@ -11,3 +11,15 @@ import { ANALYTICS } from 'astrowind:config';
     />
   ) : null
 }
+
+{
+  /* Cookieless alternative. Set `analytics.vendors.plausible.domain` in config.yaml to switch it on. */
+  ANALYTICS?.vendors?.plausible?.domain ? (
+    <script
+      is:inline
+      defer
+      data-domain={String(ANALYTICS.vendors.plausible.domain)}
+      src={String(ANALYTICS.vendors.plausible.src ?? 'https://plausible.io/js/script.js')}
+    />
+  ) : null
+}

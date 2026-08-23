@@ -1,16 +1,137 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { Image } from 'astro:assets';
+import markPhoto from '~/assets/images/team-mark.webp';
+import scottPhoto from '~/assets/images/team-scott.webp';
 
 const metadata = {
   title: 'Team',
+  description:
+    'Meet the two people behind Ki10 Games: Mark McManus on design and QA, Scott Hamilton on art and world building.',
 };
+
+const team = [
+  {
+    name: 'Mark McManus',
+    role: 'Design & QA',
+    photo: markPhoto,
+    slug: 'mark',
+    bio: [
+      'Mark is the QA veteran of the two of us, with nearly a decade spent making sure other people’s games are as polished as they are fun. Turns out that’s excellent training for spotting everything wrong with your own.',
+      'On Ki10 projects he handles game design and systems. The camera rig, the quest and map tracking, the moment to moment feel of a thing. He also writes most of the devlogs, including the one about how a childhood injury and a copy of Crash Bandicoot started all of this.',
+    ],
+    focus: ['Game design', 'Systems & tools', 'QA and polish', 'Devlogs'],
+  },
+  {
+    name: 'Scott Hamilton',
+    role: 'Art & World Building',
+    photo: scottPhoto,
+    slug: 'scott',
+    bio: [
+      'Scott is the lead artist and world builder, and the reason any of this is worth looking at. Characters, environments, logos, UI. If it made it onto the screen, it came through him first.',
+      'He’s also the source of most of the good ideas that turn up disguised as scope creep. The creature garden in KIT started life as one of his "just hear me out" pitches, and it stayed.',
+    ],
+    focus: ['Character & concept art', 'Environment art', '3D modelling', 'Logo & UI design'],
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <section class="max-w-3xl mx-auto py-16 px-4 text-center">
-    <h1 class="text-4xl font-bold mb-4">👾 Meet the Team (Eventually) 👾</h1>
-    <p class="text-lg text-gray-600 dark:text-gray-300">
-      Our brave heroes are still choosing their character classes. Stay tuned to meet the Ki10 Games squad!
-    </p>
+  <HeroText
+    tagline="The team"
+    title="Two people, one studio"
+    subtitle="We've been friends for an incredible amount of time. Ki10 Games is what happened when we finally decided to do something about it."
+  />
+
+  <section class="mx-auto max-w-5xl px-4 pb-8 md:px-6">
+    <div class="grid gap-10 md:grid-cols-2">
+      {
+        team.map((member) => (
+          <article class="rounded-2xl border border-gray-200 p-7 dark:border-white/10">
+            <div class="flex items-center gap-4">
+              <Image
+                src={member.photo}
+                alt={member.name}
+                width={64}
+                height={64}
+                loading="eager"
+                class="h-16 w-16 flex-shrink-0 rounded-full object-cover ring-2 ring-primary/40 dark:ring-accent/40"
+              />
+              <div>
+                <h2 class="font-heading text-2xl font-bold leading-tight tracking-tight">{member.name}</h2>
+                <p class="text-sm font-semibold uppercase tracking-wide text-secondary">{member.role}</p>
+              </div>
+            </div>
+
+            {member.bio.map((paragraph) => (
+              <p class="mt-4 text-muted">{paragraph}</p>
+            ))}
+
+            <a
+              href={`/author/${member.slug}`}
+              class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline dark:text-accent"
+            >
+              Devlogs by {member.name.split(' ')[0]}
+              <Icon name="tabler:arrow-right" class="h-4 w-4" />
+            </a>
+
+            <ul class="mt-5 flex flex-wrap gap-2">
+              {member.focus.map((item) => (
+                <li class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-default dark:bg-white/10">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
   </section>
+
+  <section class="mx-auto max-w-5xl px-4 py-12 md:px-6 md:py-16">
+    <div class="rounded-2xl bg-gray-50 p-8 dark:bg-white/[0.04] md:p-10">
+      <h2 class="font-heading text-2xl font-bold tracking-tight">How we work</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-3">
+        <div>
+          <Icon name="tabler:users" class="h-7 w-7 text-primary dark:text-accent" />
+          <h3 class="mt-3 font-bold leading-tight">Everyone does everything</h3>
+          <p class="mt-1.5 text-sm text-muted">
+            Two people can't afford strict job titles. We both end up with a hand in most areas of development, and we
+            both learn the parts we're rubbish at.
+          </p>
+        </div>
+        <div>
+          <Icon name="tabler:target-arrow" class="h-7 w-7 text-primary dark:text-accent" />
+          <h3 class="mt-3 font-bold leading-tight">Ship the small thing</h3>
+          <p class="mt-1.5 text-sm text-muted">
+            Skill Check exists because we decided to finish something instead of perfecting it. It taught us more than
+            another year of prototyping ever would have.
+          </p>
+        </div>
+        <div>
+          <Icon name="tabler:writing" class="h-7 w-7 text-primary dark:text-accent" />
+          <h3 class="mt-3 font-bold leading-tight">Write it all down</h3>
+          <p class="mt-1.5 text-sm text-muted">
+            The devlogs cover the mistakes as well as the milestones. It keeps us honest, and it's a lot more useful to
+            read than a highlight reel.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Get in touch', href: '/contact', icon: 'tabler:mail' },
+      { text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
+    ]}
+  >
+    <Fragment slot="title">Say hello</Fragment>
+    <Fragment slot="subtitle">
+      Press, partnerships, or you just want to tell us a trivia answer was wrong. We read everything.
+    </Fragment>
+  </CallToAction>
 </Layout>

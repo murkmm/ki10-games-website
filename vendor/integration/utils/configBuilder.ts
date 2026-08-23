@@ -75,6 +75,12 @@ export interface AnalyticsConfig {
       id?: string;
       partytown?: boolean;
     };
+    /** Cookieless, GDPR-friendly alternative. Set `domain` to enable. */
+    plausible: {
+      domain?: string;
+      /** Self-hosted instances override this. */
+      src?: string;
+    };
   };
 }
 
@@ -186,6 +192,10 @@ const getAnalytics = (config: Config) => {
       googleAnalytics: {
         id: undefined,
         partytown: true,
+      },
+      plausible: {
+        domain: undefined,
+        src: 'https://plausible.io/js/script.js',
       },
     },
   };

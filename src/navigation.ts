@@ -11,7 +11,8 @@ export const headerData = {
       href: getPermalink('/about'),
     },
     {
-      text: 'Projects',
+      // Route stays /projects so existing links and shares keep working.
+      text: 'Games',
       href: getPermalink('/projects'),
     },
     {
@@ -24,14 +25,33 @@ export const headerData = {
     },
     {
       text: 'Contact',
-      href: getPermalink('/contact'), // 👈 This is the new line
+      href: getPermalink('/contact'),
     },
   ],
   actions: [], // This is empty to hide the header button
 };
 
 export const footerData = {
-  links: [], // Kept empty for a cleaner footer
+  links: [
+    {
+      title: 'Games',
+      links: [
+        { text: 'Skill Check', href: getPermalink('/projects/skill-check') },
+        { text: 'Boop n Burn', href: getPermalink('/projects/boop-n-burn') },
+        { text: 'KIT: Knight in Training', href: getPermalink('/projects/kit-knight-in-training') },
+      ],
+    },
+    {
+      title: 'Studio',
+      links: [
+        { text: 'About', href: getPermalink('/about') },
+        { text: 'Team', href: getPermalink('/team') },
+        { text: 'Devlog', href: getBlogPermalink() },
+        { text: 'Contact', href: getPermalink('/contact') },
+        { text: 'Press kit', href: getPermalink('/press') },
+      ],
+    },
+  ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },

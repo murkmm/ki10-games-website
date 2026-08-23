@@ -1,13 +1,2 @@
-# Root directory headers
 /*
   Access-Control-Allow-Origin: *
-
-# The folder where your game lives
-/skillcheck/*
-  Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Embedder-Policy: require-corp
-
-# The specific WASM file (Must match the URL path exactly)
-/skillcheck/index.wasm
-  Content-Encoding: gzip
-  Content-Type: application/wasm

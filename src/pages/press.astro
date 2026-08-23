@@ -1,0 +1,193 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import StatusBadge from '~/components/games/StatusBadge.astro';
+import { games } from '~/data/games';
+
+const metadata = {
+  title: 'Press Kit',
+  description:
+    'Press kit for Ki10 Games. Studio fact sheet, logos, screenshots and game information for Skill Check, Boop n Burn and KIT.',
+};
+
+const studioFacts = [
+  { label: 'Studio', value: 'Ki10 Games' },
+  { label: 'Founded', value: 'April 2024' },
+  { label: 'Based in', value: 'United Kingdom' },
+  { label: 'Team size', value: '2' },
+  { label: 'Games released', value: '1' },
+  { label: 'Website', value: 'ki10games.com' },
+];
+
+/** Press assets are copied into /public/press so their URLs stay stable. */
+const pressAssets: Record<string, { label: string; href: string }[]> = {
+  'skill-check': [
+    { label: 'Question in play', href: '/press/skill-check/skillcheck-question.webp' },
+    { label: 'Card selection', href: '/press/skill-check/skillcheck-card-select.webp' },
+    { label: 'Collection', href: '/press/skill-check/skillcheck-collection.webp' },
+  ],
+  'boop-n-burn': [
+    { label: 'Shipping yard arena', href: '/press/boop-n-burn/bnb-shipyard.webp' },
+    { label: 'Ruined temple', href: '/press/boop-n-burn/bnb-ruins.webp' },
+    { label: 'Arcade', href: '/press/boop-n-burn/bnb-arcade.webp' },
+    { label: 'Warehouse', href: '/press/boop-n-burn/bnb-warehouse.webp' },
+    { label: 'Desert coliseum', href: '/press/boop-n-burn/bnb-coliseum.webp' },
+  ],
+};
+
+const logos = [
+  { label: 'Primary logo (dark on light)', href: '/press/logos/Ki10_LOGO.png' },
+  { label: 'Reversed logo (light on dark)', href: '/press/logos/Ki10_LOGO_Light.png' },
+  { label: 'Share card, 1200×630', href: '/press/logos/ki10-share-card.png' },
+  { label: 'Team photo (Mark and Scott)', href: '/press/logos/ki10-team.webp' },
+];
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Press kit"
+    title="Everything you need to write about us"
+    subtitle="Fact sheets, logos and screenshots, free to use in any coverage of Ki10 Games. If you need something that isn't here, just ask!"
+  />
+
+  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
+    <div class="rounded-2xl border border-gray-200 p-6 md:p-8 dark:border-white/10">
+      <h2 class="font-heading text-2xl font-bold tracking-tight">Studio fact sheet</h2>
+      <dl class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          studioFacts.map((fact) => (
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">{fact.label}</dt>
+              <dd class="mt-1 font-medium">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <p class="mt-8 text-muted">
+        Ki10 Games is a two person independent studio in the UK, founded by Mark McManus (design and QA) and Scott
+        Hamilton (art and world building). The name comes from the studio goal, which is to sell ten copies. We don't
+        stick to one genre either: our released game is a daily trivia app and our current project is a party brawler.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="mailto:business@ki10games.com"
+          class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-secondary"
+        >
+          <Icon name="tabler:mail" class="h-4 w-4" />
+          business@ki10games.com
+        </a>
+        <a
+          href="mailto:contact@ki10games.com"
+          class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary dark:border-white/20 dark:hover:border-accent dark:hover:text-accent"
+        >
+          <Icon name="tabler:news" class="h-4 w-4" />
+          Press enquiries
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
+    <h2 class="mb-6 font-heading text-2xl font-bold tracking-tight">Logos</h2>
+    <ul class="grid gap-4 sm:grid-cols-3">
+      {
+        logos.map((logo) => (
+          <li>
+            <a
+              href={logo.href}
+              download
+              class="flex h-full items-center gap-3 rounded-xl border border-gray-200 p-4 transition hover:border-primary dark:border-white/10 dark:hover:border-accent"
+            >
+              <Icon name="tabler:download" class="h-5 w-5 flex-shrink-0 text-primary dark:text-accent" />
+              <span class="text-sm font-medium">{logo.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    games.map((game) => (
+      <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
+        <div class="rounded-2xl border border-gray-200 p-6 md:p-8 dark:border-white/10">
+          <div class="mb-4 flex flex-wrap items-center gap-3">
+            <StatusBadge status={game.status} />
+            <span class="text-xs font-medium uppercase tracking-wide text-muted">{game.genre}</span>
+          </div>
+
+          <h2 class="font-heading text-2xl font-bold tracking-tight">{game.title}</h2>
+          <p class="mt-2 font-medium text-secondary">{game.tagline}</p>
+          <p class="mt-4 text-muted">{game.pitch}</p>
+
+          <dl class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Status</dt>
+              <dd class="mt-1 font-medium">{game.releaseLine}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Platforms</dt>
+              <dd class="mt-1 font-medium">{game.platforms.join(' · ')}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Engine</dt>
+              <dd class="mt-1 font-medium">{game.engine}</dd>
+            </div>
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Page</dt>
+              <dd class="mt-1 font-medium">
+                <a href={`/projects/${game.slug}`} class="text-primary hover:underline dark:text-accent">
+                  /projects/{game.slug}
+                </a>
+              </dd>
+            </div>
+          </dl>
+
+          {game.links.length > 0 && (
+            <p class="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              {game.links.map((link) => (
+                <a href={link.href} class="text-primary hover:underline dark:text-accent">
+                  {link.label}
+                </a>
+              ))}
+            </p>
+          )}
+
+          {pressAssets[game.slug] && (
+            <div class="mt-8">
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-muted">Screenshots</h3>
+              <ul class="mt-3 flex flex-wrap gap-2">
+                {pressAssets[game.slug].map((asset) => (
+                  <li>
+                    <a
+                      href={asset.href}
+                      download
+                      class="inline-flex items-center gap-1.5 rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium transition hover:border-primary hover:text-primary dark:border-white/20 dark:hover:border-accent dark:hover:text-accent"
+                    >
+                      <Icon name="tabler:download" class="h-3.5 w-3.5" />
+                      {asset.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="mx-auto max-w-5xl px-4 pb-16 md:px-6">
+    <div class="rounded-2xl bg-gray-50 p-6 md:p-8 dark:bg-white/[0.04]">
+      <h2 class="font-heading text-xl font-bold tracking-tight">Terms of use</h2>
+      <p class="mt-3 text-muted">
+        You're welcome to use the logos, screenshots and text on this page in articles, videos and any other coverage of
+        Ki10 Games, without asking us first. Please just don't alter the logos or present our games as your own work.
+        Monetised video coverage is absolutely fine and very much encouraged.
+      </p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,103 @@
+---
+publishDate: 2026-08-23T12:00:00Z
+author: Mark
+title: 'Devlog #10: Catching Up'
+excerpt: 'Long time no speak! Since the last devlog we released Skill Check on Android and the web, made the hard call to put KIT on hold, and started building a floor is lava party brawler called Boop n Burn.'
+image: '../../assets/images/bnb-shipyard.webp'
+cardImage: '../../assets/images/bnb-shipyard.webp'
+category: Devlog
+tags:
+  - devlog
+  - progress report
+  - Skill Check
+  - Boop n Burn
+  - KIT
+metadata:
+  canonical: https://ki10games.com/devlog-10-catching-up
+---
+
+import { Image } from 'astro:assets';
+
+import skillcheck from '../../assets/images/skillcheck-question.webp';
+import boopnburn from '../../assets/images/bnb-shipyard.webp';
+import kitgrass from '../../assets/images/kit-grass.jpg';
+
+Long time no speak!
+
+The last devlog went up back in December, and the plan was absolutely to keep them coming. That, uh, didn't happen. Rather than quietly pretend there wasn't an eight month gap, I figured I'd just tell you what we've been up to in it. Because we have actually been busy!
+
+Three things happened. We released a game, we put another one down, and we started a third.
+
+### **We Released Skill Check!**
+
+The big one first: **Skill Check is out.** It's a daily trivia game about the games you grew up with. One fresh set of questions every day, covering franchises, studios, and the kind of deep cuts that start arguments in group chats. It's free on Android and free in your browser.
+
+<figure class="flex flex-col items-center">
+  <Image src={skillcheck} alt="A Skill Check trivia question in play" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    A question in play. Answer before that bar runs out!
+  </figcaption>
+</figure>
+
+I want to be honest about why this exists, because it wasn't the plan.
+
+In Devlog #8 I laid out a lovely roadmap to a public KIT demo within six months. We did not hit it. What we hit instead was the thing every two person team runs into eventually: KIT is a **3D action adventure**, and 3D action adventures are _enormous_. Every system we finished uncovered two more we hadn't started. The scope wasn't wrong exactly, it was just far bigger than two blokes with day jobs could realistically drag over a finish line.
+
+So we made a decision to build something small and **actually ship it**. Not a prototype, not a vertical slice, an actual finished thing on an actual store that actual strangers could download.
+
+Skill Check taught us more in a few months than another year of prototyping would have. Store listings, build pipelines, backend and auth, live daily content, crash reporting, and the enormous gap between _"it works on my machine"_ and _"it works on a stranger's four year old Android phone"_. None of that is stuff you can learn by reading about it, and all of it makes the next game easier.
+
+It's also ended up with nearly **1,600 cartridges** to collect, which I genuinely did not expect to become the bit people got most invested in.
+
+### **KIT Is On Hold (But Not Cancelled!)**
+
+This is the harder part to write.
+
+**KIT is paused.** Not abandoned, not cancelled, not quietly shelved and never spoken of again. Paused. And I want to be straight with you about why.
+
+<figure class="flex flex-col items-center">
+  <Image src={kitgrass} alt="KIT standing in the grass" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Still one of my favourite shots we've taken. He'll be back.
+  </figcaption>
+</figure>
+
+Nine devlogs went into this game. The camera system, the quest tracker, the creature garden, a genuinely unreasonable amount of grass. A lot of it works and I'm still really proud of it. But finishing KIT _properly_ needs a level of sustained time that we just can't give it right now, and shipping it badly would be far worse than pausing it well.
+
+So the work is saved, documented and waiting. The devlogs stay up, because the process was worth writing down whether or not the game comes out this year. And when we do come back to it, we'll come back as a team that has actually shipped something, which is a very different team to the one that started it.
+
+If you were following along for KIT specifically: sorry, and thank you for sticking around. He's not gone.
+
+### **And Now: Boop n Burn**
+
+Which brings me to what we're actually building.
+
+**Boop n Burn** is a floor is lava party brawler. A lobby of up to sixteen players drops into an arena, and the only rule is don't touch the lava. There's no health bar and nothing to chip away at. You shove people, they go in, and the kill feed cheerfully announces exactly who did it to them.
+
+<figure class="flex flex-col items-center">
+  <Image
+    src={boopnburn}
+    alt="Players scrambling across the shipping yard arena in Boop n Burn"
+    class="max-w-full rounded-md"
+  />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The shipping yard at sunset. The crown means someone's winning, which mostly means everyone's about to gang up on
+    them.
+  </figcaption>
+</figure>
+
+Shoving costs **stamina**, so going for a push is an actual decision rather than a button you mash. There's free for all if you want everyone against everyone, and team modes if you'd rather have someone to share the blame with. Matches earn XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of relocating people who'd rather not be relocated).
+
+There are five arenas so far: a shipping yard at sunset, a warehouse, an arcade with alarmingly pink lava, a ruined temple, and a desert coliseum.
+
+The reason this is the right project for us right now is scope. Boop n Burn is **a game about one interaction done well**. No dialogue system, no quest tracker, no save file stuffed with collectibles. Just a shove, a floor, and a lobby full of people who want you gone. That's something two people can actually finish.
+
+It's built in **Godot**, and we're targeting **PC, Nintendo Switch and Xbox Series**.
+
+### **The Plan From Here**
+
+We're aiming to have a demo ready for **Steam Next Fest in February 2027**. There's no Steam page yet, that's the next job, and I'll shout about it here the second there's something to wishlist.
+
+I'd also like to get back to writing these a bit more regularly. I'm not going to promise weekly, because I promised that before and you can all see how that went! But "whenever there's something worth showing" is a bar we can actually clear, and there's going to be plenty worth showing.
+
+Thanks for still being here.

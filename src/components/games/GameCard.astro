@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components';
+import GameArt from './GameArt.astro';
+import StatusBadge from './StatusBadge.astro';
+import type { Game } from '~/data/games';
+
+export interface Props {
+  game: Game;
+  loading?: 'eager' | 'lazy';
+}
+
+const { game, loading = 'lazy' } = Astro.props;
+const href = `/projects/${game.slug}`;
+---
+
+<article
+  class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-200 hover:-translate-y-1 hover:border-gray-300 hover:shadow-xl dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25"
+>
+  <GameArt
+    title={game.title}
+    gradient={game.gradient}
+    image={game.card}
+    alt={`Key art for ${game.title}`}
+    loading={loading}
+    ratio="aspect-[16/10]"
+    class="rounded-none"
+  />
+
+  <div class="flex flex-1 flex-col p-6">
+    <div class="mb-3 flex flex-wrap items-center gap-2">
+      <StatusBadge status={game.status} />
+      <span class="text-xs font-medium uppercase tracking-wide text-muted">{game.genre}</span>
+    </div>
+
+    <h3 class="font-heading text-xl font-bold leading-tight tracking-tight">
+      {/* The stretched link makes the whole card clickable without nesting interactive elements. */}
+      <a href={href} class="after:absolute after:inset-0 after:content-['']">{game.title}</a>
+    </h3>
+
+    <p class="mt-2 text-muted">{game.tagline}</p>
+
+    <p class="mt-4 flex items-center gap-1.5 text-sm font-medium text-muted">
+      <Icon name="tabler:device-gamepad-2" class="h-4 w-4 flex-shrink-0" />
+      {game.platforms.join(' · ')}
+    </p>
+
+    <p class="mt-auto pt-5 text-sm font-semibold text-primary dark:text-accent">
+      {game.status === 'released' ? 'Play it' : 'Read more'}
+      <span class="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+    </p>
+  </div>
+</article>

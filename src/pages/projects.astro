@@ -1,17 +1,60 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import GameCard from '~/components/games/GameCard.astro';
+import { games } from '~/data/games';
 
 const metadata = {
-  title: 'Projects',
+  title: 'Games',
+  description:
+    'Every game Ki10 Games has shipped, is building, or has parked for later: Skill Check, Boop n Burn and KIT.',
 };
+
+const active = games.filter((game) => game.status !== 'on-hold');
+const parked = games.filter((game) => game.status === 'on-hold');
 ---
 
 <Layout metadata={metadata}>
-  <section class="max-w-3xl mx-auto py-16 px-4 text-center">
-    <h1 class="text-4xl font-bold mb-4">🚧 Projects Coming Soon 🚧</h1>
-    <p class="text-lg text-gray-600 dark:text-gray-300">
-      We’re still working hard (and sometimes playing games) while cooking up our projects. Check back later to see what
-      we’ve been building!
-    </p>
+  <HeroText
+    tagline="Games"
+    title="Everything we've made, and everything we're making"
+    subtitle="One shipped, one in the oven, and one we fully intend to come back to. We don't stick to one genre. If it sounds fun to us, we'll build it."
+  />
+
+  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
+    <div class="grid gap-8 sm:grid-cols-2">
+      {active.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
+    </div>
   </section>
+
+  {
+    parked.length > 0 && (
+      <section class="mx-auto max-w-5xl px-4 pb-16 md:px-6">
+        <div class="mb-8 border-t border-gray-200 pt-12 dark:border-white/10">
+          <h2 class="font-heading text-2xl font-bold tracking-tight">On the shelf</h2>
+          <p class="mt-2 max-w-2xl text-muted">
+            Projects we've paused rather than abandoned. The devlogs stay up, and so does the intention to finish them.
+          </p>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2">
+          {parked.map((game) => (
+            <GameCard game={game} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
+      { text: 'Get in touch', href: '/contact', icon: 'tabler:mail' },
+    ]}
+  >
+    <Fragment slot="title">Follow along as we build</Fragment>
+    <Fragment slot="subtitle">
+      We write up the wins, the rewrites and the mistakes as we go. No marketing gloss, just what we actually got done.
+    </Fragment>
+  </CallToAction>
 </Layout>

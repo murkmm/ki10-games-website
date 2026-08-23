@@ -1,109 +1,134 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Content from '~/components/widgets/Content.astro';
+import Button from '~/components/ui/Button.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Features from '~/components/widgets/Features.astro'; // For the team section
+import Features from '~/components/widgets/Features.astro';
+import GameCard from '~/components/games/GameCard.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { games } from '~/data/games';
 
 const metadata = {
-  title: 'Ki10 Games — Hail The Kitten Overlord!',
+  title: 'Ki10 Games, a two person game studio in the UK',
   ignoreTitleTemplate: true,
+  description:
+    'Ki10 Games is a two person independent studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <Hero image={{ src: '~/assets/images/your-game-art.png', alt: 'Ki10 Games - Key Art' }}>
-    <Fragment slot="title">
-      <span class="text-accent dark:text-white">Hail The Kitten Overlord!</span>
-    </Fragment>
-    <Fragment slot="subtitle">
-      Ki10 Games is a small independent game development studio in the UK, dedicated to creating games that are
-      exciting, memorable, and that we personally want to play.
-    </Fragment>
-  </Hero>
+  <StructuredData />
 
-  <Content
+  <section class="relative overflow-hidden">
+    {/* A soft ember glow behind the type, so the text-led hero still has some heat to it. */}
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div
+        class="absolute left-1/2 top-0 h-[36rem] w-[72rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-gradient-to-br from-amber-400/25 via-orange-500/20 to-rose-500/10 blur-3xl dark:from-amber-500/15 dark:via-orange-600/15 dark:to-rose-600/10"
+      >
+      </div>
+    </div>
+
+    <div class="relative mx-auto max-w-5xl px-4 pb-10 pt-16 text-center md:px-6 md:pb-14 md:pt-24">
+      <p class="text-sm font-bold uppercase tracking-widest text-secondary">Independent studio · United Kingdom</p>
+
+      <h1 class="mt-5 font-heading text-4xl font-bold leading-tight tracking-tighter md:text-6xl">
+        Two friends making the games <span class="text-primary dark:text-accent">we</span> want to play.
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-xl text-muted">
+        We're a two person studio with a very modest goal, and a name to match: sell ten copies. We don't chase trends
+        and we don't stick to one genre. If it sounds fun to us, we'll build it.
+      </p>
+
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/projects/boop-n-burn" icon="tabler:flame">See what we're building</Button>
+        <Button href="/projects/skill-check" icon="tabler:device-gamepad-2">Play Skill Check</Button>
+      </div>
+
+      <p class="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-muted">
+        <Icon name="tabler:point-filled" class="h-4 w-4 text-emerald-500" />
+        <span><strong class="font-semibold text-default">Skill Check</strong> is out now on Android and web</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-12 pt-4 md:px-6 md:pb-16 md:pt-6">
+    <div class="mb-10 flex flex-wrap items-baseline justify-between gap-3">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-secondary">Our games</p>
+        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, one in the oven</h2>
+      </div>
+      <a href="/projects" class="text-sm font-semibold text-primary hover:underline dark:text-accent">
+        All games &rarr;
+      </a>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {games.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
+    </div>
+  </section>
+
+  <Features
+    id="studio"
     tagline="About Ki10"
-    title="Our Grand Plan? To Sell 10 Copies."
+    title="Our grand plan? To sell ten copies."
+    subtitle="Anything past that is a bonus. It keeps us honest about why we're doing this."
+    columns={3}
     items={[
       {
-        title: 'Friends First, Devs Second',
+        title: 'Friends first, devs second',
         description:
-          'Ki10 Games was founded by Scott & Mark after years of friendship and a shared passion for creating games. We figured it was finally time to make it official and begin our first project together.',
+          'Ki10 Games was founded by Scott and Mark after years of friendship and a shared love of making games. We figured it was finally time to make it official.',
+        icon: 'tabler:users',
       },
       {
-        title: 'Jack of All Trades',
+        title: 'Jack of all trades',
         description:
-          'As a two-person team, we both have an active role in most areas of development. Our goal is to work together to unlock the "Jack of All Trades" achievement in life!',
+          'There are two of us, so we both end up with a hand in most areas of development. The goal is to unlock the "Jack of All Trades" achievement in life.',
+        icon: 'tabler:tools',
       },
       {
-        title: 'No Genre Is Safe',
+        title: 'No genre is safe',
         description:
-          "Our vision isn't to chase trends or make the most money; it's to make games we love, regardless of genre. If it sounds fun to us, we'll build it.",
+          'A daily trivia game and a floor is lava party brawler have almost nothing in common, and honestly that’s the point.',
+        icon: 'tabler:dice',
       },
     ]}
-    image={{
-      src: '~/assets/images/studio-image.png',
-      alt: 'Ki10 Games Development',
-    }}
-  />
-
-  <Content
-    isReversed
-    tagline="Our First Official Project"
-    title="KIT - Knight in Training"
-    items={[
-      {
-        title: 'Action-Adventure',
-        description:
-          'Explore a vibrant world, solve puzzles, and battle foes in a classic action-adventure experience.',
-      },
-      {
-        title: 'Narrative Driven',
-        description: 'Uncover a compelling story as you help KIT on their journey to become a true knight.',
-      },
-      {
-        title: 'Currently In Development',
-        description: 'Follow our dev log for the latest updates on our progress!',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/kit-gameplay-screenshot.png',
-      alt: 'Screenshot of KIT - Knight in Training',
-    }}
   />
 
   <BlogLatestPosts
-    title="Latest From the Dev Log"
-    information="Here you'll find the latest updates on the development of our projects, a purr-fect collection of our progress."
+    title="Latest from the devlog"
+    information="We write up the wins, the rewrites and the mistakes as we go. No marketing gloss, just what we actually got done."
   />
 
   <Features
     id="team"
-    tagline="Meet The Team"
-    title="The Minds Behind the Madness"
-    subtitle="Meet the devs behind the meow-gic."
+    tagline="Meet the team"
+    title="The minds behind the madness"
+    columns={2}
     items={[
       {
         title: 'Mark McManus',
         description:
-          'The QA Veteran and Game Designer of the duo, with nearly a decade of experience making sure games are as polished as they are fun.',
-        icon: 'tabler:user-edit', // Placeholder icon
+          'The QA veteran and game designer of the two of us, with nearly a decade spent making sure games are as polished as they are fun.',
+        icon: 'tabler:user-edit',
+        callToAction: { text: 'More about the team', href: '/team' },
       },
       {
         title: 'Scott Hamilton',
         description:
-          'The Lead Artist and World Builder of the team, bringing the quirky ideas and kitten-filled worlds to life.',
-        icon: 'tabler:user-edit', // Placeholder icon
+          'The lead artist and world builder, who turns all the daft ideas into things you can actually look at.',
+        icon: 'tabler:palette',
+        callToAction: { text: 'More about the team', href: '/team' },
       },
     ]}
   />
 
   <CallToAction>
-    <Fragment slot="title"> Follow Our Journey </Fragment>
+    <Fragment slot="title">Follow our journey</Fragment>
     <Fragment slot="subtitle">
-      Be the first to hear about new updates, release dates, and exclusive behind-the-scenes content from Ki10 Games.
+      Be the first to hear about new updates, release dates and behind the scenes bits from Ki10 Games.
     </Fragment>
 
     <Fragment slot="actions">
@@ -117,6 +142,7 @@ const metadata = {
         >
           <div id="mc_embed_signup_scroll">
             <div class="mc-field-group">
+              <label for="mce-EMAIL" class="sr-only">Email address</label>
               <input
                 type="email"
                 name="EMAIL"

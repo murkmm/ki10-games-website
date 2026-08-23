@@ -1,51 +1,97 @@
 ---
-import Features from '~/components/widgets/Features.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import teamTogether from '~/assets/images/team-together.webp';
 
 const metadata = {
   title: 'About us',
+  description:
+    'Ki10 Games is a two person independent studio in the UK, founded by Mark McManus and Scott Hamilton. Our goal is to sell ten copies.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <Hero tagline="About Ki10 Games">
-    <Fragment slot="title"> Founded by friends, fueled by a passion for creating games we want to play. </Fragment>
+  <HeroText
+    tagline="About Ki10 Games"
+    title="Founded by friends, fuelled by a stubborn refusal to pick a genre"
+    subtitle="We're a small independent studio based in the UK. Our goal isn't to chase trends, it's to explore all sorts of different games with a quality first mindset, and to actually finish them."
+  />
 
-    <Fragment slot="subtitle">
-      Ki10 Games is a small independent game development studio based in the UK. Our goal isn't to chase trends, but to
-      explore all different types of games with a quality-first mindset.
-    </Fragment>
-  </Hero>
-
-  <Features
-    title="Who We Are"
-    subtitle="Our story is simple: we've been friends for an incredible amount of time, and with a shared passion for creating games, we thought it was finally time to come together and build something of our own."
-    columns={2}
+  <Content
+    title="Who we are"
+    subtitle="Our story is simple: we've been friends for an incredible amount of time, and with a shared love of making games, we thought it was finally time to build something of our own."
+    image={{ src: teamTogether, alt: 'Mark McManus and Scott Hamilton, the two people behind Ki10 Games' }}
     items={[
       {
         title: 'Mark McManus',
         description:
-          'The QA Veteran and Game Designer of the duo, with nearly a decade of experience making sure games are as polished as they are fun.',
+          'The QA veteran and game designer of the two of us, with nearly a decade spent making sure games are as polished as they are fun.',
         icon: 'tabler:user-edit',
       },
       {
         title: 'Scott Hamilton',
         description:
-          'The Lead Artist and World Builder of the team, bringing the quirky ideas and kitten-filled worlds to life.',
+          'The lead artist and world builder, who turns all the daft ideas into things you can actually look at.',
         icon: 'tabler:palette',
+      },
+    ]}
+    callToAction={{ text: 'Meet the team', href: '/team', icon: 'tabler:arrow-right' }}
+  />
+
+  <Steps
+    title="Where we've got to"
+    tagline="The story so far"
+    items={[
+      {
+        title: 'We start with KIT',
+        description:
+          'Our first serious project. A 3D action adventure about a kitten earning a knighthood, and nine devlogs deep we had a camera system, a quest tracker and an awful lot of grass.',
+        icon: 'tabler:cat',
+      },
+      {
+        title: 'We learn to finish things',
+        description:
+          'KIT taught us that a two person team needs to ship something before it can ship everything. So we scoped right down and picked a project we could actually get over the line.',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'Skill Check ships',
+        description:
+          'A daily gaming trivia game, out on Android and the web. Our first real launch, and a complete playable thing rather than another folder full of prototypes.',
+        icon: 'tabler:circle-check',
+      },
+      {
+        title: 'Boop n Burn is next',
+        description:
+          'A floor is lava party brawler for PC, Switch and Xbox Series, with a demo planned for Steam Next Fest. KIT is parked for now, but definitely not forgotten.',
+        icon: 'tabler:flame',
       },
     ]}
   />
 
   <Stats
-    title="Our Philosophy"
+    title="Our philosophy"
     stats={[
-      { title: 'Goal', amount: 'Sell 10 Copies' },
-      { title: 'Focus', amount: 'Player Experience' },
-      { title: 'Team Size', amount: '2' },
-      { title: 'Motto', amount: 'Hail The Kitten!' },
+      { title: 'The goal', amount: '10 copies' },
+      { title: 'Focus', amount: 'Player experience' },
+      { title: 'Team size', amount: '2' },
+      { title: 'Games shipped', amount: '1' },
     ]}
   />
+
+  <CallToAction
+    actions={[
+      { variant: 'primary', text: 'See our games', href: '/projects', icon: 'tabler:device-gamepad-2' },
+      { text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
+    ]}
+  >
+    <Fragment slot="title">Ten copies and counting</Fragment>
+    <Fragment slot="subtitle">
+      If you fancy being one of them, our games are over here and our development notes are over there.
+    </Fragment>
+  </CallToAction>
 </Layout>
