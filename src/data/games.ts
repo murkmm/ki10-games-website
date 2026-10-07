@@ -16,6 +16,7 @@ import skillcheckCard from '~/assets/images/skillcheck-card.webp';
 import skillcheckQuestion from '~/assets/images/skillcheck-question.webp';
 import skillcheckCollection from '~/assets/images/skillcheck-collection.webp';
 import skillcheckCardSelect from '~/assets/images/skillcheck-card-select.webp';
+import skillcheckMenu from '~/assets/images/skillcheck-menu.webp';
 
 export type GameStatus = 'released' | 'in-development' | 'on-hold';
 
@@ -129,11 +130,11 @@ export const games: Game[] = [
     title: 'Skill Check',
     genre: 'Daily trivia',
     status: 'released',
-    tagline: 'A new gaming trivia question every single day.',
+    tagline: 'A fresh run of gaming trivia every single day.',
     pitch:
-      'Skill Check is a daily trivia game about the games you grew up with. One fresh set of questions every day, covering the franchises, studios and deep cuts that gamers actually argue about.',
+      'Skill Check is a daily trivia game about the games you grew up with. Every day brings a new themed run, from Age of Empires II to The Sims, covering the franchises, studios and deep cuts that gamers actually argue about.',
     body: [
-      'It’s built for the two minutes you have with a coffee. Open it, take the day’s questions, and find out whether you really know as much about your favourite franchise as you think you do. Then come back tomorrow for a new set.',
+      'It’s built for the few minutes you have with a coffee. Pick your cards, answer the questions they unlock, and find out whether you really know as much about your favourite franchise as you think you do. Stack a matching set for a big score bonus, chase a better rank than yesterday, then come back tomorrow for a new run.',
       'Skill Check was our first proper release as a studio. A complete, shipped, playable thing rather than another project living forever in a folder. It’s out now on Android and free to play in any browser.',
     ],
     engine: 'Godot',
@@ -141,10 +142,16 @@ export const games: Game[] = [
     releaseLine: 'Out now on Android and in your browser',
     features: [
       {
-        title: 'A new set every day',
+        title: 'A new run every day',
         description:
-          'Questions refresh daily, so there’s always a reason to come back, and always a new way to embarrass yourself.',
+          'Every day has its own theme, so there’s always a reason to come back, and always a new way to embarrass yourself.',
         icon: 'tabler:calendar-repeat',
+      },
+      {
+        title: 'Play your cards',
+        description:
+          'The cards you pick set both the difficulty and the score on offer. Stack a matching set and the bonus gets very big, very quickly.',
+        icon: 'tabler:cards',
       },
       {
         title: 'Franchise deep cuts',
@@ -153,15 +160,10 @@ export const games: Game[] = [
         icon: 'tabler:brain',
       },
       {
-        title: 'Two minutes a day',
-        description: 'Short by design. Skill Check is meant to fit into a coffee break, not eat your whole evening.',
-        icon: 'tabler:clock-play',
-      },
-      {
         title: 'Nearly 1,600 cartridges',
         description:
           'Every character, level and item you answer correctly on joins a collection for you to master. Free on Android and in the browser.',
-        icon: 'tabler:cards',
+        icon: 'tabler:device-gamepad-2',
       },
     ],
     links: [
@@ -180,10 +182,11 @@ export const games: Game[] = [
     gradient: 'from-cyan-400 via-cyan-600 to-fuchsia-700',
     hero: skillcheckHero,
     card: skillcheckCard,
-    galleryRatio: 'aspect-[453/806]',
+    galleryRatio: 'aspect-[9/16]',
     gallery: [
+      { image: skillcheckMenu, caption: 'Today’s run, today’s cards, and yesterday’s rank to beat.' },
+      { image: skillcheckCardSelect, caption: 'A matching set stacked up. That’s a lot of points riding on a castle.' },
       { image: skillcheckQuestion, caption: 'A question in play. Answer before that bar runs out!' },
-      { image: skillcheckCardSelect, caption: 'Cards set the difficulty, and the score you stand to win.' },
       { image: skillcheckCollection, caption: 'Nearly 1,600 cartridges to hunt down and master. No pressure.' },
     ],
   },

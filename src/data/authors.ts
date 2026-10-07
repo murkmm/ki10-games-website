@@ -19,7 +19,7 @@ export const authors: Author[] = [
     slug: 'mark',
     name: 'Mark',
     role: 'Design & QA',
-    bio: 'Mark is the QA veteran of the two of us, with nearly a decade spent making sure other people’s games are as polished as they are fun. On Ki10 projects he handles game design and systems, and writes most of the devlogs.',
+    bio: 'Mark is the QA veteran of the two of us, with over nine years spent making sure other people’s games are as polished as they are fun. On Ki10 projects he handles game design, programming and systems, and writes most of the devlogs.',
     focus: ['Game design', 'Systems & tools', 'QA and polish', 'Devlogs'],
     photo: markPhoto,
   },
