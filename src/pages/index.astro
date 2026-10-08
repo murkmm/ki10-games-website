@@ -8,6 +8,8 @@ import Features from '~/components/widgets/Features.astro';
 import GameCard from '~/components/games/GameCard.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 import { featuredGames } from '~/data/games';
+import { friends } from '~/data/friends';
+import { Image } from 'astro:assets';
 
 const metadata = {
   title: 'Ki10 Games, a two person game studio in the UK',
@@ -124,6 +126,36 @@ const metadata = {
       },
     ]}
   />
+
+  <section id="friends" class="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+    <div class="mb-10 text-center">
+      <p class="text-sm font-bold uppercase tracking-widest text-secondary">Friends of Ki10</p>
+      <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">Friends of Ki10 Games</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted">Studios and people we know and like. Go and say hello.</p>
+    </div>
+
+    <ul class="flex flex-wrap justify-center gap-6">
+      {
+        friends.map((friend) => (
+          <li>
+            <a
+              href={friend.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex w-64 flex-col items-center gap-4 rounded-2xl border border-gray-200 p-6 text-center transition hover:border-primary hover:shadow-md dark:border-white/10 dark:hover:border-accent"
+            >
+              <Image src={friend.logo} alt={`${friend.name} logo`} height={112} class="h-28 w-auto" loading="lazy" />
+              <span class="font-heading text-lg font-bold">{friend.name}</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline dark:text-accent">
+                Visit their site
+                <Icon name="tabler:external-link" class="h-4 w-4" />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
   <CallToAction>
     <Fragment slot="title">Follow along</Fragment>
