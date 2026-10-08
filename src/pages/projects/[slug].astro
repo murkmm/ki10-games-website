@@ -50,7 +50,8 @@ const cta = ctaCopy[game.status];
 const metadata = {
   title: game.title,
   description: game.tagline,
-  openGraph: { type: 'website' },
+  // The game's art makes a better link preview than the studio card. findImage accepts ImageMetadata here.
+  openGraph: { type: 'website', images: game.hero ? [{ url: game.hero as unknown as string }] : undefined },
 };
 ---
 
@@ -150,14 +151,29 @@ const metadata = {
         <div class:list={['grid gap-6 sm:grid-cols-2', game.galleryRatio ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
           {game.gallery.map((shot) => (
             <figure>
-              <Image
-                src={shot.image}
-                alt={shot.caption}
-                loading="lazy"
-                widths={[400, 800]}
-                sizes="(max-width: 640px) 100vw, 400px"
-                class:list={['w-full rounded-xl object-cover shadow-md', game.galleryRatio ?? 'aspect-video']}
-              />
+              {'video' in shot ? (
+                <video
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="metadata"
+                  aria-label={shot.caption}
+                  class:list={['w-full rounded-xl object-cover shadow-md', game.galleryRatio ?? 'aspect-video']}
+                >
+                  <source src={`/videos/${shot.video}.mp4`} type="video/mp4" />
+                  <source src={`/videos/${shot.video}.webm`} type="video/webm" />
+                </video>
+              ) : (
+                <Image
+                  src={shot.image}
+                  alt={shot.caption}
+                  loading="lazy"
+                  widths={[400, 800]}
+                  sizes="(max-width: 640px) 100vw, 400px"
+                  class:list={['w-full rounded-xl object-cover shadow-md', game.galleryRatio ?? 'aspect-video']}
+                />
+              )}
               <figcaption class="mt-2 text-sm text-muted">{shot.caption}</figcaption>
             </figure>
           ))}

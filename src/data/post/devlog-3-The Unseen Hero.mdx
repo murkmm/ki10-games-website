@@ -17,11 +17,6 @@ metadata:
   canonical: https://ki10games.com/devlog-3-the-unseen-hero
 ---
 
-import { Image } from 'astro:assets';
-import cameraSwitchGif from '../../assets/images/kit-3d-camera-switch.webp';
-import camera2dGif from '../../assets/images/kit-2d-camera-switch.webp';
-import puzzleRevealGif from '../../assets/images/kit-puzzle-reveal.webp';
-
 Hey everyone, Mark here to talk about one of my favourite parts of development: the camera! Scott did an amazing job last week showing the art and soul of our hero, Kit. This week, we're talking about the unseen hero of any 3D platformer the system that lets you see the world we're building.
 
 ### The Foundation: A Tale of Two Cameras
@@ -33,11 +28,18 @@ But for our tighter, more linear challenge levels, we wanted that classic, guide
 The magic happens with a custom `CameraManager` script that uses trigger zones in the level to switch smoothly between all kinds of different cameras by changing their priorities on the fly.
 
 <figure class="flex flex-col items-center">
-  <Image
-    src={cameraSwitchGif}
-    alt="A GIF showing the camera switching from a player-controlled 3rd person view to a guided dolly path."
+  <video
     class="max-w-full rounded-md"
-  />
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A GIF showing the camera switching from a player-controlled 3rd person view to a guided dolly path."
+  >
+    <source src="/videos/kit-3d-camera-switch.mp4" type="video/mp4" />
+    <source src="/videos/kit-3d-camera-switch.webm" type="video/webm" />
+  </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
     Switching between a Dolly path to a 3rd person camera when entering a new section.
   </figcaption>
@@ -56,11 +58,18 @@ This is the feature I'm most proud of so far. To really mix up the gameplay and 
 Our triggers can tell the `CameraManager` to activate a special orthographic camera and lock Kit's movement to a 2D plane. We plan to use this for unique puzzle rooms, hidden secrets, and special challenge gauntlets. It completely changes the feel of the game and opens up so many new design possibilities.
 
 <figure class="flex flex-col items-center">
-  <Image
-    src={camera2dGif}
-    alt="A GIF showing the camera switching from 3D to a 2D side-scrolling view"
+  <video
     class="max-w-full rounded-md"
-  />
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A GIF showing the camera switching from 3D to a 2D side-scrolling view"
+  >
+    <source src="/videos/kit-2d-camera-switch.mp4" type="video/mp4" />
+    <source src="/videos/kit-2d-camera-switch.webm" type="video/webm" />
+  </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
     Our camera system switching smoothly into a 2.5D perspective!
   </figcaption>
@@ -73,11 +82,18 @@ Because our camera switcher is so flexible, we can use it for more than just pla
 We've also tied it into our interaction system. Hitting a switch or talking to an NPC can temporarily switch to a different camera to reveal a newly opened door or highlight a puzzle element across the map. It's a powerful storytelling tool that makes the world feel more dynamic.
 
 <figure class="flex flex-col items-center">
-  <Image
-    src={puzzleRevealGif}
-    alt="A GIF showing a switch being hit, and the camera panning to a newly opened door"
+  <video
     class="max-w-full rounded-md"
-  />
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A GIF showing a switch being hit, and the camera panning to a newly opened door"
+  >
+    <source src="/videos/kit-puzzle-reveal.mp4" type="video/mp4" />
+    <source src="/videos/kit-puzzle-reveal.webm" type="video/webm" />
+  </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
     Using the camera system to reveal a falling bridge.
   </figcaption>
