@@ -28,6 +28,10 @@ The server turns the random ID into a crew name such as "SILENT FOX 482", so oth
 
 You can switch the leaderboard off in **Options → Sound & Data → Daily leaderboard**. We may delete old leaderboard days at any time.
 
+## Ad timing
+
+When ads are on, the game also asks the same server how often ads may appear. That request sends no ID and no game data.
+
 ## Advertising
 
 The game shows ads through **Google AdMob**. To show ads, measure them and prevent fraud, Google may collect and use your device's advertising ID, your IP address and information about how you interact with ads.
