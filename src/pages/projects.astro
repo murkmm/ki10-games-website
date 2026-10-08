@@ -8,7 +8,7 @@ import { games } from '~/data/games';
 const metadata = {
   title: 'Games',
   description:
-    'Every game Ki10 Games has shipped, is building, or has parked for later: Skill Check, Boop n Burn and KIT.',
+    'Every game Ki10 Games has shipped, is building, or has parked for later: Skill Check, Boop n Burn, The One Bullet Job and KIT.',
 };
 
 const active = games.filter((game) => game.status !== 'on-hold');
@@ -19,11 +19,11 @@ const parked = games.filter((game) => game.status === 'on-hold');
   <HeroText
     tagline="Games"
     title="Everything we've made, and everything we're making"
-    subtitle="One shipped, one in the oven, and one we fully intend to come back to. We don't stick to one genre. If it sounds fun to us, we'll build it."
+    subtitle="One shipped, two in the oven, and one we fully intend to come back to. We don't stick to one genre. If it sounds fun to us, we'll build it."
   />
 
   <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
-    <div class="grid gap-8 sm:grid-cols-2">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {active.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
     </div>
   </section>

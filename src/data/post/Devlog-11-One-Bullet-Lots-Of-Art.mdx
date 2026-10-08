@@ -1,0 +1,81 @@
+---
+publishDate: 2026-10-08T12:00:00Z
+author: Mark
+title: 'Devlog #11: One Bullet, Lots of Art'
+excerpt: 'Skill Check finally has art on its cards, and we have a brand new game to show you: The One Bullet Job, a turn based heist puzzle for your phone.'
+image: '../../assets/images/skillcheck-hero.webp'
+cardImage: '../../assets/images/skillcheck-hero.webp'
+category: Devlog
+tags:
+  - devlog
+  - progress report
+  - Skill Check
+  - The One Bullet Job
+metadata:
+  canonical: https://ki10games.com/devlog-11-one-bullet-lots-of-art
+---
+
+import { Image } from 'astro:assets';
+
+import skillcheckMenu from '../../assets/images/skillcheck-menu.webp';
+import skillcheckCollection from '../../assets/images/skillcheck-collection.webp';
+
+Look at that, a devlog only six weeks after the last one. Personal best!
+
+Two things to talk about this time. Skill Check has had a serious glow up, and there's a new game on the go.
+
+### **Skill Check Got Its Art**
+
+When Skill Check launched, the cartridges in your collection were, let's be honest, grey boxes with names on. Functional, but not exactly something you'd want to collect.
+
+September fixed that. I spent a big chunk of the month on an art pass, and now very nearly every one of the **1,594 cartridges** has proper artwork on it. Characters, items, levels, the lot. The whole game moved over to a new purple look at the same time. Every daily run is themed, so one day you're answering questions about Age of Empires II and the next it's The Sims Day.
+
+<figure class="flex flex-col items-center">
+  <Image src={skillcheckMenu} alt="The Skill Check main menu on an Age of Empires II day" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    An Age of Empires II day. Yes, that is a Wololo card.
+  </figcaption>
+</figure>
+
+It sounds like a cosmetic change, and it is, but it completely changes how the collection feels. Opening it used to be a list. Now it's actually a collection, and scrolling through the ones you've mastered is weirdly satisfying.
+
+<figure class="flex flex-col items-center">
+  <Image
+    src={skillcheckCollection}
+    alt="The Skill Check collection screen, full of illustrated cartridges"
+    class="max-w-xs rounded-md"
+  />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    From grey boxes to this. Much better.
+  </figcaption>
+</figure>
+
+If you haven't played in a while, it's still free in your browser and on Android, and today's run is waiting for you.
+
+### **Introducing: The One Bullet Job**
+
+Now for the new one.
+
+**The One Bullet Job** is a turn based heist puzzle for your phone. Every level is a small room with some cash in it, a few guards, and an exit. Your job is to grab the money and get out before your moves run out. You usually have exactly **one bullet**.
+
+Each turn you can dash up to three tiles, wait for a patrol to move along, or shoot. Then the guards take their turn. The important bit is that the guards are **completely predictable**. Their sightlines are drawn on the board and their next steps are shown before you commit, so there's no luck involved. When you get caught (and you will), it's because the plan was wrong, not because the game rolled a dice.
+
+Escape with some cash for one star, all of it for two, and do it within par for three. Undo is free and retries are instant, which is very dangerous for the phrase "just one more go".
+
+The campaign is split into chapters, and each one adds a single new idea: shutters you open by shooting a relay, guards who only look one way, sentries who turn every round, laser gates that switch on and off, and air vents that pop you out somewhere else entirely. There's also a fresh heist every day. And there might be a few secrets hiding in there too. I'm not saying anything else about that.
+
+### **Why This Game?**
+
+Skill Check taught us that small and finished beats big and unfinished. The One Bullet Job is built around the same idea. One screen, one thumb, a few minutes a room, and a rule set simple enough to explain in a sentence but deep enough to keep surprising you.
+
+It's also the most "me" thing we've made. After nine years in QA, a game where every outcome is deterministic and every room has to be **provably beatable** is basically my happy place. Every room is run through a solver before it goes in, and that solver is checked against a second, completely separate one, so if the two ever disagree I know something's wrong. The tooling can generate a thousand candidate rooms in a couple of minutes, but a solvable room isn't the same thing as a fun one. The campaign rooms are hand picked, and the real test is watching actual people play them.
+
+The name took a while too. It started life as _Last Round_, which is a fine name for a pub. **The One Bullet Job** says what the game actually is.
+
+### **What's Next**
+
+The big job now is getting it into people's hands on real phones. A desktop build that plays nicely is one thing, but small screens, fat thumbs and dodgy old Android devices are where you find out what's actually wrong. Ask me how I know.
+
+I'll share proper screenshots and footage as soon as they're ready, and the game has its own page on the site now, which will fill up as we go.
+
+Thanks for reading!

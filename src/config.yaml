@@ -9,7 +9,7 @@ metadata:
   title:
     default: Ki10 Games
     template: '%s | Ki10 Games'
-  description: 'Ki10 Games is a two person independent game studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn.'
+  description: 'Ki10 Games is a two person independent game studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn and the heist puzzle The One Bullet Job.'
   robots:
     index: true
     follow: true

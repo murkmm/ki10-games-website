@@ -38,6 +38,7 @@ export const footerData = {
       links: [
         { text: 'Skill Check', href: getPermalink('/projects/skill-check') },
         { text: 'Boop n Burn', href: getPermalink('/projects/boop-n-burn') },
+        { text: 'The One Bullet Job', href: getPermalink('/projects/the-one-bullet-job') },
         { text: 'KIT: Knight in Training', href: getPermalink('/projects/kit-knight-in-training') },
       ],
     },

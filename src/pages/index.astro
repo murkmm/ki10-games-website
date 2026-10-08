@@ -7,13 +7,13 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features from '~/components/widgets/Features.astro';
 import GameCard from '~/components/games/GameCard.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
-import { games } from '~/data/games';
+import { featuredGames } from '~/data/games';
 
 const metadata = {
   title: 'Ki10 Games, a two person game studio in the UK',
   ignoreTitleTemplate: true,
   description:
-    'Ki10 Games is a two person independent studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn.',
+    'Ki10 Games is a two person independent studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn and the heist puzzle The One Bullet Job.',
 };
 ---
 
@@ -57,7 +57,7 @@ const metadata = {
     <div class="mb-10 flex flex-wrap items-baseline justify-between gap-3">
       <div>
         <p class="text-sm font-bold uppercase tracking-widest text-secondary">Our games</p>
-        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, one in the oven</h2>
+        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, two in the oven</h2>
       </div>
       <a href="/projects" class="text-sm font-semibold text-primary hover:underline dark:text-accent">
         All games &rarr;
@@ -65,7 +65,7 @@ const metadata = {
     </div>
 
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {games.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
+      {featuredGames.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
     </div>
   </section>
 
@@ -91,7 +91,7 @@ const metadata = {
       {
         title: 'No genre is safe',
         description:
-          'A daily trivia game and a floor is lava party brawler have almost nothing in common, and honestly that’s the point.',
+          'A daily trivia game, a floor is lava party brawler and a turn based heist puzzle have almost nothing in common, and honestly that’s the point.',
         icon: 'tabler:dice',
       },
     ]}

@@ -126,6 +126,63 @@ export const games: Game[] = [
     ],
   },
   {
+    slug: 'the-one-bullet-job',
+    title: 'The One Bullet Job',
+    genre: 'Heist puzzle',
+    status: 'in-development',
+    tagline: 'Grab the cash, dodge the guards, and make your one bullet count.',
+    pitch:
+      'The One Bullet Job is a turn based heist puzzle for your phone. Every room is a tiny bank job: grab the cash, slip past the guards and reach the exit before your moves run out. You usually get one bullet, so spend it wisely.',
+    body: [
+      'Every move counts. Dash up to three tiles at a time, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. The guards are completely predictable. Their sightlines are drawn on the board and their next steps are shown before you commit, so every time you get caught, you could have seen it coming. That’s the fun of it.',
+      'Grab one bag of cash to open the exit and earn a star. Take every bag for two, and do it within par for three. Undo is free and retries are instant, so “just one more go” is very easy to say and very hard to stop saying.',
+      'The jobs are split into chapters, and each one teaches a new trick: shutters you open by shooting a relay, guards who only see what’s in front of them, sentries who turn every round, laser gates that switch on and off, and air vents that pop you out somewhere else entirely. Every room is checked by a solver before it goes in, so every single one can be beaten. There may also be a few secrets hiding in there.',
+    ],
+    engine: 'Godot',
+    platforms: ['Android'],
+    releaseLine: 'In development for Android',
+    features: [
+      {
+        title: 'One bullet. Choose wisely.',
+        description:
+          'Most jobs give you a single shot. Use it on the guard in your way, or save it for the one you can’t get around.',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'Guards you can read',
+        description:
+          'Sightlines and next steps are always on the board. No dice rolls, no hidden timers, just plans that work or don’t.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Three stars a job',
+        description:
+          'Escape with some cash, escape with all of it, then do it within par. Easy to finish, hard to master.',
+        icon: 'tabler:star',
+      },
+      {
+        title: 'A new trick every chapter',
+        description:
+          'Relays and shutters, directional guards, turning sentries, laser gates and air vents, introduced one at a time.',
+        icon: 'tabler:puzzle',
+      },
+      {
+        title: 'A fresh heist every day',
+        description: 'A daily job alongside the campaign, so there’s always something new to break into.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: 'Free undo, instant retries',
+        description: 'Made a mess of it? Step back a move or start again in a tap. No waiting, no penalty.',
+        icon: 'tabler:arrow-back-up',
+      },
+    ],
+    links: [],
+    gradient: 'from-amber-300 via-yellow-600 to-stone-900',
+    needsArt: true,
+    devlogTag: 'the-one-bullet-job',
+  },
+  {
     slug: 'skill-check',
     title: 'Skill Check',
     genre: 'Daily trivia',
