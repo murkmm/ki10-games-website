@@ -17,6 +17,16 @@ import skillcheckQuestion from '~/assets/images/skillcheck-question.webp';
 import skillcheckCollection from '~/assets/images/skillcheck-collection.webp';
 import skillcheckCardSelect from '~/assets/images/skillcheck-card-select.webp';
 import skillcheckMenu from '~/assets/images/skillcheck-menu.webp';
+import objHero from '~/assets/images/obj-hero.webp';
+import objCard from '~/assets/images/obj-card.webp';
+import objHome from '~/assets/images/obj-home.webp';
+import objPlayVault from '~/assets/images/obj-play-vault.webp';
+import objPlayShot from '~/assets/images/obj-play-shot.webp';
+import objPlayLasers from '~/assets/images/obj-play-lasers.webp';
+import objPlayVents from '~/assets/images/obj-play-vents.webp';
+import objPlayWatch from '~/assets/images/obj-play-watch.webp';
+import objResult from '~/assets/images/obj-result.webp';
+import objOutfit from '~/assets/images/obj-outfit-preview.webp';
 
 export type GameStatus = 'released' | 'in-development' | 'on-hold';
 
@@ -126,6 +136,75 @@ export const games: Game[] = [
     ],
   },
   {
+    slug: 'the-one-bullet-job',
+    title: 'The One Bullet Job',
+    genre: 'Heist puzzle',
+    status: 'in-development',
+    tagline: 'Get in. Get the cash. Get out.',
+    pitch:
+      'The One Bullet Job is a turn based heist puzzle for your phone. Every job is a small room: steal the cash, slip past the guards and escape with the loot before your moves run out. You usually get one bullet, so make it count.',
+    body: [
+      'The game is played on a grid, one turn at a time. Dash up to three tiles, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. Then the guards take their turn. They follow set routes and their sightlines are drawn right there on the board, so when you get caught, you could have seen it coming. That’s the fun of it.',
+      'Grab one bag of cash to open the exit and earn a star. Take every bag for two, and do it within par for three. Undo is free and retries are instant, so “just one more go” is very easy to say and very hard to stop saying.',
+      'There are 120 jobs across 20 chapters, and each chapter adds a new trick: shutters you open by shooting a relay, guards who only see what’s in front of them, sentries who turn every round, laser gates and air vents. Every job is checked by a solver before it goes in, so every single one can be beaten. On top of that there’s a fresh heist every day, and a crew of masks and outfits you earn just by playing.',
+    ],
+    engine: 'Godot',
+    platforms: ['Android'],
+    releaseLine: 'Coming soon to Android',
+    features: [
+      {
+        title: 'One bullet. Make it count.',
+        description:
+          'Most jobs give you a single shot. Use it on the guard in your way, or save it for the one you can’t get around.',
+        icon: 'tabler:target-arrow',
+      },
+      {
+        title: 'Read the patrols',
+        description:
+          'Every guard follows a route, and their sightlines are always on the board. No dice rolls, just plans that work or don’t.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Three stars a job',
+        description:
+          'Escape with some cash, escape with all of it, then do it within par. Easy to finish, hard to master.',
+        icon: 'tabler:star',
+      },
+      {
+        title: '120 jobs, 20 chapters',
+        description:
+          'Relays and shutters, directional guards, turning sentries, laser gates, vents and keycards, introduced one at a time.',
+        icon: 'tabler:puzzle',
+      },
+      {
+        title: 'A new heist every day',
+        description: 'A daily job alongside the campaign, so there’s always something new to break into.',
+        icon: 'tabler:calendar-event',
+      },
+      {
+        title: '20 masks, 10 outfits',
+        description: 'Kit out your crew with stars you earn by playing. Cosmetic only, and never sold.',
+        icon: 'tabler:mask',
+      },
+    ],
+    links: [],
+    gradient: 'from-amber-300 via-yellow-600 to-stone-900',
+    hero: objHero,
+    card: objCard,
+    galleryRatio: 'aspect-[9/16]',
+    gallery: [
+      { image: objHome, caption: 'Pick up where you left off, or have a go at the daily heist.' },
+      { image: objPlayVault, caption: 'Plan every move. The cyan tiles are where you can dash.' },
+      { image: objPlayShot, caption: 'One bullet, one guard down. Hope it was the right one.' },
+      { image: objPlayLasers, caption: 'Laser gates switch on and off, so timing is everything.' },
+      { image: objPlayVents, caption: 'Air vents pop you out somewhere the guards aren’t looking.' },
+      { image: objPlayWatch, caption: 'Read the patrols. Every guard follows a route you can learn.' },
+      { image: objResult, caption: 'Three stars and a first clear. Now do it again with less.' },
+      { image: objOutfit, caption: 'The Don. Pinstripes and a buttonhole. This is business.' },
+    ],
+    devlogTag: 'the-one-bullet-job',
+  },
+  {
     slug: 'skill-check',
     title: 'Skill Check',
     genre: 'Daily trivia',
@@ -194,17 +273,17 @@ export const games: Game[] = [
     slug: 'kit-knight-in-training',
     title: 'KIT: Knight in Training',
     genre: '3D action adventure',
-    status: 'on-hold',
+    status: 'in-development',
     tagline: 'A kitten with a sword, a world to explore, and a knighthood to earn.',
     pitch:
       'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A vibrant world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
     body: [
       'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it genuinely works and we’re still proud of it.',
-      'It’s on hold rather than cancelled. Boop n Burn has our attention for now, but KIT is a world we fully intend to come back to. The devlogs stay up in the meantime, because the process was worth writing down either way.',
+      'And now it’s back. We put KIT on hold to go and learn how to actually finish games, and having done that, we’re rebuilding it in Godot. The core mechanics are already feeling good in the new engine, they just need more fine tuning, and work has started on the first level. The screenshots below are from the original Unity version.',
     ],
-    engine: 'Unity',
+    engine: 'Godot (ported from Unity)',
     platforms: ['PC'],
-    releaseLine: 'Paused, but we plan to come back to it',
+    releaseLine: 'Being rebuilt in Godot',
     features: [
       {
         title: 'A camera that shifts with you',
