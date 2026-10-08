@@ -16,7 +16,6 @@ metadata:
 ---
 
 import { Image } from 'astro:assets';
-import prototypeGif from '../../assets/images/kit-highlight.webp';
 import characterModelImage from '../../assets/images/kit-new-model.jpeg';
 
 Hey everyone, and welcome to the first official post from Ki10 Games.
@@ -55,7 +54,18 @@ Thankfully, he's on the mend now, but that experience lit a fire under us. It wa
 That’s how **KIT – Knight in Training** came to be. We both grew up loving 3D platformers. My first ever game was Crash Bandicoot and Scott has a deep love for the Jak and Daxter series. So we asked ourselves: What if we blended the tight, corridor-style platforming of Crash with the more open, explorable areas of Jak and Daxter?
 
 <figure class="flex flex-col items-center">
-  <Image src={prototypeGif} alt="A GIF of our greybox prototype in action" class="max-w-full rounded-md" />
+  <video
+    class="max-w-full rounded-md"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A GIF of our greybox prototype in action"
+  >
+    <source src="/videos/kit-highlight.mp4" type="video/mp4" />
+    <source src="/videos/kit-highlight.webm" type="video/webm" />
+  </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
     Testing the core mechanics in our greybox prototype.
   </figcaption>

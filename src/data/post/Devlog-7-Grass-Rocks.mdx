@@ -19,7 +19,6 @@ metadata:
 
 import { Image } from 'astro:assets';
 
-import blenderGrassGif from '../../assets/images/blender-grass.gif';
 import rockGround from '../../assets/images/RockGround.PNG';
 import unityGrass from '../../assets/images/UnityGrass.PNG';
 import blenderGrass from '../../assets/images/BlenderGrass.PNG';
@@ -54,11 +53,18 @@ I've tested several approaches, including:
 It’s been fun learning all of these different approaches and exploring which method would work best for the player experience! With the grass, it has been really important to not only bring environments to life with beautiful styles but to also ensure the game is **well optimised** and not sacrificing things like framerate for the sake of having something pretty to look at!
 
 <figure class="flex flex-col items-center">
-  <Image
-    src={blenderGrassGif}
-    alt="GIF showing the motion and placement of the Blender-created grass"
+  <video
     class="max-w-full rounded-md"
-  />
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="GIF showing the motion and placement of the Blender-created grass"
+  >
+    <source src="/videos/blender-grass.mp4" type="video/mp4" />
+    <source src="/videos/blender-grass.webm" type="video/webm" />
+  </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
     A preview of the grass motion.
   </figcaption>

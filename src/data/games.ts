@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
 
 import kitGrass from '~/assets/images/kit-grass.jpg';
-import kitHighlight from '~/assets/images/kit-highlight.webp';
 import kitGodotVista from '~/assets/images/kit-godot-vista.webp';
 import kitGodotVillage from '~/assets/images/kit-godot-village.webp';
 import kitGodotLeap from '~/assets/images/kit-godot-leap.webp';
@@ -64,7 +63,8 @@ export interface Game {
   gradient: string;
   hero?: ImageMetadata;
   card?: ImageMetadata;
-  gallery?: { image: ImageMetadata; caption: string }[];
+  /** Each shot is an image, or a looping clip from /public/videos (give the name without an extension). */
+  gallery?: ({ image: ImageMetadata; caption: string } | { video: string; caption: string })[];
   /** Tailwind aspect class for gallery shots. Portrait games need their own. */
   galleryRatio?: string;
   /** Set when the game has no real art yet, so the UI can say so honestly. */
@@ -321,7 +321,7 @@ export const games: Game[] = [
       { image: kitGodotVista, caption: 'Briarwatch, the first level, rebuilt in Godot. Placeholder models for now.' },
       { image: kitGodotVillage, caption: 'Briarwatch Green, under the old oath tree. (Godot, placeholder models)' },
       { image: kitGodotLeap, caption: 'A big leap out of the long grass. (Godot, placeholder models)' },
-      { image: kitHighlight, caption: 'Platforming across the floating islands.' },
+      { video: 'kit-highlight', caption: 'Platforming across the floating islands. (Unity)' },
       { image: kitGrass, caption: 'The grass and terrain pass, made in Blender.' },
       { image: kitMapQuest, caption: 'The map and quest UI, keeping track of the Paw Prints of Prowess.' },
       { image: kitFinalModel, caption: 'KIT’s final character model.' },
