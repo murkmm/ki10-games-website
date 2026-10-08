@@ -90,7 +90,7 @@ export const games: Game[] = [
       'Boop n Burn drops a lobby of up to sixteen players into an arena with one rule: don’t touch the lava. Shove, bump and boop everyone else in, survive the round, then do it all again. Usually it’s first to three wins.',
     body: [
       'There’s no health bar and nothing to chip away at. One shove at the wrong moment and you’re gone, watching from the sidelines while the kill feed happily tells everyone exactly who did it to you. Rounds are short and losing is funny, so nobody ever wants to stop at one.',
-      'Shoving costs stamina, so going for a push is an actual decision and not just a button you mash. There’s free for all if you want everyone against everyone, and team modes if you’d rather have someone to blame. Matches earn you XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of moving people who’d rather not be moved). So far there are five arenas: a shipping yard at sunset, a warehouse, an arcade, a ruined temple and a desert coliseum.',
+      'Shoving costs stamina, so you have to think about when to push instead of just mashing the button. There’s free for all if you want everyone against everyone, and team modes if you’d rather have someone to blame. Matches earn you XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of moving people who’d rather not be moved). So far there are five arenas: a shipping yard at sunset, a warehouse, an arcade, a ruined temple and a desert coliseum.',
     ],
     engine: 'Godot',
     platforms: ['PC', 'Nintendo Switch', 'Xbox Series X|S'],
@@ -217,7 +217,7 @@ export const games: Game[] = [
       'Skill Check is a daily trivia game about the games you grew up with. Every day brings a new themed run, from Age of Empires II to The Sims, covering the franchises, studios and deep cuts that gamers actually argue about.',
     body: [
       'It’s built for the few minutes you have with a coffee. Pick your cards, answer the questions they unlock, and find out whether you really know as much about your favourite franchise as you think you do. Stack a matching set for a big score bonus, chase a better rank than yesterday, then come back tomorrow for a new run.',
-      'Skill Check was our first proper release as a studio. A complete, shipped, playable thing rather than another project living forever in a folder. It’s out now on Android and free to play in any browser.',
+      'Skill Check was our first proper release as a studio. It’s out now on Android and free to play in any browser.',
     ],
     engine: 'Godot',
     platforms: ['Android', 'Web browser'],
@@ -279,9 +279,9 @@ export const games: Game[] = [
     status: 'in-development',
     tagline: 'A kitten with a sword, a world to explore, and a knighthood to earn.',
     pitch:
-      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A vibrant world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
+      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A colourful world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
     body: [
-      'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it genuinely works and we’re still proud of it.',
+      'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it works and we’re still proud of it.',
       'And now it’s back. We put KIT on hold to go and learn how to actually finish games, and having done that, we’re rebuilding it in Godot. The core mechanics are already feeling good in the new engine, they just need more fine tuning, and work has started on the first level. The first three screenshots below are from the new Godot version, which is using placeholder models for now, and the rest are from the original Unity one.',
     ],
     engine: 'Godot (ported from Unity)',
