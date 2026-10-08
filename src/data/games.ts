@@ -2,6 +2,10 @@ import type { ImageMetadata } from 'astro';
 
 import kitGrass from '~/assets/images/kit-grass.jpg';
 import kitHighlight from '~/assets/images/kit-highlight.webp';
+import kitGodotVista from '~/assets/images/kit-godot-vista.webp';
+import kitGodotVillage from '~/assets/images/kit-godot-village.webp';
+import kitGodotLeap from '~/assets/images/kit-godot-leap.webp';
+import kitGodotCard from '~/assets/images/kit-godot-card.webp';
 import kitMapQuest from '~/assets/images/kit-map-quest.jpg';
 import kitFinalModel from '~/assets/images/kit-final-model.jpeg';
 import kitGarden from '~/assets/images/kit-garden.jpg';
@@ -86,7 +90,7 @@ export const games: Game[] = [
       'Boop n Burn drops a lobby of up to sixteen players into an arena with one rule: don’t touch the lava. Shove, bump and boop everyone else in, survive the round, then do it all again. Usually it’s first to three wins.',
     body: [
       'There’s no health bar and nothing to chip away at. One shove at the wrong moment and you’re gone, watching from the sidelines while the kill feed happily tells everyone exactly who did it to you. Rounds are short and losing is funny, so nobody ever wants to stop at one.',
-      'Shoving costs stamina, so going for a push is an actual decision and not just a button you mash. There’s free for all if you want everyone against everyone, and team modes if you’d rather have someone to blame. Matches earn you XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of moving people who’d rather not be moved). So far there are five arenas: a shipping yard at sunset, a warehouse, an arcade, a ruined temple and a desert coliseum.',
+      'Shoving costs stamina, so you have to think about when to push instead of just mashing the button. There’s free for all if you want everyone against everyone, and team modes if you’d rather have someone to blame. Matches earn you XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of moving people who’d rather not be moved). So far there are five arenas: a shipping yard at sunset, a warehouse, an arcade, a ruined temple and a desert coliseum.',
     ],
     engine: 'Godot',
     platforms: ['PC', 'Nintendo Switch', 'Xbox Series X|S'],
@@ -144,8 +148,8 @@ export const games: Game[] = [
     pitch:
       'The One Bullet Job is a turn based heist puzzle for your phone. Every job is a small room: steal the cash, slip past the guards and escape with the loot before your moves run out. You usually get one bullet, so make it count.',
     body: [
-      'The game is played on a grid, one turn at a time. Dash up to three tiles, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. Then the guards take their turn. They follow set routes and their sightlines are drawn right there on the board, so when you get caught, you could have seen it coming. That’s the fun of it.',
-      'Grab one bag of cash to open the exit and earn a star. Take every bag for two, and do it within par for three. Undo is free and retries are instant, so “just one more go” is very easy to say and very hard to stop saying.',
+      'The game is played on a grid, one turn at a time. Dash up to three tiles, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. Then the guards take their turn. They follow set routes and their sightlines are drawn right there on the board, so if you get caught, you could have seen it coming.',
+      'Grab one bag of cash to open the exit and earn a star. Take every bag for two, and do it within par for three. Undo is free and retries are instant, so having another go only takes a tap.',
       'There are 120 jobs across 20 chapters, and each chapter adds a new trick: shutters you open by shooting a relay, guards who only see what’s in front of them, sentries who turn every round, laser gates and air vents. Every job is checked by a solver before it goes in, so every single one can be beaten. On top of that there’s a fresh heist every day, and a crew of masks and outfits you earn just by playing.',
     ],
     engine: 'Godot',
@@ -161,13 +165,12 @@ export const games: Game[] = [
       {
         title: 'Read the patrols',
         description:
-          'Every guard follows a route, and their sightlines are always on the board. No dice rolls, just plans that work or don’t.',
+          'Every guard follows a route, and their sightlines are always on the board. Nothing about them is random.',
         icon: 'tabler:eye',
       },
       {
         title: 'Three stars a job',
-        description:
-          'Escape with some cash, escape with all of it, then do it within par. Easy to finish, hard to master.',
+        description: 'Escape with some cash, escape with all of it, then do it within par.',
         icon: 'tabler:star',
       },
       {
@@ -214,7 +217,7 @@ export const games: Game[] = [
       'Skill Check is a daily trivia game about the games you grew up with. Every day brings a new themed run, from Age of Empires II to The Sims, covering the franchises, studios and deep cuts that gamers actually argue about.',
     body: [
       'It’s built for the few minutes you have with a coffee. Pick your cards, answer the questions they unlock, and find out whether you really know as much about your favourite franchise as you think you do. Stack a matching set for a big score bonus, chase a better rank than yesterday, then come back tomorrow for a new run.',
-      'Skill Check was our first proper release as a studio. A complete, shipped, playable thing rather than another project living forever in a folder. It’s out now on Android and free to play in any browser.',
+      'Skill Check was our first proper release as a studio. It’s out now on Android and free to play in any browser.',
     ],
     engine: 'Godot',
     platforms: ['Android', 'Web browser'],
@@ -276,10 +279,10 @@ export const games: Game[] = [
     status: 'in-development',
     tagline: 'A kitten with a sword, a world to explore, and a knighthood to earn.',
     pitch:
-      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A vibrant world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
+      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A colourful world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
     body: [
-      'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it genuinely works and we’re still proud of it.',
-      'And now it’s back. We put KIT on hold to go and learn how to actually finish games, and having done that, we’re rebuilding it in Godot. The core mechanics are already feeling good in the new engine, they just need more fine tuning, and work has started on the first level. The screenshots below are from the original Unity version.',
+      'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it works and we’re still proud of it.',
+      'And now it’s back. We put KIT on hold to go and learn how to actually finish games, and having done that, we’re rebuilding it in Godot. The core mechanics are already feeling good in the new engine, they just need more fine tuning, and work has started on the first level. The first three screenshots below are from the new Godot version, which is using placeholder models for now, and the rest are from the original Unity one.',
     ],
     engine: 'Godot (ported from Unity)',
     platforms: ['PC'],
@@ -312,9 +315,12 @@ export const games: Game[] = [
     links: [{ label: 'Read the KIT devlogs', href: '/tag/kit', icon: 'tabler:notebook', isPrimary: true }],
     gradient: 'from-sky-400 via-cyan-500 to-blue-600',
     devlogTag: 'kit',
-    hero: kitGrass,
-    card: kitGrass,
+    hero: kitGodotVista,
+    card: kitGodotCard,
     gallery: [
+      { image: kitGodotVista, caption: 'Briarwatch, the first level, rebuilt in Godot. Placeholder models for now.' },
+      { image: kitGodotVillage, caption: 'Briarwatch Green, under the old oath tree. (Godot, placeholder models)' },
+      { image: kitGodotLeap, caption: 'A big leap out of the long grass. (Godot, placeholder models)' },
       { image: kitHighlight, caption: 'Platforming across the floating islands.' },
       { image: kitGrass, caption: 'The grass and terrain pass, made in Blender.' },
       { image: kitMapQuest, caption: 'The map and quest UI, keeping track of the Paw Prints of Prowess.' },
