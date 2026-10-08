@@ -57,14 +57,14 @@ const metadata = {
     <div class="mb-10 flex flex-wrap items-baseline justify-between gap-3">
       <div>
         <p class="text-sm font-bold uppercase tracking-widest text-secondary">Our games</p>
-        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, two in the oven</h2>
+        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, three in the oven</h2>
       </div>
       <a href="/projects" class="text-sm font-semibold text-primary hover:underline dark:text-accent">
         All games &rarr;
       </a>
     </div>
 
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {featuredGames.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
     </div>
   </section>

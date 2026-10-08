@@ -1,0 +1,121 @@
+---
+publishDate: 2026-10-08T12:00:00Z
+author: Mark
+title: 'Devlog #11: Netcode, Kittens and One Bullet'
+excerpt: 'Boop n Burn is getting its multiplayer ready for Next Fest, KIT is coming back in Godot, Skill Check finally has art, and there is a brand new side project: The One Bullet Job.'
+image: '../../assets/images/obj-hero.webp'
+cardImage: '../../assets/images/obj-hero.webp'
+category: Devlog
+tags:
+  - devlog
+  - progress report
+  - Boop n Burn
+  - KIT
+  - Skill Check
+  - The One Bullet Job
+metadata:
+  canonical: https://ki10games.com/devlog-11-netcode-kittens-and-one-bullet
+---
+
+import { Image } from 'astro:assets';
+
+import boopnburn from '../../assets/images/bnb-arcade.webp';
+import kit from '../../assets/images/kit-highlight.webp';
+import skillcheckCollection from '../../assets/images/skillcheck-collection.webp';
+import objVault from '../../assets/images/obj-play-vault.webp';
+import objShot from '../../assets/images/obj-play-shot.webp';
+
+Long time no speak!
+
+I've been hard at work on a fair few things since the last devlog, so grab a brew, because there's a lot to get through. Boop n Burn is getting its multiplayer ready, KIT is back (yes, really), Skill Check has had a glow up, and there's a brand new game I've been dying to tell you about.
+
+### **Boop n Burn: Getting Multiplayer Ready**
+
+Most of my time on Boop n Burn lately has gone into the bit you don't see in screenshots: **multiplayer**. A party brawler with sixteen players is only fun if the shove you see on your screen is the shove that actually happens, so I've been running network tests on the game to make sure it holds up when a full lobby is shoving each other into the lava.
+
+<figure class="flex flex-col items-center">
+  <Image src={boopnburn} alt="Players brawling in the Boop n Burn arcade arena" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The arcade, where the lava is still an alarming shade of pink.
+  </figcaption>
+</figure>
+
+It's not the most glamorous work, but it's the most important. Nobody remembers a party game because the netcode was good, but everybody remembers one where it wasn't!
+
+The goal hasn't changed: we're getting Boop n Burn ready for **Steam Next Fest** in **February 2027**. I'm not sure I made that clear enough last time, so I'll say it again here. Next Fest is the target, and everything I'm doing on Boop n Burn right now is about getting there in good shape.
+
+### **KIT Is Back (In Godot!)**
+
+Now for the one I didn't expect to be writing about this soon.
+
+In the last devlog I said KIT was on hold, not cancelled. Well, I meant it. I've made the decision to **port KIT over to the Godot engine**, and that's been taking up a large amount of my time.
+
+<figure class="flex flex-col items-center">
+  <Image src={kit} alt="KIT platforming across the floating islands" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    KIT in the original Unity version. He's moving house.
+  </figcaption>
+</figure>
+
+Why Godot? Honestly, because I really love the engine. Boop n Burn, Skill Check and my new side project are all built in it, and it just suits the way I like to work. Bringing KIT over means every Ki10 game now lives in the same engine, which makes it a lot easier to jump between them.
+
+So far I've managed to get the mechanics **feeling decent**. They still need more fine tuning, because a platformer lives and dies on how it feels in your hands, and "decent" isn't the bar. But it's getting there, and I'm now starting to craft the **first level** for it. So stay tuned, there'll be more to show soon.
+
+### **Skill Check Has Art!**
+
+I also did a big update to Skill Check: **the game has art now**. When it launched, the cartridges in your collection were basically grey boxes with names on. Now very nearly every one of the 1,594 cartridges has proper artwork, and the whole game has a new purple look to go with it. It looks way more appealing, and the collection finally feels like a collection.
+
+<figure class="flex flex-col items-center">
+  <Image
+    src={skillcheckCollection}
+    alt="The Skill Check collection screen, full of illustrated cartridges"
+    class="max-w-xs rounded-md"
+  />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    From grey boxes to this. Much better.
+  </figcaption>
+</figure>
+
+I've also been posting videos on social media to see if I can get some new players through the door. If you want to see them, we're on [TikTok](https://www.tiktok.com/@ki10.games) and [YouTube](https://youtube.com/@official.ki10games), and Skill Check is still free [in your browser](https://skillcheckgame.com/) and on [Google Play](https://play.google.com/store/apps/details?id=com.ki10games.skillcheck).
+
+### **The Big New Thing: The One Bullet Job**
+
+And now the big new thing I've been hard at work on: my new mobile side project, **The One Bullet Job**.
+
+I tend to like having one big game on the go at a time, with a small side project next to it. It keeps things fresh, and when I get stuck on the big one, I can go and make progress on the little one. The One Bullet Job is my current side project.
+
+<figure class="flex flex-col items-center">
+  <Image src={objVault} alt="Planning a move in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Plan every move. The cyan tiles are where you can dash.
+  </figcaption>
+</figure>
+
+It's a **puzzle heist game**. Each level is a room you have to navigate: steal the cash, avoid the guards and escape with the loot. The game is grid based and you move in turns, so every turn you can dash, wait or shoot, and then the guards take theirs. You have to read their patrols and plan your way around them, because if you end your move where a guard can see you, the job's over.
+
+And the twist is in the name. You usually have **one bullet**, so you have to use it carefully. Shoot the guard who's in your way now, and you might not have anything left for the one guarding the exit.
+
+<figure class="flex flex-col items-center">
+  <Image src={objShot} alt="Taking the shot in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    One bullet, one guard down. Hope it was the right one.
+  </figcaption>
+</figure>
+
+There are **120 jobs across 20 chapters**, and each chapter adds something new, like laser gates, air vents and keycards. Grab some cash and get out for one star, take all of it for two, and do it within par for three. There's also a new heist every day, and a crew of masks and outfits you unlock just by playing.
+
+It should be out on **Android** soon, so when it lands, please give it a try! The game has its own page on the site now if you want a closer look.
+
+### **What's Next**
+
+My immediate plans are pretty simple:
+
+- Carry on **porting KIT to Godot** and get that first level built.
+- Get **Boop n Burn** ready for **Steam Next Fest** next year.
+- Release **The One Bullet Job** very soon.
+
+That's a lot of plates spinning, but I'm really enjoying all three, and I'll keep you posted as they come together.
+
+Thanks for reading,
+
+Mark
