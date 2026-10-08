@@ -9,6 +9,10 @@ This Privacy Policy describes how Ki10 Games ("the Company", "We", "Us", or "Our
 
 By using our Website, you agree to the collection and use of information in accordance with this Privacy Policy.
 
+This policy covers our website. Our games have their own privacy policies:
+
+- [The One Bullet Job](/privacy/one-bullet-job)
+
 ## Interpretation and Definitions
 
 ### Definitions
