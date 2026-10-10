@@ -1,224 +1,607 @@
 ---
-import { Icon } from 'astro-icon/components';
-import Layout from '~/layouts/PageLayout.astro';
-import Button from '~/components/ui/Button.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Features from '~/components/widgets/Features.astro';
-import GameCard from '~/components/games/GameCard.astro';
-import StructuredData from '~/components/common/StructuredData.astro';
-import { featuredGames } from '~/data/games';
-import { friends } from '~/data/friends';
 import { Image } from 'astro:assets';
+import Layout from '~/layouts/PageLayout.astro';
+import StructuredData from '~/components/common/StructuredData.astro';
+import { games } from '~/data/games';
+import { authors } from '~/data/authors';
+import { friends } from '~/data/friends';
+import { findLatestPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
 
+const featured = games.find((game) => game.slug === 'boop-n-burn')!;
+const otherGames = ['skill-check', 'the-one-bullet-job', 'kit-knight-in-training'].map(
+  (slug) => games.find((game) => game.slug === slug)!
+);
+const [latest] = await findLatestPosts({ count: 1 });
 const metadata = {
-  title: 'Ki10 Games, a two person game studio in the UK',
+  title: 'Ki10 Games — Two friends making games.',
   ignoreTitleTemplate: true,
   description:
-    'Ki10 Games is a two person independent studio in the UK. Makers of Skill Check, currently building the party brawler Boop n Burn and the heist puzzle The One Bullet Job.',
+    'Games from a two-person independent studio in the UK. Play Skill Check and discover Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
 };
 ---
 
 <Layout metadata={metadata}>
   <StructuredData />
-
-  <section class="relative overflow-hidden">
-    {/* A soft ember glow behind the type, so the text-led hero still has some heat to it. */}
-    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-      <div
-        class="absolute left-1/2 top-0 h-[36rem] w-[72rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-gradient-to-br from-amber-400/25 via-orange-500/20 to-rose-500/10 blur-3xl dark:from-amber-500/15 dark:via-orange-600/15 dark:to-rose-600/10"
-      >
+  <div class="studio-home">
+    <section class="studio-hero page-width" aria-labelledby="studio-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent games · United Kingdom</p>
+        <h1 id="studio-title">Two friends.<br /><span>Making games.</span></h1>
+        <p class="intro">
+          We’re Mark and Scott, a two-person studio in the UK. We make the games we want to play, from daily trivia to
+          shoving your mates into lava.
+        </p>
+        <div class="hero-actions">
+          <a class="studio-button primary" href="#our-games">Explore our games <span aria-hidden="true">↓</span></a><a
+            class="play-link"
+            href="https://skillcheckgame.com/">Play Skill Check <span aria-hidden="true">↗︎</span></a
+          >
+        </div>
+        <div class="studio-signoff">
+          <span aria-hidden="true" class="status-dot"></span> Skill Check is out now on Android and web.
+        </div>
       </div>
-    </div>
-
-    <div class="relative mx-auto max-w-5xl px-4 pb-10 pt-16 text-center md:px-6 md:pb-14 md:pt-24">
-      <p class="text-sm font-bold uppercase tracking-widest text-secondary">Independent studio · United Kingdom</p>
-
-      <h1 class="mt-5 font-heading text-4xl font-bold leading-tight tracking-tighter md:text-6xl">
-        Two friends making the games <span class="text-primary dark:text-accent">we</span> want to play.
-      </h1>
-
-      <p class="mx-auto mt-6 max-w-2xl text-xl text-muted">
-        We're a two person studio with a very modest goal, and a name to match: sell ten copies. We don't chase trends
-        and we don't stick to one genre. If it sounds fun to us, we'll build it.
-      </p>
-
-      <div class="mt-9 flex flex-wrap justify-center gap-3">
-        <Button variant="primary" href="/projects/boop-n-burn" icon="tabler:flame">See what we're building</Button>
-        <Button href="/projects/skill-check" icon="tabler:device-gamepad-2">Play Skill Check</Button>
-      </div>
-
-      <p class="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-muted">
-        <Icon name="tabler:point-filled" class="h-4 w-4 text-emerald-500" />
-        <span><strong class="font-semibold text-default">Skill Check</strong> is out now on Android and web</span>
-      </p>
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 pb-12 pt-4 md:px-6 md:pb-16 md:pt-6">
-    <div class="mb-10 flex flex-wrap items-baseline justify-between gap-3">
-      <div>
-        <p class="text-sm font-bold uppercase tracking-widest text-secondary">Our games</p>
-        <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">One shipped, three in the oven</h2>
-      </div>
-      <a href="/projects" class="text-sm font-semibold text-primary hover:underline dark:text-accent">
-        All games &rarr;
-      </a>
-    </div>
-
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {featuredGames.map((game, index) => <GameCard game={game} loading={index === 0 ? 'eager' : 'lazy'} />)}
-    </div>
-  </section>
-
-  <Features
-    id="studio"
-    tagline="About Ki10"
-    title="Our grand plan? To sell ten copies."
-    subtitle="Anything past that is a bonus. It keeps us honest about why we're doing this."
-    columns={3}
-    items={[
-      {
-        title: 'Friends first, devs second',
-        description:
-          'Ki10 Games was founded by Scott and Mark after years of friendship and a shared love of making games. We figured it was finally time to make it official.',
-        icon: 'tabler:users',
-      },
-      {
-        title: 'Jack of all trades',
-        description:
-          'There are two of us, so we both end up with a hand in most areas of development. The goal is to unlock the "Jack of All Trades" achievement in life.',
-        icon: 'tabler:tools',
-      },
-      {
-        title: 'No genre is safe',
-        description:
-          'A daily trivia game, a floor is lava party brawler and a turn based heist puzzle have almost nothing in common, and we like it that way.',
-        icon: 'tabler:dice',
-      },
-    ]}
-  />
-
-  <BlogLatestPosts
-    title="Latest from the devlog"
-    information="We write up the wins, the rewrites and the mistakes as we go. No marketing gloss, just what we actually got done."
-  />
-
-  <Features
-    id="team"
-    tagline="Meet the team"
-    title="The minds behind the madness"
-    columns={2}
-    items={[
-      {
-        title: 'Mark McManus',
-        description:
-          'The QA veteran, designer and programmer of the two of us, with over nine years spent making sure games are as polished as they are fun.',
-        icon: 'tabler:user-edit',
-        callToAction: { text: 'More about the team', href: '/team' },
-      },
-      {
-        title: 'Scott Hamilton',
-        description:
-          'The lead artist and world builder, who turns all the daft ideas into things you can actually look at.',
-        icon: 'tabler:palette',
-        callToAction: { text: 'More about the team', href: '/team' },
-      },
-    ]}
-  />
-
-  <section id="friends" class="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
-    <div class="mb-10 text-center">
-      <p class="text-sm font-bold uppercase tracking-widest text-secondary">Friends of Ki10</p>
-      <h2 class="mt-2 font-heading text-3xl font-bold tracking-tight md:text-4xl">Friends of Ki10 Games</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-lg text-muted">Studios and people we know and like. Go and say hello.</p>
-    </div>
-
-    <ul class="flex flex-wrap justify-center gap-6">
-      {
-        friends.map((friend) => (
-          <li>
-            <a
-              href={friend.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex w-64 flex-col items-center gap-4 rounded-2xl border border-gray-200 p-6 text-center transition hover:border-primary hover:shadow-md dark:border-white/10 dark:hover:border-accent"
-            >
-              <Image src={friend.logo} alt={`${friend.name} logo`} height={112} class="h-28 w-auto" loading="lazy" />
-              <span class="font-heading text-lg font-bold">{friend.name}</span>
-              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline dark:text-accent">
-                Visit their site
-                <Icon name="tabler:external-link" class="h-4 w-4" />
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <CallToAction>
-    <Fragment slot="title">Follow along</Fragment>
-    <Fragment slot="subtitle">
-      Be the first to hear about new updates, release dates and behind the scenes bits from Ki10 Games.
-    </Fragment>
-
-    <Fragment slot="actions">
-      <div id="mc_embed_signup">
-        <form
-          action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
-          method="post"
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          class="validate"
+      <a class="showcase" href="/projects/boop-n-burn">
+        {
+          featured.hero && (
+            <Image
+              src={featured.hero}
+              alt="Players battling above the lava in Boop n Burn's shipping yard arena"
+              widths={[600, 1000, 1600]}
+              sizes="(min-width: 1280px) 770px, (min-width: 900px) 60vw, 100vw"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )
+        }
+        <span class="showcase-top"
+          ><span class="image-label">In development</span><span class="image-label">Up to 16 players</span></span
         >
-          <div id="mc_embed_signup_scroll">
-            <div class="mc-field-group">
-              <label for="mce-EMAIL" class="sr-only">Email address</label>
-              <input
-                type="email"
-                name="EMAIL"
-                class="required email"
-                id="mce-EMAIL"
-                required
-                value=""
-                placeholder="Your email address"
-              />
-            </div>
-            <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group">
-              <div class="content__gdpr">
-                <p class="text-sm !text-muted">
-                  We'll use your email to send you updates. Please let us know how you'd like to hear from us:
-                </p>
-                <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
-                  <label class="checkbox subfield" for="gdpr_43380">
-                    <input type="checkbox" id="gdpr_43380" name="gdpr[43380]" class="gdpr" value="Y" />
-                    <span>Dev Logs & Studio News</span>
-                  </label>
-                </fieldset>
-              </div>
-            </div>
-            <div id="mce-responses" class="clear foot">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;">
-              <input type="text" name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d" tabindex="-1" value="" />
-            </div>
-            <div class="optionalParent">
-              <div class="clear foot">
-                <input
-                  type="submit"
-                  name="subscribe"
-                  id="mc-embedded-subscribe"
-                  class="btn btn-primary"
-                  value="Get Updates"
-                />
-              </div>
-            </div>
-          </div>
-        </form>
+        <div class="showcase-caption">
+          <p>Currently causing chaos</p><h2>Boop n Burn</h2><p class="game-tagline">
+            The floor is lava.<br />Your mates are the real problem.
+          </p><span class="showcase-cta">Meet the game <span aria-hidden="true">↗︎</span></span>
+        </div>
+      </a>
+    </section>
+
+    <section class="games-section page-width" id="our-games" aria-labelledby="games-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Made at Ki10</p><h2 id="games-title">The games so far.</h2></div><a
+          class="text-link"
+          href="/projects">All our games <span aria-hidden="true">↗︎</span></a
+        >
       </div>
-    </Fragment>
-  </CallToAction>
+      <div class="game-grid">
+        {
+          otherGames.map((game) => (
+            <article class="game-tile">
+              <a href={'/projects/' + game.slug}>
+                <div class="tile-art">
+                  {game.card && (
+                    <Image
+                      src={game.card}
+                      alt={'Key art for ' + game.title}
+                      widths={[400, 700, 1000]}
+                      sizes="(min-width: 1280px) 400px, (min-width: 700px) 33vw, 100vw"
+                      loading="lazy"
+                    />
+                  )}
+                  <span class:list={['image-label', { released: game.status === 'released' }]}>
+                    {game.status === 'released' ? 'Out now' : 'In development'}
+                  </span>
+                </div>
+                <div class="tile-copy">
+                  <>
+                    <p class="eyebrow">{game.genre}</p>
+                    <h3>{game.title}</h3>
+                    <p>{game.tagline}</p>
+                    <div class="tile-bottom">
+                      <>
+                        <span>{game.platforms.join(' · ')}</span>
+                        <span aria-hidden="true">↗︎</span>
+                      </>
+                    </div>
+                  </>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      latest && (
+        <section class="devlog-strip page-width" aria-labelledby="latest-title">
+          <div>
+            <>
+              <p class="eyebrow">From the devlog</p>
+              <time datetime={latest.publishDate.toISOString()}>
+                {latest.publishDate.toLocaleDateString('en-GB', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                  timeZone: 'UTC',
+                })}
+              </time>
+            </>
+          </div>
+          <div>
+            <>
+              <h2 id="latest-title">
+                <a href={getPermalink(latest.permalink, 'post')}>{latest.title}</a>
+              </h2>
+              <p>{latest.excerpt}</p>
+            </>
+          </div>
+          <a class="text-link" href="/devlog">
+            All updates <span aria-hidden="true">↗︎</span>
+          </a>
+        </section>
+      )
+    }
+
+    <section class="studio-story page-width" aria-labelledby="story-title">
+      <div><p class="eyebrow">Hello from Ki10</p><h2 id="story-title">How we got here.</h2></div>
+      <div class="story-copy">
+        <p>
+          We’re Mark and Scott: a designer and programmer, and an artist and world builder. Our original grand plan was
+          to sell ten copies. That’s where the name comes from.
+        </p><p>We don’t stick to one genre. If an idea sounds fun to us, we’ll have a go at making it.</p><div
+          class="team-link"
+        >
+          <div class="avatars">
+            {
+              authors.map((author) => (
+                <Image src={author.photo} alt={author.name} width={64} height={64} loading="lazy" />
+              ))
+            }
+          </div><a class="text-link" href="/team">Meet the two of us <span aria-hidden="true">↗︎</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="friends-strip page-width">
+      <span class="eyebrow">Friends of Ki10</span>{
+        friends.map((friend) => (
+          <a href={friend.href} target="_blank" rel="noopener noreferrer">
+            <>
+              <Image src={friend.logo} alt="" width={40} height={40} loading="lazy" />
+              <span>{friend.name}</span>
+              <span aria-hidden="true">↗︎</span>
+            </>
+          </a>
+        ))
+      }<a class="text-link follow-link" href="/contact">Say hello <span aria-hidden="true">↗︎</span></a>
+    </div>
+  </div>
 </Layout>
+<style>
+  .studio-home {
+    --line: #dedbd4;
+    --surface: #f7f5ef;
+    --ink: #242621;
+    --muted: #63675f;
+    --ember: #a53a13;
+  }
+  :global(.dark) .studio-home {
+    --line: #33372e;
+    --surface: #1b1e19;
+    --ink: #f2f3e9;
+    --muted: #c4c9bc;
+    --ember: #f7a35a;
+  }
+  .page-width {
+    width: calc(100% - 3rem);
+    max-width: 1280px;
+    margin-inline: auto;
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--ember);
+  }
+  .studio-hero {
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding-block: 2.5rem 3.5rem;
+  }
+  .hero-copy {
+    padding-block: 1.5rem;
+  }
+  .tiny-mark {
+    font-size: 1.25rem;
+    vertical-align: middle;
+    margin-right: 0.25rem;
+  }
+  h1 {
+    font-size: clamp(2.8rem, 4.7vw, 4.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    margin-block: 1.5rem;
+    color: var(--ink);
+  }
+  h1 span {
+    color: var(--ember);
+  }
+  .intro {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 37ch;
+    color: var(--muted);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+  }
+  .studio-button {
+    padding: 0.95rem 1.25rem;
+    display: inline-flex;
+    gap: 1.5rem;
+    align-items: center;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .studio-button.primary {
+    background: #a53a13;
+    color: #fff;
+  }
+  .studio-button:hover {
+    background: #7d2c0e;
+  }
+  .play-link,
+  .text-link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-underline-offset: 4px;
+  }
+  .play-link {
+    text-decoration: underline;
+  }
+  .text-link:hover {
+    text-decoration: underline;
+  }
+  .studio-signoff {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 2rem;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: #327657;
+    border-radius: 50%;
+  }
+  .showcase {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 540px;
+    overflow: hidden;
+    border-radius: 1rem;
+    color: #fff;
+    background: #392d22;
+    isolation: isolate;
+  }
+  .showcase > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transition: transform 0.5s;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .showcase:hover > img {
+      transform: scale(1.025);
+    }
+  }
+  .showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #1c141233, transparent 25%, #18181324 42%, #111812ed);
+    z-index: -1;
+  }
+  .showcase-top {
+    position: absolute;
+    top: 1.3rem;
+    left: 1.3rem;
+    right: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .image-label {
+    display: inline-block;
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.65rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background: #1d231fe8;
+    border: 1px solid #ffffff40;
+  }
+  .image-label.released {
+    background: #14543e;
+  }
+  .showcase-caption {
+    padding: 2rem;
+    width: 100%;
+  }
+  .showcase-caption > p:first-child {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #ffe1b7;
+  }
+  .showcase-caption h2 {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.055em;
+    margin: 0.6rem 0;
+  }
+  .game-tagline {
+    color: #f5f2e8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  .showcase-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ffffff45;
+    padding-top: 1rem;
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .showcase-cta span {
+    font-size: 1.3rem;
+  }
+  .section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .section-heading h2 {
+    margin-top: 0.7rem;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .games-section {
+    padding-block: 1rem 3rem;
+    scroll-margin-top: 7rem;
+  }
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+  .game-tile {
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .game-tile a {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+  .game-tile:hover {
+    border-color: var(--ember);
+  }
+  .tile-art {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: #1d231f;
+    overflow: hidden;
+  }
+  .tile-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tile-art .image-label {
+    position: absolute;
+    bottom: 0.85rem;
+    left: 0.85rem;
+  }
+  .tile-copy {
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .tile-copy h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-block: 0.55rem;
+    letter-spacing: -0.025em;
+  }
+  .tile-copy > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .tile-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    padding-top: 0.85rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .tile-bottom > span:last-child {
+    font-size: 1.2rem;
+    color: var(--ember);
+  }
+  .devlog-strip {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    border-block: 1px solid var(--line);
+    padding-block: 2rem;
+  }
+  time {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .devlog-strip h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .devlog-strip h2 a:hover {
+    text-decoration: underline;
+  }
+  .devlog-strip p:not(.eyebrow) {
+    max-width: 65ch;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-top: 0.6rem;
+  }
+  .studio-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding-block: 4rem;
+  }
+  .studio-story h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    font-weight: 750;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    margin-top: 1rem;
+  }
+  .story-copy > p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+  .story-copy > p + p {
+    margin-top: 1rem;
+  }
+  .team-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .avatars {
+    display: flex;
+    padding-left: 0.5rem;
+  }
+  .avatars img {
+    width: 42px;
+    height: 42px;
+    border: 2px solid var(--surface);
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: -0.5rem;
+  }
+  .friends-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    padding-block: 1.5rem 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .friends-strip > a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+  }
+  .friends-strip img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
+  .follow-link {
+    margin-left: auto;
+  }
+  @media (max-width: 899px) {
+    .studio-hero {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding-top: 1rem;
+    }
+    .intro {
+      max-width: 55ch;
+    }
+    .showcase {
+      min-height: 440px;
+    }
+    .studio-signoff {
+      margin-top: 1.25rem;
+    }
+    .devlog-strip {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 699px) {
+    .page-width {
+      width: calc(100% - 2rem);
+    }
+    .game-grid,
+    .studio-story {
+      grid-template-columns: 1fr;
+    }
+    .showcase {
+      min-height: 390px;
+    }
+    .showcase-caption {
+      padding: 1.5rem;
+    }
+    .studio-story {
+      gap: 1.5rem;
+      padding-block: 2.5rem;
+    }
+    .follow-link {
+      margin-left: 0;
+    }
+  }
+</style>

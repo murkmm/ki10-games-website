@@ -43,7 +43,7 @@ import '@fontsource-variable/inter';
     /* Text and Background */
     --aw-color-text-heading: rgb(247, 248, 248);
     --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-text-muted: rgb(190 200 212);
     --aw-color-bg-page: rgb(16 16 16); /* Black */
     --aw-color-bg-subtle: rgb(24 24 24);
 
@@ -54,7 +54,7 @@ import '@fontsource-variable/inter';
   }
 
   /* --- MAILCHIMP FORM STYLES --- */
-  #mc_embed_signup {
+  .mc-signup {
     background: transparent !important;
     font: inherit !important;
     color: inherit !important;
@@ -63,18 +63,19 @@ import '@fontsource-variable/inter';
     margin: 1rem auto 0;
   }
 
-  #mc_embed_signup form {
+  .mc-signup form {
     padding: 0 !important;
   }
 
-  #mc_embed_signup .mc-field-group {
+  .mc-signup .mc-field-group {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     width: 100% !important;
     padding: 0 !important;
   }
 
-  #mc_embed_signup .mc-field-group input[type='email'] {
+  .mc-signup .mc-field-group input[type='email'] {
     flex-grow: 1;
     background-color: var(--aw-color-bg-page);
     color: var(--aw-color-text-default);
@@ -83,11 +84,11 @@ import '@fontsource-variable/inter';
     padding: 0.75rem 1rem;
     width: 100% !important;
   }
-  .dark #mc_embed_signup .mc-field-group input[type='email'] {
+  .dark .mc-signup .mc-field-group input[type='email'] {
     background-color: rgb(22 25 37 / 66%);
   }
 
-  #mc_embed_signup .mc-field-group input[type='submit'] {
+  .mc-signup .mc-field-group input[type='submit'] {
     background-color: var(--aw-color-primary);
     color: var(--aw-color-text-default);
     font-weight: 600;
@@ -97,32 +98,32 @@ import '@fontsource-variable/inter';
     cursor: pointer;
     transition: all 0.2s ease-in-out;
   }
-  .dark #mc_embed_signup .mc-field-group input[type='submit'] {
-    color: var(--aw-color-bg-page);
+  .dark .mc-signup .mc-field-group input[type='submit'] {
+    color: #fff;
   }
-  #mc_embed_signup .mc-field-group input[type='submit']:hover {
+  .mc-signup .mc-field-group input[type='submit']:hover {
     background-color: var(--aw-color-accent);
     border-color: var(--aw-color-accent);
   }
 
-  #mc_embed_signup .content__gdpr {
+  .mc-signup .content__gdpr {
     padding-top: 1rem;
     font-size: 0.875rem;
     color: var(--aw-color-text-muted);
   }
 
-  #mc_embed_signup .gdpr-mergeRow .mc_fieldset {
+  .mc-signup .gdpr-mergeRow .mc_fieldset {
     margin-top: 0.75rem;
   }
 
   /* NEW: Adds space above the submit button */
-  #mc_embed_signup .optionalParent {
+  .mc-signup .optionalParent {
     margin-top: 1rem;
   }
 
   /* Hides extra Mailchimp text */
-  #mc_embed_signup h2,
-  #mc_embed_signup .indicates-required {
+  .mc-signup h2,
+  .mc-signup .indicates-required {
     display: none !important;
   }
 </style>
