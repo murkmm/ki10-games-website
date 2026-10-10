@@ -127,7 +127,7 @@ export const games: Game[] = [
         icon: 'tabler:map-2',
       },
     ],
-    links: [],
+    links: [{ label: 'Get demo updates', href: '#studio-updates', icon: 'tabler:mail', isPrimary: true }],
     gradient: 'from-orange-500 via-red-600 to-rose-700',
     hero: bnbShipyard,
     card: bnbRuins,

@@ -1,0 +1,248 @@
+---
+publishDate: 2026-10-22T12:00:00Z
+author: Mark
+title: 'Devlog #12: The One Bullet Job Is Out'
+excerpt: 'The One Bullet Job is out now on Google Play. Here is how it went from a side project idea to a released game: the solver, the level generator, twenty chapters of new tricks, and the bugs I found the hard way.'
+image: '../../assets/images/obj-crew.webp'
+cardImage: '../../assets/images/obj-crew.webp'
+category: Devlog
+draft: true
+tags:
+  - devlog
+  - release
+  - behind the scenes
+  - The One Bullet Job
+metadata:
+  canonical: https://ki10games.com/devlog-12-the-one-bullet-job-is-out
+---
+
+import { Image } from 'astro:assets';
+
+import objVault from '../../assets/images/obj-play-vault.webp';
+import objShot from '../../assets/images/obj-play-shot.webp';
+import objWatch from '../../assets/images/obj-play-watch.webp';
+import objLasers from '../../assets/images/obj-play-lasers.webp';
+import objVents from '../../assets/images/obj-play-vents.webp';
+import objResult from '../../assets/images/obj-result.webp';
+import objCrew from '../../assets/images/obj-crew.webp';
+
+export const trailerId = 'REPLACE_WITH_YOUTUBE_ID';
+export const playLink = 'https://play.google.com/store/apps/details?id=com.ki10games.onebulletjob';
+
+It's out!
+
+**The One Bullet Job** is live on Google Play today, and it's free. You can grab it [right here](https://play.google.com/store/apps/details?id=com.ki10games.onebulletjob).
+
+I said in the last devlog that it would be out soon, and for once "soon" actually meant soon. Since this is the second game we've released, I wanted to do something a bit different with this post. Instead of a quick "it's out, go play it", I'm going to go through how the whole thing was made, from the first idea to the version you can download today. It's a long one, so grab a brew.
+
+Here's the gameplay trailer first, so you know what I'm on about:
+
+<figure class="flex flex-col items-center">
+  <div class="w-full aspect-video">
+    <iframe
+      class="h-full w-full rounded-md"
+      src={`https://www.youtube-nocookie.com/embed/${trailerId}`}
+      title="The One Bullet Job gameplay trailer"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The gameplay trailer. Every move in it is real gameplay, recorded in the game.
+  </figcaption>
+</figure>
+
+### **Why a Side Project?**
+
+I'll start with the why, because it explains a lot about how this game got made.
+
+I like having one big game on the go and one small side project next to it. Right now the big one is **Boop n Burn**, which we're getting ready for Steam Next Fest in February, with KIT coming back in Godot alongside it. Big games are slow. You can spend a fortnight on netcode and have nothing you can show anyone at the end of it. That's normal, but it can wear you down.
+
+A side project fixes that for me. When I get stuck on the big game, or I just need a break from staring at the same problem, I can go and make progress on the small one. Then I come back to the big one with a fresh head. You'd think it would slow everything down, and maybe it does a bit, but it stops me getting stuck and fed up, which is worse.
+
+The rules I set for a side project are pretty simple:
+
+- It has to be **small enough to actually finish**.
+- It has to be built around **one idea**.
+- I have to be able to make progress in an evening, not just a weekend.
+
+Skill Check came out about five months ago, and it taught us a huge amount about actually releasing a game: store listings, build pipelines, and the gap between "works on my PC" and "works on a stranger's phone". Straight after it launched, I wanted to put all of that to use on the next small thing.
+
+### **Where the Idea Came From**
+
+It wasn't The One Bullet Job straight away, mind.
+
+I started with a little platformer called **Hopscotch**. It never really grabbed me the way a side project needs to. A platformer lives or dies on how it feels in your hands, and that's the kind of fiddly tuning I'm already doing on the big games. I wanted the side project to feel different from the day job, so I put it down.
+
+The real inspiration came from my phone. I've been playing **Bricks Breaker Quest** for longer than I'd like to admit. I'm somewhere around **level 3,935**, which is either impressive or worrying, depending on who you ask. What keeps me coming back isn't the brick breaking. It's the structure: a massive numbered list of levels, each one over in a couple of minutes, and there's always another one waiting.
+
+I wanted that structure, but with a game that was properly mine. I've always loved a heist, and I love turn based games where you can see everything and the challenge is working out the plan. So that was the plan: **tiny heists you can do in a handful of moves**, and loads of them.
+
+### **The First Prototype**
+
+The very first version was three rooms on a 7×7 grid, then four once I added a keycard. You had a robber, some cash, an exit and a couple of guards, and every turn you could do one of three things:
+
+- **Dash** up to three tiles, picking up any cash on the way.
+- **Shoot** a guard in a straight line.
+- **Wait** and let the guards move.
+
+Then the guards take their turn, and if you've ended your move somewhere a guard can see you, the job's over.
+
+<figure class="flex flex-col items-center">
+  <Image src={objVault} alt="Planning a dash in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The cyan tiles are where you can dash. The red ones are where you really shouldn't stop.
+  </figcaption>
+</figure>
+
+The bullet was what made it click. In the early rooms you could shoot whoever you liked, and the puzzles were boring because the answer was always "shoot everyone". As soon as I limited you to **one bullet**, every room became a choice. Shoot the guard in front of you now and you might have nothing left for the one stood by the exit. That's where the name came from in the end, although it took me a while to get there (more on that later).
+
+The other rule I set early on, and never broke, was that **nothing is random**. Guards walk set routes, their sightlines are drawn on the board, and the game shows you where each guard will step next. If you get caught, you could have seen it coming. Puzzles where you lose to bad luck just feel unfair, and I didn't want a single one in the game.
+
+Stars came next. One for escaping with some cash, two for taking every bag, and three for doing it within par. That gave every room a quick win for anyone just playing through, and something to come back for if you're the sort of person who needs all the stars (I am that person).
+
+### **Making Sure Every Job Can Be Beaten**
+
+This is probably the bit I'm proudest of, which won't surprise anyone who knows what I do for a day job.
+
+I've spent over nine years in games QA, and if there's one thing that makes me twitch, it's a puzzle game with an unbeatable level in it. With 120 jobs, and rules that kept changing as I added new mechanics, I knew there was no way I could check every room by hand every time I touched something. So before I made lots of levels, I made sure I could **prove** them.
+
+Every job in the game is checked by a **solver**, a program that tries every possible move until it finds the shortest way to beat the room. That's also where each job's par comes from, so the three star target is always genuinely possible.
+
+The important bit is that the game, the solver, the hints and the replays all use **exactly the same rules code**. There's one place that decides what a dash or a shot does, so the solver and the game can never disagree about whether a move works. On top of that, there's a **second, completely separate solver** written in Python, and the two are compared on every level. If they ever disagree, something's wrong, and I want to know about it before you do.
+
+Every time I change something, an automated check replays every job's escape and its three star route through the real rules. Published levels are also saved as fixed data files, so job 48 can't quietly change on you after release because I tweaked a rule somewhere else.
+
+### **The Level Lab**
+
+Being able to prove a level can be beaten is great, but I still needed 120 of them, and I didn't fancy designing every single one from a blank grid.
+
+So I built a level generator as a plugin inside the Godot editor, which I've been calling the **Level Lab**. You tell it what kind of room you want, and it builds candidate rooms, solves every one of them, and throws away anything that doesn't pass. In one test it made **1,000 different rooms in about two and a half minutes**. Along the way it threw out nearly a thousand rooms that couldn't be beaten at all, plus anything that was just a rotated or mirrored copy of a room it already had.
+
+It also checks that the chapter's new mechanic actually matters. If a room is supposed to be about keycards but you can beat it just as fast without the keycard, it gets binned. Later on I added a check for guards too: the generator solves the room again with every guard removed, and if that's no quicker, the guards were just stood there watching, so out it goes.
+
+One thing I learned the hard way: **a room the solver can beat isn't the same as a room that's fun.** Early on, nearly every generated room used one of only seventeen wall layouts. Technically they were all different puzzles, but they felt the same after a while. I changed the generator to draw its own room shapes, which took it from seventeen layouts to hundreds. Even so, nothing goes in the game until I've played it myself and liked it. The generator is great at coming up with rooms, but it's rubbish at telling whether they're any fun, so that bit's still my job.
+
+<figure class="flex flex-col items-center">
+  <Image src={objWatch} alt="Reading guard patrols in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Every guard walks a route you can learn. The trick is finding the gap.
+  </figcaption>
+</figure>
+
+### **Twenty Chapters of New Tricks**
+
+The campaign is **120 jobs across 20 chapters**, six jobs each. Each chapter only adds one new thing, mostly so you're never trying to learn three mechanics at once while a guard's walking towards you. Here's what turns up along the way:
+
+- **Relays and shutters**: shoot a purple relay to open its shutters. That costs your bullet, and it can also open a sightline you didn't want open.
+- **Waiting**: rooms where the best route means letting the patrol go past first.
+- **Keycards**: grab the card before anything else, or the gate stays shut.
+- **Guards who only look forward**, and **sentries who turn every round**, so you have to move while their back's turned.
+- **Laser gates** that switch on and off every move.
+- **Air vents**: drop into one and climb out of the other.
+
+<figure class="flex flex-col items-center">
+  <Image src={objLasers} alt="Laser gates in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Laser gates switch on and off every move, so timing is everything.
+  </figcaption>
+</figure>
+
+Within a chapter, the difficulty goes up and down rather than straight up. You get a harder job, then a breather, then a harder one, and each chapter ends on a finale that mixes everything you've learned so far. Every finale has a piece of loot to steal and a trophy to win: The Harbour Clock, The Brass Telescope, The Microfilm, The House Chips. Each chapter has its own venue too, so you move from the bank to an art gallery, the docks, a watchtower, a government bureau and a casino.
+
+<figure class="flex flex-col items-center">
+  <Image src={objVents} alt="Air vents in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Air vents pop you out somewhere the guards aren't looking.
+  </figcaption>
+</figure>
+
+### **And It Keeps Going**
+
+Taking inspiration from a game with nearly four thousand levels and then stopping at 120 felt a bit daft. So when you finish job 120, **the jobs keep coming**.
+
+From 121 onwards, the game makes new jobs as you go, using the same generator and the same solver checks as the campaign. While you're playing one job, the next one is being prepared in the background, so it's normally ready by the time you get there. The first few chapters past 120 even come ready made with the game. Every one of them is proven beatable, and each new chapter rotates the venue and the mix of mechanics.
+
+### **Making It Feel Alive**
+
+For a long time the game worked, but it felt like a spreadsheet with a robber in it. So I spent a good chunk of time making it feel like a heist.
+
+The characters and scenery are from **Synty**'s POLYGON packs, mainly Heist, Spy and Gang Warfare, with a few paintings borrowed from Shops for the gallery. Getting their animations behaving in Godot was a saga. There were T-poses, guards walking sideways, and hands that wouldn't hold their guns properly. For a while my robber looked like he was carrying his pistol with oven gloves on.
+
+Once the characters behaved themselves, I went through every moment of a job and asked what would make it more fun to watch:
+
+- Rooms build themselves around you when a job starts.
+- The robber has a line for the start of the job ("Easy money."), for grabbing the first bag ("Payday!") and for winning ("Too easy.").
+- A guard who spots you gets a big red **!** over his head and shouts "FREEZE!", and the police lights flash across the room.
+- Taking your one shot slows time right down for a moment, so it lands like it matters.
+- Winning a job rains cash on the robber, and he drops through a hatch to make his getaway.
+
+The music is **Spy Showdown** by Fablefly Music, and the Ki10 logo at the start gets a little purr. I'm not going to explain the purr. There might also be a cat or two hiding somewhere in the game. I'm not going to explain that either.
+
+<figure class="flex flex-col items-center">
+  <Image src={objResult} alt="A three star result in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Three stars and a cash shower. Now do it again in fewer moves.
+  </figcaption>
+</figure>
+
+### **Dressing Up the Crew**
+
+I wanted something to spend your stars on, but I had one hard rule: **nothing for real money**. Every outfit is bought with stars you earn by playing, and every mask comes from finishing a chapter. There are outfits from a tuxedo to a red evening dress, and twenty masks, one for each chapter.
+
+<figure class="flex flex-col items-center">
+  <Image src={objCrew} alt="Five robbers in different outfits and masks" class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The crew. None of them look like they're up to anything.
+  </figcaption>
+</figure>
+
+The game is free, and it has ads, so I tried to make them as fair as I could. There are none in the first chapter, and none after you lose a job or in the middle of a move. A full-screen ad only shows between jobs after a win, and only once you've done a couple of jobs and played for a couple of minutes since the last one. There's also an optional ad you can choose to watch for a few bonus stars.
+
+### **Oh, and It Used to Be Called Last Round**
+
+For most of development the game was called **Last Round**. I liked it. Then I found out there's already a Dead or Alive game called Last Round, which isn't the company you want to keep on a store page.
+
+So it became **The One Bullet Job**, which honestly suits it much better. The final chapter of the campaign is now the title drop, so you'll know when you get there.
+
+### **Testing It on Real Phones**
+
+This is where Skill Check really paid off. I knew from last time that a real phone would turn up stuff I'd never see on my PC, and sure enough, testing on mine turned up a few belters:
+
+- **Four rooms crashed on Android**, and only on Android. Every one of them had a cat hiding in it, and the cat's cushion wasn't making it into the Android build. On my PC it was fine, because on my PC every file is always there.
+- **You couldn't scroll the menus** unless you swiped in the tiny gaps between buttons. Very annoying, and very easy to miss on a PC with a mouse wheel.
+- **Two guards spent their whole shift staring at a wall.** They were technically on patrol. They were not technically useful.
+
+And the best one. On the day I sent the game to Google for review, I installed it on my phone and got a startup error before it even reached the menu. My Godot editor had been open the whole time with an old copy of the export settings, and it had quietly written them back over the new ones, so the build was missing some of the newer game files. I caught it, fixed it, and added a check so it can't happen again. If you're a dev, check your exports on a real device. Every time.
+
+### **The Trailers**
+
+I made three trailers, a teaser, a cinematic and the gameplay one above, and every shot in them is recorded in the real game. The game plays the solver's routes back through the same rules you play with, so nothing is faked.
+
+I got some really useful feedback from friends on the first cut of the gameplay trailer. They told me the text flew past too fast to read while the gameplay was happening, that the opening needed a hook in the first few seconds, and that by the halfway point it felt more like an animated tutorial than a trailer. All fair! So I rebuilt it: it opens with the one bullet, the text sits on its own between clips, the mechanics fly past in a quick montage, and it finishes on one of the big multi-guard jobs. It's shorter and punchier for it. Thanks for being brutally honest, you know who you are.
+
+<figure class="flex flex-col items-center">
+  <Image src={objShot} alt="Taking the one shot in The One Bullet Job" class="max-w-xs rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    One bullet, one guard down. Hope it was the right one.
+  </figcaption>
+</figure>
+
+### **What's Next**
+
+For The One Bullet Job, the plan is to watch reviews and crash reports over the next few weeks and patch anything that comes up. If you find a job that feels unfair, or something that's just plain broken, tell me. You can find us on [Discord](https://discord.gg/NqtVzsmj3A), and I'll take a look.
+
+After that, it's back to the big game. **Boop n Burn** is still aiming for Steam Next Fest in February, and **KIT** is carrying on in Godot. Honestly though, it's been really nice having something small I could actually get finished alongside the big stuff. It's still a bit weird seeing it on the store with our name on it. In a good way.
+
+If you give it a go, a review on the store helps more than you'd think, and I read every one.
+
+<p class="text-center">
+  <a href={playLink} class="font-bold underline">
+    Get The One Bullet Job on Google Play
+  </a>
+</p>
+
+Thanks for reading,
+
+Mark
