@@ -94,9 +94,13 @@ const metadata = {
             </div>
           )
         }
+        {
+          game.slug === 'boop-n-burn' && (
+            <p class="mt-3 text-sm text-muted">Demo news goes out with our studio updates.</p>
+          )
+        }
       </div>
 
-      {game.slug === 'boop-n-burn' && <p class="lg:hidden text-sm text-muted">Demo news goes out with our studio updates.</p>}
       <GameArt
         title={game.title}
         gradient={game.gradient}
@@ -214,7 +218,12 @@ const metadata = {
 
   <CallToAction
     actions={[
-      { variant: 'primary', text: game.slug === 'boop-n-burn' ? 'Get demo updates' : 'Get studio updates', href: '#studio-updates', icon: 'tabler:mail' },
+      {
+        variant: 'primary',
+        text: game.slug === 'boop-n-burn' ? 'Get demo updates' : 'Get studio updates',
+        href: '#studio-updates',
+        icon: 'tabler:mail',
+      },
       { text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
       { text: 'Get in touch', href: '/contact', icon: 'tabler:mail' },
     ]}
