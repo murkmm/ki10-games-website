@@ -154,7 +154,7 @@ export const games: Game[] = [
     ],
     engine: 'Godot',
     platforms: ['Android'],
-    releaseLine: 'Coming soon to Android',
+    releaseLine: 'Launching 16 October 2026 on Android',
     features: [
       {
         title: 'One bullet. Make it count.',
