@@ -2,7 +2,7 @@
 publishDate: 2026-10-16T12:00:00Z
 author: Mark
 title: 'Devlog #12: The One Bullet Job Is Out'
-excerpt: 'The One Bullet Job is out now on Google Play. Here is how it went from a side project idea to a released game: the solver, the level generator, twenty chapters of new tricks, and the bugs I found the hard way.'
+excerpt: "The One Bullet Job is out! Here's how a little side project turned into 120 heists, one bullet, a ridiculous level generator and our second released game."
 image: '../../assets/images/obj-crew.webp'
 cardImage: '../../assets/images/obj-crew.webp'
 category: Devlog
@@ -106,23 +106,27 @@ Stars came next. One for escaping with some cash, two for taking every bag, and 
 
 This is probably the bit I'm proudest of, which won't surprise anyone who knows what I do for a day job.
 
-I've spent over nine years in games QA, and if there's one thing that makes me twitch, it's a puzzle game with an unbeatable level in it. With 120 jobs, and rules that kept changing as I added new mechanics, I knew there was no way I could check every room by hand every time I touched something. So before I made lots of levels, I made sure I could **prove** them.
+I've spent over nine years in games QA, and if there's one thing that makes me twitch, it's a puzzle game with an unbeatable level in it. With 120 jobs, and rules that kept changing as I added new mechanics, I knew there was no way I could check every room by hand every time I touched something. So before I made loads of levels, I made sure I could **prove** them.
 
-Every job in the game is checked by a **solver**, a program that tries every possible move until it finds the shortest way to beat the room. That's also where each job's par comes from, so the three star target is always genuinely possible.
+Every job goes through a **solver** that tries every possible move until it finds the shortest way out. That's also where the par comes from, so if the game says a job can be three starred, I know it actually can.
 
-The important bit is that the game, the solver, the hints and the replays all use **exactly the same rules code**. There's one place that decides what a dash or a shot does, so the solver and the game can never disagree about whether a move works. On top of that, there's a **second, completely separate solver** written in Python, and the two are compared on every level. If they ever disagree, something's wrong, and I want to know about it before you do.
+The bit I'm especially happy with is that the game and the solver aren't working from two different sets of rules. If I change how a dash or a shot works, I don't then have to remember to change some separate fake version of it for the solver. The game, hints, replays and solver all use the same rules underneath.
 
-Every time I change something, an automated check replays every job's escape and its three star route through the real rules. Published levels are also saved as fixed data files, so job 48 can't quietly change on you after release because I tweaked a rule somewhere else.
+I may have gone slightly overboard here, because I also made a **second solver in Python** just to double check the first one. The two get compared across every level, and if they ever disagree, something's gone wrong. That's probably the QA brain taking over, but I'd rather find that out than have someone reach job 87 and discover it's impossible.
+
+I also run a check that replays every job's escape and three star route whenever I change something important. Once a campaign level is finished it gets saved as fixed data too, so job 48 can't quietly turn into a different puzzle because I changed something later.
 
 ### **The Level Lab**
 
 Being able to prove a level can be beaten is great, but I still needed 120 of them, and I didn't fancy designing every single one from a blank grid.
 
-So I built a level generator as a plugin inside the Godot editor, which I've been calling the **Level Lab**. You tell it what kind of room you want, and it builds candidate rooms, solves every one of them, and throws away anything that doesn't pass. In one test it made **1,000 different rooms in about two and a half minutes**. Along the way it threw out nearly a thousand rooms that couldn't be beaten at all, plus anything that was just a rotated or mirrored copy of a room it already had.
+So I built a level generator inside the Godot editor, which I've been calling the **Level Lab**. I tell it roughly what sort of room I want, it makes a pile of them, runs the solver over the lot and bins anything that doesn't work. In one test it made **1,000 different rooms in about two and a half minutes**, while throwing away nearly another thousand that were impossible or basically just copies of something it had already made.
 
-It also checks that the chapter's new mechanic actually matters. If a room is supposed to be about keycards but you can beat it just as fast without the keycard, it gets binned. Later on I added a check for guards too: the generator solves the room again with every guard removed, and if that's no quicker, the guards were just stood there watching, so out it goes.
+It got a bit obsessive from there. If a room is supposed to be about keycards but the keycard doesn't actually matter, it gets binned. I even made it solve rooms again with the guards removed, because if taking the guards away doesn't make the solution any easier, they're basically just stood there watching. Out they go.
 
-One thing I learned the hard way: **a room the solver can beat isn't the same as a room that's fun.** Early on, nearly every generated room used one of only seventeen wall layouts. Technically they were all different puzzles, but they felt the same after a while. I changed the generator to draw its own room shapes, which took it from seventeen layouts to hundreds. Even so, nothing goes in the game until I've played it myself and liked it. The generator is great at coming up with rooms, but it's rubbish at telling whether they're any fun, so that bit's still my job.
+The big thing I learned, though, is that **a room the solver can beat isn't the same as a room that's fun**. Early on, nearly every generated room used one of only seventeen wall layouts. Technically they were different puzzles, but after a while they all felt the same. I changed the generator so it could make its own room shapes, which took that from seventeen layouts to hundreds.
+
+Even with all that, nothing goes in the game until I've played it myself and liked it. The generator is great at coming up with rooms. It's rubbish at knowing whether they're actually any fun, so that bit's still my job.
 
 <figure class="flex flex-col items-center">
   <Image src={objWatch} alt="Reading guard patrols in The One Bullet Job" class="max-w-xs rounded-md" />
@@ -162,7 +166,7 @@ Within a chapter, the difficulty goes up and down rather than straight up. You g
 
 Taking inspiration from a game with nearly four thousand levels and then stopping at 120 felt a bit daft. So when you finish job 120, **the jobs keep coming**.
 
-From 121 onwards, the game makes new jobs as you go, using the same generator and the same solver checks as the campaign. While you're playing one job, the next one is being prepared in the background, so it's normally ready by the time you get there. The first few chapters past 120 even come ready made with the game. Every one of them is proven beatable, and each new chapter rotates the venue and the mix of mechanics.
+From 121 onwards, the game makes new jobs as you go, using the same generator and solver checks as the campaign. While you're playing one job, the next one is being prepared in the background, so it's normally ready by the time you get there. The first few chapters past 120 even come ready made with the game. Every one is checked before you play it, and each new chapter rotates the venue and mix of mechanics.
 
 ### **Making It Feel Alive**
 
@@ -218,9 +222,11 @@ And the best one. On the day I sent the game to Google for review, I installed i
 
 ### **The Trailers**
 
-I made three trailers, a teaser, a cinematic and the gameplay one above, and every shot in them is recorded in the real game. The game plays the solver's routes back through the same rules you play with, so nothing is faked.
+I made three trailers: a teaser, a cinematic and the gameplay one above. Every shot in them came from the actual game; I didn't want to show anything you couldn't really do when you downloaded it.
 
-I got some really useful feedback from friends on the first cut of the gameplay trailer. They told me the text flew past too fast to read while the gameplay was happening, that the opening needed a hook in the first few seconds, and that by the halfway point it felt more like an animated tutorial than a trailer. All fair! So I rebuilt it: it opens with the one bullet, the text sits on its own between clips, the mechanics fly past in a quick montage, and it finishes on one of the big multi-guard jobs. It's shorter and punchier for it. Thanks for being brutally honest, you know who you are.
+The first cut of the gameplay trailer wasn't great. Friends told me the text flew past too fast to read, the opening needed something interesting in the first few seconds, and by halfway through it felt more like an animated tutorial than a trailer. All fair!
+
+So I rebuilt it. It now opens with the one bullet, the text gets its own space between clips, the mechanics fly past in a quick montage, and it finishes on one of the bigger multi-guard jobs. It's shorter and much better for it. Thanks for being brutally honest, you know who you are.
 
 <figure class="flex flex-col items-center">
   <Image src={objShot} alt="Taking the one shot in The One Bullet Job" class="max-w-xs rounded-md" />
