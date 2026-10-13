@@ -58,9 +58,10 @@ export function loadConverter(onStatus = () => {}) {
 }
 
 /**
- * Cuts `length` seconds starting at `start` out of a video and converts it to Ogg Theora + Vorbis,
- * at most 854 pixels on its longest side (plenty for a TV, and quick to convert).
- * onProgress(fraction 0..1) is called as it goes. Returns a Blob (video/ogg).
+ * Cuts `length` seconds starting at `start` out of a video and converts it to Ogg Theora + Vorbis
+ * (for the TV app) and, in the same pass, H.264 .mp4 (for the TV web page, e.g. AirPlay from Safari).
+ * Videos are made at most 854 pixels on their longest side (plenty for a TV, and quick to convert).
+ * onProgress(fraction 0..1) is called as it goes. Returns { ogv: Blob, mp4: Blob | null }.
  */
 export async function convertToOgv(file, start, length, onProgress = () => {}, onStatus = () => {}) {
   const ff = await loadConverter(onStatus);
@@ -84,22 +85,32 @@ export async function convertToOgv(file, start, length, onProgress = () => {}, o
     if (time > 0) onProgress(Math.min(1, time / 1e6 / length));
   };
   ff.on("progress", onProg);
+  const vf = "scale=w=854:h=854:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=30";
+  const ogvArgs = ["-vf", vf, "-c:v", "libtheora", "-q:v", "7", "-c:a", "libvorbis", "-q:a", "4", "-ac", "2", "-ar", "44100", "-y", "out.ogv"];
+  const mp4Args = ["-vf", vf, "-c:v", "libx264", "-preset", "veryfast", "-crf", "26", "-pix_fmt", "yuv420p", "-profile:v", "main",
+    "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-movflags", "+faststart", "-y", "out.mp4"];
+  const inputArgs = ["-ss", String(start), "-t", String(length), "-i", inputPath];
   try {
-    const code = await ff.exec([
-      "-ss", String(start), "-t", String(length), "-i", inputPath,
-      "-vf", "scale=w=854:h=854:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=30",
-      "-c:v", "libtheora", "-q:v", "7",
-      "-c:a", "libvorbis", "-q:a", "4", "-ac", "2", "-ar", "44100",
-      "-y", "out.ogv",
-    ]);
+    let both = true;
+    let code = await ff.exec([...inputArgs, ...ogvArgs, ...mp4Args]);
+    if (code !== 0) {
+      both = false;
+      code = await ff.exec([...inputArgs, ...ogvArgs]);
+    }
     if (code !== 0) throw new Error("That video couldn't be converted.");
     const data = await ff.readFile("out.ogv");
     if (!data || data.length < 1000) throw new Error("That video couldn't be converted.");
+    let mp4 = null;
+    if (both) {
+      const m = await ff.readFile("out.mp4").catch(() => null);
+      if (m && m.length > 1000) mp4 = new Blob([m], { type: "video/mp4" });
+    }
     onProgress(1);
-    return new Blob([data], { type: "video/ogg" });
+    return { ogv: new Blob([data], { type: "video/ogg" }), mp4 };
   } finally {
     ff.off("progress", onProg);
     await ff.deleteFile("out.ogv").catch(() => {});
+    await ff.deleteFile("out.mp4").catch(() => {});
     if (mounted) await ff.unmount("/in").catch(() => {});
     else await ff.deleteFile(input).catch(() => {});
   }

@@ -170,6 +170,8 @@ async function buildQuizFile(q) {
           out.media = { kind: x.media.kind, file: x.media.file };
           if (x.media.credit) out.media.credit = x.media.credit;
           files.push({ name: x.media.file, data: blob });
+          const web = x.media.web && await Media.get(q.id, x.media.web);
+          if (web) { out.media.web = x.media.web; files.push({ name: x.media.web, data: web }); }
         }
       }
       qs.push(out);
@@ -206,6 +208,10 @@ async function importQuizFile(blob) {
         await Media.put(id, x.media.file, new Blob([bytes], { type }));
         nq.media = { kind: x.media.kind, file: x.media.file, name: x.media.file.split("/").pop() };
         if (x.media.credit) nq.media.credit = String(x.media.credit);
+        if (x.media.web && entries.get(x.media.web)) {
+          await Media.put(id, x.media.web, new Blob([entries.get(x.media.web)], { type: "video/mp4" }));
+          nq.media.web = x.media.web;
+        }
       }
       round.questions.push(nq);
     }
@@ -351,7 +357,7 @@ function quizView() {
         el("button", { class: "go", onclick: () => addQuestion(ri) }, "＋ Add a question"),
         q.rounds.length > 1 ? el("button", { class: "ghost small", onclick: () => {
           if (r.questions.length && !confirm(`Delete "${r.title || "this round"}" and its ${r.questions.length} question(s)?`)) return;
-          for (const x of r.questions) if (x.media) Media.del(q.id, x.media.file);
+          for (const x of r.questions) dropMedia(x.media);
           q.rounds.splice(ri, 1); save(); quizView();
         } }, "Delete round") : null));
   });
@@ -460,7 +466,7 @@ function questionView(ri, qi) {
   if (issue) parts.push(el("p", { class: "gold" }, "⚠ " + issue));
   parts.push(el("button", { class: "danger", style: "width:100%;margin-top:24px", onclick: () => {
     if (!confirm("Delete this question?")) return;
-    if (q.media) Media.del(quiz.id, q.media.file);
+    dropMedia(q.media);
     r.questions.splice(qi, 1); save(); go(`quiz/${quiz.id}`);
   } }, "Delete this question"));
 
@@ -543,15 +549,21 @@ function mediaSection(q, ri, qi, rerender) {
       removeBtn());
   });
   function removeBtn() {
-    return el("button", { class: "danger small", onclick: () => { Media.del(quiz.id, q.media.file); q.media = null; rerender(); } }, "Remove");
+    return el("button", { class: "danger small", onclick: () => { dropMedia(q.media); q.media = null; rerender(); } }, "Remove");
   }
   return box;
+}
+
+function dropMedia(media) {
+  if (!media) return;
+  Media.del(quiz.id, media.file);
+  if (media.web) Media.del(quiz.id, media.web);
 }
 
 async function setMedia(q, kind, blob, ext, name, extra = {}) {
   const file = `media/${uid(8)}.${ext}`;
   await Media.put(quiz.id, file, blob);
-  if (q.media) await Media.del(quiz.id, q.media.file);
+  dropMedia(q.media);
   q.media = { kind, file, name, ...extra };
   if (!q.media.credit) delete q.media.credit;
 }
@@ -776,10 +788,16 @@ function videoTrimmer(q, rerender) {
     bar.classList.remove("hidden");
     try {
       const length = t.duration ? Math.max(1, Math.min(t.length, Math.ceil(t.duration - t.start))) : t.length;
-      const blob = await convertToOgv(t.file, t.start, length,
+      const { ogv, mp4 } = await convertToOgv(t.file, t.start, length,
         (f) => { bar.firstChild.style.width = `${Math.round(f * 100)}%`; status.textContent = `Converting... ${Math.round(f * 100)}%`; },
         (msg) => { status.textContent = msg; });
-      await setMedia(q, "video", blob, "ogv", `${t.name} (${formatTime(t.start)}, ${length}s)`, { credit: t.credit });
+      await setMedia(q, "video", ogv, "ogv", `${t.name} (${formatTime(t.start)}, ${length}s)`, { credit: t.credit });
+      if (mp4) {
+        // A copy browsers can play, for the TV web page (AirPlay / casting).
+        const web = q.media.file.replace(/\.ogv$/, ".mp4");
+        await Media.put(quiz.id, web, mp4);
+        q.media.web = web;
+      }
       URL.revokeObjectURL(t.url);
       if (vtrim === t) vtrim = null;
       save();
