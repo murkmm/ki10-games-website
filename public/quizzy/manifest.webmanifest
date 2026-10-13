@@ -1,0 +1,12 @@
+{
+  "name": "Quizzy Quiz Writer",
+  "short_name": "Quiz Writer",
+  "start_url": "./editor.html",
+  "display": "standalone",
+  "background_color": "#04241a",
+  "theme_color": "#0b3d2e",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
