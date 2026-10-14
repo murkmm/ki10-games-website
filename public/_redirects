@@ -1,0 +1,4 @@
+# Quizlo has moved to its own website. Old links, QR codes and share links carry on working.
+/quizlo https://quizlo.co.uk/ 301
+/quizlo/ https://quizlo.co.uk/ 301
+/quizlo/* https://quizlo.co.uk/:splat 301

@@ -62,7 +62,6 @@ export default [
       'types.generated.d.ts',
       '.astro',
       'public/skillcheck/**',
-      'public/quizlo/**',
     ],
   },
 ];
