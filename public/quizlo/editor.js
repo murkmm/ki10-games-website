@@ -1,57 +1,10 @@
 // Quizlo Quiz Writer: write quizzes on a phone or laptop, then send them to the TV app
 // or save them as a .quizlo file. Quizzes are kept in this browser (IndexedDB).
 import { $, el, toast, store, LETTERS } from "./connection.js";
-import { makeZip, readZip } from "./zip.js";
+import { Quizzes, Media, db, uid, newRound, kindOf, problem, countQuestions, slug, buildQuizFile, importQuizFile } from "./library.js";
 import { processImage, decodeAudio, previewClip, stopPreview, renderClip, formatTime, MAX_CLIP_SECONDS } from "./media.js";
 import { convertToOgv } from "./convert.js";
-import { SOURCES, download as searchDownload } from "./search.js";
-
-// ---------------------------------------------------------------- storage
-
-let dbPromise;
-function db() {
-  if (!dbPromise) dbPromise = new Promise((resolve, reject) => {
-    const req = indexedDB.open("quizlo-editor", 1);
-    req.onupgradeneeded = () => {
-      req.result.createObjectStore("quizzes", { keyPath: "id" });
-      req.result.createObjectStore("media");
-    };
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-  return dbPromise;
-}
-async function idb(name, mode, fn) {
-  const d = await db();
-  return new Promise((resolve, reject) => {
-    const t = d.transaction(name, mode);
-    const req = fn(t.objectStore(name));
-    let result;
-    if (req) req.onsuccess = () => { result = req.result; };
-    t.oncomplete = () => resolve(result);
-    t.onerror = () => reject(t.error);
-    t.onabort = () => reject(t.error || new Error("Storage is full"));
-  });
-}
-const Quizzes = {
-  all: () => idb("quizzes", "readonly", (s) => s.getAll()),
-  get: (id) => idb("quizzes", "readonly", (s) => s.get(id)),
-  put: (q) => idb("quizzes", "readwrite", (s) => s.put(q)),
-  del: (id) => idb("quizzes", "readwrite", (s) => s.delete(id)),
-};
-// Media is stored as {type, data: ArrayBuffer} which every browser handles reliably.
-const Media = {
-  async get(quizId, file) {
-    const rec = await idb("media", "readonly", (s) => s.get(`${quizId}:${file}`));
-    return rec ? new Blob([rec.data], { type: rec.type }) : null;
-  },
-  async put(quizId, file, blob) {
-    const data = await blob.arrayBuffer();
-    await idb("media", "readwrite", (s) => s.put({ type: blob.type, data }, `${quizId}:${file}`));
-  },
-  del: (quizId, file) => idb("media", "readwrite", (s) => s.delete(`${quizId}:${file}`)),
-  delQuiz: (quizId) => idb("media", "readwrite", (s) => s.delete(IDBKeyRange.bound(`${quizId}:`, `${quizId}:￿`))),
-};
+import { sourcesFor, download as searchDownload } from "./search.js";
 
 // ---------------------------------------------------------------- the TV app (when this page is served by it)
 
@@ -77,7 +30,6 @@ async function tvQuizzes() {
 
 // ---------------------------------------------------------------- model helpers
 
-const uid = (n = 10) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => "abcdefghijkmnpqrstuvwxyz23456789"[b % 32]).join("");
 const POINTS = [1, 2, 3, 5, 10];
 const TIMES = [[0, "No time limit"], [10, "10 seconds"], [20, "20 seconds"], [30, "30 seconds"], [45, "45 seconds"], [60, "1 minute"], [90, "90 seconds"]];
 const TYPE_NAMES = { choice: "Multiple choice", tf: "True or false", closest: "Closest number" };
@@ -85,12 +37,10 @@ const TYPE_NAMES = { choice: "Multiple choice", tf: "True or false", closest: "C
 function newQuiz() {
   return { id: uid(), title: "", author: store("quizlo.author") || "", rounds: [newRound(1)], created: Date.now(), updated: Date.now() };
 }
-function newRound(n) { return { title: `Round ${n}`, questions: [] }; }
 function newQuestion(kind = "choice", from) {
   const q = { type: "choice", text: "", options: ["", "", "", ""], answer: null, points: from?.points ?? 1, time: from?.time ?? 0, media: null };
   return setKind(q, kind);
 }
-function kindOf(q) { return q.type === "closest" ? "closest" : q.tf ? "tf" : "choice"; }
 function setKind(q, kind) {
   const was = kindOf(q);
   if (kind === was && q.options) return q;
@@ -107,21 +57,6 @@ function setKind(q, kind) {
   return q;
 }
 
-/** What's still missing from a question, or "" if it's ready. */
-function problem(q) {
-  if (!q.text.trim() && !q.media) return "Needs a question";
-  if (q.type === "closest") {
-    return q.answer === null || q.answer === "" || isNaN(Number(q.answer)) ? "Needs the right number" : "";
-  }
-  const filled = q.options.filter((o) => o.trim()).length;
-  if (filled < 2) return "Needs at least 2 answers";
-  if (q.options.some((o) => !o.trim())) return "Fill in or remove empty answers";
-  if (q.answer === null || q.answer < 0 || q.answer >= q.options.length) return "Tap ✓ next to the right answer";
-  return "";
-}
-
-function countQuestions(quiz) { return quiz.rounds.reduce((n, r) => n + r.questions.length, 0); }
-function slug(s) { return (s || "quiz").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "quiz"; }
 function ago(t) {
   const m = Math.round((Date.now() - t) / 60000);
   if (m < 1) return "just now";
@@ -150,77 +85,6 @@ async function flush() {
 }
 addEventListener("pagehide", flush);
 document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flush(); });
-
-// ---------------------------------------------------------------- quiz files
-
-async function buildQuizFile(q) {
-  const files = [];
-  let skipped = 0;
-  const json = { format: 1, id: q.id, title: q.title.trim() || "Untitled quiz", author: q.author.trim(), rounds: [] };
-  for (const [ri, r] of q.rounds.entries()) {
-    const qs = [];
-    for (const x of r.questions) {
-      if (problem(x)) { skipped++; continue; }
-      const out = { type: x.type, text: x.text.trim(), points: x.points, time: x.time };
-      if (x.type === "choice") { out.options = x.options.map((o) => o.trim()); out.answer = x.answer; if (x.tf) out.tf = true; }
-      else { out.answer = Number(x.answer); out.unit = (x.unit || "").trim(); }
-      if (x.media) {
-        const blob = await Media.get(q.id, x.media.file);
-        if (blob) {
-          out.media = { kind: x.media.kind, file: x.media.file };
-          if (x.media.credit) out.media.credit = x.media.credit;
-          files.push({ name: x.media.file, data: blob });
-          const web = x.media.web && await Media.get(q.id, x.media.web);
-          if (web) { out.media.web = x.media.web; files.push({ name: x.media.web, data: web }); }
-        }
-      }
-      qs.push(out);
-    }
-    if (qs.length) json.rounds.push({ title: r.title.trim() || `Round ${ri + 1}`, questions: qs });
-  }
-  files.unshift({ name: "quiz.json", data: JSON.stringify(json, null, 1) });
-  return { blob: await makeZip(files), skipped, empty: json.rounds.length === 0, name: slug(json.title) + ".quizlo" };
-}
-
-async function importQuizFile(blob) {
-  let entries;
-  try { entries = await readZip(blob); } catch (_) { throw new Error("That isn't a Quizlo quiz file."); }
-  const raw = entries.get("quiz.json");
-  if (!raw) throw new Error("That isn't a Quizlo quiz file.");
-  const data = JSON.parse(new TextDecoder().decode(raw));
-  let id = String(data.id || uid());
-  const existing = await Quizzes.get(id);
-  if (existing && !confirm(`You already have "${existing.title || "Untitled quiz"}" here. Replace it with the version from this file?\n\n(Press Cancel to keep both.)`)) id = uid();
-  else if (existing) await Media.delQuiz(id);
-  const q = { id, title: data.title || "", author: data.author || "", created: Date.now(), updated: Date.now(), rounds: [] };
-  for (const r of data.rounds || []) {
-    const round = { title: r.title || "", questions: [] };
-    for (const x of r.questions || []) {
-      const nq = { type: x.type === "closest" ? "closest" : "choice", text: x.text || "", points: x.points ?? 1, time: x.time ?? 0, media: null };
-      if (nq.type === "choice") {
-        nq.options = (x.options || []).map(String);
-        nq.answer = Number.isInteger(x.answer) ? x.answer : null;
-        if (x.tf || (nq.options.length === 2 && nq.options[0] === "True" && nq.options[1] === "False")) nq.tf = true;
-      } else { nq.answer = x.answer; nq.unit = x.unit || ""; }
-      if (x.media && entries.get(x.media.file)) {
-        const bytes = entries.get(x.media.file);
-        const type = { jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", wav: "audio/wav", mp3: "audio/mpeg", ogv: "video/ogg", ogg: "video/ogg" }[x.media.file.split(".").pop().toLowerCase()] || "";
-        await Media.put(id, x.media.file, new Blob([bytes], { type }));
-        nq.media = { kind: x.media.kind, file: x.media.file, name: x.media.file.split("/").pop() };
-        if (x.media.credit) nq.media.credit = String(x.media.credit);
-        if (x.media.web && entries.get(x.media.web)) {
-          await Media.put(id, x.media.web, new Blob([entries.get(x.media.web)], { type: "video/mp4" }));
-          nq.media.web = x.media.web;
-        }
-      }
-      round.questions.push(nq);
-    }
-    q.rounds.push(round);
-  }
-  if (!q.rounds.length) q.rounds.push(newRound(1));
-  await Quizzes.put(q);
-  return q;
-}
 
 function download(blob, name) {
   const a = el("a", { href: URL.createObjectURL(blob), download: name });
@@ -536,7 +400,8 @@ function mediaSection(q, ri, qi, rerender) {
       el("button", { class: "ghost", onclick: () => open("video") }, el("span", { class: "ic" }, "📺"), "Video"));
   }
   const box = el("div", { class: "card preview" }, el("p", { class: "muted small", style: "margin-top:0" }, "Loading..."));
-  Media.get(quiz.id, q.media.file).then((blob) => {
+  // Videos: preview the .mp4 copy where there is one (browsers like Safari can't play .ogv).
+  Media.get(quiz.id, q.media.kind === "video" && q.media.web ? q.media.web : q.media.file).then((blob) => {
     if (!blob) { box.replaceChildren(el("p", {}, "This file is missing."), removeBtn()); return; }
     const url = URL.createObjectURL(blob);
     const player = q.media.kind === "image" ? el("img", { src: url, alt: "" })
@@ -611,19 +476,25 @@ function mediaPanel(q, rerender) {
       el("div", { class: "bold" }, heading),
       el("div", { class: "two" },
         el("button", { class: "ghost", style: "min-height:84px", onclick: fromDevice }, "📁 From this device"),
-        el("button", { class: "ghost", style: "min-height:84px", onclick: () => { p.step = "search"; p.source = SOURCES[p.kind][0].id; rerender(); } }, "🔎 Search online")),
+        el("button", { class: "ghost", style: "min-height:84px", onclick: () => { p.step = "search"; rerender(); } }, "🔎 Search online")),
       el("button", { class: "ghost small", onclick: close }, "Cancel"));
   }
 
-  const sources = SOURCES[p.kind];
+  if (!p.sources) {
+    sourcesFor(p.kind).then((list) => { p.sources = list; if (panel === p) rerender(); });
+    return el("div", { class: "card center" }, el("div", { class: "spinner" }));
+  }
+  const sources = p.sources;
   const src = sources.find((s) => s.id === p.source) || sources[0];
+  p.source = src.id;
+  if (p.picked) return videoPreview(q, p, rerender);
   const input = el("input", { type: "search", value: p.query, enterkeyhint: "search",
-    placeholder: { image: "e.g. reindeer, Big Ben, Elf film", audio: "e.g. Last Christmas, Mariah Carey", video: "e.g. snow, fireworks" }[p.kind] });
+    placeholder: { image: "e.g. reindeer, Big Ben, Elf film", audio: "e.g. Last Christmas, Mariah Carey", video: "e.g. Home Alone, snow, fireworks" }[p.kind] });
   const go = () => { p.query = input.value; runSearch(rerender); };
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); go(); } });
   const parts = [el("div", { class: "bold" }, heading)];
   if (sources.length > 1) {
-    parts.push(el("div", { class: "seg", style: `grid-template-columns: repeat(${sources.length}, 1fr)` }, sources.map((s) =>
+    parts.push(el("div", { class: "seg", style: `grid-template-columns: repeat(${sources.length > 3 ? 2 : sources.length}, 1fr)` }, sources.map((s) =>
       el("button", { class: s.id === src.id ? "on" : "", onclick: () => { stopSearchAudio(); p.source = s.id; p.results = null; p.error = ""; p.query = input.value; if (p.query.trim()) runSearch(rerender); else rerender(); } }, s.name))));
   }
   parts.push(el("div", { class: "row" }, el("div", { class: "grow" }, input), el("button", { class: "primary", onclick: go }, "Search")));
@@ -639,10 +510,10 @@ async function runSearch(rerender) {
   const p = panel;
   if (!p || !p.query.trim()) return;
   stopSearchAudio();
-  p.busy = true; p.error = ""; p.results = null;
+  p.busy = true; p.error = ""; p.results = null; p.picked = null;
   rerender();
   try {
-    const src = SOURCES[p.kind].find((s) => s.id === p.source) || SOURCES[p.kind][0];
+    const src = p.sources.find((s) => s.id === p.source) || p.sources[0];
     p.results = await src.search(p.query.trim());
   } catch (e) {
     p.error = (e && e.message && !/fetch|network|json|token/i.test(e.message)) ? e.message : "The search didn't work - check this device is online and try again.";
@@ -650,33 +521,67 @@ async function runSearch(rerender) {
   if (panel === p) { p.busy = false; rerender(); }
 }
 
-function resultsView(q, p, rerender) {
-  const use = async (r) => {
-    stopSearchAudio();
-    if (r.size && r.size > 300 * 1048576) return toast("That one is too big to download - try another.");
-    p.busy = p.kind === "video" ? "Downloading video..." : "Downloading...";
-    rerender();
-    try {
-      const blob = await searchDownload(r.url);
-      const ext = (r.url.split("?")[0].match(/\.([a-z0-9]{2,5})$/i) || [, "bin"])[1];
-      const file = new File([blob], `${r.title}.${ext}`, { type: blob.type });
-      if (panel !== p) return;
-      panel = null;
-      if (p.kind === "image") {
-        await setMedia(q, "image", await processImage(file), "jpg", r.title, { credit: r.credit });
-        rerender();
-      } else if (p.kind === "audio") {
-        await addMusic(q, rerender, file, { name: r.title, credit: r.credit, song: r.song });
-      } else {
-        await addVideo(q, rerender, file, { name: r.title, credit: r.credit });
-      }
-    } catch (e) {
-      if (panel === null) panel = p;
-      p.busy = false;
-      p.error = "Couldn't download that one - try another.";
+/** Some results (e.g. Internet Archive) only find their actual file when picked. */
+async function resolveResult(r) {
+  if (r.resolve && !r.url) Object.assign(r, await r.resolve());
+  return r;
+}
+
+function sizeText(bytes) {
+  return bytes ? (bytes < 1048576 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1048576).toFixed(bytes < 10485760 ? 1 : 0)} MB`) : "";
+}
+
+async function useResult(q, p, r, rerender) {
+  stopSearchAudio();
+  p.busy = p.kind === "video" ? "Downloading video..." : "Downloading...";
+  rerender();
+  try {
+    await resolveResult(r);
+    if (r.size && r.size > 300 * 1048576) throw new Error("That one is too big to download - try another.");
+    const blob = await searchDownload(r.url);
+    const ext = (r.url.split("?")[0].match(/\.([a-z0-9]{2,5})$/i) || [, "bin"])[1];
+    const file = new File([blob], `${r.title}.${ext}`, { type: blob.type });
+    if (panel !== p) return;
+    panel = null;
+    if (p.kind === "image") {
+      await setMedia(q, "image", await processImage(file), "jpg", r.title, { credit: r.credit });
       rerender();
+    } else if (p.kind === "audio") {
+      await addMusic(q, rerender, file, { name: r.title, credit: r.credit, song: r.song });
+    } else {
+      await addVideo(q, rerender, file, { name: r.title, credit: r.credit });
     }
-  };
+  } catch (e) {
+    if (panel === null) panel = p;
+    p.busy = false;
+    p.error = e && /too big/.test(e.message) ? e.message : "Couldn't download that one - try another.";
+    rerender();
+  }
+}
+
+/** Watch a video search result before choosing it. */
+function videoPreview(q, p, rerender) {
+  const r = p.picked;
+  const back = () => { p.picked = null; rerender(); };
+  const info = el("div", { class: "small muted" }, [r.subtitle, r.duration ? formatTime(r.duration) : "", sizeText(r.size)].filter(Boolean).join(" · "));
+  const holder = el("div", { class: "vtrim" });
+  const useBtn = el("button", { class: "primary", onclick: () => useResult(q, p, r, rerender) }, "Use this video");
+  if (r.preview || r.url) {
+    holder.append(el("video", { src: r.preview || r.url, controls: true, autoplay: true, muted: true, playsinline: true, loop: true, poster: r.thumb || "" }));
+  } else {
+    holder.append(el("div", { class: "center" }, el("div", { class: "spinner" })));
+    useBtn.disabled = true;
+    resolveResult(r).then(() => { if (panel === p && p.picked === r) rerender(); })
+      .catch((e) => { if (panel === p && p.picked === r) { p.picked = null; p.error = e.message; rerender(); } });
+  }
+  return el("div", { class: "card stack" },
+    el("div", { class: "bold" }, "📺 " + r.title),
+    holder, info,
+    el("div", { class: "btnrow" }, el("button", { class: "ghost", onclick: back }, "‹ Back to results"), useBtn),
+    el("p", { class: "small muted" }, "Next you'll choose which bit of it to show."));
+}
+
+function resultsView(q, p, rerender) {
   if (p.kind === "audio") {
     return el("div", { class: "songs" }, p.results.map((r) => {
       const play = el("button", { class: "ghost small", title: "Listen" }, "▶");
@@ -694,13 +599,19 @@ function resultsView(q, p, rerender) {
         r.thumb ? el("img", { src: r.thumb, alt: "", loading: "lazy" }) : el("div", { class: "noart" }, "🎵"),
         el("div", { class: "grow" }, el("div", { class: "bold" }, r.title), el("div", { class: "small muted" }, r.subtitle + (r.duration ? ` · ${formatTime(r.duration)}` : ""))),
         play,
-        el("button", { class: "go small", onclick: () => use(r) }, "Use"));
+        el("button", { class: "go small", onclick: () => useResult(q, p, r, rerender) }, "Use"));
     }));
   }
+  if (p.kind === "video") {
+    return el("div", { class: "results videos" }, p.results.map((r) =>
+      el("button", { title: r.title, onclick: () => { stopSearchAudio(); p.picked = r; rerender(); } },
+        el("img", { src: r.thumb, alt: r.title, loading: "lazy", referrerpolicy: "no-referrer" }),
+        r.duration ? el("span", { class: "tag" }, "▶ " + formatTime(r.duration)) : el("span", { class: "tag" }, "▶"),
+        el("span", { class: "cap" }, r.title))));
+  }
   return el("div", { class: "results" }, p.results.map((r) =>
-    el("button", { title: r.title, onclick: () => use(r) },
-      el("img", { src: r.thumb, alt: r.title, loading: "lazy", referrerpolicy: "no-referrer" }),
-      p.kind === "video" ? el("span", { class: "tag" }, "▶") : null)));
+    el("button", { title: r.title, onclick: () => useResult(q, p, r, rerender) },
+      el("img", { src: r.thumb, alt: r.title, loading: "lazy", referrerpolicy: "no-referrer" }))));
 }
 
 // --- Choosing the bit of a song to play

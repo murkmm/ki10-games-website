@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04241a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Quizlo TV</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  html, body { height: 100%; overflow: hidden; background: #04241a; }
+  body { font-size: 36px; }
+  #bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 30%, #12573f 0%, #0b3d2e 45%, #04241a 100%); }
+  canvas.fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  /* Everything is laid out on a 1920x1080 stage which is scaled to fit the screen. */
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; display: flex; flex-direction: column; }
+  header { display: flex; align-items: center; gap: 24px; padding: 24px 48px 0; min-height: 120px; }
+  header .logo { font-size: 52px; }
+  header .info { flex: 1; text-align: center; color: rgba(255,255,255,0.65); font-size: 34px; font-weight: 600; }
+  header .join { text-align: right; color: rgba(255,255,255,0.65); font-size: 26px; font-weight: 600; line-height: 1.2; }
+  main { flex: 1; padding: 12px 64px 40px; display: flex; flex-direction: column; min-height: 0; }
+  .qr { background: #fff; display: block; }
+  .center { text-align: center; }
+  .col { display: flex; flex-direction: column; gap: 22px; flex: 1; min-height: 0; justify-content: center; }
+  .h-huge { font-size: 150px; color: var(--gold); font-weight: 600; line-height: 1; }
+  .gold { color: var(--gold); }
+  .dim { color: rgba(255,255,255,0.65); }
+  .panel { background: rgba(0,0,0,0.28); border-radius: 32px; padding: 36px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 18px; align-content: flex-start; }
+  .chip { display: flex; align-items: center; gap: 14px; background: rgba(0,0,0,0.3); border-radius: 40px; padding: 8px 26px 8px 10px; font-size: 40px; font-weight: 600; }
+  .ball { width: 60px; height: 60px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; flex: none; font-size: 32px; }
+  .ball.off { background: rgba(255,255,255,0.12) !important; }
+  .qtext { font-size: 64px; font-weight: 600; text-align: center; line-height: 1.2; }
+  .media { flex: 1; min-height: 200px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; }
+  .media img, .media video { max-width: 100%; max-height: 100%; min-height: 0; flex: 1; object-fit: contain; }
+  .credit { font-size: 20px; color: rgba(255,255,255,0.65); }
+  .note { font-size: 150px; color: var(--gold); animation: beat 0.9s ease-in-out infinite; line-height: 1; }
+  @keyframes beat { 50% { transform: scale(1.12); } }
+  .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+  .opts.three { grid-template-columns: 1fr 1fr 1fr; }
+  .opt { display: flex; align-items: center; gap: 22px; border-radius: 22px; padding: 0 28px 0 22px; min-height: 104px; font-size: 46px; font-weight: 600; border: 8px solid transparent; }
+  .opts.tall .opt { min-height: 150px; }
+  .opt .letter { width: 70px; height: 70px; border-radius: 50%; background: rgba(0,0,0,0.25); display: inline-flex; align-items: center; justify-content: center; color: #fff; flex: none; font-size: 38px; }
+  .opt .txt { flex: 1; }
+  .opt.dim { filter: brightness(0.45); }
+  .opt.dim .txt { color: rgba(255,255,255,0.6); }
+  .opt.right { border-color: #fff; animation: pop 0.5s; }
+  .footer { display: flex; align-items: center; gap: 20px; min-height: 60px; font-size: 34px; font-weight: 600; }
+  .footer .balls { display: flex; gap: 10px; flex-wrap: wrap; }
+  .footer .balls .ball { width: 48px; height: 48px; font-size: 26px; }
+  .timer { display: flex; align-items: center; gap: 16px; font-size: 40px; font-weight: 600; }
+  .track { flex: 1; height: 26px; border-radius: 13px; background: rgba(255,255,255,0.15); overflow: hidden; }
+  .track div { height: 100%; background: #2ecc71; width: 100%; }
+  .answerbox { background: #1f8a5b; border-radius: 32px; padding: 30px; text-align: center; min-width: 620px; display: flex; flex-direction: column; justify-content: center; }
+  .rows { display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; align-items: center; gap: 18px; font-size: 42px; font-weight: 600; }
+  .row .rank { width: 90px; text-align: right; }
+  .row .nm { width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .bar { flex: 1; height: 44px; }
+  .row .bar div { height: 100%; width: 1%; transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .row .sc { width: 100px; text-align: right; color: var(--gold); }
+  #start { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; background: rgba(4,36,26,0.92); cursor: pointer; text-align: center; padding: 16px; }
+  #start .logo { font-size: 72px; }
+  #start button { font-size: 1.4rem; }
+  .tools { display: flex; gap: 14px; justify-content: center; font-size: 20px; opacity: 0.75; }
+  .tools button { font-size: 22px; min-height: 48px; }
+  #status { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 5; background: #b23a48; padding: 8px 18px; border-radius: 12px; font-size: 18px; font-weight: 600; }
+  .fade { animation: fadein 0.35s ease-out both; }
+  @keyframes fadein { from { opacity: 0; } }
+  .grow-in { animation: growin 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+  @keyframes growin { from { transform: scale(0.6); opacity: 0; } }
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<canvas id="snow" class="fx"></canvas>
+<div id="stage"><header><div class="logo">Quizlo</div><div class="info" id="info"></div><div class="join" id="join"></div><div id="joinqr"></div></header><main id="main"></main></div>
+<canvas id="confetti" class="fx"></canvas>
+<div id="status" class="hidden">Connecting to Quizlo...</div>
+<div id="start">
+  <div class="logo">Quizlo TV</div>
+  <p style="max-width:560px">This page shows the quiz on a big screen. AirPlay or cast it to the TV, or open it in the TV's own web browser.</p>
+  <button class="primary big" style="max-width:420px">▶ Start the TV screen</button>
+  <p class="small muted" style="max-width:560px">(Tapping lets the music and videos play. Tip: on an iPad or iPhone, use Screen Mirroring to AirPlay it.)</p>
+</div>
+<audio id="audio" preload="auto"></audio>
+<input type="file" id="open-quiz" accept=".quizlo,.quizzy,application/zip,application/octet-stream" class="hidden">
+
+<script type="module">
+import { Connection, $, el, keepAwake, LETTERS, ordinal, formatNumber, servedByApp, toast } from "./connection.js";
+
+const COLORS = ["#d62839", "#1f8a5b", "#e0a526", "#2364aa", "#8e44ad", "#e2711d"];
+const TEXT = ["#fff", "#fff", "#2b1d00", "#fff", "#fff", "#fff"];
+const audio = $("#audio");
+let state = null, screenKey = "", timerEnd = 0, timerTotal = 0, started = false, video = null;
+
+// --- Fit the 1920x1080 stage to the window --------------------------------------------------
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  $("#stage").style.transform = `scale(${s}) translate(-50%, -50%)`;
+}
+addEventListener("resize", fit); fit();
+
+// --- Connection -----------------------------------------------------------------------------
+// With the Quizlo app: the app runs the game and this page just draws it.
+// On the website (no app): this page runs the whole game itself and phones connect to it.
+let online = null;
+const setStatus = (ok, message) => {
+  $("#status").textContent = message || "Connecting...";
+  $("#status").classList.toggle("hidden", ok);
+};
+servedByApp().then(async (app) => {
+  if (app) {
+    const conn = new Connection({
+      onOpen: () => conn.send({ t: "hello", role: "tv" }),
+      onStatus: (ok) => setStatus(ok, "Connecting to Quizlo..."),
+      onMessage: (m) => {
+        if (m.t === "state") { state = m; render(); }
+        else if (m.t === "media") media(m.cmd);
+      },
+    });
+    return;
+  }
+  const { startOnlineTv } = await import("./tvhost.js");
+  online = await startOnlineTv({
+    onState: (s) => { state = s; render(); },
+    onMedia: (cmd) => media(cmd),
+    onStatus: (ok, message) => setStatus(ok, message || "Connecting to the internet..."),
+  });
+});
+
+// Keyboard (e.g. a laptop on HDMI) when this page runs the game itself.
+addEventListener("keydown", (e) => {
+  if (!online || e.target.closest("input, button")) return;
+  if ([" ", "Enter", "ArrowRight"].includes(e.key)) { e.preventDefault(); online.engine.game.advance(); }
+  if (e.key === "r" || e.key === "R") online.engine.game.onMedia("replay");
+});
+$("#open-quiz").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  e.target.value = "";
+  if (!file || !online) return;
+  const res = await online.openFile(file);
+  toast(res.ok ? `Opened "${res.title}"` : res.error);
+});
+
+$("#start").onclick = async () => {
+  started = true;
+  $("#start").classList.add("hidden");
+  try { audio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="; await audio.play(); } catch (_) {}
+  keepAwake();
+  try { if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen(); } catch (_) {}
+  screenKey = "";
+  if (state) render();
+};
+
+function media(cmd) {
+  const q = state && state.question;
+  if (cmd === "stop") { audio.pause(); if (video) video.pause(); }
+  if (cmd === "replay" && q) {
+    if (q.audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
+    if (video) { video.muted = false; video.currentTime = 0; video.play().catch(() => {}); }
+  }
+}
+
+// --- Drawing --------------------------------------------------------------------------------
+function qrSvg(rows, px) {
+  if (!rows || !rows.length) return el("div");
+  const n = rows.length, border = 3, size = n + border * 2;
+  let d = "";
+  rows.forEach((row, y) => { for (let x = 0; x < n; x++) if (row[x] === "1") d += `M${x + border} ${y + border}h1v1h-1z`; });
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+  svg.setAttribute("width", px); svg.setAttribute("height", px);
+  svg.setAttribute("shape-rendering", "crispEdges");
+  svg.classList.add("qr");
+  svg.innerHTML = `<path d="${d}" fill="#000"/>`;
+  return svg;
+}
+const ball = (p, size, off) => el("span", { class: "ball" + (off ? " off" : ""), style: `background:#${p.color}` + (size ? `;width:${size}px;height:${size}px;font-size:${Math.round(size * 0.55)}px` : "") }, p.name.slice(0, 1).toUpperCase());
+const short = (url) => url.replace("http://", "").replace(/\/$/, "");
+const joinWhere = (s) => s.online ? `${s.join_text}  ·  code ${s.code}` : short(s.join_url);
+
+function render() {
+  const s = state;
+  const key = [s.phase, s.quiz_title, s.question?.key, s.join_url, started].join("|");
+  // Header
+  const inGame = !["idle", "lobby"].includes(s.phase);
+  $("#info").textContent = s.question?.key ? `${s.round.title}  ·  Question ${s.question.number} of ${s.question.total}` : (inGame ? s.quiz_title : "");
+  $("#join").replaceChildren(...(inGame ? ["Join late?", el("br"), joinWhere(s)] : []));
+  $("#joinqr").replaceChildren(inGame ? qrSvg(s.join_qr, 96) : el("div"));
+  $(".logo").style.visibility = s.phase === "idle" ? "hidden" : "visible";
+  if (key !== screenKey) {
+    screenKey = key;
+    const content = { idle, lobby, round_intro: roundIntro, question, reveal: question, scores, final: scores }[s.phase](s);
+    content.classList.add("fade");
+    $("#main").replaceChildren(content);
+  }
+  update(s);
+}
+
+function idle(s) {
+  return el("div", { class: "col center" },
+    el("div", { class: "h-huge" }, "Quizlo"),
+    el("div", { style: "font-size:48px" }, "The family quiz night"),
+    s.server_error ? el("div", { style: "color:#ff8a80" }, s.server_error) :
+    el("div", { style: "display:flex;gap:48px;align-items:center;justify-content:center;margin-top:20px" },
+      qrSvg(s.host_qr, 320),
+      el("div", { style: "text-align:left" },
+        el("div", { class: "gold", style: "font-size:52px;font-weight:600" }, "Quiz master:"),
+        el("div", { style: "font-size:40px" }, "Scan this with your phone camera", el("br"), "to choose a quiz and run the show."),
+        el("div", { class: "dim", style: "font-size:30px;margin-top:12px" }, s.online ? `Game code: ${s.code}` : "Or type:  " + short(s.host_url)))),
+    s.online ? onlineTools() : null);
+}
+
+/** Buttons for when this page runs the game (only shown before the quiz starts). */
+function onlineTools() {
+  return el("div", { class: "tools" },
+    el("button", { class: "ghost small", onclick: () => $("#open-quiz").click() }, "📂 Open a quiz file"),
+    el("button", { class: "ghost small", onclick: () => { if (confirm("Get a new game code? Everyone will need to join again.")) online.newGameCode(); } }, "🔄 New game code"));
+}
+
+function lobby(s) {
+  return el("div", { style: "display:flex;gap:56px;flex:1;min-height:0" },
+    el("div", { class: "panel center", style: "width:640px;display:flex;flex-direction:column;justify-content:center;gap:14px;align-items:center" },
+      el("div", { class: "gold", style: "font-size:64px;font-weight:600" }, "Join the quiz!"),
+      el("div", { style: "font-size:32px" }, "Point your phone camera here"),
+      qrSvg(s.join_qr, 420),
+      ...(s.online ? [
+        el("div", { class: "dim", style: "font-size:26px" }, `or go to ${s.join_text} and enter the code`),
+        el("div", { class: "gold", style: "font-size:96px;font-weight:600;letter-spacing:12px;line-height:1" }, s.code),
+      ] : [
+        el("div", { class: "dim", style: "font-size:26px" }, "or type into your web browser:"),
+        el("div", { style: "font-size:44px;font-weight:600" }, short(s.join_url)),
+      ])),
+    el("div", { style: "flex:1;display:flex;flex-direction:column;gap:20px;min-width:0" },
+      el("div", { style: "font-size:72px;font-weight:600" }, s.quiz_title),
+      el("div", { class: "gold", style: "font-size:40px;font-weight:600", id: "count" }),
+      el("div", { class: "chips", id: "chips", style: "flex:1" }),
+      el("div", { style: "display:flex;align-items:flex-end;gap:20px" },
+        el("div", { class: "dim", id: "hint", style: "flex:1;font-size:34px;font-weight:600" }),
+        el("div", { class: "center" }, qrSvg(s.host_qr, 130), el("div", { class: "dim", style: "font-size:20px" }, "Quiz master"))),
+      s.online ? onlineTools() : null));
+}
+
+function roundIntro(s) {
+  return el("div", { class: "col center" },
+    el("div", { class: "gold", style: "font-size:56px;font-weight:600" }, `Round ${s.round.number} of ${s.round.of}`),
+    el("div", { class: "grow-in", style: "font-size:120px;font-weight:600" }, s.round.title),
+    el("div", { class: "dim", style: "font-size:40px" }, s.round.questions === 1 ? "1 question" : `${s.round.questions} questions`));
+}
+
+function question(s) {
+  const q = s.question, reveal = s.phase === "reveal";
+  const box = el("div", { class: "col", style: "justify-content:" + (q.media ? "flex-start" : "center") });
+  if (q.text) box.append(el("div", { class: "qtext", style: `font-size:${(q.text.length < 60 ? 64 : q.text.length < 120 ? 52 : 42) + (q.media ? 0 : 8)}px` }, q.text));
+  video = null;
+  if (q.media) {
+    const m = el("div", { class: "media" });
+    if (q.image) m.append(el("img", { src: q.image, alt: "" }));
+    if (q.audio) {
+      m.append(el("div", { class: "note" }, "♫"), el("div", { style: "font-size:40px" }, reveal ? "" : "Listen carefully..."));
+      if (!reveal) { audio.src = q.audio; audio.currentTime = 0; audio.play().catch(() => {}); }
+    }
+    if (q.video) {
+      video = el("video", { src: q.video, playsinline: true, autoplay: true });
+      video.muted = reveal;
+      m.append(video);
+      video.play().catch(() => { video.muted = true; video.play().catch(() => {}); });
+    }
+    if (reveal && q.credit) m.append(el("div", { class: "credit" }, q.credit));
+    box.append(m);
+  }
+  if (q.type === "choice") {
+    const grid = el("div", { class: "opts" + (q.options.length > 4 ? " three" : "") + (q.media ? "" : " tall") });
+    q.options.forEach((t, i) => {
+      const right = reveal && i === q.answer;
+      grid.append(el("div", { class: "opt" + (reveal ? (right ? " right" : " dim") : ""), style: `background:${COLORS[i]};color:${TEXT[i]}` },
+        el("span", { class: "letter" }, LETTERS[i]), el("span", { class: "txt", style: t.length < 28 ? "" : "font-size:36px" }, t),
+        reveal && right ? el("span", { style: "font-size:56px" }, "✓") : null,
+        reveal ? el("span", {}, String(q.counts[i] || 0)) : null));
+    });
+    box.append(grid);
+  } else if (!reveal) {
+    box.append(el("div", { class: "panel center" },
+      el("div", { class: "gold", style: "font-size:54px;font-weight:600" }, "Closest guess wins!"),
+      el("div", { style: "font-size:38px" }, "Type your best guess on your phone" + (q.unit ? `  (in ${q.unit})` : ""))));
+  } else {
+    const list = el("div", { class: "rows", style: "flex:1" });
+    if (!q.guesses.length) list.append(el("div", { class: "dim", style: "font-size:44px" }, "Nobody guessed!"));
+    q.guesses.slice(0, 6).forEach((g) => list.append(el("div", { class: "row" }, ball(g, 52),
+      el("span", { style: `flex:1;color:${g.won ? "var(--gold)" : "#fff8e7"}` }, g.name),
+      el("span", { style: `color:${g.won ? "var(--gold)" : "#fff8e7"}` }, formatNumber(g.guess) + (q.unit ? " " + q.unit : "") + (g.won ? " ★" : "")))));
+    box.append(el("div", { style: "display:flex;gap:40px" },
+      el("div", { class: "answerbox" }, el("div", { style: "font-size:40px" }, "The answer is"), el("div", { style: "font-size:96px;font-weight:600" }, q.answer_text)),
+      list));
+  }
+  if (q.time > 0 && !reveal) {
+    timerTotal = q.time * 1000;
+    timerEnd = performance.now() + q.time_left_ms;
+    box.append(el("div", { class: "timer" }, "⏱", el("div", { class: "track" }, el("div", { id: "tfill" })), el("span", { id: "tlabel", style: "min-width:190px;text-align:center" })));
+  } else timerTotal = 0;
+  box.append(el("div", { class: "footer", id: "footer" }));
+  return box;
+}
+
+function scores(s) {
+  const final = s.phase === "final";
+  const board = s.leaderboard || [];
+  const top = Math.max(1, ...board.map((e) => e.score));
+  const box = el("div", { class: "col" },
+    el("div", { class: "gold center", style: "font-size:72px;font-weight:600" }, final ? "And the winner is..." : `Scores after round ${s.round.number}`));
+  if (final && board.length) {
+    const w = el("div", { class: "center", style: "font-size:120px;font-weight:600;opacity:0;transition:opacity 0.5s" }, board.filter((e) => e.rank === 1).map((e) => e.name).join(" & ") + "!");
+    box.append(w);
+    setTimeout(() => { w.style.opacity = 1; confetti(); }, 2200);
+  }
+  const rows = el("div", { class: "rows" });
+  board.slice(0, final ? 8 : 10).forEach((e, i) => {
+    const fill = el("div", { style: `background:#${e.color}` });
+    rows.append(el("div", { class: "row" },
+      el("span", { class: "rank", style: e.rank === 1 ? "color:var(--gold)" : "" }, ordinal(e.rank)), ball(e, 56),
+      el("span", { class: "nm" }, e.name), el("span", { class: "bar" }, fill), el("span", { class: "sc" }, e.score)));
+    setTimeout(() => { fill.style.width = `${Math.max(1, (Math.max(0, e.score) / top) * 100)}%`; }, 150 * i + (final ? 2600 : 100));
+  });
+  if (!board.length) rows.append(el("div", { class: "dim" }, "Nobody played!"));
+  box.append(rows);
+  return box;
+}
+
+function update(s) {
+  if (s.phase === "lobby") {
+    const n = s.players.length;
+    $("#count").textContent = n === 0 ? "Nobody here yet..." : n === 1 ? "1 player ready" : `${n} players ready`;
+    $("#hint").textContent = n === 0 ? "Everyone: scan the code to join in!" : "Waiting for the quiz master to start...";
+    $("#chips").replaceChildren(...s.players.map((p) => el("div", { class: "chip", style: p.online ? "" : "opacity:0.6" }, ball(p), p.name)));
+  }
+  const footer = $("#footer");
+  if (!footer || !s.question) return;
+  const q = s.question;
+  if (s.phase === "question") {
+    const text = q.everyone ? "Everyone has answered!" : !q.open ? "Answers are locked!" : `${q.answered} of ${s.players.length} answered`;
+    footer.replaceChildren(el("span", { style: q.everyone ? "color:var(--gold)" : "" }, text),
+      el("span", { class: "balls" }, s.players.map((p) => ball(p, 0, !p.answered))));
+  } else if (q.type === "choice") {
+    const winners = s.players.filter((p) => p.won).map((p) => p.name);
+    const text = !winners.length ? "Nobody got it this time!" : (winners.length === s.players.length && winners.length > 1) ? "Everybody got it right!" : "Well done: " + winners.join(", ");
+    footer.replaceChildren(el("span", { class: "gold", style: "flex:1;text-align:center" }, text));
+  } else footer.replaceChildren();
+}
+
+// Countdown bar
+(function tick() {
+  if (timerTotal && $("#tfill")) {
+    const left = Math.max(0, timerEnd - performance.now());
+    const f = left / timerTotal;
+    $("#tfill").style.width = `${f * 100}%`;
+    $("#tfill").style.background = `hsl(${Math.round(f * 130)}, 65%, 50%)`;
+    $("#tlabel").textContent = left > 0 ? Math.ceil(left / 1000) : "Time's up!";
+  }
+  requestAnimationFrame(tick);
+})();
+
+// --- Snow and confetti ----------------------------------------------------------------------
+const snow = $("#snow"), sctx = snow.getContext("2d");
+const flakes = Array.from({ length: 140 }, () => ({ x: Math.random(), y: Math.random(), r: 0.6 + Math.random() * 2.2, v: 0.02 + Math.random() * 0.04, d: Math.random() * 6 }));
+let confettiBits = [];
+const conf = $("#confetti"), cctx = conf.getContext("2d");
+function confetti() {
+  const colors = [...COLORS, "#ffd166", "#ffffff"];
+  confettiBits = Array.from({ length: 260 }, () => ({ x: Math.random(), y: -Math.random() * 0.3, vx: (Math.random() - 0.5) * 0.002, vy: 0.002 + Math.random() * 0.006, a: Math.random() * 6, va: (Math.random() - 0.5) * 0.3, c: colors[Math.floor(Math.random() * colors.length)] }));
+}
+let last = performance.now();
+(function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  for (const c of [snow, conf]) if (c.width !== innerWidth || c.height !== innerHeight) { c.width = innerWidth; c.height = innerHeight; }
+  sctx.clearRect(0, 0, snow.width, snow.height);
+  sctx.fillStyle = "rgba(255,255,255,0.55)";
+  for (const f of flakes) {
+    f.y += f.v * dt * 3; f.d += dt;
+    if (f.y > 1.02) { f.y = -0.02; f.x = Math.random(); }
+    sctx.beginPath(); sctx.arc((f.x + Math.sin(f.d) * 0.004) * snow.width, f.y * snow.height, f.r * (snow.height / 1080) * 2, 0, Math.PI * 2); sctx.fill();
+  }
+  cctx.clearRect(0, 0, conf.width, conf.height);
+  for (const b of confettiBits) {
+    b.x += b.vx; b.y += b.vy; b.vy += 0.00005; b.a += b.va;
+    cctx.save(); cctx.translate(b.x * conf.width, b.y * conf.height); cctx.rotate(b.a); cctx.fillStyle = b.c;
+    const k = conf.height / 1080; cctx.fillRect(-5 * k, -8 * k, 10 * k, 16 * k); cctx.restore();
+  }
+  confettiBits = confettiBits.filter((b) => b.y < 1.1);
+  requestAnimationFrame(frame);
+})(last);
+</script>
+</body>
+</html>

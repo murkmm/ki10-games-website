@@ -1,6 +1,51 @@
-// Keeps a WebSocket open to the Quizlo app and reconnects automatically
-// (phones drop connections whenever the screen locks).
+// Connects a phone page to the game and reconnects automatically (phones drop connections
+// whenever the screen locks). Two kinds of game:
+//  - the Quizlo app on the home Wi-Fi: a WebSocket to the app that served this page
+//  - played on the website: WebRTC straight to the TV page, found by the game code in the link
+//    (e.g. play.html#ABCD), see peer.js
+
+/** The game code from the link (play.html#ABCD or host.html#ABCD-key), or "" when using the app. */
+export function gameCode() {
+  const m = location.hash.match(/^#([A-Za-z]{4})(?:-([\w]+))?$/);
+  return m ? m[1].toUpperCase() : "";
+}
+
+/** The quiz master code in a host.html#ABCD-key link. */
+export function linkHostKey() {
+  const m = location.hash.match(/^#[A-Za-z]{4}-([\w]+)$/);
+  return m ? m[1] : "";
+}
+
+/** True when this page was served by the Quizlo app (rather than the website). */
+let appCheck = null;
+export function servedByApp() {
+  if (!appCheck) {
+    appCheck = location.protocol !== "http:" ? Promise.resolve(false)
+      : fetch("/api/info", { cache: "no-store" }).then((r) => r.json()).then((j) => j.app === "quizlo").catch(() => false);
+  }
+  return appCheck;
+}
+
 export class Connection {
+  constructor(opts) {
+    const code = opts.code ?? gameCode();
+    if (code) {
+      import("./peer.js").then(({ PeerClient }) => {
+        this.impl = new PeerClient(code, opts);
+        this.impl.start();
+      });
+    } else {
+      this.impl = new AppConnection(opts);
+    }
+  }
+
+  send(msg) {
+    return this.impl ? this.impl.send(msg) : false;
+  }
+}
+
+/** WebSocket to the Quizlo app on the home network. */
+class AppConnection {
   constructor({ onOpen, onMessage, onStatus }) {
     this.onOpen = onOpen;
     this.onMessage = onMessage;

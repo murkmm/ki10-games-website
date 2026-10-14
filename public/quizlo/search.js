@@ -135,9 +135,97 @@ async function itunesSongs(q) {
   }));
 }
 
+// --- Wikimedia Commons videos: uses the smaller ready-made versions Commons keeps ----------------
+
+async function commonsVideos(q) {
+  const url = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*" +
+    "&generator=search&gsrnamespace=6&gsrlimit=30" +
+    `&gsrsearch=${enc(`${q} filetype:video`)}` +
+    "&prop=videoinfo&viprop=url|mime|size|extmetadata|derivatives&viurlwidth=400" +
+    "&viextmetadatafilter=Artist|LicenseShortName|ObjectName";
+  const data = await get(url);
+  const pages = Object.values(data.query?.pages || {}).sort((a, b) => (a.index || 0) - (b.index || 0));
+  return pages.map((p) => {
+    const info = (p.videoinfo || [])[0] || {};
+    const meta = info.extmetadata || {};
+    const title = stripHtml(meta.ObjectName?.value) || p.title.replace(/^File:/, "").replace(/\.[^.]+$/, "");
+    const artist = stripHtml(meta.Artist?.value);
+    // Prefer a ~480p version (much smaller and quicker than the original).
+    const derivs = (info.derivatives || []).filter((d) => d.src && d.height && d.height <= 720)
+      .sort((a, b) => Math.abs(a.height - 480) - Math.abs(b.height - 480));
+    const pick = derivs.find((d) => /mp4/.test(d.type || "")) || derivs[0];
+    const url = pick ? pick.src : info.url;
+    const size = pick && pick.bandwidth && info.duration ? (pick.bandwidth / 8) * info.duration : info.size;
+    return {
+      id: String(p.pageid), title, subtitle: artist, thumb: info.thumburl, url, preview: url,
+      size, duration: info.duration || 0,
+      credit: [title, artist ? `by ${artist}` : "", stripHtml(meta.LicenseShortName?.value), "Wikimedia Commons"].filter(Boolean).join(" · "),
+    };
+  }).filter((r) => r.url && r.thumb);
+}
+
+// --- Internet Archive: trailers, old films, cartoons and more (https://archive.org) ------------
+
+const MAX_VIDEO_BYTES = 150 * 1024 * 1024;
+
+async function archiveVideos(q) {
+  const query = `(${q}) AND mediatype:(movies) AND -collection:(tvnews) AND -access-restricted-item:(true)`;
+  const url = `https://archive.org/advancedsearch.php?q=${enc(query)}&fl[]=identifier&fl[]=title&fl[]=creator&fl[]=year` +
+    "&rows=30&sort[]=downloads+desc&output=json";
+  const data = await get(url);
+  return (data.response?.docs || []).map((d) => {
+    const title = Array.isArray(d.title) ? d.title[0] : d.title || d.identifier;
+    const creator = Array.isArray(d.creator) ? d.creator[0] : d.creator;
+    return {
+      id: d.identifier, title, subtitle: [creator, d.year].filter(Boolean).join(" · "),
+      thumb: `https://archive.org/services/img/${enc(d.identifier)}`,
+      credit: `${title}${creator ? ` by ${creator}` : ""} · Internet Archive`,
+      // The actual file is only looked up when this result is picked.
+      resolve: () => archiveFile(d.identifier),
+    };
+  });
+}
+
+async function archiveFile(id) {
+  const meta = await get(`https://archive.org/metadata/${enc(id)}`);
+  const files = (meta.files || [])
+    .filter((f) => /\.(mp4|m4v|ogv|webm|mpeg4)$/i.test(f.name) && Number(f.size) > 100000 && Number(f.size) <= MAX_VIDEO_BYTES)
+    .sort((a, b) => (/\.mp4$/i.test(b.name) - /\.mp4$/i.test(a.name)) || Number(a.size) - Number(b.size));
+  if (!files.length) throw new Error("That video is too big to download on a phone - try another one.");
+  const f = files[0];
+  const url = `https://archive.org/download/${enc(id)}/${f.name.split("/").map(enc).join("/")}`;
+  return { url, preview: url, size: Number(f.size), duration: Number(f.length) || 0 };
+}
+
+// --- Sources that need an API key, run by the website (see tools/web-host/functions) -----------
+
+const SITE_SEARCH = "/api/quizlo-search";
+let siteSources = null;
+
+async function availableSiteSources() {
+  if (siteSources) return siteSources;
+  try {
+    const r = await fetch(`${SITE_SEARCH}?sources=1`, { cache: "no-store" });
+    siteSources = r.ok ? (await r.json()).sources || [] : [];
+  } catch (_) {
+    siteSources = [];
+  }
+  return siteSources;
+}
+
+function siteSearch(source) {
+  return async (q) => {
+    const r = await fetch(`${SITE_SEARCH}?source=${enc(source)}&q=${enc(q)}`);
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(r.status === 429 ? TOO_MANY : NO_REACH);
+    return data.results || [];
+  };
+}
+
 export const SOURCES = {
   image: [
     { id: "openverse", name: "Free photos", search: openverseImages, note: "Openly licensed pictures from Openverse." },
+    { id: "pexels-photos", name: "Pexels", site: true, search: siteSearch("pexels-photos"), note: "Free stock photos from Pexels." },
     { id: "commons", name: "Wikimedia", search: (q) => commons(q, "bitmap"), note: "Pictures from Wikimedia Commons." },
   ],
   audio: [
@@ -146,6 +234,15 @@ export const SOURCES = {
     { id: "commons", name: "Wikimedia", search: (q) => commons(q, "audio"), note: "Sounds and music from Wikimedia Commons." },
   ],
   video: [
-    { id: "commons", name: "Wikimedia videos", search: (q) => commons(q, "video"), note: "Videos from Wikimedia Commons." },
+    { id: "giphy", name: "Film & TV clips", site: true, search: siteSearch("giphy"), note: "Short clips from films and TV via GIPHY - great for \"name the film\". For family fun, not for selling or sharing publicly." },
+    { id: "pexels", name: "Stock videos", site: true, search: siteSearch("pexels"), note: "Free stock videos from Pexels: snow, fireworks, Santa, animals and more." },
+    { id: "archive", name: "Internet Archive", search: archiveVideos, note: "Old films, cartoons, adverts and trailers from the Internet Archive. Only videos small enough for a phone are used." },
+    { id: "commons", name: "Wikimedia", search: commonsVideos, note: "Videos from Wikimedia Commons." },
   ],
 };
+
+/** The sources for a kind of media that work here (key-based ones only when the website has keys). */
+export async function sourcesFor(kind) {
+  const site = await availableSiteSources();
+  return SOURCES[kind].filter((s) => !s.site || site.includes(s.id));
+}

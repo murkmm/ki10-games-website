@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b3d2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Quizlo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { min-height: 100vh; min-height: 100dvh; }
+  .wrap { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .me { display: flex; align-items: center; gap: 10px; padding: 4px 0 10px; color: var(--muted); }
+  .me .name { color: #fff; font-weight: 600; }
+  .me .score { margin-left: auto; }
+  .qhead { color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+  .qtext { font-size: 1.45rem; font-weight: 600; margin: 0 0 14px; }
+  .qimg { width: 100%; max-height: 34vh; object-fit: contain; border-radius: 14px; margin-bottom: 14px; background: rgba(0,0,0,0.25); }
+  .listen { text-align: center; padding: 12px; border-radius: 14px; background: var(--card); margin-bottom: 14px; font-weight: 600; }
+  .options { display: grid; gap: 12px; }
+  .options.two { grid-template-columns: 1fr; }
+  .opt { width: 100%; min-height: 84px; justify-content: flex-start; text-align: left; font-size: 1.35rem; padding: 12px 16px; border: 4px solid transparent; }
+  .opt .letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.25); display: inline-flex; align-items: center; justify-content: center; flex: none; color: #fff; }
+  .opt.chosen { border-color: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.35); }
+  .options.answered .opt:not(.chosen) { opacity: 0.45; }
+  .opt.correct { border-color: #fff; }
+  .numrow { display: flex; gap: 10px; }
+  .numrow input { font-size: 2rem; text-align: center; font-weight: 600; }
+  .status { text-align: center; margin-top: 14px; font-size: 1.1rem; color: var(--muted); min-height: 1.5em; }
+  .timer { text-align: center; font-weight: 600; color: var(--gold); font-size: 1.2rem; }
+  .verdict { text-align: center; padding: 26px 16px; border-radius: 22px; }
+  .verdict.right { background: rgba(46, 204, 113, 0.22); border: 3px solid var(--good); }
+  .verdict.wrong { background: rgba(255, 107, 107, 0.16); border: 3px solid var(--bad); }
+  .verdict .big { font-size: 2.6rem; font-weight: 600; }
+  .verdict .icon { font-size: 4rem; line-height: 1; }
+  .board { list-style: none; padding: 0; margin: 0; }
+  .board li { display: flex; align-items: center; gap: 12px; padding: 10px 6px; border-bottom: 1px solid var(--line); }
+  .board li.mine { background: rgba(255, 209, 102, 0.14); border-radius: 12px; }
+  .board .rank { width: 48px; text-align: right; color: var(--gold); font-weight: 600; }
+  .board .pts { margin-left: auto; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="banner" class="banner hidden">Reconnecting... hold on!</div>
+<div class="wrap">
+  <div id="me" class="me hidden">
+    <span id="me-dot" class="dot" style="width:34px;height:34px"></span>
+    <span id="me-name" class="name"></span>
+    <span id="me-score" class="score"></span>
+  </div>
+  <main id="screen">
+    <div class="center"><div class="logo">Quizlo</div><div class="spinner"></div><p class="muted">Connecting to the TV...</p></div>
+  </main>
+</div>
+
+<script type="module">
+import { Connection, $, el, toast, store, keepAwake, LETTERS, ordinal, formatNumber, gameCode, servedByApp } from "./connection.js";
+
+const CODE = gameCode();
+const TOKEN_KEY = "quizlo.player." + location.host + (CODE ? "." + CODE : "");
+let state = null;
+let pendingAnswer = null;   // what this phone last tapped, shown before the server confirms
+let lastKey = "";
+let draftNumber = "";
+let lastSig = "";
+let leaving = false;
+
+let conn;
+function startConnection() {
+conn = new Connection({
+  onOpen: () => conn.send({ t: "hello", role: "player", token: store(TOKEN_KEY) || "" }),
+  onStatus: (ok, why) => {
+    $("#banner").textContent = why === "notfound" ? `Can't find game ${CODE} - is the TV page still open? Trying again...` : "Reconnecting... hold on!";
+    $("#banner").classList.toggle("hidden", ok);
+    if (why === "notfound" && !state) askCode(`Can't find game ${CODE}. Check the code on the TV.`);
+  },
+  onMessage: (m) => {
+    if (m.t === "need_name") { store(TOKEN_KEY, null); lastSig = ""; showJoin(m.quiz_title); }
+    else if (m.t === "welcome") { store(TOKEN_KEY, m.token); keepAwake(); }
+    else if (m.t === "state") { state = m; render(); }
+    else if (m.t === "removed") { store(TOKEN_KEY, null); state = null; lastSig = ""; showJoin("", leaving ? "" : "You were removed from the game. You can join again."); leaving = false; }
+    else if (m.t === "error") { toast(m.message); joinBusy(false); }
+  },
+});
+}
+
+// Playing on the website: the game code comes from the QR code link, or is typed in here.
+if (CODE) startConnection();
+else servedByApp().then((app) => (app ? startConnection() : askCode()));
+
+function askCode(note) {
+  const input = el("input", { maxlength: 4, autocapitalize: "characters", autocomplete: "off", autocorrect: "off", spellcheck: "false",
+    placeholder: "ABCD", enterkeyhint: "go", style: "text-align:center;font-size:2.4rem;letter-spacing:0.4em;text-transform:uppercase" });
+  const go = () => {
+    const code = input.value.trim().toUpperCase();
+    if (!/^[A-Z]{4}$/.test(code)) { toast("The game code is 4 letters - it's on the TV"); input.focus(); return; }
+    location.hash = code;
+    location.reload();
+  };
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
+  screen(el("div", { class: "stack center" },
+    el("div", { class: "logo" }, "Quizlo"),
+    note ? el("p", { class: "gold" }, note) : null,
+    el("label", { class: "field" }, "Type the game code shown on the TV"),
+    input,
+    el("button", { class: "primary big", onclick: go }, "Join the game")));
+}
+
+function screen(...children) {
+  const s = $("#screen");
+  s.replaceChildren(...children);
+}
+
+function joinBusy(busy) {
+  const b = $("#join-btn");
+  if (b) { b.disabled = busy; b.textContent = busy ? "Joining..." : "Join the quiz"; }
+}
+
+function showJoin(title, note) {
+  $("#me").classList.add("hidden");
+  const input = el("input", { id: "name", maxlength: 16, autocomplete: "given-name", autocapitalize: "words",
+    placeholder: "Your name", enterkeyhint: "go", value: store("quizlo.name") || "" });
+  const join = () => {
+    const name = input.value.trim();
+    if (!name) { toast("Please type your name first"); input.focus(); return; }
+    store("quizlo.name", name);
+    joinBusy(true);
+    if (!conn.send({ t: "join", name })) { toast("Not connected yet - try again in a moment"); joinBusy(false); }
+  };
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") join(); });
+  screen(el("div", { class: "stack center" },
+    el("div", { class: "logo" }, "Quizlo"),
+    title ? el("h2", {}, title) : null,
+    note ? el("p", { class: "gold" }, note) : null,
+    el("label", { class: "field", for: "name" }, "What's your name?"),
+    input,
+    el("button", { id: "join-btn", class: "primary big", onclick: join }, "Join the quiz"),
+  ));
+}
+
+function render() {
+  const s = state;
+  $("#me").classList.remove("hidden");
+  $("#me-dot").style.background = "#" + s.me.color;
+  $("#me-dot").textContent = s.me.name.slice(0, 1).toUpperCase();
+  $("#me-name").textContent = s.me.name;
+  $("#me-score").textContent = s.me.score === 1 ? "1 point" : `${s.me.score} points`;
+
+  const q = s.question || {};
+  if (q.key !== lastKey) { lastKey = q.key; pendingAnswer = null; draftNumber = ""; if (q.key && navigator.vibrate) navigator.vibrate(80); }
+
+  // Other players answering re-sends the state; don't rebuild the screen (and close the keyboard) for that.
+  const sig = JSON.stringify([s.phase, q.key, q.open, pendingAnswer ?? s.my_answer, s.round, s.me.rank, s.me.score, s.quiz_title, s.leaderboard]);
+  if (sig === lastSig) return;
+  lastSig = sig;
+
+  switch (s.phase) {
+    case "idle":
+    case "lobby":
+      return waiting("You're in!", s.quiz_title ? `Get ready for "${s.quiz_title}". Look at the TV - the quiz will start soon.` : "Waiting for the quiz master to pick a quiz...", true);
+    case "round_intro":
+      return waiting(`Round ${s.round.number}`, s.round.title, false, "Get ready - look at the TV!");
+    case "question":
+      return renderQuestion(s, q);
+    case "reveal":
+      return renderReveal(s, q);
+    case "scores":
+    case "final":
+      return renderScores(s);
+  }
+}
+
+function waiting(title, text, canRename, extra) {
+  const children = [
+    el("h1", { class: "pop" }, title),
+    el("p", { style: "font-size:1.3rem" }, text),
+  ];
+  if (extra) children.push(el("p", { class: "gold" }, extra));
+  if (canRename) children.push(el("p", { class: "small muted", style: "margin-top:40px" },
+    "Not you? ", el("a", { href: "#", onclick: (e) => { e.preventDefault(); leaving = true; lastSig = ""; conn.send({ t: "leave" }); store(TOKEN_KEY, null); showJoin(state?.quiz_title); } }, "Change name")));
+  screen(el("div", { class: "center stack" }, ...children));
+}
+
+function header(q) {
+  return el("div", { class: "qhead" }, `Question ${q.number} of ${q.total}` + (q.points > 1 ? `  ·  ${q.points} points` : ""));
+}
+
+function media(q) {
+  if (q.image) return el("img", { class: "qimg", src: q.image, alt: "" });
+  if (q.media === "audio") return el("div", { class: "listen" }, "🎵 Listen to the TV!");
+  if (q.media === "video") return el("div", { class: "listen" }, "📺 Watch the TV!");
+  return null;
+}
+
+let timerHandle;
+function renderQuestion(s, q) {
+  const mine = pendingAnswer ?? s.my_answer;
+  const answered = mine !== undefined && mine !== null;
+  const parts = [header(q), q.text ? el("div", { class: "qtext" }, q.text) : null, media(q)];
+
+  if (q.type === "choice") {
+    const opts = el("div", { class: "options" + (answered ? " answered" : "") });
+    q.options.forEach((text, i) => {
+      opts.append(el("button", {
+        class: `opt opt-${i}` + (mine === i ? " chosen" : ""),
+        disabled: !q.open,
+        onclick: () => { pendingAnswer = i; conn.send({ t: "answer", q: q.key, v: i }); render(); },
+      }, el("span", { class: "letter" }, LETTERS[i]), el("span", {}, text)));
+    });
+    parts.push(opts);
+  } else {
+    const input = el("input", { type: "text", inputmode: "decimal", autocomplete: "off", placeholder: "Your guess",
+      value: draftNumber || (answered ? formatNumber(Number(mine)) : ""), disabled: !q.open, enterkeyhint: "send" });
+    input.addEventListener("input", () => { draftNumber = input.value; });
+    const send = () => {
+      const v = input.value.trim().replace(",", ".");
+      if (v === "" || isNaN(Number(v))) { toast("Please type a number"); input.focus(); return; }
+      pendingAnswer = Number(v); draftNumber = "";
+      conn.send({ t: "answer", q: q.key, v: Number(v) }); input.blur(); render();
+    };
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") send(); });
+    parts.push(el("div", { class: "numrow" }, input, q.unit ? el("span", { class: "bold", style: "align-self:center" }, q.unit) : null));
+    parts.push(el("button", { class: "go big", style: "margin-top:12px", disabled: !q.open, onclick: send }, answered ? "Change my guess" : "Send my guess"));
+  }
+
+  let status = "";
+  if (!q.open) status = "Time's up! Look at the TV.";
+  else if (answered) status = q.type === "closest" ? `Your guess: ${formatNumber(Number(mine))}${q.unit ? " " + q.unit : ""} ✓ You can change it until time's up.` : "Got it! ✓ You can change your answer until time's up.";
+  parts.push(el("div", { class: "status" }, status));
+
+  const timer = el("div", { class: "timer" });
+  if (q.time > 0 && q.open) parts.unshift(timer);
+  screen(el("div", {}, ...parts));
+
+  clearInterval(timerHandle);
+  if (q.time > 0 && q.open) {
+    const ends = Date.now() + q.time_left_ms;
+    const tick = () => {
+      const left = Math.max(0, Math.ceil((ends - Date.now()) / 1000));
+      timer.textContent = left > 0 ? `⏱ ${left} seconds left` : "⏱ Time's up!";
+    };
+    tick(); timerHandle = setInterval(tick, 250);
+  }
+}
+
+function renderReveal(s, q) {
+  clearInterval(timerHandle);
+  const answered = s.my_answer !== undefined;
+  const right = s.gained > 0;
+  let title, icon;
+  if (right) { title = q.type === "closest" ? "Closest!" : "Correct!"; icon = "🎉"; }
+  else if (!answered) { title = "No answer"; icon = "⏰"; }
+  else { title = q.type === "closest" ? "Not the closest" : "Not this time"; icon = "🙈"; }
+  const yours = answered ? (q.type === "choice" ? q.options[s.my_answer] : formatNumber(Number(s.my_answer)) + (q.unit ? " " + q.unit : "")) : null;
+  screen(el("div", { class: "stack" },
+    header(q),
+    el("div", { class: "verdict pop " + (right ? "right" : "wrong") },
+      el("div", { class: "icon" }, icon),
+      el("div", { class: "big" }, title),
+      right ? el("div", { class: "gold", style: "font-size:1.6rem;font-weight:600" }, `+${s.gained} point${s.gained === 1 ? "" : "s"}`) : null),
+    el("div", { class: "card center" },
+      el("div", { class: "muted" }, "The answer was"),
+      el("div", { style: "font-size:1.6rem;font-weight:600" }, q.answer_text),
+      yours !== null && !right ? el("div", { class: "muted small", style: "margin-top:6px" }, `You said: ${yours}`) : null),
+    el("p", { class: "center muted" }, `You're ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}`),
+  ));
+}
+
+function renderScores(s) {
+  clearInterval(timerHandle);
+  const final = s.phase === "final";
+  const board = s.leaderboard || [];
+  const winners = board.filter((e) => e.rank === 1).map((e) => e.name);
+  const iWon = s.me.rank === 1;
+  const list = el("ol", { class: "board" }, board.map((e) => el("li", { class: e.name === s.me.name ? "mine" : "" },
+    el("span", { class: "rank" }, ordinal(e.rank)),
+    el("span", { class: "dot", style: `background:#${e.color};width:36px;height:36px` }, e.name.slice(0, 1).toUpperCase()),
+    el("span", {}, e.name),
+    el("span", { class: "pts" }, e.score))));
+  screen(el("div", { class: "stack" },
+    final
+      ? el("div", { class: "center pop" }, el("div", { style: "font-size:4rem" }, iWon ? "🏆" : "🎄"),
+          el("h1", {}, iWon ? "You won!" : `${winners.join(" & ")} won!`),
+          el("p", {}, `You came ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}. Merry Christmas!`))
+      : el("div", { class: "center" }, el("h1", {}, `After round ${s.round.number}`),
+          el("p", {}, `You're ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}`)),
+    el("div", { class: "card" }, list),
+  ));
+}
+</script>
+</body>
+</html>
