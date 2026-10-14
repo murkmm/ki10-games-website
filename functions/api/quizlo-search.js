@@ -1,15 +1,17 @@
-// Cloudflare Pages Function: GET /api/quizlo-search?source=<pexels|pexels-photos|giphy>&q=<words>
+// Cloudflare Pages Function: GET /api/quizlo-search?source=<giphy|pixabay|pixabay-photos|pexels|pexels-photos>&q=<words>
 //
 // Searches that need an API key, so the key stays on the server. Each source only switches on once
 // its key is added in Cloudflare (Pages project -> Settings -> Variables and Secrets):
 //   PEXELS_API_KEY  free from https://www.pexels.com/api/  (stock videos and photos)
 //   GIPHY_API_KEY   free from https://developers.giphy.com/  (short film & TV clips)
+//   PIXABAY_API_KEY free from https://pixabay.com/api/docs/ (log in, the key is shown there)
 // GET /api/quizlo-search?sources=1 lists the sources that are switched on.
 
 function sources(env) {
   const list = [];
   if (env.PEXELS_API_KEY) list.push('pexels', 'pexels-photos');
   if (env.GIPHY_API_KEY) list.push('giphy');
+  if (env.PIXABAY_API_KEY) list.push('pixabay', 'pixabay-photos');
   return list;
 }
 
@@ -87,6 +89,58 @@ async function giphyClips(q, key) {
     .filter(Boolean);
 }
 
+async function pixabayVideos(q, key) {
+  const r = await fetch(
+    `https://pixabay.com/api/videos/?key=${encodeURIComponent(key)}&q=${encodeURIComponent(q)}&per_page=24&safesearch=true`
+  );
+  if (!r.ok) throw new Error(`Pixabay answered ${r.status}`);
+  const data = await r.json();
+  return (data.hits || [])
+    .map((h) => {
+      const v = h.videos || {};
+      // The smallest version that still looks fine on a TV (usually 960x540).
+      const sizes = [v.small, v.medium, v.tiny, v.large].filter((x) => x && x.url);
+      const file = sizes.find((x) => Math.min(x.width || 0, x.height || 0) >= 480) || sizes[0];
+      if (!file) return null;
+      const thumb =
+        v.tiny?.thumbnail ||
+        v.small?.thumbnail ||
+        (h.picture_id ? `https://i.vimeocdn.com/video/${h.picture_id}_295x166.jpg` : '');
+      const title = (h.tags || 'Pixabay video')
+        .split(',')[0]
+        .trim()
+        .replace(/^./, (c) => c.toUpperCase());
+      return {
+        id: String(h.id),
+        title,
+        subtitle: h.user || '',
+        thumb,
+        url: file.url,
+        preview: (v.tiny || file).url,
+        size: file.size || 0,
+        duration: h.duration || 0,
+        credit: `${title} · video by ${h.user || 'unknown'} on Pixabay`,
+      };
+    })
+    .filter((x) => x && x.thumb);
+}
+
+async function pixabayPhotos(q, key) {
+  const r = await fetch(
+    `https://pixabay.com/api/?key=${encodeURIComponent(key)}&q=${encodeURIComponent(q)}&image_type=photo&per_page=24&safesearch=true`
+  );
+  if (!r.ok) throw new Error(`Pixabay answered ${r.status}`);
+  const data = await r.json();
+  return (data.hits || []).map((h) => ({
+    id: String(h.id),
+    title: (h.tags || 'Pixabay photo').split(',')[0].trim(),
+    subtitle: h.user || '',
+    thumb: h.webformatURL || h.previewURL,
+    url: h.largeImageURL || h.webformatURL,
+    credit: `Photo by ${h.user || 'unknown'} on Pixabay`,
+  }));
+}
+
 export async function onRequestGet({ request, env }) {
   const params = new URL(request.url).searchParams;
   if (params.has('sources')) return Response.json({ sources: sources(env) });
@@ -98,6 +152,8 @@ export async function onRequestGet({ request, env }) {
     if (source === 'pexels' && env.PEXELS_API_KEY) results = await pexelsVideos(q, env.PEXELS_API_KEY);
     else if (source === 'pexels-photos' && env.PEXELS_API_KEY) results = await pexelsPhotos(q, env.PEXELS_API_KEY);
     else if (source === 'giphy' && env.GIPHY_API_KEY) results = await giphyClips(q, env.GIPHY_API_KEY);
+    else if (source === 'pixabay' && env.PIXABAY_API_KEY) results = await pixabayVideos(q, env.PIXABAY_API_KEY);
+    else if (source === 'pixabay-photos' && env.PIXABAY_API_KEY) results = await pixabayPhotos(q, env.PIXABAY_API_KEY);
     else return Response.json({ error: "That search isn't switched on." }, { status: 404 });
     return Response.json({ results }, { headers: { 'Cache-Control': 'public, max-age=3600' } });
   } catch (e) {

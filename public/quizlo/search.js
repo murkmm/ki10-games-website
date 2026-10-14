@@ -225,6 +225,7 @@ function siteSearch(source) {
 export const SOURCES = {
   image: [
     { id: "openverse", name: "Free photos", search: openverseImages, note: "Openly licensed pictures from Openverse." },
+    { id: "pixabay-photos", name: "Pixabay", site: true, search: siteSearch("pixabay-photos"), note: "Free stock photos from Pixabay." },
     { id: "pexels-photos", name: "Pexels", site: true, search: siteSearch("pexels-photos"), note: "Free stock photos from Pexels." },
     { id: "commons", name: "Wikimedia", search: (q) => commons(q, "bitmap"), note: "Pictures from Wikimedia Commons." },
   ],
@@ -235,7 +236,8 @@ export const SOURCES = {
   ],
   video: [
     { id: "giphy", name: "Film & TV clips", site: true, search: siteSearch("giphy"), note: "Short clips from films and TV via GIPHY - great for \"name the film\". For family fun, not for selling or sharing publicly." },
-    { id: "pexels", name: "Stock videos", site: true, search: siteSearch("pexels"), note: "Free stock videos from Pexels: snow, fireworks, Santa, animals and more." },
+    { id: "pixabay", name: "Stock videos", site: true, search: siteSearch("pixabay"), note: "Free stock videos from Pixabay: snow, fireworks, Santa, animals and more." },
+    { id: "pexels", name: "Pexels videos", site: true, search: siteSearch("pexels"), note: "Free stock videos from Pexels." },
     { id: "archive", name: "Internet Archive", search: archiveVideos, note: "Old films, cartoons, adverts and trailers from the Internet Archive. Only videos small enough for a phone are used." },
     { id: "commons", name: "Wikimedia", search: commonsVideos, note: "Videos from Wikimedia Commons." },
   ],
