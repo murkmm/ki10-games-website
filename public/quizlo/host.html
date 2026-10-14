@@ -165,6 +165,7 @@ function questionCard(s) {
   if (s.phase === "question") {
     card.append(el("p", { class: "bold" }, `${s.answered} of ${s.players.length} answered` + (q.open ? "" : " · answers locked")));
     if (q.open) btns.append(el("button", { class: "ghost", onclick: () => conn.send({ t: "lock" }) }, "⏹ Stop answers now"));
+    else btns.append(el("button", { class: "go", onclick: () => conn.send({ t: "unlock" }) }, q.time > 0 ? "🔓 Open answers again (+15 seconds)" : "🔓 Open answers again"));
   }
   if (q.media === "audio" || q.media === "video") btns.append(el("button", { class: "ghost", onclick: () => conn.send({ t: "replay" }) }, "🔁 Play clip again"));
   if (btns.children.length) card.append(btns);
@@ -268,9 +269,12 @@ function moreCard(s) {
       s.quiz.title ? el("button", { class: "danger", onclick: () => { if (confirm("Go back to the start? Everyone stays joined but scores are reset to 0.")) conn.send({ t: "restart" }); } }, "↺ Restart quiz") : null,
       s.addresses > 1 ? el("button", { class: "ghost", onclick: () => conn.send({ t: "next_address" }) }, "Phones can't connect? Try another address") : null,
       s.online ? null : el("a", { class: "button ghost", href: "/tv", target: "_blank" }, "📺 Open the TV screen in a browser (for AirPlay / casting)"),
+      el("button", { class: s.phone_media ? "go" : "ghost", onclick: () => conn.send({ t: "phone_media", on: !s.phone_media }) },
+        s.phone_media ? "🔊 Music & videos play on phones too: ON" : "🔈 Also play music & videos on phones: OFF"),
       s.quiz.title && ["idle", "lobby", "final"].includes(s.phase) ? el("button", { class: "danger", onclick: () => {
         if (confirm(`Delete "${s.quiz.title}" from this TV? (Your own copy of the file isn't affected.)`)) conn.send({ t: "delete_quiz", id: s.quiz.id });
       } }, "🗑 Delete this quiz from the TV") : null),
+    el("p", { class: "small muted" }, "Playing music & videos on phones is handy when family are joining from somewhere else."),
     el("p", { class: "small muted" }, s.online ? `Game ${s.code} on the Quizlo website. Tip: on a laptop showing the TV page you can also press Space to move on and R to replay a clip.`
       : `Quizlo ${s.version}. Tip: on a laptop you can also press Space to move on, R to replay a clip and F for full screen.`)));
 }

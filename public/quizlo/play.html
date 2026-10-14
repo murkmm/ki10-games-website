@@ -188,6 +188,9 @@ function header(q) {
 
 function media(q) {
   if (q.image) return el("img", { class: "qimg", src: q.image, alt: "" });
+  // The quiz master can switch on music & video on phones (for family joining from elsewhere).
+  if (q.audio) return el("div", { class: "listen" }, el("div", {}, "🎵 Listen!"), el("audio", { src: q.audio, controls: true, autoplay: true, style: "width:100%;margin-top:8px" }));
+  if (q.video) return el("video", { class: "qimg", src: q.video, controls: true, autoplay: true, playsinline: true });
   if (q.media === "audio") return el("div", { class: "listen" }, "🎵 Listen to the TV!");
   if (q.media === "video") return el("div", { class: "listen" }, "📺 Watch the TV!");
   return null;

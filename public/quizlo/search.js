@@ -125,7 +125,11 @@ async function itunesSongs(q) {
   try {
     data = await jsonp(url);
   } catch (_) {
-    data = await get(url);
+    try {
+      data = await get(url);
+    } catch (e) {
+      throw new Error("Apple Music isn't answering just now - try the Real songs tab.");
+    }
   }
   return (data.results || []).filter((r) => r.previewUrl).map((r) => ({
     id: String(r.trackId), title: r.trackName, subtitle: `${r.artistName}${r.collectionName ? ` · ${r.collectionName}` : ""}`,
@@ -222,6 +226,25 @@ function siteSearch(source) {
   };
 }
 
+// --- Deezer previews: 30-second clips of real songs, searched straight from this device -------
+
+async function deezerSongs(q) {
+  const url = `https://api.deezer.com/search?q=${enc(q)}&limit=25&output=jsonp`;
+  let data;
+  try {
+    data = await jsonp(url);
+  } catch (_) {
+    data = await get(`https://api.deezer.com/search?q=${enc(q)}&limit=25`);
+  }
+  if (data?.error) throw new Error(data.error.code === 4 ? TOO_MANY : "Deezer couldn't search just now - try the Apple Music tab.");
+  return (data.data || []).filter((r) => r.preview).map((r) => ({
+    id: String(r.id), title: r.title, subtitle: `${r.artist?.name || ""}${r.album?.title ? ` · ${r.album.title}` : ""}`,
+    thumb: r.album?.cover_medium || r.album?.cover || "", url: r.preview, preview: r.preview,
+    duration: 30, song: { title: r.title_short || r.title, artist: r.artist?.name || "" },
+    credit: `${r.title} by ${r.artist?.name || "unknown"} · preview via Deezer`,
+  }));
+}
+
 export const SOURCES = {
   image: [
     { id: "openverse", name: "Free photos", search: openverseImages, note: "Openly licensed pictures from Openverse." },
@@ -230,7 +253,8 @@ export const SOURCES = {
     { id: "commons", name: "Wikimedia", search: (q) => commons(q, "bitmap"), note: "Pictures from Wikimedia Commons." },
   ],
   audio: [
-    { id: "itunes", name: "Real songs", search: itunesSongs, note: "30-second previews of real songs from Apple Music. For family fun, not for selling or sharing publicly." },
+    { id: "deezer", name: "Real songs", search: deezerSongs, note: "30-second previews of real songs from Deezer. For family fun, not for selling or sharing publicly." },
+    { id: "itunes", name: "Apple Music", search: itunesSongs, note: "30-second previews of real songs from Apple Music. For family fun, not for selling or sharing publicly." },
     { id: "openverse", name: "Free music & sounds", search: openverseAudio, note: "Openly licensed music and sound effects from Openverse." },
     { id: "commons", name: "Wikimedia", search: (q) => commons(q, "audio"), note: "Sounds and music from Wikimedia Commons." },
   ],

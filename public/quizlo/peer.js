@@ -95,15 +95,16 @@ export class PeerHost {
     return this.buffers.get(file);
   }
 
-  /** Sends a message, first sending the question's picture to that phone if it hasn't got it yet. */
+  /** Sends a message, first sending the question's picture (or music/video) to that phone if needed. */
   send(id, msg) {
     const c = this.conns.get(id);
     if (!c) return;
-    const img = msg?.question?.image;
-    const file = typeof img === "string" && img.startsWith("media:") ? img.slice(6) : "";
+    const files = ["image", "audio", "video"].map((k) => msg?.question?.[k])
+      .filter((v) => typeof v === "string" && v.startsWith("media:")).map((v) => v.slice(6));
     c.queue = c.queue.then(async () => {
       if (!c.conn.open) return;
-      if (file && !c.sent.has(file)) {
+      for (const file of files) {
+        if (c.sent.has(file)) continue;
         c.sent.add(file);
         const b = await this.buffer(file);
         if (b) c.conn.send({ t: "blob", file, type: b.type, data: b.data });
@@ -193,8 +194,10 @@ export class PeerClient {
       this.blobs.set(d.file, URL.createObjectURL(new Blob([d.data], { type: d.type })));
       return;
     }
-    const img = d.question?.image;
-    if (typeof img === "string" && img.startsWith("media:")) d.question.image = this.blobs.get(img.slice(6)) || "";
+    for (const k of ["image", "audio", "video"]) {
+      const v = d.question?.[k];
+      if (typeof v === "string" && v.startsWith("media:")) d.question[k] = this.blobs.get(v.slice(6)) || "";
+    }
     this.onMessage(d);
   }
 

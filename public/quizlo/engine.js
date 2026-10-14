@@ -121,6 +121,7 @@ export class Game {
     this.order = [];
     this.lastResults = new Map();
     this.nextColor = 0;
+    this.mediaOnPhones = false; // phones also get music & video (for family joining from far away)
   }
 
   changed() { this.onChange(); }
@@ -227,7 +228,17 @@ export class Game {
     if (this.phase === "question" && this.answersOpen) { this.answersOpen = false; this.changed(); }
   }
 
+  /** Re-open answers after they were locked. A timed question that ran out gets 15 more seconds. */
+  unlockAnswers() {
+    if (this.phase !== "question" || this.answersOpen) return;
+    this.answersOpen = true;
+    const q = this.currentQuestion();
+    if (q.time > 0 && this.timeLeftMs() <= 0) this.startedAt = performance.now() - q.time * 1000 + 15000;
+    this.changed();
+  }
+
   startQuestion() {
+    this.onMedia("stop"); // don't let the last question's music or video carry on
     this.phase = "question";
     this.answersOpen = true;
     this.startedAt = performance.now();
@@ -332,13 +343,13 @@ export class Game {
 
   /** Everything needed to carry on after the TV page is reloaded. */
   snapshot() {
-    return { phase: this.phase, roundI: this.roundI, qI: this.qI, answersOpen: this.answersOpen, nextColor: this.nextColor,
+    return { phase: this.phase, roundI: this.roundI, qI: this.qI, answersOpen: this.answersOpen, nextColor: this.nextColor, mediaOnPhones: this.mediaOnPhones,
       players: this.order.map((id) => ({ ...this.players.get(id), connected: 0 })), lastResults: [...this.lastResults] };
   }
 
   restore(s, quiz) {
     this.quiz = quiz;
-    Object.assign(this, { phase: s.phase, roundI: s.roundI, qI: s.qI, answersOpen: !!s.answersOpen, nextColor: s.nextColor });
+    Object.assign(this, { phase: s.phase, roundI: s.roundI, qI: s.qI, answersOpen: !!s.answersOpen, nextColor: s.nextColor, mediaOnPhones: !!s.mediaOnPhones });
     this.players = new Map(s.players.map((p) => [p.id, p]));
     this.order = s.players.map((p) => p.id);
     this.lastResults = new Map(s.lastResults);
@@ -488,6 +499,8 @@ export class Engine {
     switch (t) {
       case "advance": g.advance(); break;
       case "lock": g.lockAnswers(); break;
+      case "unlock": g.unlockAnswers(); break;
+      case "phone_media": g.mediaOnPhones = !!msg.on; g.changed(); break;
       case "replay": g.onMedia("replay"); break;
       case "restart": g.restart(); break;
       case "load": {
@@ -557,6 +570,11 @@ export class Engine {
     const view = { t: "state", phase: g.phase, quiz_title: g.quiz?.title || "",
       me: { name: p.name, score: p.score, color: p.color, rank: g.rankOf(pid) },
       player_count: g.players.size, round: this.roundView(), question: this.questionView() };
+    const current = g.currentQuestion();
+    if (g.mediaOnPhones && view.question.key) {
+      if (current.media.kind === "audio") view.question.audio = `media:${current.media.file}`;
+      else if (current.media.kind === "video") view.question.video = `media:${current.media.web || current.media.file}`;
+    }
     const key = g.questionKey();
     if (key in p.answers && ["question", "reveal"].includes(g.phase)) view.my_answer = p.answers[key];
     if (g.phase === "reveal") view.gained = g.lastResults.get(pid) || 0;
@@ -580,7 +598,7 @@ export class Engine {
       quiz: g.quiz ? { id: cleanId(g.quiz.id), title: g.quiz.title, rounds: g.quiz.rounds.length, questions: questionCount(g.quiz) } : {},
       quizzes: [...this.library.values()].map((e) => e.summary).sort((a, b) => b.modified - a.modified),
       players, round: this.roundView(), question: q, answered: g.answeredCount(), advance_label: g.advanceLabel(),
-      join_url: this.urls.joinText, addresses: 1, version: "web" };
+      join_url: this.urls.joinText, addresses: 1, version: "web", phone_media: g.mediaOnPhones };
   }
 
   qr(url) {
