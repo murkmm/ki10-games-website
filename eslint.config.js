@@ -55,6 +55,14 @@ export default [
   },
   {
     // UPDATED: Added 'public/skillcheck/**' to ignores
-    ignores: ['dist', 'node_modules', '.github', 'types.generated.d.ts', '.astro', 'public/skillcheck/**'],
+    ignores: [
+      'dist',
+      'node_modules',
+      '.github',
+      'types.generated.d.ts',
+      '.astro',
+      'public/skillcheck/**',
+      'public/quizlo/**',
+    ],
   },
 ];
