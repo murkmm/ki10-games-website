@@ -93,6 +93,47 @@
   .tools { display: flex; gap: 14px; justify-content: center; font-size: 20px; opacity: 0.8; }
   .tools button { font-size: 22px; min-height: 48px; }
   #status { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 5; background: linear-gradient(90deg, #ff3d8b, #ff6b4a); padding: 8px 18px; border-radius: 12px; font-size: 18px; font-weight: 600; }
+  /* Player pictures */
+  .face { box-shadow: inset 0 -4px 0 rgba(0,0,0,0.22); }
+  .face.off { filter: grayscale(1) brightness(0.5); }
+  .face.new { animation: pop 0.45s cubic-bezier(0.3, 1.8, 0.5, 1) both; }
+  /* Reactions floating up */
+  #reactions { position: fixed; inset: 0; pointer-events: none; z-index: 6; overflow: hidden; }
+  .reaction { position: absolute; bottom: -120px; display: flex; flex-direction: column; align-items: center; gap: 4px; animation: floatup 3.6s cubic-bezier(0.3, 0.6, 0.4, 1) forwards; }
+  .reaction img.big { width: 96px; height: 96px; animation: wobble 0.9s ease-in-out infinite alternate; }
+  .reaction .who { display: flex; align-items: center; gap: 6px; font-size: 22px; font-weight: 600; background: rgba(14,8,48,0.75); padding: 3px 12px 3px 3px; border-radius: 20px; }
+  @keyframes floatup { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 12% { opacity: 1; transform: translateY(-140px) scale(1.1); } 80% { opacity: 1; } 100% { transform: translateY(-78vh) scale(1); opacity: 0; } }
+  @keyframes wobble { from { transform: rotate(-12deg); } to { transform: rotate(12deg); } }
+  /* Podium */
+  .podium { display: flex; justify-content: center; align-items: flex-end; gap: 36px; flex: 1; min-height: 0; margin-bottom: -40px; }
+  .spot { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 360px; }
+  .spot .who { display: flex; flex-direction: column; align-items: center; gap: 8px; animation: dropin 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+  .spot .nm { font-size: 46px; font-weight: 600; max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .spot .block { width: 100%; border-radius: 28px 28px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 18px;
+    font-size: 72px; font-weight: 600; line-height: 1.1; color: rgba(255,255,255,0.95); transform-origin: bottom; animation: riseup 0.8s cubic-bezier(0.2, 1.3, 0.4, 1) both;
+    box-shadow: inset 0 -14px 0 rgba(0,0,0,0.15), 0 20px 60px rgba(0,0,0,0.35); }
+  .spot .block .pts { font-size: 34px; opacity: 0.85; }
+  .spot.p1 .block { background: linear-gradient(180deg, #ffe066, #ffb020); color: #4a2c00; height: 280px; }
+  .spot.p2 .block { background: linear-gradient(180deg, #e4e8f5, #a9b2cc); color: #2b3150; height: 210px; }
+  .spot.p3 .block { background: linear-gradient(180deg, #ffb27a, #d97a3a); color: #3d1a00; height: 160px; }
+  @keyframes riseup { from { transform: scaleY(0); } }
+  @keyframes dropin { from { transform: translateY(-260px) scale(0.4); opacity: 0; } }
+  .others { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; font-size: 30px; font-weight: 600; }
+  .others .chip { font-size: 30px; padding: 6px 22px 6px 8px; }
+  /* New question types */
+  .typed { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; flex: 1; align-content: start; }
+  .typed .row { font-size: 36px; }
+  .typed .txt { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .orderlist { display: flex; flex-direction: column; gap: 14px; }
+  .orderlist .opt { min-height: 92px; }
+  .orderlist .opt .letter { background: rgba(255,255,255,0.95); color: #1b1150; }
+  .pinwrap { position: relative; }
+  .pinwrap img { width: 100%; height: 100%; display: block; border-radius: 24px; }
+  /* Positioned by their top-left corner plus negative margins, so the pop-in animations can use transform. */
+  .pinwrap .target { position: absolute; aspect-ratio: 1; border-radius: 50%; border: 8px dashed #2ee59d; background: rgba(46,229,157,0.25); animation: pop 0.6s both; }
+  .pinwrap .face { position: absolute; border: 4px solid #fff; animation: dropin 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+  .hidebox { overflow: hidden; border-radius: 24px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .hidebox canvas { display: block; }
   .fade { animation: fadein 0.35s ease-out both; }
   @keyframes fadein { from { opacity: 0; } }
   .grow-in { animation: growin 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
@@ -104,6 +145,7 @@
 <canvas id="sparkles" class="fx"></canvas>
 <div id="stage"><header><div class="logo">Quizlo</div><div class="info" id="info"></div><div class="join" id="join"></div><div id="joinqr"></div></header><main id="main"></main></div>
 <canvas id="confetti" class="fx"></canvas>
+<div id="reactions"></div>
 <div id="status" class="hidden">Connecting to Quizlo...</div>
 <div id="start">
   <div class="logo">Quizlo TV</div>
@@ -117,7 +159,7 @@
 <input type="file" id="open-quiz" accept=".quizlo,.quizzy,application/zip,application/octet-stream" class="hidden">
 
 <script type="module">
-import { Connection, $, el, keepAwake, LETTERS, ordinal, formatNumber, servedByApp, toast } from "./connection.js";
+import { Connection, $, el, keepAwake, LETTERS, ordinal, formatNumber, servedByApp, toast, face } from "./connection.js";
 
 const COLORS = ["#ff4d6d", "#3b82f6", "#ffb020", "#1fc77a", "#a855f7", "#f97316"];
 const TEXT = ["#fff", "#fff", "#2b1600", "#002a14", "#fff", "#fff"];
@@ -151,6 +193,7 @@ servedByApp().then(async (app) => {
       onMessage: (m) => {
         if (m.t === "state") { state = m; render(); }
         else if (m.t === "media") media(m.cmd);
+        else if (m.t === "react") reaction(m);
       },
     });
     return;
@@ -159,6 +202,7 @@ servedByApp().then(async (app) => {
   online = await startOnlineTv({
     onState: (s) => { state = s; render(); },
     onMedia: (cmd) => media(cmd),
+    onReact: (m) => reaction(m),
     onStatus: (ok, message) => setStatus(ok, message || "Connecting to the internet..."),
   });
 });
@@ -281,7 +325,19 @@ function qrSvg(rows, px) {
   svg.innerHTML = `<path d="${d}" fill="#000"/>`;
   return svg;
 }
-const ball = (p, size, off) => el("span", { class: "ball" + (off ? " off" : ""), style: `background:#${p.color}` + (size ? `;width:${size}px;height:${size}px;font-size:${Math.round(size * 0.55)}px` : "") }, p.name.slice(0, 1).toUpperCase());
+const ball = (p, size, off) => face(p, size || 60, { images: true, cls: off ? "off" : "" });
+const emojiImg = (e, cls = "") => el("img", { class: cls, alt: e, src: "emoji/" + [...e].map((c) => c.codePointAt(0).toString(16)).filter((h) => h !== "fe0f").join("-") + ".png" });
+
+/** A reaction floating up the screen, with who sent it. */
+let reactionCount = 0;
+function reaction(m) {
+  if (!started || reactionCount > 24) return;
+  reactionCount++;
+  const node = el("div", { class: "reaction", style: `left:${6 + Math.random() * 84}%` },
+    emojiImg(m.e, "big"), el("div", { class: "who" }, face(m, 32, { images: true }), m.name));
+  $("#reactions").append(node);
+  setTimeout(() => { node.remove(); reactionCount--; }, 3700);
+}
 const short = (url) => url.replace("http://", "").replace(/\/$/, "");
 const joinWhere = (s) => s.online ? `${s.join_text}  ·  code ${s.code}` : short(s.join_url);
 
@@ -369,7 +425,9 @@ function question(s) {
   video = null;
   if (q.media) {
     const m = el("div", { class: "media" });
-    if (q.image) m.append(el("img", { src: q.image, alt: "" }));
+    if (q.image && q.reveal && !reveal) m.append(hiddenPicture(q));
+    else if (q.image && q.type === "pin" && reveal) m.append(pinBoard(q));
+    else if (q.image) m.append(el("img", { src: q.image, alt: "" }));
     if (q.audio) {
       m.append(reveal ? el("div", { class: "note" }, "🎵") : el("div", { class: "eq" }, el("b"), el("b"), el("b"), el("b"), el("b")),
         el("div", { style: "font-size:40px;margin-top:16px" }, reveal ? "" : "Listen carefully..."));
@@ -387,7 +445,30 @@ function question(s) {
     if (reveal && q.credit) m.append(el("div", { class: "credit" }, q.credit));
     box.append(m);
   }
-  if (q.type === "choice") {
+  if (q.type === "order") {
+    const items = reveal ? q.order : q.options;
+    const list = el("div", { class: "orderlist" + (items.length > 4 ? " opts" : "") });
+    items.forEach((t, i) => list.append(el("div", { class: "opt", style: `background:${COLORS[i]};color:${TEXT[i]};animation-delay:${(reveal ? 0.2 + i * 0.35 : 0.25 + i * 0.09)}s` },
+      el("span", { class: "letter" }, reveal ? String(i + 1) : LETTERS[i]), el("span", { class: "txt" }, t))));
+    if (!reveal) box.append(el("div", { class: "gold center", style: "font-size:40px;font-weight:600" }, "Put these in order on your phone!"));
+    box.append(list);
+  } else if (q.type === "text") {
+    if (!reveal) {
+      box.append(el("div", { class: "panel center" },
+        el("div", { class: "gold", style: "font-size:54px;font-weight:600" }, "Type your answer!"),
+        el("div", { style: "font-size:38px" }, "Write it on your phone - spelling doesn't have to be perfect")));
+    } else {
+      const list = el("div", { class: "typed" });
+      (q.typed || []).slice(0, 10).forEach((g, i) => list.append(el("div", { class: "row", style: `animation-delay:${0.3 + i * 0.1}s` }, ball(g, 48),
+        el("span", { class: "txt", style: `color:${g.won ? "var(--good)" : "rgba(255,255,255,0.75)"}` }, `${g.text}`), el("span", {}, g.won ? "✓" : "✗"))));
+      if (!(q.typed || []).length) list.append(el("div", { class: "dim", style: "font-size:44px" }, "Nobody answered!"));
+      box.append(el("div", { style: "display:flex;gap:40px;flex:1;min-height:0" },
+        el("div", { class: "answerbox", style: "align-self:flex-start;min-height:300px" }, el("div", { style: "font-size:40px" }, "The answer is"), el("div", { style: "font-size:88px;font-weight:600;line-height:1.1" }, q.answer_text)),
+        list));
+    }
+  } else if (q.type === "pin") {
+    if (!reveal) box.append(el("div", { class: "gold center", style: "font-size:46px;font-weight:600" }, "Tap the right spot on your phone!"));
+  } else if (q.type === "choice") {
     const grid = el("div", { class: "opts" + (q.options.length > 4 ? " three" : "") + (q.media ? "" : " tall") });
     q.options.forEach((t, i) => {
       const right = reveal && i === q.answer;
@@ -397,7 +478,7 @@ function question(s) {
         reveal ? el("span", { class: "count" }, String(q.counts[i] || 0)) : null));
     });
     box.append(grid);
-  } else if (!reveal) {
+  } else if (!reveal) { // closest
     box.append(el("div", { class: "panel center" },
       el("div", { class: "gold", style: "font-size:54px;font-weight:600" }, "Closest guess wins!"),
       el("div", { style: "font-size:38px" }, "Type your best guess on your phone" + (q.unit ? `  (in ${q.unit})` : ""))));
@@ -421,20 +502,117 @@ function question(s) {
   return box;
 }
 
+/** A picture that starts zoomed in or blocky and slowly appears over the question's time. */
+let revealAnim = null;
+function hiddenPicture(q) {
+  const boxEl = el("div", { class: "hidebox", style: "flex:1;width:100%;min-height:0" });
+  const img = new Image();
+  img.src = q.image;
+  const canvas = el("canvas");
+  boxEl.append(canvas);
+  revealAnim = { key: q.key, mode: q.reveal, start: performance.now() - (q.elapsed_ms || 0), dur: q.reveal_ms || 20000, img, canvas, boxEl, small: document.createElement("canvas") };
+  return boxEl;
+}
+function drawReveal() {
+  const r = revealAnim;
+  if (!r || !r.canvas.isConnected) { revealAnim = null; return; }
+  if (!r.img.complete || !r.img.naturalWidth) return;
+  const W = r.boxEl.clientWidth, H = r.boxEl.clientHeight;
+  if (!W || !H) return;
+  const k = Math.min(W / r.img.naturalWidth, H / r.img.naturalHeight);
+  const w = Math.round(r.img.naturalWidth * k), h = Math.round(r.img.naturalHeight * k);
+  if (r.canvas.width !== w || r.canvas.height !== h) { r.canvas.width = w; r.canvas.height = h; }
+  const f = Math.min(1, Math.max(0, (performance.now() - r.start) / r.dur));
+  const ctx = r.canvas.getContext("2d");
+  if (r.mode === "zoom") {
+    const zoom = 1 + 7 * Math.pow(1 - f, 2.2); // starts 8x zoomed in
+    const sw = r.img.naturalWidth / zoom, sh = r.img.naturalHeight / zoom;
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(r.img, (r.img.naturalWidth - sw) / 2, (r.img.naturalHeight - sh) / 2, sw, sh, 0, 0, w, h);
+  } else {
+    const across = Math.min(w, Math.round(6 * Math.pow(2, f * 7.5))); // 6 blocks wide, getting sharper
+    const down = Math.max(1, Math.round(across * h / w));
+    r.small.width = across; r.small.height = down;
+    const sctx = r.small.getContext("2d");
+    sctx.imageSmoothingEnabled = true;
+    sctx.drawImage(r.img, 0, 0, across, down);
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, w, h);
+    ctx.drawImage(r.small, 0, 0, across, down, 0, 0, w, h);
+  }
+}
+
+/** The picture with the target circle and everyone's taps on it. */
+function pinBoard(q) {
+  const wrap = el("div", { class: "pinwrap" });
+  const img = el("img", { src: q.image, alt: "" });
+  wrap.append(img);
+  const place = () => {
+    const holder = wrap.parentElement;
+    if (!holder || !img.naturalWidth) return;
+    const W = holder.clientWidth, H = holder.clientHeight - 30;
+    const k = Math.min(W / img.naturalWidth, H / img.naturalHeight);
+    wrap.style.width = `${Math.round(img.naturalWidth * k)}px`;
+    wrap.style.height = `${Math.round(img.naturalHeight * k)}px`;
+  };
+  img.onload = place;
+  requestAnimationFrame(place);
+  // (margin percentages are of the picture's width, like the radius)
+  wrap.append(el("span", { class: "target", style: `left:${q.target.x * 100}%;top:${q.target.y * 100}%;width:${q.radius * 200}%;margin:-${q.radius * 100}% 0 0 -${q.radius * 100}%` }));
+  (q.pins || []).forEach((p, i) => {
+    const f = ball(p, 56);
+    f.style.cssText += `;left:${p.x * 100}%;top:${p.y * 100}%;margin:-28px 0 0 -28px;animation-delay:${0.6 + i * 0.12}s`;
+    wrap.append(f);
+  });
+  return wrap;
+}
+
+function podium(s) {
+  const board = s.leaderboard || [];
+  const box = el("div", { class: "col", style: "justify-content:flex-start;gap:16px" },
+    el("div", { class: "gold center slam", style: "font-size:72px;font-weight:600" }, "And the winner is..."));
+  const winnerText = el("div", { class: "center grad", style: "font-size:96px;font-weight:600;line-height:1.1;visibility:hidden;min-height:110px" },
+    board.filter((e) => e.rank === 1).map((e) => e.name).join(" & ") + "!");
+  box.append(winnerText);
+  const row = el("div", { class: "podium" });
+  const delays = [2.2, 1.3, 0.5]; // 1st, 2nd, 3rd appear in reverse order
+  const sizes = [170, 140, 124];
+  for (const place of [1, 0, 2]) {
+    const e = board[place];
+    if (!e) continue;
+    const d = delays[place];
+    row.append(el("div", { class: `spot p${place + 1}` },
+      el("div", { class: "who", style: `animation-delay:${d + 0.35}s` }, ball(e, sizes[place]), el("div", { class: "nm" }, e.name)),
+      el("div", { class: "block", style: `animation-delay:${d}s` }, ordinal(e.rank), el("div", { class: "pts" }, `${e.score} point${e.score === 1 ? "" : "s"}`))));
+  }
+  box.append(row);
+  if (board.length > 3) {
+    const others = el("div", { class: "others", style: "opacity:0;transition:opacity 0.6s" },
+      board.slice(3, 15).map((e) => el("div", { class: "chip" }, ball(e, 44), `${ordinal(e.rank)} ${e.name} · ${e.score}`)));
+    box.append(others);
+    setTimeout(() => { others.style.opacity = 1; }, 3200);
+  }
+  setTimeout(() => { if (row.isConnected && board[2]) sfx.play("scores"); }, 500);
+  setTimeout(() => { if (row.isConnected && board[1]) sfx.play("scores"); }, 1300);
+  setTimeout(() => {
+    if (!row.isConnected) return;
+    winnerText.style.visibility = "visible";
+    winnerText.classList.add("grow-in");
+    confetti();
+    sfx.play("fanfare");
+  }, 2200);
+  return box;
+}
+
 function scores(s) {
-  const final = s.phase === "final";
+  if (s.phase === "final") return podium(s);
   const board = s.leaderboard || [];
   const top = Math.max(1, ...board.map((e) => e.score));
   const box = el("div", { class: "col" },
-    el("div", { class: "gold center slam", style: "font-size:72px;font-weight:600" }, final ? "And the winner is..." : `Scores after round ${s.round.number}`));
-  if (final && board.length) {
-    const w = el("div", { class: "center grad", style: "font-size:130px;font-weight:600;line-height:1.1;visibility:hidden" }, board.filter((e) => e.rank === 1).map((e) => e.name).join(" & ") + "!");
-    box.append(w);
-    setTimeout(() => { if (!w.isConnected) return; w.style.visibility = "visible"; w.classList.add("grow-in"); confetti(); sfx.play("fanfare"); }, 2200);
-  }
+    el("div", { class: "gold center slam", style: "font-size:72px;font-weight:600" }, `Scores after round ${s.round.number}`));
   const rows = el("div", { class: "rows" });
-  board.slice(0, final ? 8 : 10).forEach((e, i) => {
-    const delay = 150 * i + (final ? 2600 : 250);
+  board.slice(0, 10).forEach((e, i) => {
+    const delay = 150 * i + 250;
     const fill = el("div", { style: `background:#${e.color}` });
     const sc = el("span", { class: "sc" }, "0");
     rows.append(el("div", { class: "row", style: `animation-delay:${delay / 1000 - 0.2}s` },
@@ -478,12 +656,12 @@ function update(s) {
     const text = q.everyone ? "Everyone has answered!" : !q.open ? "Answers are locked!" : `${q.answered} of ${s.players.length} answered`;
     footer.replaceChildren(el("span", { style: q.everyone ? "color:var(--gold)" : "" }, text),
       el("span", { class: "balls" }, s.players.map((p) => {
-        const b = ball(p, 0, !p.answered);
+        const b = ball(p, 48, !p.answered);
         const id = q.key + p.id;
         if (p.answered && !seenAnswers.has(id)) { b.classList.add("new"); seenAnswers.add(id); }
         return b;
       })));
-  } else if (q.type === "choice") {
+  } else if (q.type !== "closest") {
     const winners = s.players.filter((p) => p.won).map((p) => p.name);
     const text = !winners.length ? "Nobody got it this time!" : (winners.length === s.players.length && winners.length > 1) ? "Everybody got it right!" : "Well done: " + winners.join(", ");
     footer.replaceChildren(el("span", { class: "gold", style: "flex:1;text-align:center" }, text));
@@ -535,6 +713,7 @@ let last = performance.now();
     sctx.fillStyle = `rgba(${m.c},${m.a * tw})`;
     sctx.beginPath(); sctx.arc((m.x + Math.sin(m.d * 0.7) * 0.01) * sparkles.width, m.y * sparkles.height, m.r * k * 2, 0, Math.PI * 2); sctx.fill();
   }
+  if (revealAnim) drawReveal();
   cctx.clearRect(0, 0, conf.width, conf.height);
   const ck = conf.height / 1080;
   for (const b of confettiBits) {

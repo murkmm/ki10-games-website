@@ -50,7 +50,7 @@ function writeState(s) {
  * Starts hosting. onState(view) is called whenever the screen should change, onMedia(cmd) for
  * "replay"/"stop", onStatus(ok, message) for the connection.
  */
-export async function startOnlineTv({ onState, onMedia, onStatus }) {
+export async function startOnlineTv({ onState, onMedia, onStatus, onReact = () => {} }) {
   const prev = readState();
   let code = prev.code || newCode();
   const hostKey = prev.hostKey || Array.from(crypto.getRandomValues(new Uint8Array(6)), (b) => "abcdefghjkmnpqrstuvwxyz23456789"[b % 31]).join("");
@@ -65,6 +65,7 @@ export async function startOnlineTv({ onState, onMedia, onStatus }) {
     urls: urlsFor(code), code, hostKey,
     onChange: () => { onState(engine.tvView()); save(); },
     onMedia,
+    onReact,
   });
 
   // Quizzes: everything sent to this TV before, plus the built-in sample.

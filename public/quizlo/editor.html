@@ -32,6 +32,9 @@
   .optrow .ok { min-width: 56px; min-height: 52px; padding: 4px; border: 2px solid var(--line); background: transparent; font-size: 1.4rem; }
   .optrow .ok.on { background: var(--good); border-color: var(--good); color: #003015; }
   .optrow .del { min-width: 44px; min-height: 52px; padding: 4px; background: none; color: var(--muted); }
+  .pinpick { position: relative; border-radius: 14px; overflow: hidden; cursor: crosshair; }
+  .pinpick img { width: 100%; display: block; }
+  .pinpick .spot { position: absolute; aspect-ratio: 1; border-radius: 50%; border: 4px dashed var(--good); background: rgba(46,229,157,0.25); pointer-events: none; }
   .tf { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .tf button { min-height: 72px; font-size: 1.3rem; border: 3px solid var(--line); background: transparent; }
   .tf button.on { background: var(--good); border-color: var(--good); color: #003015; }

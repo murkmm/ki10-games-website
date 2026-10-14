@@ -53,13 +53,38 @@
   .board li.mine { background: rgba(255, 210, 63, 0.16); border-radius: 12px; }
   .board .rank { width: 48px; text-align: right; color: var(--gold); font-weight: 600; }
   .board .pts { margin-left: auto; font-weight: 600; }
+  /* Choosing a picture */
+  .faces { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px; }
+  .faces button { min-height: 52px; padding: 0; font-size: 1.9rem; background: rgba(255,255,255,0.06); border: 3px solid transparent; border-radius: 16px; }
+  .faces button.on { border-color: var(--gold); background: rgba(255,210,63,0.18); transform: scale(1.06); }
+  .mypic { display: flex; align-items: center; gap: 14px; justify-content: center; }
+  .bigface { animation: bounce 1.6s ease-in-out infinite; margin: 0 auto; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  /* Reactions */
+  .reacts { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; justify-content: center; gap: 6px;
+    padding: 10px 10px max(10px, env(safe-area-inset-bottom)); background: linear-gradient(to top, rgba(14,8,48,0.95) 60%, transparent); }
+  .reacts button { min-height: 54px; min-width: 0; flex: 1; max-width: 64px; padding: 0; font-size: 1.8rem; background: rgba(255,255,255,0.08); border-radius: 18px; }
+  .reacts button.sent { animation: chosen 0.35s cubic-bezier(0.3, 1.8, 0.5, 1); }
+  body.has-reacts .wrap { padding-bottom: 96px; }
+  .floaty { position: fixed; z-index: 21; pointer-events: none; font-size: 2rem; animation: floaty 1s ease-out forwards; }
+  @keyframes floaty { to { transform: translateY(-160px) scale(1.4); opacity: 0; } }
+  /* Put in order */
+  .order { display: grid; gap: 10px; }
+  .order button { justify-content: flex-start; min-height: 64px; text-align: left; background: rgba(255,255,255,0.1); border: 3px solid transparent; }
+  .order button .n { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.12); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .order button.picked { border-color: var(--gold); }
+  .order button.picked .n { background: var(--gold); color: #2a1700; animation: pop 0.3s; }
+  /* Tap the picture */
+  .pinbox { position: relative; border-radius: 14px; overflow: hidden; margin-bottom: 14px; touch-action: manipulation; }
+  .pinbox img { width: 100%; display: block; }
+  .pinbox .pin { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 3px 10px rgba(0,0,0,0.5); animation: pop 0.3s; }
+  .pinbox .target { position: absolute; aspect-ratio: 1; border-radius: 50%; border: 4px dashed var(--good); background: rgba(46,229,157,0.2); }
 </style>
 </head>
 <body>
 <div id="banner" class="banner hidden">Reconnecting... hold on!</div>
 <div class="wrap">
   <div id="me" class="me hidden">
-    <span id="me-dot" class="dot" style="width:34px;height:34px"></span>
+    <span id="me-dot"></span>
     <span id="me-name" class="name"></span>
     <span id="me-score" class="score"></span>
   </div>
@@ -67,9 +92,12 @@
     <div class="center"><div class="logo">Quizlo</div><div class="spinner"></div><p class="muted">Connecting to the TV...</p></div>
   </main>
 </div>
+<div id="reacts" class="reacts hidden"></div>
+<input type="file" id="pick" accept="image/*" class="hidden">
 
 <script type="module">
-import { Connection, $, el, toast, store, keepAwake, LETTERS, ordinal, formatNumber, gameCode, servedByApp } from "./connection.js";
+import { Connection, $, el, toast, store, keepAwake, LETTERS, ordinal, formatNumber, gameCode, servedByApp, face } from "./connection.js";
+import { AVATARS, REACTIONS } from "./emoji.js";
 
 const CODE = gameCode();
 const TOKEN_KEY = "quizlo.player." + location.host + (CODE ? "." + CODE : "");
@@ -140,7 +168,7 @@ function showJoin(title, note) {
     if (!name) { toast("Please type your name first"); input.focus(); return; }
     store("quizlo.name", name);
     joinBusy(true);
-    if (!conn.send({ t: "join", name })) { toast("Not connected yet - try again in a moment"); joinBusy(false); }
+    if (!conn.send({ t: "join", name, ...myPicture() })) { toast("Not connected yet - try again in a moment"); joinBusy(false); }
   };
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") join(); });
   screen(el("div", { class: "stack center" },
@@ -149,23 +177,110 @@ function showJoin(title, note) {
     note ? el("p", { class: "gold" }, note) : null,
     el("label", { class: "field", for: "name" }, "What's your name?"),
     input,
+    el("label", { class: "field" }, "Pick your picture"),
+    picturePicker(),
     el("button", { id: "join-btn", class: "primary big", onclick: join }, "Join the quiz"),
   ));
+}
+
+// --- Your picture: an emoji or a selfie (remembered on this phone) --------------------------------
+if (!AVATARS.includes(store("quizlo.emoji"))) store("quizlo.emoji", AVATARS[Math.floor(Math.random() * AVATARS.length)]);
+const usingPhoto = () => store("quizlo.pic") === "photo" && !!store("quizlo.photo");
+/** What to send the TV: { emoji } or { photo } (base64 JPEG). */
+function myPicture() {
+  return usingPhoto() ? { photo: store("quizlo.photo") } : { emoji: store("quizlo.emoji") };
+}
+
+function picturePicker(onChange = () => {}) {
+  const box = el("div", { class: "stack" });
+  const draw = () => {
+    const mine = { color: state?.me?.color || "8b5cf6", name: store("quizlo.name") || "?", ...(usingPhoto() ? { photo: "self" } : { emoji: store("quizlo.emoji") }) };
+    box.replaceChildren(
+      el("div", { class: "mypic" }, face(mine, 72, { cls: "pop" }),
+        el("button", { class: "ghost small", onclick: async () => {
+          try {
+            const photo = await takeSelfie();
+            if (!photo) return;
+            store("quizlo.photo", photo); store("quizlo.pic", "photo");
+            draw(); onChange();
+          } catch (_) { toast("Couldn't use that picture - try another"); }
+        } }, "📷 Take a selfie")),
+      el("div", { class: "faces" }, AVATARS.map((e) => el("button", {
+        class: !usingPhoto() && store("quizlo.emoji") === e ? "on" : "", type: "button",
+        onclick: () => { store("quizlo.emoji", e); store("quizlo.pic", "emoji"); buzz(15); draw(); onChange(); },
+      }, e))));
+  };
+  draw();
+  return box;
+}
+
+/** Opens the front camera (or photo library) and makes a small square picture. */
+function takeSelfie() {
+  return new Promise((resolve, reject) => {
+    const input = $("#pick");
+    input.value = "";
+    input.setAttribute("capture", "user");
+    input.onchange = () => {
+      const file = input.files[0];
+      if (!file) return resolve(null);
+      const img = new Image();
+      img.onload = () => {
+        const size = 200, c = el("canvas", { width: size, height: size });
+        const side = Math.min(img.naturalWidth, img.naturalHeight);
+        c.getContext("2d").drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, size, size);
+        URL.revokeObjectURL(img.src);
+        resolve(c.toDataURL("image/jpeg", 0.82).split(",")[1]);
+      };
+      img.onerror = () => reject(new Error("bad picture"));
+      img.src = URL.createObjectURL(file);
+    };
+    input.click();
+  });
+}
+
+function changePicture() {
+  screen(el("div", { class: "stack center" },
+    el("h2", {}, "Your picture"),
+    picturePicker(() => conn.send({ t: "avatar", ...myPicture() })),
+    el("button", { class: "primary big", onclick: () => { lastSig = ""; render(); } }, "Done")));
+}
+
+// --- Reactions: tap an emoji to send it floating up the TV ----------------------------------------
+let lastReact = 0;
+$("#reacts").append(...REACTIONS.map((e) => {
+  const b = el("button", { type: "button" }, e);
+  b.onclick = () => {
+    const now = Date.now();
+    if (now - lastReact < 650) return;
+    lastReact = now;
+    conn.send({ t: "react", e });
+    buzz(12);
+    b.classList.remove("sent"); void b.offsetWidth; b.classList.add("sent");
+    const r = b.getBoundingClientRect();
+    const f = el("div", { class: "floaty", style: `left:${r.left + r.width / 2 - 16}px;top:${r.top - 10}px` }, e);
+    document.body.append(f);
+    setTimeout(() => f.remove(), 1000);
+  };
+  return b;
+}));
+function showReactions(on) {
+  $("#reacts").classList.toggle("hidden", !on);
+  document.body.classList.toggle("has-reacts", on);
 }
 
 function render() {
   const s = state;
   $("#me").classList.remove("hidden");
-  $("#me-dot").style.background = "#" + s.me.color;
-  $("#me-dot").textContent = s.me.name.slice(0, 1).toUpperCase();
+  $("#me-dot").replaceChildren(face(s.me, 34));
   $("#me-name").textContent = s.me.name;
   $("#me-score").textContent = s.me.score === 1 ? "1 point" : `${s.me.score} points`;
 
   const q = s.question || {};
-  if (q.key !== lastKey) { lastKey = q.key; pendingAnswer = null; draftNumber = ""; if (q.key && navigator.vibrate) navigator.vibrate(80); }
+  if (q.key !== lastKey) { lastKey = q.key; pendingAnswer = null; draftNumber = ""; orderPick = null; if (q.key && navigator.vibrate) navigator.vibrate(80); }
+  showReactions(["lobby", "round_intro", "reveal", "scores", "final"].includes(s.phase));
 
   // Other players answering re-sends the state; don't rebuild the screen (and close the keyboard) for that.
-  const sig = JSON.stringify([s.phase, q.key, q.open, pendingAnswer ?? s.my_answer, s.round, s.me.rank, s.me.score, s.quiz_title, s.leaderboard]);
+  const sig = JSON.stringify([s.phase, q.key, q.open, pendingAnswer ?? s.my_answer, s.round, s.me.rank, s.me.score, s.quiz_title, s.leaderboard, s.me.emoji, s.me.photo, q.image]);
   if (sig === lastSig) return;
   lastSig = sig;
 
@@ -187,13 +302,14 @@ function render() {
 
 function waiting(title, text, canRename, extra) {
   const children = [
-    canRename && state ? el("span", { class: "dot bigdot", style: `background:#${state.me.color}` }, state.me.name.slice(0, 1).toUpperCase()) : null,
+    canRename && state ? face(state.me, 110, { cls: "bigface" }) : null,
     el("h1", { class: "pop" }, title),
     el("p", { style: "font-size:1.3rem" }, text),
   ];
   if (extra) children.push(el("p", { class: "gold" }, extra));
   if (canRename) children.push(el("p", { class: "small muted", style: "margin-top:40px" },
-    "Not you? ", el("a", { href: "#", onclick: (e) => { e.preventDefault(); leaving = true; lastSig = ""; conn.send({ t: "leave" }); store(TOKEN_KEY, null); showJoin(state?.quiz_title); } }, "Change name")));
+    el("a", { href: "#", onclick: (e) => { e.preventDefault(); changePicture(); } }, "Change my picture"), "  ·  Not you? ",
+    el("a", { href: "#", onclick: (e) => { e.preventDefault(); leaving = true; lastSig = ""; conn.send({ t: "leave" }); store(TOKEN_KEY, null); showJoin(state?.quiz_title); } }, "Change name")));
   screen(el("div", { class: "center stack" }, ...children));
 }
 
@@ -202,6 +318,8 @@ function header(q) {
 }
 
 function media(q) {
+  if (q.type === "pin") return null; // the picture is where you answer
+  if (q.reveal && !q.image) return el("div", { class: "listen" }, "👀 Watch the picture appear on the TV!");
   if (q.image) return el("img", { class: "qimg", src: q.image, alt: "" });
   // The quiz master can switch on music & video on phones (for family joining from elsewhere).
   if (q.audio) return el("div", { class: "listen" }, el("div", {}, "🎵 Listen!"), el("audio", { src: q.audio, controls: true, autoplay: true, style: "width:100%;margin-top:8px" }));
@@ -213,6 +331,7 @@ function media(q) {
 
 let timerHandle;
 let enteredKey = "";
+let orderPick = null; // "put in order": the items tapped so far (positions on screen); null = as sent
 const buzz = (pattern) => { try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (_) {} };
 /** A little burst of emoji confetti for a right answer. */
 function celebrate() {
@@ -240,6 +359,46 @@ function renderQuestion(s, q) {
       }, el("span", { class: "letter" }, LETTERS[i]), el("span", {}, text)));
     });
     parts.push(opts);
+  } else if (q.type === "text") {
+    const input = el("input", { type: "text", autocomplete: "off", autocapitalize: "sentences", maxlength: 60, placeholder: "Type your answer",
+      value: draftNumber || (answered ? String(mine) : ""), disabled: !q.open, enterkeyhint: "send" });
+    input.addEventListener("input", () => { draftNumber = input.value; });
+    const send = () => {
+      const v = input.value.trim();
+      if (!v) { toast("Please type an answer"); input.focus(); return; }
+      buzz(25);
+      pendingAnswer = v; draftNumber = "";
+      conn.send({ t: "answer", q: q.key, v }); input.blur(); render();
+    };
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") send(); });
+    parts.push(input, el("button", { class: "go big", style: "margin-top:12px", disabled: !q.open, onclick: send }, answered ? "Change my answer" : "Send my answer"));
+  } else if (q.type === "order") {
+    const pick = orderPick ?? (Array.isArray(mine) ? mine : []);
+    parts.push(el("p", { class: "muted", style: "margin-top:0" }, pick.length === q.options.length ? "Got your order ✓" : `Tap them in order: what comes first?`));
+    parts.push(el("div", { class: "order" }, q.options.map((text, i) => {
+      const n = pick.indexOf(i);
+      return el("button", { class: n >= 0 ? "picked" : "", disabled: !q.open, onclick: () => {
+        buzz(15);
+        orderPick = pick.slice();
+        if (n >= 0) orderPick = orderPick.slice(0, n); // tapping a numbered one undoes from there
+        else orderPick = [...orderPick, i];
+        if (orderPick.length === q.options.length) { pendingAnswer = orderPick.slice(); conn.send({ t: "answer", q: q.key, v: pendingAnswer }); }
+        lastSig = ""; render();
+      } }, el("span", { class: "n" }, n >= 0 ? String(n + 1) : ""), el("span", {}, text));
+    })));
+    if (pick.length) parts.push(el("button", { class: "ghost small", style: "margin-top:10px", disabled: !q.open, onclick: () => { orderPick = []; lastSig = ""; render(); } }, "↺ Start again"));
+  } else if (q.type === "pin") {
+    const box = el("div", { class: "pinbox" }, el("img", { src: q.image, alt: "" }));
+    if (answered && mine) box.append(el("span", { class: "pin", style: `left:${mine.x * 100}%;top:${mine.y * 100}%;background:#${s.me.color}` }));
+    box.onclick = (e) => {
+      if (!q.open) return;
+      const r = box.getBoundingClientRect();
+      const v = { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+      buzz(25);
+      pendingAnswer = v;
+      conn.send({ t: "answer", q: q.key, v }); render();
+    };
+    parts.push(el("p", { class: "muted", style: "margin-top:0" }, answered ? "Got it ✓ Tap again to move your pin." : "Tap the right spot on the picture!"), box);
   } else {
     const input = el("input", { type: "text", inputmode: "decimal", autocomplete: "off", placeholder: "Your guess",
       value: draftNumber || (answered ? formatNumber(Number(mine)) : ""), disabled: !q.open, enterkeyhint: "send" });
@@ -257,7 +416,8 @@ function renderQuestion(s, q) {
 
   let status = "";
   if (!q.open) status = "Time's up! Look at the TV.";
-  else if (answered) status = q.type === "closest" ? `Your guess: ${formatNumber(Number(mine))}${q.unit ? " " + q.unit : ""} ✓ You can change it until time's up.` : "Got it! ✓ You can change your answer until time's up.";
+  else if (answered && q.type === "closest") status = `Your guess: ${formatNumber(Number(mine))}${q.unit ? " " + q.unit : ""} ✓ You can change it until time's up.`;
+  else if (answered && q.type !== "pin") status = "Got it! ✓ You can change your answer until time's up.";
   parts.push(el("div", { class: "status" }, status));
 
   const timer = el("div", { class: "timer" });
@@ -291,10 +451,24 @@ function renderReveal(s, q) {
   const answered = s.my_answer !== undefined;
   const right = s.gained > 0;
   let title, icon;
-  if (right) { title = q.type === "closest" ? "Closest!" : "Correct!"; icon = "🎉"; }
+  if (right) { title = q.type === "closest" ? "Closest!" : q.type === "pin" ? "Spot on!" : "Correct!"; icon = "🎉"; }
   else if (!answered) { title = "No answer"; icon = "⏰"; }
   else { title = q.type === "closest" ? "Not the closest" : "Not this time"; icon = "🙈"; }
-  const yours = answered ? (q.type === "choice" ? q.options[s.my_answer] : formatNumber(Number(s.my_answer)) + (q.unit ? " " + q.unit : "")) : null;
+  let yours = null;
+  if (answered) {
+    const a = s.my_answer;
+    if (q.type === "choice") yours = q.options[a];
+    else if (q.type === "text") yours = a;
+    else if (q.type === "order") yours = a.map((i) => q.options[i]).join(" → ");
+    else if (q.type === "closest") yours = formatNumber(Number(a)) + (q.unit ? " " + q.unit : "");
+  }
+  let answerBox = el("div", { style: "font-size:1.6rem;font-weight:600" }, q.answer_text);
+  if (q.type === "order") answerBox = el("ol", { style: "text-align:left;font-size:1.3rem;font-weight:600;margin:6px 0" }, q.order.map((t) => el("li", {}, t)));
+  if (q.type === "pin" && q.image) {
+    answerBox = el("div", { class: "pinbox", style: "margin:8px 0 0" }, el("img", { src: q.image, alt: "" }),
+      el("span", { class: "target", style: `left:${q.target.x * 100}%;top:${q.target.y * 100}%;width:${q.radius * 200}%;margin:-${q.radius * 100}% 0 0 -${q.radius * 100}%` }));
+    if (answered) answerBox.append(el("span", { class: "pin", style: `left:${s.my_answer.x * 100}%;top:${s.my_answer.y * 100}%;background:#${s.me.color}` }));
+  }
   if (right) { celebrate(); buzz([30, 60, 30, 60, 60]); } else buzz(120);
   screen(el("div", { class: "stack" },
     header(q),
@@ -303,8 +477,8 @@ function renderReveal(s, q) {
       el("div", { class: "big" }, title),
       right ? el("div", { class: "gold", style: "font-size:1.6rem;font-weight:600" }, `+${s.gained} point${s.gained === 1 ? "" : "s"}`) : null),
     el("div", { class: "card center" },
-      el("div", { class: "muted" }, "The answer was"),
-      el("div", { style: "font-size:1.6rem;font-weight:600" }, q.answer_text),
+      el("div", { class: "muted" }, q.type === "pin" ? "The right spot" : q.type === "order" ? "The right order" : "The answer was"),
+      answerBox,
       yours !== null && !right ? el("div", { class: "muted small", style: "margin-top:6px" }, `You said: ${yours}`) : null),
     el("p", { class: "center muted" }, `You're ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}`),
   ));
@@ -319,7 +493,7 @@ function renderScores(s) {
   if (final && iWon) { celebrate(); buzz([40, 60, 40, 60, 120]); }
   const list = el("ol", { class: "board" }, board.map((e, i) => el("li", { class: e.name === s.me.name ? "mine" : "", style: `animation-delay:${i * 0.07}s` },
     el("span", { class: "rank" }, ordinal(e.rank)),
-    el("span", { class: "dot", style: `background:#${e.color};width:36px;height:36px` }, e.name.slice(0, 1).toUpperCase()),
+    face(e.name === s.me.name ? s.me : e, 36),
     el("span", {}, e.name),
     el("span", { class: "pts" }, e.score))));
   screen(el("div", { class: "stack" },

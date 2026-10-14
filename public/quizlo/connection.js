@@ -130,3 +130,22 @@ export function ordinal(n) {
 export function formatNumber(v) {
   return Number.isInteger(v) ? String(v) : String(Math.round(v * 10000) / 10000);
 }
+
+/**
+ * A player's round picture: their selfie, their emoji, or the first letter of their name, on their
+ * colour. p: { name, color, emoji?, photo? }. With images: true, emoji are drawn from web/emoji/
+ * pictures (for TV browsers that don't have colour emoji). A photo of "self" is this phone's own.
+ */
+export function face(p, size = 44, { images = false, cls = "" } = {}) {
+  const node = el("span", { class: "dot face " + cls, style: `background:#${p.color};width:${size}px;height:${size}px;font-size:${Math.round(size * 0.5)}px` });
+  const photo = p.photo === "self" ? (store("quizlo.photo") ? "data:image/jpeg;base64," + store("quizlo.photo") : "") : p.photo;
+  if (photo) node.append(el("img", { src: photo, alt: "" }));
+  else if (p.emoji && images) node.append(el("img", { src: "emoji/" + emojiFile(p.emoji), alt: p.emoji, class: "emo" }));
+  else if (p.emoji) node.append(el("span", { class: "emo", style: `font-size:${Math.round(size * 0.62)}px` }, p.emoji));
+  else node.append(String(p.name || "?").slice(0, 1).toUpperCase());
+  return node;
+}
+
+function emojiFile(e) {
+  return [...e].map((c) => c.codePointAt(0).toString(16)).filter((h) => h !== "fe0f").join("-") + ".png";
+}

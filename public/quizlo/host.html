@@ -26,6 +26,8 @@
   .players .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .players .sc { font-weight: 600; min-width: 2.2em; text-align: center; }
   .players .offline { opacity: 0.5; }
+  .players .typed { display: flex; align-items: center; gap: 6px; max-width: 45%; overflow: hidden; }
+  .players .typed > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tick { color: var(--good); font-weight: 600; }
   .wait { color: var(--muted); }
   .players button { min-height: 40px; min-width: 44px; padding: 4px 10px; }
@@ -64,7 +66,7 @@
 <input type="file" id="file" accept=".quizlo,.quizzy,application/zip,application/octet-stream" class="hidden">
 
 <script type="module">
-import { Connection, $, el, toast, store, keepAwake, ordinal, formatNumber, LETTERS, gameCode, linkHostKey } from "./connection.js";
+import { Connection, $, el, toast, store, keepAwake, ordinal, formatNumber, LETTERS, gameCode, linkHostKey, face } from "./connection.js";
 
 // With the app the quiz master code comes as ?k=...; on the website as host.html#CODE-key.
 const CODE = gameCode();
@@ -213,9 +215,17 @@ function questionCard(s) {
   if (q.media) card.append(el("div", { class: "small muted" }, { image: "🖼 Picture question", audio: "🎵 Music question", video: "📺 Video question" }[q.media]));
   if (q.type === "choice") {
     card.append(el("div", { class: "answer" }, "Answer: ", el("b", {}, `${LETTERS[q.answer]}. ${q.answer_text}`)));
+  } else if (q.type === "text") {
+    card.append(el("div", { class: "answer" }, "Answer: ", el("b", {}, q.answers.join(" / ")),
+      el("div", { class: "small muted" }, "Typed answers are marked automatically (small spelling slips are fine). After the reveal you can tap ✓ or ✗ to change any.")));
+  } else if (q.type === "order") {
+    card.append(el("div", { class: "answer" }, "Right order: ", el("b", {}, q.order.join(" → "))));
+  } else if (q.type === "pin") {
+    card.append(el("div", { class: "answer" }, el("b", {}, "Tap the picture"), el("span", { class: "small muted" }, "  (everyone who taps inside the circle you marked gets the points)")));
   } else {
     card.append(el("div", { class: "answer" }, "Answer: ", el("b", {}, q.answer_text), el("span", { class: "small muted" }, "  (closest guess wins)")));
   }
+  if (q.reveal) card.append(el("div", { class: "small muted" }, q.reveal === "zoom" ? "🔍 The picture starts zoomed in and slowly zooms out." : "🟪 The picture starts blocky and slowly sharpens."));
   const btns = el("div", { class: "btnrow" });
   if (s.phase === "question") {
     card.append(el("p", { class: "bold" }, `${s.answered} of ${s.players.length} answered` + (q.open ? "" : " · answers locked")));
@@ -233,16 +243,25 @@ function playersCard(s) {
   const list = el("ul", { class: "players" });
   if (s.players.length === 0) list.append(el("li", { class: "muted" }, "Nobody has joined yet."));
   for (const p of s.players) {
-    let status = null;
+    let status = null, typedLine = null;
     if (showAnswers) {
       if (p.answered) {
-        let a = q.type === "choice" ? LETTERS[p.answer] : formatNumber(p.answer);
-        status = s.phase === "reveal" ? el("span", { class: p.gained ? "tick" : "wait" }, (p.gained ? "✓ " : "✗ ") + a) : el("span", { class: "tick" }, "✓");
+        let a = "";
+        if (q.type === "choice") a = LETTERS[p.answer];
+        else if (q.type === "closest") a = formatNumber(p.answer);
+        else if (q.type === "text") a = `"${p.answer}"`;
+        else if (q.type === "order") a = p.right ? "right order" : "wrong order";
+        if (q.type === "text") {
+          // Typed answers: what they wrote goes under their name; the quiz master can overrule the marking.
+          typedLine = el("div", { class: "small " + (s.phase === "reveal" ? (p.gained ? "tick" : "wait") : "muted") }, a);
+          status = s.phase === "reveal" ? el("button", { class: "small " + (p.gained ? "go" : "ghost"), title: p.gained ? "Counted as right - tap to mark wrong" : "Counted as wrong - tap to mark right",
+              onclick: () => conn.send({ t: "mark", pid: p.id, right: !p.gained }) }, p.gained ? "✓" : "✗") : el("span", { class: "tick" }, "✓");
+        } else status = s.phase === "reveal" ? el("span", { class: p.gained ? "tick" : "wait" }, (p.gained ? "✓ " : "✗ ") + a) : el("span", { class: "tick" }, "✓");
       } else status = el("span", { class: "wait" }, s.phase === "reveal" ? "-" : "thinking...");
     }
     list.append(el("li", { class: p.online ? "" : "offline" },
-      el("span", { class: "dot", style: `background:#${p.color};width:36px;height:36px` }, p.name.slice(0, 1).toUpperCase()),
-      el("span", { class: "nm" }, p.name + (p.online ? "" : " (offline)")),
+      face(p, 36),
+      el("span", { class: "nm" }, p.name + (p.online ? "" : " (offline)"), typedLine),
       status,
       el("button", { class: "ghost small", title: "Take a point away", onclick: () => conn.send({ t: "adjust", pid: p.id, d: -1 }) }, "−"),
       el("span", { class: "sc" }, p.score),

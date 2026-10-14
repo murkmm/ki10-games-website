@@ -162,3 +162,9 @@ input[type=range] { padding: 0; height: 44px; border: 0; background: none; accen
 .shake { animation: shake 0.45s ease-in-out both; }
 .btnrow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 .btnrow > * { flex: 1 1 auto; }
+
+/* Player pictures */
+.face { overflow: hidden; position: relative; line-height: 1; }
+.face > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.face > img.emo { width: 78%; height: 78%; object-fit: contain; margin: auto; }
+.face > span.emo { display: block; line-height: 1; }

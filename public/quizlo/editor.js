@@ -32,7 +32,8 @@ async function tvQuizzes() {
 
 const POINTS = [1, 2, 3, 5, 10];
 const TIMES = [[0, "No time limit"], [10, "10 seconds"], [20, "20 seconds"], [30, "30 seconds"], [45, "45 seconds"], [60, "1 minute"], [90, "90 seconds"]];
-const TYPE_NAMES = { choice: "Multiple choice", tf: "True or false", closest: "Closest number" };
+const TYPE_NAMES = { choice: "Multiple choice", tf: "True or false", closest: "Closest number", text: "Type the answer", order: "Put in order", pin: "Tap the picture" };
+const PIN_SIZES = [[0.05, "Small circle (harder)"], [0.08, "Medium circle"], [0.12, "Big circle (easier)"]];
 
 function newQuiz() {
   return { id: uid(), title: "", author: store("quizlo.author") || "", rounds: [newRound(1)], created: Date.now(), updated: Date.now() };
@@ -43,17 +44,16 @@ function newQuestion(kind = "choice", from) {
 }
 function setKind(q, kind) {
   const was = kindOf(q);
-  if (kind === was && q.options) return q;
-  if (kind === "closest") { q.type = "closest"; delete q.tf; q.answer = null; q.unit = q.unit || ""; }
-  else {
-    q.type = "choice";
-    if (kind === "tf") { q.tf = true; q.options = ["True", "False"]; q.answer = null; }
-    else {
-      delete q.tf;
-      if (!q.options || was === "tf") q.options = ["", "", "", ""];
-      q.answer = null;
-    }
-  }
+  if (kind === was) return q;
+  delete q.tf;
+  q.type = kind === "tf" ? "choice" : kind;
+  if (kind === "closest") { q.answer = null; q.unit = q.unit || ""; }
+  else if (kind === "tf") { q.tf = true; q.options = ["True", "False"]; q.answer = null; }
+  else if (kind === "choice" || kind === "order") {
+    if (!q.options || was === "tf") q.options = ["", "", "", ""];
+    q.answer = null;
+  } else if (kind === "text") q.answers = q.answers?.length ? q.answers : [""];
+  else if (kind === "pin") { q.target = q.target || null; q.radius = q.radius || 0.08; }
   return q;
 }
 
@@ -121,6 +121,7 @@ async function route() {
   await keepUnsavedClips();
   await flush();
   const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
+  if (parts[0] === "import" && parts[1]) return importShared(parts[1]);
   if (parts[0] === "quiz" && parts[1]) {
     if (!quiz || quiz.id !== parts[1]) quiz = await Quizzes.get(parts[1]);
     if (!quiz) return go("");
@@ -188,6 +189,58 @@ async function openFile() {
   catch (e) { toast(e.message || "That file couldn't be opened."); }
 }
 
+// --- Sharing a quiz with a link (stored on the website for a year)
+
+// The Quiz Writer opened from the TV app shares through the website too.
+const SHARE_SITE = location.pathname.includes("/quizlo/") ? location.origin + location.pathname.replace(/[^/]*$/, "") : "https://ki10games.com/quizlo/";
+const shareApi = () => new URL("../api/quizlo-share", SHARE_SITE).href;
+
+async function shareLink(blob) {
+  toast(blob.size > 5e6 ? "Uploading your quiz - videos can take a minute..." : "Making a link...");
+  let res;
+  try {
+    const r = await fetch(shareApi(), { method: "POST", body: blob, headers: { "Content-Type": "application/zip" } });
+    res = await r.json();
+    if (!r.ok || !res.id) throw new Error(res.error || "Couldn't make a link.");
+  } catch (e) {
+    return toast(e.message && !/fetch|network/i.test(e.message) ? e.message : "Couldn't reach the website - are you online?");
+  }
+  const link = `${SHARE_SITE}editor.html#/import/${res.id}`;
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(link); toast("Link copied ✓"); }
+    catch (_) { input.select(); toast("Select the link and copy it"); }
+  };
+  const input = el("input", { value: link, readonly: true, onclick: () => input.select() });
+  const sheet = el("div", { class: "card stack sharecard" },
+    el("h3", { style: "margin:0" }, "🔗 Link ready!"),
+    el("p", { class: "small muted", style: "margin:0" }, "Anyone with this link can get their own copy of this quiz to play or change. It lasts a year."),
+    input,
+    el("div", { class: "btnrow" },
+      navigator.share ? el("button", { class: "primary", onclick: () => navigator.share({ title: quiz.title || "A Quizlo quiz", url: link }).catch(() => {}) }, "📤 Send it") : null,
+      el("button", { class: navigator.share ? "ghost" : "primary", onclick: copy }, "📋 Copy link"),
+      el("button", { class: "ghost", onclick: () => sheet.remove() }, "Close")));
+  $("#app").prepend(sheet);
+  window.scrollTo(0, 0);
+}
+
+async function importShared(id) {
+  quiz = null;
+  setDock();
+  view(el("div", { class: "center" }, el("div", { class: "logo" }, "Quizlo"), el("div", { class: "spinner" }), el("p", {}, "Getting the quiz...")));
+  try {
+    const r = await fetch(`${shareApi()}?id=${encodeURIComponent(id)}`);
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || "Couldn't get that quiz.");
+    const q = await importQuizFile(await r.blob());
+    toast(`Added "${q.title || "Untitled quiz"}" to your quizzes`);
+    history.replaceState(null, "", "#/");
+    go(`quiz/${q.id}`);
+  } catch (e) {
+    view(el("div", { class: "stack center" }, el("div", { class: "logo" }, "Quizlo"),
+      el("p", { class: "gold" }, e.message && !/fetch|network/i.test(e.message) ? e.message : "Couldn't reach the website - are you online?"),
+      el("button", { class: "primary", onclick: () => go("") }, "My quizzes")));
+  }
+}
+
 // --- Quiz: title, rounds and the list of questions
 
 function quizView() {
@@ -235,7 +288,8 @@ function quizView() {
     el("button", { class: "ghost", style: "width:100%;margin-top:14px", onclick: () => { q.rounds.push(newRound(q.rounds.length + 1)); save(); quizView(); } }, "＋ Add another round"),
     el("div", { class: "btnrow", style: "margin-top:30px" },
       el("button", { class: "ghost", onclick: () => exportQuiz("download") }, "💾 Save quiz file"),
-      navigator.canShare ? el("button", { class: "ghost", onclick: () => exportQuiz("share") }, "📤 Share quiz file") : null),
+      navigator.canShare ? el("button", { class: "ghost", onclick: () => exportQuiz("share") }, "📤 Share quiz file") : null,
+      el("button", { class: "ghost", onclick: () => exportQuiz("link") }, "🔗 Share a link")),
     el("button", { class: "danger", style: "width:100%;margin-top:30px", onclick: async () => {
       if (!confirm(`Delete "${q.title || "this quiz"}" from this device? This can't be undone.`)) return;
       await Media.delQuiz(q.id); await Quizzes.del(q.id); quiz = null; go("");
@@ -275,6 +329,7 @@ async function exportQuiz(mode) {
   const { blob, empty, name } = await buildQuizFile(quiz);
   if (empty) return toast("Add at least one finished question first.");
   if (mode === "download") return download(blob, name);
+  if (mode === "link") return shareLink(blob);
   if (mode === "share") {
     const file = new File([blob], name, { type: "application/octet-stream" });
     try {
@@ -310,7 +365,7 @@ function questionView(ri, qi) {
   const here = location.hash;
   const rerender = () => { save(); if (location.hash === here) questionView(ri, qi); };
 
-  const seg = el("div", { class: "seg" }, ["choice", "tf", "closest"].map((k) =>
+  const seg = el("div", { class: "seg" }, ["choice", "tf", "closest", "text", "order", "pin"].map((k) =>
     el("button", { class: k === kind ? "on" : "", onclick: () => { setKind(q, k); rerender(); } }, TYPE_NAMES[k])));
 
   const text = el("textarea", { rows: 3, placeholder: kind === "tf" ? "e.g. An octopus has three hearts." : kind === "closest" ? "e.g. How many cups of tea does Grandad drink a day?" : "e.g. What is the largest planet in our solar system?" });
@@ -323,7 +378,7 @@ function questionView(ri, qi) {
     el("label", { class: "field" }, "What kind of question?"), seg,
     el("label", { class: "field" }, kind === "tf" ? "The statement" : "The question"), text,
     el("label", { class: "field" }, "Add a picture, music or video (optional)"), mediaSection(q, ri, qi, rerender),
-    el("label", { class: "field" }, kind === "closest" ? "The right answer" : kind === "tf" ? "Is it true or false?" : "The answers (tap ✓ next to the right one)"),
+    el("label", { class: "field" }, { closest: "The right answer", tf: "Is it true or false?", text: "The right answer", order: "The things to put in order", pin: "The right spot" }[kind] || "The answers (tap ✓ next to the right one)"),
     answerSection(q, kind, rerender),
     el("div", { class: "two" },
       el("div", {}, el("label", { class: "field" }, "Points"), selectFor(POINTS.map((p) => [p, p === 1 ? "1 point" : `${p} points`]), q.points, (v) => { q.points = v; save(); })),
@@ -354,6 +409,50 @@ function selectFor(options, value, onChange) {
 }
 
 function answerSection(q, kind, rerender) {
+  if (kind === "text") {
+    const box = el("div", {});
+    q.answers.forEach((a, i) => {
+      const input = el("input", { value: a, placeholder: i === 0 ? "The right answer" : "Another way to write it (optional)", maxlength: 80 });
+      input.oninput = () => { q.answers[i] = input.value; save(); };
+      box.append(el("div", { class: "optrow" }, input,
+        q.answers.length > 1 ? el("button", { class: "del", title: "Remove", onclick: () => { q.answers.splice(i, 1); rerender(); } }, "✕") : null));
+    });
+    if (q.answers.length < 10) box.append(el("button", { class: "ghost small", style: "margin-top:10px", onclick: () => { q.answers.push(""); rerender(); } }, "＋ Add another way to write it"));
+    box.append(el("p", { class: "small muted" }, "Everyone types their answer. Small spelling slips are fine, and the quiz master can mark answers right or wrong after the reveal."));
+    return box;
+  }
+  if (kind === "order") {
+    const box = el("div", {});
+    box.append(el("p", { class: "small muted", style: "margin-top:0" }, "Type them in the RIGHT order, first at the top. Everyone's phone shows them mixed up."));
+    q.options.forEach((opt, i) => {
+      const input = el("input", { value: opt, placeholder: i === 0 ? "First" : i === q.options.length - 1 ? "Last" : `Number ${i + 1}`, maxlength: 80 });
+      input.oninput = () => { q.options[i] = input.value; save(); };
+      box.append(el("div", { class: "optrow" }, el("span", { class: `letter opt-${i}` }, String(i + 1)), input,
+        i > 0 ? el("button", { class: "del", title: "Move up", onclick: () => { [q.options[i - 1], q.options[i]] = [q.options[i], q.options[i - 1]]; rerender(); } }, "↑") : null,
+        q.options.length > 2 ? el("button", { class: "del", title: "Remove", onclick: () => { q.options.splice(i, 1); rerender(); } }, "✕") : null));
+    });
+    if (q.options.length < 6) box.append(el("button", { class: "ghost small", style: "margin-top:10px", onclick: () => { q.options.push(""); rerender(); } }, "＋ Add another"));
+    return box;
+  }
+  if (kind === "pin") {
+    if (!q.media || q.media.kind !== "image") return el("p", { class: "gold" }, "First add a picture above, then tap it here to mark the right spot.");
+    const wrap = el("div", { class: "pinpick" });
+    const img = el("img", { alt: "" });
+    Media.get(quiz.id, q.media.file).then((b) => { if (b) img.src = URL.createObjectURL(b); });
+    img.onload = () => { const a = img.naturalWidth / img.naturalHeight; if (a && Math.abs((q.aspect || 0) - a) > 0.001) { q.aspect = a; save(); } };
+    wrap.append(img);
+    if (q.target) {
+      wrap.append(el("span", { class: "spot", style: `left:${q.target.x * 100}%;top:${q.target.y * 100}%;width:${q.radius * 200}%;margin:-${q.radius * 100}% 0 0 -${q.radius * 100}%` }));
+    }
+    wrap.onclick = (e) => {
+      const r = wrap.getBoundingClientRect();
+      q.target = { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+      rerender();
+    };
+    return el("div", { class: "stack" },
+      el("p", { class: "small muted", style: "margin:0" }, "Tap the picture where the right answer is. Everyone who taps inside the circle gets the points."),
+      wrap, selectFor(PIN_SIZES, q.radius, (v) => { q.radius = v; rerender(); }));
+  }
   if (kind === "closest") {
     const ans = el("input", { inputmode: "decimal", placeholder: "e.g. 42", value: q.answer ?? "" });
     ans.oninput = () => { q.answer = ans.value.trim().replace(",", ".") === "" ? null : ans.value.trim().replace(",", "."); save(); };
@@ -413,11 +512,18 @@ function mediaSection(q, ri, qi, rerender) {
       : q.media.kind === "audio" ? el("audio", { src: url, controls: true })
       : el("video", { src: url, controls: true, playsinline: true });
     const size = blob.size < 1048576 ? `${Math.max(1, Math.round(blob.size / 1024))} KB` : `${(blob.size / 1048576).toFixed(1)} MB`;
-    box.replaceChildren(player,
+    box.replaceChildren(...[player,
       el("p", { class: "small muted" }, `${q.media.name || q.media.file} · ${size}` + (q.media.kind === "image" ? "" : " · plays on the TV when the question appears")),
       q.media.credit ? el("p", { class: "small muted" }, "Credit: " + q.media.credit) : null,
-      removeBtn());
+      q.media.kind === "image" && q.type !== "pin" ? revealChoice() : null,
+      removeBtn()].filter(Boolean));
   });
+  function revealChoice() {
+    const s = el("select", {}, [["", "Show the picture straight away"], ["zoom", "🔍 Start zoomed right in, then slowly zoom out"], ["pixel", "🟪 Start blocky, then slowly sharpen"]]
+      .map(([v, label]) => el("option", { value: v, selected: (q.media.reveal || "") === v }, label)));
+    s.onchange = () => { if (s.value) q.media.reveal = s.value; else delete q.media.reveal; save(); };
+    return el("div", {}, s, el("p", { class: "small muted" }, "A slow reveal takes the question's time limit (or 20 seconds), and phones don't get the picture until the answer."));
+  }
   function removeBtn() {
     return el("button", { class: "danger small", onclick: () => { dropMedia(q.media); q.media = null; rerender(); } }, "Remove");
   }

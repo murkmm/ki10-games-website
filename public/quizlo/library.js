@@ -4,7 +4,9 @@ import { makeZip, readZip } from "./zip.js";
 
 export const uid = (n = 10) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => "abcdefghijkmnpqrstuvwxyz23456789"[b % 32]).join("");
 export function newRound(n) { return { title: `Round ${n}`, questions: [] }; }
-export function kindOf(q) { return q.type === "closest" ? "closest" : q.tf ? "tf" : "choice"; }
+export function kindOf(q) { return q.type === "choice" ? (q.tf ? "tf" : "choice") : q.type; }
+const TYPES = ["choice", "closest", "text", "order", "pin"];
+const REVEALS = ["zoom", "pixel"];
 
 // ---------------------------------------------------------------- storage
 
@@ -59,9 +61,15 @@ export function problem(q) {
   if (q.type === "closest") {
     return q.answer === null || q.answer === "" || isNaN(Number(q.answer)) ? "Needs the right number" : "";
   }
+  if (q.type === "text") return (q.answers || []).some((a) => a.trim()) ? "" : "Needs the right answer";
+  if (q.type === "pin") {
+    if (!q.media || q.media.kind !== "image") return "Needs a picture";
+    return q.target ? "" : "Tap the picture to mark the right spot";
+  }
   const filled = q.options.filter((o) => o.trim()).length;
-  if (filled < 2) return "Needs at least 2 answers";
-  if (q.options.some((o) => !o.trim())) return "Fill in or remove empty answers";
+  if (filled < 2) return q.type === "order" ? "Needs at least 2 things to put in order" : "Needs at least 2 answers";
+  if (q.options.some((o) => !o.trim())) return q.type === "order" ? "Fill in or remove empty ones" : "Fill in or remove empty answers";
+  if (q.type === "order") return "";
   if (q.answer === null || q.answer < 0 || q.answer >= q.options.length) return "Tap ✓ next to the right answer";
   return "";
 }
@@ -80,12 +88,16 @@ export async function buildQuizFile(q) {
       if (problem(x)) { skipped++; continue; }
       const out = { type: x.type, text: x.text.trim(), points: x.points, time: x.time };
       if (x.type === "choice") { out.options = x.options.map((o) => o.trim()); out.answer = x.answer; if (x.tf) out.tf = true; }
+      else if (x.type === "order") out.options = x.options.map((o) => o.trim());
+      else if (x.type === "text") out.answers = x.answers.map((a) => a.trim()).filter(Boolean);
+      else if (x.type === "pin") Object.assign(out, { target: x.target, radius: x.radius || 0.08, aspect: x.aspect || 1.5 });
       else { out.answer = Number(x.answer); out.unit = (x.unit || "").trim(); }
       if (x.media) {
         const blob = await Media.get(q.id, x.media.file);
         if (blob) {
           out.media = { kind: x.media.kind, file: x.media.file };
           if (x.media.credit) out.media.credit = x.media.credit;
+          if (x.media.kind === "image" && x.type !== "pin" && REVEALS.includes(x.media.reveal)) out.media.reveal = x.media.reveal;
           files.push({ name: x.media.file, data: blob });
           const web = x.media.web && await Media.get(q.id, x.media.web);
           if (web) { out.media.web = x.media.web; files.push({ name: x.media.web, data: web }); }
@@ -113,18 +125,22 @@ export async function importQuizFile(blob) {
   for (const r of data.rounds || []) {
     const round = { title: r.title || "", questions: [] };
     for (const x of r.questions || []) {
-      const nq = { type: x.type === "closest" ? "closest" : "choice", text: x.text || "", points: x.points ?? 1, time: x.time ?? 0, media: null };
+      const nq = { type: TYPES.includes(x.type) ? x.type : "choice", text: x.text || "", points: x.points ?? 1, time: x.time ?? 0, media: null };
       if (nq.type === "choice") {
         nq.options = (x.options || []).map(String);
         nq.answer = Number.isInteger(x.answer) ? x.answer : null;
         if (x.tf || (nq.options.length === 2 && nq.options[0] === "True" && nq.options[1] === "False")) nq.tf = true;
-      } else { nq.answer = x.answer; nq.unit = x.unit || ""; }
+      } else if (nq.type === "order") nq.options = (x.options || []).map(String);
+      else if (nq.type === "text") nq.answers = (x.answers || []).map(String);
+      else if (nq.type === "pin") Object.assign(nq, { target: x.target || null, radius: x.radius || 0.08, aspect: x.aspect || 1.5 });
+      else { nq.answer = x.answer; nq.unit = x.unit || ""; }
       if (x.media && entries.get(x.media.file)) {
         const bytes = entries.get(x.media.file);
         const type = { jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", wav: "audio/wav", mp3: "audio/mpeg", ogv: "video/ogg", ogg: "video/ogg" }[x.media.file.split(".").pop().toLowerCase()] || "";
         await Media.put(id, x.media.file, new Blob([bytes], { type }));
         nq.media = { kind: x.media.kind, file: x.media.file, name: x.media.file.split("/").pop() };
         if (x.media.credit) nq.media.credit = String(x.media.credit);
+        if (REVEALS.includes(x.media.reveal)) nq.media.reveal = x.media.reveal;
         if (x.media.web && entries.get(x.media.web)) {
           await Media.put(id, x.media.web, new Blob([entries.get(x.media.web)], { type: "video/mp4" }));
           nq.media.web = x.media.web;
