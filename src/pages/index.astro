@@ -8,8 +8,8 @@ import { friends } from '~/data/friends';
 import { findLatestPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 
-const featured = games.find((game) => game.slug === 'boop-n-burn')!;
-const otherGames = ['skill-check', 'the-one-bullet-job', 'kit-knight-in-training'].map(
+const featured = games.find((game) => game.slug === 'the-one-bullet-job')!;
+const otherGames = ['skill-check', 'boop-n-burn', 'kit-knight-in-training'].map(
   (slug) => games.find((game) => game.slug === slug)!
 );
 const [latest] = await findLatestPosts({ count: 1 });
@@ -17,7 +17,7 @@ const metadata = {
   title: 'Ki10 Games — Two friends making games.',
   ignoreTitleTemplate: true,
   description:
-    'Games from a two-person independent studio in the UK. Play Skill Check and discover Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
+    'Games from a two-person independent studio in the UK. Play The One Bullet Job and Skill Check, and discover Boop n Burn and KIT: Knight in Training.',
 };
 ---
 
@@ -33,21 +33,22 @@ const metadata = {
           shoving your mates into lava.
         </p>
         <div class="hero-actions">
-          <a class="studio-button primary" href="#our-games">Explore our games <span aria-hidden="true">↓</span></a><a
-            class="play-link"
-            href="https://skillcheckgame.com/">Play Skill Check <span aria-hidden="true">↗︎</span></a
-          >
+          <a
+            class="studio-button primary"
+            href="https://play.google.com/store/apps/details?id=com.ki10games.onebulletjob"
+            >Play The One Bullet Job <span aria-hidden="true">↗︎</span></a
+          ><a class="play-link" href="#our-games">Explore our games <span aria-hidden="true">↓</span></a>
         </div>
         <div class="studio-signoff">
-          <span aria-hidden="true" class="status-dot"></span> Skill Check is out now on Android and web.
+          <span aria-hidden="true" class="status-dot"></span> The One Bullet Job is out now — free on Android.
         </div>
       </div>
-      <a class="showcase" href="/projects/boop-n-burn">
+      <a class="showcase" href="/projects/the-one-bullet-job">
         {
           featured.hero && (
             <Image
               src={featured.hero}
-              alt="Players battling above the lava in Boop n Burn's shipping yard arena"
+              alt="Key art for The One Bullet Job"
               widths={[600, 1000, 1600]}
               sizes="(min-width: 1280px) 770px, (min-width: 900px) 60vw, 100vw"
               loading="eager"
@@ -56,11 +57,11 @@ const metadata = {
           )
         }
         <span class="showcase-top"
-          ><span class="image-label">In development</span><span class="image-label">Up to 16 players</span></span
+          ><span class="image-label released">Out now</span><span class="image-label">Free on Android</span></span
         >
         <div class="showcase-caption">
-          <p>Currently causing chaos</p><h2>Boop n Burn</h2><p class="game-tagline">
-            The floor is lava.<br />Your mates are the real problem.
+          <p>Our new game is out</p><h2>The One Bullet Job</h2><p class="game-tagline">
+            Get in. Get the cash.<br />Get out.
           </p><span class="showcase-cta">Meet the game <span aria-hidden="true">↗︎</span></span>
         </div>
       </a>
