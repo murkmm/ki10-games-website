@@ -12,6 +12,9 @@ const ALLOWED_TYPES = [
   'application/json',
   'text/javascript',
   'application/javascript',
+  'application/x-javascript',
+  'text/json',
+  'text/plain',
   'application/ogg',
   'application/octet-stream',
   'binary/octet-stream',
@@ -57,20 +60,30 @@ export async function onRequestGet({ request }) {
     upstream = await fetch(target, {
       headers: { 'User-Agent': 'QuizloQuizWriter/0.2 (+https://ki10games.com/quizlo/)', Accept: '*/*' },
       redirect: 'follow',
-      cf: { cacheTtl: 86400, cacheEverything: true },
+      // Cache good answers for a day, but never cache errors.
+      cf: { cacheEverything: true, cacheTtlByStatus: { '200-299': 86400, '300-599': 0 } },
     });
   } catch {
     return reply(502, "Couldn't download that.");
   }
+  // Pass the site's own error on (e.g. 403, 429) rather than complaining about its error page.
+  if (!upstream.ok) {
+    return reply(upstream.status === 429 ? 429 : 502, `The site answered ${upstream.status}.`, {
+      'X-Upstream-Status': String(upstream.status),
+    });
+  }
   const type = (upstream.headers.get('content-type') || 'application/octet-stream').toLowerCase();
-  if (!ALLOWED_TYPES.some((t) => type.startsWith(t))) return reply(415, "That isn't a picture, sound or video.");
+  if (!ALLOWED_TYPES.some((t) => type.startsWith(t))) {
+    return reply(415, "That isn't a picture, sound or video.", { 'X-Upstream-Type': type });
+  }
   const size = Number(upstream.headers.get('content-length') || 0);
   if (size > MAX_BYTES) return reply(413, 'That file is too big.');
 
   return new Response(upstream.body, {
     status: upstream.status,
     headers: {
-      'Content-Type': type,
+      // Text (e.g. JSON sent as text/javascript) is always served as plain text.
+      'Content-Type': type.startsWith('text/') ? 'text/plain; charset=utf-8' : type,
       'Cache-Control': 'public, max-age=86400',
       'Content-Security-Policy': 'sandbox',
       'X-Content-Type-Options': 'nosniff',

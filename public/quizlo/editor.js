@@ -4,7 +4,7 @@ import { $, el, toast, store, LETTERS } from "./connection.js";
 import { makeZip, readZip } from "./zip.js";
 import { processImage, decodeAudio, previewClip, stopPreview, renderClip, formatTime, MAX_CLIP_SECONDS } from "./media.js";
 import { convertToOgv } from "./convert.js";
-import { SOURCES, hasProxy, download as searchDownload } from "./search.js";
+import { SOURCES, download as searchDownload } from "./search.js";
 
 // ---------------------------------------------------------------- storage
 
@@ -643,10 +643,9 @@ async function runSearch(rerender) {
   rerender();
   try {
     const src = SOURCES[p.kind].find((s) => s.id === p.source) || SOURCES[p.kind][0];
-    if (src.needsProxy && !(await hasProxy())) throw new Error("Song search works on the Quizlo website, or when this page is opened from the TV app.");
     p.results = await src.search(p.query.trim());
   } catch (e) {
-    p.error = (e && e.message && !/fetch|network/i.test(e.message)) ? e.message : "The search didn't work - check this device is online and try again.";
+    p.error = (e && e.message && !/fetch|network|json|token/i.test(e.message)) ? e.message : "The search didn't work - check this device is online and try again.";
   }
   if (panel === p) { p.busy = false; rerender(); }
 }
