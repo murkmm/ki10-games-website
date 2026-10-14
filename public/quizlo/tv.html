@@ -458,10 +458,8 @@ function question(s) {
         el("div", { class: "gold", style: "font-size:54px;font-weight:600" }, "Type your answer!"),
         el("div", { style: "font-size:38px" }, "Write it on your phone - spelling doesn't have to be perfect")));
     } else {
-      const list = el("div", { class: "typed" });
-      (q.typed || []).slice(0, 10).forEach((g, i) => list.append(el("div", { class: "row", style: `animation-delay:${0.3 + i * 0.1}s` }, ball(g, 48),
-        el("span", { class: "txt", style: `color:${g.won ? "var(--good)" : "rgba(255,255,255,0.75)"}` }, `${g.text}`), el("span", {}, g.won ? "✓" : "✗"))));
-      if (!(q.typed || []).length) list.append(el("div", { class: "dim", style: "font-size:44px" }, "Nobody answered!"));
+      const list = el("div", { class: "typed", id: "typed" });
+      fillTyped(list, q.typed || []);
       box.append(el("div", { style: "display:flex;gap:40px;flex:1;min-height:0" },
         el("div", { class: "answerbox", style: "align-self:flex-start;min-height:300px" }, el("div", { style: "font-size:40px" }, "The answer is"), el("div", { style: "font-size:88px;font-weight:600;line-height:1.1" }, q.answer_text)),
         list));
@@ -639,7 +637,21 @@ function countUp(node, to, ms) {
 }
 
 let seenChips = new Set(), seenAnswers = new Set();
+/** What everyone typed, with ✓/✗ (redrawn when the quiz master changes a mark). */
+let typedSig = "";
+function fillTyped(list, typed) {
+  typedSig = JSON.stringify(typed.map((g) => [g.name, g.won]));
+  list.replaceChildren(...typed.slice(0, 10).map((g, i) => el("div", { class: "row", style: `animation-delay:${0.3 + i * 0.1}s` }, ball(g, 48),
+    el("span", { class: "txt", style: `color:${g.won ? "var(--good)" : "rgba(255,255,255,0.75)"}` }, `${g.text}`), el("span", {}, g.won ? "✓" : "✗"))));
+  if (!typed.length) list.append(el("div", { class: "dim", style: "font-size:44px" }, "Nobody answered!"));
+}
+
 function update(s) {
+  const typedList = $("#typed");
+  if (typedList && s.question?.typed && JSON.stringify(s.question.typed.map((g) => [g.name, g.won])) !== typedSig) {
+    fillTyped(typedList, s.question.typed);
+    for (const row of typedList.children) row.style.animation = "none";
+  }
   if (s.phase === "lobby") {
     const n = s.players.length;
     $("#count").textContent = n === 0 ? "Nobody here yet..." : n === 1 ? "1 player ready" : `${n} players ready`;

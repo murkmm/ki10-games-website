@@ -197,29 +197,32 @@ function picturePicker(onChange = () => {}) {
     const mine = { color: state?.me?.color || "8b5cf6", name: store("quizlo.name") || "?", ...(usingPhoto() ? { photo: "self" } : { emoji: store("quizlo.emoji") }) };
     box.replaceChildren(
       el("div", { class: "mypic" }, face(mine, 72, { cls: "pop" }),
-        el("button", { class: "ghost small", onclick: async () => {
-          try {
-            const photo = await takeSelfie();
-            if (!photo) return;
-            store("quizlo.photo", photo); store("quizlo.pic", "photo");
-            draw(); onChange();
-          } catch (_) { toast("Couldn't use that picture - try another"); }
-        } }, "📷 Take a selfie")),
+        el("div", { class: "stack", style: "display:flex;flex-direction:column;gap:8px" },
+          photoButton("📷 Take a selfie", true), photoButton("🖼 From my photos", false))),
       el("div", { class: "faces" }, AVATARS.map((e) => el("button", {
         class: !usingPhoto() && store("quizlo.emoji") === e ? "on" : "", type: "button",
         onclick: () => { store("quizlo.emoji", e); store("quizlo.pic", "emoji"); buzz(15); draw(); onChange(); },
       }, e))));
   };
+  const photoButton = (label, camera) => el("button", { class: "ghost small", type: "button", onclick: async () => {
+    try {
+      const photo = await takeSelfie(camera);
+      if (!photo) return;
+      store("quizlo.photo", photo); store("quizlo.pic", "photo");
+      draw(); onChange();
+    } catch (_) { toast("Couldn't use that picture - try another"); }
+  } }, label);
   draw();
   return box;
 }
 
-/** Opens the front camera (or photo library) and makes a small square picture. */
-function takeSelfie() {
+/** Opens the front camera (or the photo gallery) and makes a small square picture. */
+function takeSelfie(camera = true) {
   return new Promise((resolve, reject) => {
     const input = $("#pick");
     input.value = "";
-    input.setAttribute("capture", "user");
+    if (camera) input.setAttribute("capture", "user");
+    else input.removeAttribute("capture");
     input.onchange = () => {
       const file = input.files[0];
       if (!file) return resolve(null);

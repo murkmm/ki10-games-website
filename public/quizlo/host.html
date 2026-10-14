@@ -26,6 +26,10 @@
   .players .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .players .sc { font-weight: 600; min-width: 2.2em; text-align: center; }
   .players .offline { opacity: 0.5; }
+  .groups .group { display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-top: 8px; border-radius: 14px; background: rgba(255,92,122,0.1); border: 2px solid rgba(255,92,122,0.35); }
+  .groups .group.right { background: rgba(46,229,157,0.12); border-color: rgba(46,229,157,0.5); }
+  .groups .group .grow { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .groups .group button { min-width: 104px; }
   .players .typed { display: flex; align-items: center; gap: 6px; max-width: 45%; overflow: hidden; }
   .players .typed > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .tick { color: var(--good); font-weight: 600; }
@@ -67,6 +71,7 @@
 
 <script type="module">
 import { Connection, $, el, toast, store, keepAwake, ordinal, formatNumber, LETTERS, gameCode, linkHostKey, face } from "./connection.js";
+import { normalizeAnswer } from "./engine.js";
 
 // With the app the quiz master code comes as ?k=...; on the website as host.html#CODE-key.
 const CODE = gameCode();
@@ -232,9 +237,32 @@ function questionCard(s) {
     if (q.open) btns.append(el("button", { class: "ghost", onclick: () => conn.send({ t: "lock" }) }, "⏹ Stop answers now"));
     else btns.append(el("button", { class: "go", onclick: () => conn.send({ t: "unlock" }) }, q.time > 0 ? "🔓 Open answers again (+15 seconds)" : "🔓 Open answers again"));
   }
+  if (q.type === "text" && s.phase === "reveal") card.append(typedGroups(s));
   if (q.media === "audio" || q.media === "video") btns.append(el("button", { class: "ghost", onclick: () => conn.send({ t: "replay" }) }, "🔁 Play clip again"));
   if (btns.children.length) card.append(btns);
   return card;
+}
+
+/** Typed answers grouped (ignoring capitals, spaces and punctuation): one tap marks everyone who wrote it. */
+function typedGroups(s) {
+  const groups = new Map();
+  for (const p of s.players) {
+    if (!p.answered || typeof p.answer !== "string") continue;
+    const k = normalizeAnswer(p.answer) || p.answer;
+    if (!groups.has(k)) groups.set(k, { text: p.answer, players: [] });
+    groups.get(k).players.push(p);
+  }
+  const box = el("div", { class: "groups" }, el("div", { class: "bold", style: "margin-top:12px" }, "What people typed"),
+    el("div", { class: "small muted" }, "Tap \"Mark right\" to give the points to everyone who wrote it (tap \"✓ Right\" to take them away)."));
+  if (!groups.size) box.append(el("p", { class: "small muted" }, "Nobody typed anything."));
+  for (const g of [...groups.values()].sort((a, b) => b.players.length - a.players.length)) {
+    const right = g.players.every((p) => p.gained > 0);
+    box.append(el("div", { class: "group" + (right ? " right" : "") },
+      el("div", { class: "grow" }, el("div", { class: "bold" }, `"${g.text}"`), el("div", { class: "small muted" }, g.players.map((p) => p.name).join(", "))),
+      el("button", { class: "small " + (right ? "go" : "ghost"), onclick: () => { for (const p of g.players) conn.send({ t: "mark", pid: p.id, right: !right }); } },
+        right ? "✓ Right" : "Mark right")));
+  }
+  return box;
 }
 
 function playersCard(s) {
