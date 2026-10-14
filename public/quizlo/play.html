@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b3d2e">
+<meta name="theme-color" content="#1b1150">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Quizlo</title>
 <link rel="stylesheet" href="style.css">
@@ -20,23 +20,37 @@
   .listen { text-align: center; padding: 12px; border-radius: 14px; background: var(--card); margin-bottom: 14px; font-weight: 600; }
   .options { display: grid; gap: 12px; }
   .options.two { grid-template-columns: 1fr; }
-  .opt { width: 100%; min-height: 84px; justify-content: flex-start; text-align: left; font-size: 1.35rem; padding: 12px 16px; border: 4px solid transparent; }
-  .opt .letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.25); display: inline-flex; align-items: center; justify-content: center; flex: none; color: #fff; }
-  .opt.chosen { border-color: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,0.35); }
-  .options.answered .opt:not(.chosen) { opacity: 0.45; }
+  .opt { width: 100%; min-height: 84px; justify-content: flex-start; text-align: left; font-size: 1.35rem; padding: 12px 16px 16px; border: 4px solid transparent; border-radius: 20px; box-shadow: inset 0 -6px 0 rgba(0,0,0,0.22), 0 8px 18px rgba(0,0,0,0.2); }
+  .opt:active:not(:disabled) { box-shadow: inset 0 -2px 0 rgba(0,0,0,0.22); }
+  .opt .letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(0,0,0,0.22); display: inline-flex; align-items: center; justify-content: center; flex: none; color: #fff; }
+  .opt.chosen { border-color: #fff; box-shadow: 0 0 0 5px rgba(255,255,255,0.3), inset 0 -6px 0 rgba(0,0,0,0.22); animation: chosen 0.35s cubic-bezier(0.3, 1.8, 0.5, 1); }
+  @keyframes chosen { 0% { transform: scale(0.94); } 100% { transform: scale(1); } }
+  .options.answered .opt:not(.chosen) { opacity: 0.4; filter: saturate(0.6); }
+  .options.enter .opt { animation: rise 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.25) both; }
+  .options.enter .opt:nth-child(2) { animation-delay: 0.06s; } .options.enter .opt:nth-child(3) { animation-delay: 0.12s; }
+  .options.enter .opt:nth-child(4) { animation-delay: 0.18s; } .options.enter .opt:nth-child(5) { animation-delay: 0.24s; } .options.enter .opt:nth-child(6) { animation-delay: 0.3s; }
+  .tbar { height: 10px; border-radius: 5px; background: rgba(255,255,255,0.12); overflow: hidden; margin-bottom: 12px; }
+  .tbar div { height: 100%; width: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--good), var(--gold)); transition: width 0.25s linear; }
+  .timer.hurry { color: var(--bad); animation: pop 0.5s ease-out; }
+  .tbar.hurry div { background: var(--bad); }
+  .bigdot { width: 96px; height: 96px; font-size: 3rem; margin: 0 auto; animation: bounce 1.6s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .burst { position: fixed; left: 50%; top: 40%; pointer-events: none; z-index: 30; font-size: 2rem; animation: burst 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
+  @keyframes burst { from { transform: translate(-50%, -50%) scale(0.4); opacity: 1; } to { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--r)) scale(1); opacity: 0; } }
   .opt.correct { border-color: #fff; }
   .numrow { display: flex; gap: 10px; }
   .numrow input { font-size: 2rem; text-align: center; font-weight: 600; }
   .status { text-align: center; margin-top: 14px; font-size: 1.1rem; color: var(--muted); min-height: 1.5em; }
   .timer { text-align: center; font-weight: 600; color: var(--gold); font-size: 1.2rem; }
   .verdict { text-align: center; padding: 26px 16px; border-radius: 22px; }
-  .verdict.right { background: rgba(46, 204, 113, 0.22); border: 3px solid var(--good); }
-  .verdict.wrong { background: rgba(255, 107, 107, 0.16); border: 3px solid var(--bad); }
+  .verdict.right { background: linear-gradient(160deg, rgba(46, 229, 157, 0.32), rgba(46, 229, 157, 0.12)); border: 3px solid var(--good); box-shadow: 0 0 40px rgba(46, 229, 157, 0.25); }
+  .verdict.wrong { background: rgba(255, 92, 122, 0.14); border: 3px solid var(--bad); }
   .verdict .big { font-size: 2.6rem; font-weight: 600; }
   .verdict .icon { font-size: 4rem; line-height: 1; }
   .board { list-style: none; padding: 0; margin: 0; }
   .board li { display: flex; align-items: center; gap: 12px; padding: 10px 6px; border-bottom: 1px solid var(--line); }
-  .board li.mine { background: rgba(255, 209, 102, 0.14); border-radius: 12px; }
+  .board li { animation: rise 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+  .board li.mine { background: rgba(255, 210, 63, 0.16); border-radius: 12px; }
   .board .rank { width: 48px; text-align: right; color: var(--gold); font-weight: 600; }
   .board .pts { margin-left: auto; font-weight: 600; }
 </style>
@@ -173,6 +187,7 @@ function render() {
 
 function waiting(title, text, canRename, extra) {
   const children = [
+    canRename && state ? el("span", { class: "dot bigdot", style: `background:#${state.me.color}` }, state.me.name.slice(0, 1).toUpperCase()) : null,
     el("h1", { class: "pop" }, title),
     el("p", { style: "font-size:1.3rem" }, text),
   ];
@@ -197,18 +212,31 @@ function media(q) {
 }
 
 let timerHandle;
+let enteredKey = "";
+const buzz = (pattern) => { try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (_) {} };
+/** A little burst of emoji confetti for a right answer. */
+function celebrate() {
+  const bits = ["🎉", "⭐", "✨", "🎊", "💥", "🌟"];
+  for (let i = 0; i < 18; i++) {
+    const a = (i / 18) * Math.PI * 2, d = 120 + Math.random() * 120;
+    const b = el("div", { class: "burst", style: `--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d}px;--r:${(Math.random() - 0.5) * 540}deg;animation-delay:${Math.random() * 0.12}s` }, bits[i % bits.length]);
+    document.body.append(b);
+    setTimeout(() => b.remove(), 1500);
+  }
+}
 function renderQuestion(s, q) {
   const mine = pendingAnswer ?? s.my_answer;
   const answered = mine !== undefined && mine !== null;
   const parts = [header(q), q.text ? el("div", { class: "qtext" }, q.text) : null, media(q)];
 
   if (q.type === "choice") {
-    const opts = el("div", { class: "options" + (answered ? " answered" : "") });
+    const opts = el("div", { class: "options" + (answered ? " answered" : "") + (enteredKey !== q.key ? " enter" : "") });
+    enteredKey = q.key;
     q.options.forEach((text, i) => {
       opts.append(el("button", {
         class: `opt opt-${i}` + (mine === i ? " chosen" : ""),
         disabled: !q.open,
-        onclick: () => { pendingAnswer = i; conn.send({ t: "answer", q: q.key, v: i }); render(); },
+        onclick: () => { buzz(25); pendingAnswer = i; conn.send({ t: "answer", q: q.key, v: i }); render(); },
       }, el("span", { class: "letter" }, LETTERS[i]), el("span", {}, text)));
     });
     parts.push(opts);
@@ -233,15 +261,26 @@ function renderQuestion(s, q) {
   parts.push(el("div", { class: "status" }, status));
 
   const timer = el("div", { class: "timer" });
-  if (q.time > 0 && q.open) parts.unshift(timer);
+  const tfill = el("div");
+  const tbar = el("div", { class: "tbar" }, tfill);
+  if (q.time > 0 && q.open) parts.unshift(tbar, timer);
   screen(el("div", {}, ...parts));
 
   clearInterval(timerHandle);
   if (q.time > 0 && q.open) {
     const ends = Date.now() + q.time_left_ms;
+    let shown = -1;
     const tick = () => {
-      const left = Math.max(0, Math.ceil((ends - Date.now()) / 1000));
-      timer.textContent = left > 0 ? `⏱ ${left} seconds left` : "⏱ Time's up!";
+      const ms = Math.max(0, ends - Date.now());
+      const left = Math.ceil(ms / 1000);
+      tfill.style.width = `${Math.min(100, (ms / (q.time * 1000)) * 100)}%`;
+      if (left === shown) return;
+      shown = left;
+      timer.textContent = left > 0 ? `⏱ ${left} second${left === 1 ? "" : "s"} left` : "⏱ Time's up!";
+      const hurry = left > 0 && left <= 5;
+      tbar.classList.toggle("hurry", hurry);
+      timer.classList.remove("hurry");
+      if (hurry) { void timer.offsetWidth; timer.classList.add("hurry"); }
     };
     tick(); timerHandle = setInterval(tick, 250);
   }
@@ -256,9 +295,10 @@ function renderReveal(s, q) {
   else if (!answered) { title = "No answer"; icon = "⏰"; }
   else { title = q.type === "closest" ? "Not the closest" : "Not this time"; icon = "🙈"; }
   const yours = answered ? (q.type === "choice" ? q.options[s.my_answer] : formatNumber(Number(s.my_answer)) + (q.unit ? " " + q.unit : "")) : null;
+  if (right) { celebrate(); buzz([30, 60, 30, 60, 60]); } else buzz(120);
   screen(el("div", { class: "stack" },
     header(q),
-    el("div", { class: "verdict pop " + (right ? "right" : "wrong") },
+    el("div", { class: "verdict " + (right ? "right pop" : "wrong shake") },
       el("div", { class: "icon" }, icon),
       el("div", { class: "big" }, title),
       right ? el("div", { class: "gold", style: "font-size:1.6rem;font-weight:600" }, `+${s.gained} point${s.gained === 1 ? "" : "s"}`) : null),
@@ -276,16 +316,17 @@ function renderScores(s) {
   const board = s.leaderboard || [];
   const winners = board.filter((e) => e.rank === 1).map((e) => e.name);
   const iWon = s.me.rank === 1;
-  const list = el("ol", { class: "board" }, board.map((e) => el("li", { class: e.name === s.me.name ? "mine" : "" },
+  if (final && iWon) { celebrate(); buzz([40, 60, 40, 60, 120]); }
+  const list = el("ol", { class: "board" }, board.map((e, i) => el("li", { class: e.name === s.me.name ? "mine" : "", style: `animation-delay:${i * 0.07}s` },
     el("span", { class: "rank" }, ordinal(e.rank)),
     el("span", { class: "dot", style: `background:#${e.color};width:36px;height:36px` }, e.name.slice(0, 1).toUpperCase()),
     el("span", {}, e.name),
     el("span", { class: "pts" }, e.score))));
   screen(el("div", { class: "stack" },
     final
-      ? el("div", { class: "center pop" }, el("div", { style: "font-size:4rem" }, iWon ? "🏆" : "🎄"),
+      ? el("div", { class: "center pop" }, el("div", { style: "font-size:4rem" }, iWon ? "🏆" : s.me.rank <= 3 ? ["", "", "🥈", "🥉"][s.me.rank] : "🎉"),
           el("h1", {}, iWon ? "You won!" : `${winners.join(" & ")} won!`),
-          el("p", {}, `You came ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}. Merry Christmas!`))
+          el("p", {}, `You came ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}. Thanks for playing!`))
       : el("div", { class: "center" }, el("h1", {}, `After round ${s.round.number}`),
           el("p", {}, `You're ${ordinal(s.me.rank)} with ${s.me.score} point${s.me.score === 1 ? "" : "s"}`)),
     el("div", { class: "card" }, list),

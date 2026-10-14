@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b3d2e">
+<meta name="theme-color" content="#1b1150">
 <title>Quizlo - Quiz master</title>
 <link rel="stylesheet" href="style.css">
 <style>
   .wrap { padding-bottom: 130px; }
-  .top { display: flex; align-items: center; gap: 10px; }
+  .top { display: flex; align-items: center; gap: 10px; padding-right: 60px; }
   .top .logo { font-size: 1.6rem; }
   .phase { margin-left: auto; }
   .dock {
@@ -17,7 +17,7 @@
     background: linear-gradient(to top, var(--bg-deep) 70%, transparent);
   }
   .dock .inner { max-width: 640px; margin: 0 auto; }
-  .answer { background: rgba(46, 204, 113, 0.2); border: 2px solid var(--good); border-radius: 14px; padding: 10px 14px; margin-top: 10px; }
+  .answer { background: rgba(46, 229, 157, 0.16); border: 2px solid var(--good); border-radius: 14px; padding: 10px 14px; margin-top: 10px; }
   .answer b { color: var(--good); }
   .qtext { font-size: 1.25rem; font-weight: 600; }
   .players { list-style: none; padding: 0; margin: 0; }
@@ -36,12 +36,29 @@
   details summary::-webkit-details-marker { display: none; }
   details summary::before { content: "▸ "; color: var(--gold); }
   details[open] summary::before { content: "▾ "; }
+  #soundbtn { position: fixed; top: max(12px, env(safe-area-inset-top)); right: 12px; z-index: 45; width: 52px; height: 52px; min-height: 0; padding: 0; border-radius: 50%; font-size: 1.5rem;
+    background: rgba(20, 12, 60, 0.85); border: 1px solid var(--line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  #sound { position: fixed; top: calc(max(12px, env(safe-area-inset-top)) + 60px); right: 12px; left: 12px; max-width: 420px; margin-left: auto; z-index: 45;
+    background: rgba(20, 12, 60, 0.97); animation: rise 0.25s ease-out both; }
+  #sound .vol { display: flex; align-items: center; gap: 12px; }
+  #sound .vol input { flex: 1; }
+  #sound .vol .pct { width: 3.2em; text-align: right; font-weight: 600; }
+  #sound .vol button { min-width: 52px; padding: 0; }
 </style>
 </head>
 <body>
 <div id="banner" class="banner hidden">Reconnecting to the TV...</div>
 <div class="wrap" id="app">
   <div class="center"><div class="logo">Quizlo</div><div class="spinner"></div></div>
+</div>
+<button id="soundbtn" class="hidden" title="Volume">🔊</button>
+<div id="sound" class="card stack hidden">
+  <div class="bold">🔊 Sound on the TV</div>
+  <div><div class="small muted">Music & videos</div>
+    <div class="vol"><button class="ghost small" data-mute="media">🔇</button><input type="range" min="0" max="100" step="5" data-vol="media"><span class="pct" data-pct="media"></span></div></div>
+  <div><div class="small muted">Sound effects</div>
+    <div class="vol"><button class="ghost small" data-mute="sfx">🔇</button><input type="range" min="0" max="100" step="5" data-vol="sfx"><span class="pct" data-pct="sfx"></span></div></div>
+  <p class="small muted" style="margin:0">On an iPad or iPhone showing the TV page, use its own volume buttons for music & videos.</p>
 </div>
 <div class="dock hidden" id="dock"><div class="inner"><button id="advance" class="primary big"></button></div></div>
 <input type="file" id="file" accept=".quizlo,.quizzy,application/zip,application/octet-stream" class="hidden">
@@ -92,6 +109,38 @@ async function sendQuizToTv(blob) {
 
 $("#advance").onclick = () => { conn.send({ t: "advance" }); keepAwake(); };
 
+// --- Volume (kept outside the main page so sliding isn't interrupted when the page redraws)
+const volume = { media: 100, sfx: 70 };
+const unmuted = { media: 100, sfx: 70 };
+let volTimer = null, volDragging = 0;
+$("#soundbtn").onclick = () => $("#sound").classList.toggle("hidden");
+document.addEventListener("pointerdown", (e) => { if (!e.target.closest("#sound, #soundbtn")) $("#sound").classList.add("hidden"); });
+function sendVolume() {
+  clearTimeout(volTimer);
+  volTimer = setTimeout(() => { volTimer = null; conn.send({ t: "volume", media: volume.media, sfx: volume.sfx }); }, 120);
+}
+function showVolume() {
+  for (const k of ["media", "sfx"]) {
+    const input = document.querySelector(`[data-vol=${k}]`);
+    if (!volDragging) input.value = volume[k];
+    document.querySelector(`[data-pct=${k}]`).textContent = `${volume[k]}%`;
+    document.querySelector(`[data-mute=${k}]`).textContent = volume[k] === 0 ? "🔇" : volume[k] < 50 ? "🔉" : "🔊";
+  }
+  $("#soundbtn").textContent = volume.media === 0 && volume.sfx === 0 ? "🔇" : "🔊";
+}
+for (const k of ["media", "sfx"]) {
+  const input = document.querySelector(`[data-vol=${k}]`);
+  input.addEventListener("pointerdown", () => { volDragging++; });
+  input.addEventListener("change", () => { volDragging = 0; });
+  input.addEventListener("pointerup", () => { volDragging = 0; });
+  input.addEventListener("pointercancel", () => { volDragging = 0; });
+  input.addEventListener("input", () => { volume[k] = Number(input.value); if (volume[k] > 0) unmuted[k] = volume[k]; showVolume(); sendVolume(); });
+  document.querySelector(`[data-mute=${k}]`).onclick = () => {
+    volume[k] = volume[k] === 0 ? (unmuted[k] || 70) : 0;
+    showVolume(); sendVolume();
+  };
+}
+
 function askKey(note) {
   $("#dock").classList.add("hidden");
   const input = el("input", { placeholder: "Quiz master code", autocapitalize: "off", autocomplete: "off" });
@@ -112,6 +161,12 @@ const PHASE_TEXT = {
 
 function render() {
   const s = state;
+  $("#soundbtn").classList.remove("hidden");
+  if (s.volume && !volDragging && !volTimer) {
+    Object.assign(volume, s.volume);
+    for (const k of ["media", "sfx"]) if (volume[k] > 0) unmuted[k] = volume[k];
+    showVolume();
+  }
   const app = $("#app");
   const parts = [];
   parts.push(el("div", { class: "top" },

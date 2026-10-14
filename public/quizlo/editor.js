@@ -118,8 +118,7 @@ async function route() {
   stopPreview();
   stopSearchAudio();
   panel = null;
-  trim = null;
-  if (vtrim) { URL.revokeObjectURL(vtrim.url); vtrim = null; }
+  await keepUnsavedClips();
   await flush();
   const parts = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean);
   if (parts[0] === "quiz" && parts[1]) {
@@ -193,18 +192,18 @@ async function openFile() {
 
 function quizView() {
   const q = quiz;
-  const title = el("input", { class: "title-input", value: q.title, placeholder: "Quiz name, e.g. Christmas Quiz 2026", maxlength: 80 });
+  const title = el("input", { class: "title-input", value: q.title, placeholder: "Quiz name, e.g. Family Quiz Night", maxlength: 80 });
   title.oninput = () => { q.title = title.value; save(); };
   const author = el("input", { value: q.author, placeholder: "Your name (optional)", maxlength: 40 });
   author.oninput = () => { q.author = author.value; store("quizlo.author", author.value); save(); };
 
   const rounds = q.rounds.map((r, ri) => {
-    const rt = el("input", { value: r.title, placeholder: `Round ${ri + 1} name, e.g. Christmas Films`, maxlength: 60, style: "font-weight:600" });
+    const rt = el("input", { value: r.title, placeholder: `Round ${ri + 1} name, e.g. Films & TV`, maxlength: 60, style: "font-weight:600" });
     rt.oninput = () => { r.title = rt.value; save(); };
     const list = el("ul", { class: "qlist" });
     r.questions.forEach((x, qi) => {
       const issue = problem(x);
-      const icon = x.media ? { image: "🖼 ", audio: "🎵 ", video: "📺 " }[x.media.kind] : "";
+      const icon = pendingVideos.has(x) ? "⏳ " : x.media ? { image: "🖼 ", audio: "🎵 ", video: "📺 " }[x.media.kind] : "";
       list.append(el("li", {},
         el("button", { class: "open", onclick: () => go(`quiz/${q.id}/q/${ri}/${qi}`) },
           el("span", { class: "num" }, qi + 1),
@@ -264,6 +263,11 @@ function moveQuestion(ri, qi, dir) {
 }
 
 async function exportQuiz(mode) {
+  const waiting = [...pendingVideos.values()].filter((t) => t.quiz === quiz).map((t) => t.converting);
+  if (waiting.length) {
+    toast("Waiting for your video to finish converting...");
+    await Promise.allSettled(waiting);
+  }
   await flush();
   const unfinished = quiz.rounds.flatMap((r) => r.questions).filter(problem).length;
   if (unfinished && !confirm(`${unfinished} question${unfinished === 1 ? " isn't" : "s aren't"} finished yet and will be left out. Carry on?`)) return;
@@ -309,7 +313,7 @@ function questionView(ri, qi) {
   const seg = el("div", { class: "seg" }, ["choice", "tf", "closest"].map((k) =>
     el("button", { class: k === kind ? "on" : "", onclick: () => { setKind(q, k); rerender(); } }, TYPE_NAMES[k])));
 
-  const text = el("textarea", { rows: 3, placeholder: kind === "tf" ? "e.g. Mince pies used to contain real meat." : kind === "closest" ? "e.g. How many sprouts did Grandad eat last Christmas?" : "e.g. Which reindeer has a red nose?" });
+  const text = el("textarea", { rows: 3, placeholder: kind === "tf" ? "e.g. An octopus has three hearts." : kind === "closest" ? "e.g. How many cups of tea does Grandad drink a day?" : "e.g. What is the largest planet in our solar system?" });
   text.value = q.text;
   text.oninput = () => { q.text = text.value; save(); };
 
@@ -353,7 +357,7 @@ function answerSection(q, kind, rerender) {
   if (kind === "closest") {
     const ans = el("input", { inputmode: "decimal", placeholder: "e.g. 42", value: q.answer ?? "" });
     ans.oninput = () => { q.answer = ans.value.trim().replace(",", ".") === "" ? null : ans.value.trim().replace(",", "."); save(); };
-    const unit = el("input", { placeholder: "Unit (optional) e.g. cm, years, sprouts", value: q.unit || "", maxlength: 20 });
+    const unit = el("input", { placeholder: "Unit (optional) e.g. cm, years, cups of tea", value: q.unit || "", maxlength: 20 });
     unit.oninput = () => { q.unit = unit.value; save(); };
     return el("div", { class: "stack" }, ans, unit, el("p", { class: "small muted" }, "Everyone types a number. Whoever is closest wins the points (ties share them)."));
   }
@@ -390,7 +394,8 @@ function stopSearchAudio() {
 
 function mediaSection(q, ri, qi, rerender) {
   if (trim && trim.q === q) return trimmer(q, rerender);
-  if (vtrim && vtrim.q === q) return videoTrimmer(q, rerender);
+  const video = vtrim && vtrim.q === q ? vtrim : pendingVideos.get(q);
+  if (video) return videoTrimmer(q, video, rerender);
   if (panel && panel.q === q) return mediaPanel(q, rerender);
   if (!q.media) {
     const open = (kind) => { panel = { q, kind, step: "choose", query: "" }; rerender(); };
@@ -419,16 +424,16 @@ function mediaSection(q, ri, qi, rerender) {
   return box;
 }
 
-function dropMedia(media) {
+function dropMedia(media, qz = quiz) {
   if (!media) return;
-  Media.del(quiz.id, media.file);
-  if (media.web) Media.del(quiz.id, media.web);
+  Media.del(qz.id, media.file);
+  if (media.web) Media.del(qz.id, media.web);
 }
 
-async function setMedia(q, kind, blob, ext, name, extra = {}) {
+async function setMedia(q, kind, blob, ext, name, extra = {}, qz = quiz) {
   const file = `media/${uid(8)}.${ext}`;
-  await Media.put(quiz.id, file, blob);
-  dropMedia(q.media);
+  await Media.put(qz.id, file, blob);
+  dropMedia(q.media, qz);
   q.media = { kind, file, name, ...extra };
   if (!q.media.credit) delete q.media.credit;
 }
@@ -489,7 +494,7 @@ function mediaPanel(q, rerender) {
   p.source = src.id;
   if (p.picked) return videoPreview(q, p, rerender);
   const input = el("input", { type: "search", value: p.query, enterkeyhint: "search",
-    placeholder: { image: "e.g. reindeer, Big Ben, Elf film", audio: "e.g. Last Christmas, Mariah Carey", video: "e.g. Home Alone, snow, fireworks" }[p.kind] });
+    placeholder: { image: "e.g. Big Ben, penguins, the Mona Lisa", audio: "e.g. Bohemian Rhapsody, Taylor Swift", video: "e.g. Toy Story, fireworks, penguins" }[p.kind] });
   const go = () => { p.query = input.value; runSearch(rerender); };
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); go(); } });
   const parts = [el("div", { class: "bold" }, heading)];
@@ -635,10 +640,10 @@ function trimmer(q, rerender) {
     stopPreview();
     saveBtn.disabled = true; saveBtn.textContent = "Saving...";
     try {
-      const wav = await renderClip(trim.buffer, trim.start, trim.length);
-      await setMedia(q, "audio", wav, "wav", `${trim.name} (${formatTime(trim.start)}, ${trim.length}s)`, { credit: trim.credit });
-      if (trim.song) nameThatTune(q, trim.song);
-      trim = null; rerender();
+      const t = trim;
+      trim = null;
+      await saveClip(t);
+      rerender();
     } catch (e) { toast("Couldn't save that clip."); saveBtn.disabled = false; saveBtn.textContent = "Save this clip"; }
   } }, "Save this clip");
   return el("div", { class: "card stack" },
@@ -648,6 +653,31 @@ function trimmer(q, rerender) {
     el("div", {}, "Play for"), len,
     el("div", { class: "btnrow" }, play, saveBtn,
       el("button", { class: "ghost small", onclick: () => { stopPreview(); trim = null; rerender(); } }, "Cancel")));
+}
+
+async function saveClip(t) {
+  const wav = await renderClip(t.buffer, t.start, t.length);
+  await setMedia(t.q, "audio", wav, "wav", `${t.name} (${formatTime(t.start)}, ${t.length}s)`, { credit: t.credit });
+  if (t.song) nameThatTune(t.q, t.song);
+  save();
+}
+
+/** Leaving a question while still choosing a music or video clip keeps it rather than losing it. */
+async function keepUnsavedClips() {
+  if (trim) {
+    const t = trim;
+    trim = null;
+    try { await saveClip(t); toast("🎵 Music clip saved"); }
+    catch (_) { toast("Couldn't save that music clip."); }
+  }
+  if (vtrim) {
+    const t = vtrim;
+    vtrim = null;
+    if (!t.converting) {
+      toast("📺 Converting your video - keep this page open until it's done");
+      convertVideo(t).then(() => toast("📺 Video ready"), (e) => toast(e.message || "That video couldn't be converted."));
+    }
+  }
 }
 
 /** After picking a real song: fill in "Name that tune!" and put the title in as a right answer. */
@@ -663,8 +693,33 @@ function nameThatTune(q, song) {
 
 // --- Choosing the bit of a video to show (then converting it for the TV)
 
-function videoTrimmer(q, rerender) {
-  const t = vtrim;
+const pendingVideos = new Map(); // question -> video still converting (carries on if you leave the question)
+addEventListener("beforeunload", (e) => { if (pendingVideos.size) { e.preventDefault(); e.returnValue = ""; } });
+
+/** Converts the chosen bit of a video for the TV and adds it to its question. */
+function convertVideo(t) {
+  if (t.converting) return t.converting;
+  t.quiz = quiz;
+  pendingVideos.set(t.q, t);
+  t.converting = (async () => {
+    const length = t.duration ? Math.max(1, Math.min(t.length, Math.ceil(t.duration - t.start))) : t.length;
+    const { ogv, mp4 } = await convertToOgv(t.file, t.start, length, (f) => t.onProgress?.(f), (msg) => t.onStatus?.(msg));
+    await setMedia(t.q, "video", ogv, "ogv", `${t.name} (${formatTime(t.start)}, ${length}s)`, { credit: t.credit }, t.quiz);
+    if (mp4) {
+      // A copy browsers can play, for the TV web page (AirPlay / casting).
+      const web = t.q.media.file.replace(/\.ogv$/, ".mp4");
+      await Media.put(t.quiz.id, web, mp4);
+      t.q.media.web = web;
+    }
+    URL.revokeObjectURL(t.url);
+    if (t.quiz === quiz) save();
+    else await Quizzes.put(JSON.parse(JSON.stringify(t.quiz)));
+  })();
+  t.converting.then(() => pendingVideos.delete(t.q), () => { pendingVideos.delete(t.q); t.converting = null; });
+  return t.converting;
+}
+
+function videoTrimmer(q, t, rerender) {
   const lengths = [5, 10, 15, 20, 30, 45, 60];
   const video = el("video", { src: t.url, controls: true, playsinline: true, preload: "metadata" });
   const startLabel = el("span", { class: "bold" }, formatTime(t.start));
@@ -691,26 +746,20 @@ function videoTrimmer(q, rerender) {
   const convert = el("button", { class: "primary" }, "Convert & save");
   const sound = el("button", { class: "ghost small", onclick: () => { URL.revokeObjectURL(t.url); vtrim = null; addMusic(q, rerender, t.file, { name: t.name, credit: t.credit }); } }, "🎵 Use just the sound");
   const cancel = el("button", { class: "ghost small", onclick: () => { URL.revokeObjectURL(t.url); vtrim = null; rerender(); } }, "Cancel");
-  convert.onclick = async () => {
+  t.onProgress = (f) => { bar.firstChild.style.width = `${Math.round(f * 100)}%`; status.textContent = `Converting... ${Math.round(f * 100)}%`; };
+  t.onStatus = (msg) => { status.textContent = msg; };
+  const busy = () => {
     video.pause();
     for (const b of [convert, sound, cancel, watch]) b.disabled = true;
     convert.textContent = "Converting...";
+    status.textContent = "Converting... you can carry on writing other questions while this finishes.";
     bar.classList.remove("hidden");
+  };
+  convert.onclick = async () => {
+    busy();
     try {
-      const length = t.duration ? Math.max(1, Math.min(t.length, Math.ceil(t.duration - t.start))) : t.length;
-      const { ogv, mp4 } = await convertToOgv(t.file, t.start, length,
-        (f) => { bar.firstChild.style.width = `${Math.round(f * 100)}%`; status.textContent = `Converting... ${Math.round(f * 100)}%`; },
-        (msg) => { status.textContent = msg; });
-      await setMedia(q, "video", ogv, "ogv", `${t.name} (${formatTime(t.start)}, ${length}s)`, { credit: t.credit });
-      if (mp4) {
-        // A copy browsers can play, for the TV web page (AirPlay / casting).
-        const web = q.media.file.replace(/\.ogv$/, ".mp4");
-        await Media.put(quiz.id, web, mp4);
-        q.media.web = web;
-      }
-      URL.revokeObjectURL(t.url);
+      await convertVideo(t);
       if (vtrim === t) vtrim = null;
-      save();
       rerender();
     } catch (e) {
       status.textContent = e.message || "That video couldn't be converted.";
@@ -718,6 +767,10 @@ function videoTrimmer(q, rerender) {
       convert.textContent = "Try again";
     }
   };
+  if (t.converting) {
+    busy();
+    t.converting.then(rerender, rerender);
+  }
   return el("div", { class: "card stack vtrim" },
     el("div", { class: "bold" }, "📺 Choose which bit to show"),
     video, info,

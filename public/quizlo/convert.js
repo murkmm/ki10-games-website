@@ -63,7 +63,15 @@ export function loadConverter(onStatus = () => {}) {
  * Videos are made at most 854 pixels on their longest side (plenty for a TV, and quick to convert).
  * onProgress(fraction 0..1) is called as it goes. Returns { ogv: Blob, mp4: Blob | null }.
  */
-export async function convertToOgv(file, start, length, onProgress = () => {}, onStatus = () => {}) {
+let queue = Promise.resolve();
+export function convertToOgv(file, start, length, onProgress = () => {}, onStatus = () => {}) {
+  // One at a time: the converter works on fixed file names.
+  const job = queue.then(() => convertNow(file, start, length, onProgress, onStatus));
+  queue = job.catch(() => {});
+  return job;
+}
+
+async function convertNow(file, start, length, onProgress, onStatus) {
   const ff = await loadConverter(onStatus);
   onStatus("Converting video...");
   length = Math.max(1, Math.min(length, MAX_VIDEO_SECONDS));

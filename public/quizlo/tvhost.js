@@ -4,7 +4,7 @@ import { Engine } from "./engine.js";
 import { PeerHost, newCode } from "./peer.js";
 
 const STATE_KEY = "quizlo.tv.state";
-const SAMPLE = new URL("./christmas-sample.quizlo", import.meta.url).href;
+const SAMPLES = ["starter-quiz", "christmas-sample"]; // built-in quizzes; the first is chosen to start with
 
 // --- Quizzes kept on this TV (IndexedDB) -------------------------------------------------------
 
@@ -71,9 +71,10 @@ export async function startOnlineTv({ onState, onMedia, onStatus }) {
   try {
     for (const [, bytes] of await saved.all()) await engine.addQuiz(bytes);
   } catch (_) {}
-  if (![...engine.library.keys()].includes("christmas-sample")) {
+  for (const id of SAMPLES) {
+    if (engine.library.has(id)) continue;
     try {
-      const r = await fetch(SAMPLE);
+      const r = await fetch(new URL(`./${id}.quizlo`, import.meta.url).href);
       if (r.ok) await engine.addQuiz(await r.arrayBuffer());
     } catch (_) {}
   }
@@ -95,7 +96,7 @@ export async function startOnlineTv({ onState, onMedia, onStatus }) {
     if (prev.game) engine.game.restore(prev.game, engine.game.quiz);
   } else {
     engine.game.setQuiz(null);
-    if (engine.library.has("christmas-sample")) await engine.loadQuiz("christmas-sample");
+    if (engine.library.has(SAMPLES[0])) await engine.loadQuiz(SAMPLES[0]);
   }
 
   function save() {

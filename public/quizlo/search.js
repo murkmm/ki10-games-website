@@ -260,7 +260,7 @@ export const SOURCES = {
   ],
   video: [
     { id: "giphy", name: "Film & TV clips", site: true, search: siteSearch("giphy"), note: "Short clips from films and TV via GIPHY - great for \"name the film\". For family fun, not for selling or sharing publicly." },
-    { id: "pixabay", name: "Stock videos", site: true, search: siteSearch("pixabay"), note: "Free stock videos from Pixabay: snow, fireworks, Santa, animals and more." },
+    { id: "pixabay", name: "Stock videos", site: true, search: siteSearch("pixabay"), note: "Free stock videos from Pixabay: fireworks, animals, cities, sport and more." },
     { id: "pexels", name: "Pexels videos", site: true, search: siteSearch("pexels"), note: "Free stock videos from Pexels." },
     { id: "archive", name: "Internet Archive", search: archiveVideos, note: "Old films, cartoons, adverts and trailers from the Internet Archive. Only videos small enough for a phone are used." },
     { id: "commons", name: "Wikimedia", search: commonsVideos, note: "Videos from Wikimedia Commons." },

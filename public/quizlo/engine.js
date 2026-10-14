@@ -122,6 +122,15 @@ export class Game {
     this.lastResults = new Map();
     this.nextColor = 0;
     this.mediaOnPhones = false; // phones also get music & video (for family joining from far away)
+    this.volumeMedia = 100; // 0-100, set by the quiz master: the quiz's music & videos
+    this.volumeSfx = 70; //    ... and the TV's sound effects
+  }
+
+  setVolume(media, sfx) {
+    const clamp = (v) => Math.max(0, Math.min(100, Math.round(Number(v)) || 0));
+    if (media !== undefined && media !== null) this.volumeMedia = clamp(media);
+    if (sfx !== undefined && sfx !== null) this.volumeSfx = clamp(sfx);
+    this.changed();
   }
 
   changed() { this.onChange(); }
@@ -344,12 +353,14 @@ export class Game {
   /** Everything needed to carry on after the TV page is reloaded. */
   snapshot() {
     return { phase: this.phase, roundI: this.roundI, qI: this.qI, answersOpen: this.answersOpen, nextColor: this.nextColor, mediaOnPhones: this.mediaOnPhones,
+      volumeMedia: this.volumeMedia, volumeSfx: this.volumeSfx,
       players: this.order.map((id) => ({ ...this.players.get(id), connected: 0 })), lastResults: [...this.lastResults] };
   }
 
   restore(s, quiz) {
     this.quiz = quiz;
-    Object.assign(this, { phase: s.phase, roundI: s.roundI, qI: s.qI, answersOpen: !!s.answersOpen, nextColor: s.nextColor, mediaOnPhones: !!s.mediaOnPhones });
+    Object.assign(this, { phase: s.phase, roundI: s.roundI, qI: s.qI, answersOpen: !!s.answersOpen, nextColor: s.nextColor, mediaOnPhones: !!s.mediaOnPhones,
+      volumeMedia: s.volumeMedia ?? 100, volumeSfx: s.volumeSfx ?? 70 });
     this.players = new Map(s.players.map((p) => [p.id, p]));
     this.order = s.players.map((p) => p.id);
     this.lastResults = new Map(s.lastResults);
@@ -501,6 +512,7 @@ export class Engine {
       case "lock": g.lockAnswers(); break;
       case "unlock": g.unlockAnswers(); break;
       case "phone_media": g.mediaOnPhones = !!msg.on; g.changed(); break;
+      case "volume": g.setVolume(msg.media, msg.sfx); break;
       case "replay": g.onMedia("replay"); break;
       case "restart": g.restart(); break;
       case "load": {
@@ -598,7 +610,8 @@ export class Engine {
       quiz: g.quiz ? { id: cleanId(g.quiz.id), title: g.quiz.title, rounds: g.quiz.rounds.length, questions: questionCount(g.quiz) } : {},
       quizzes: [...this.library.values()].map((e) => e.summary).sort((a, b) => b.modified - a.modified),
       players, round: this.roundView(), question: q, answered: g.answeredCount(), advance_label: g.advanceLabel(),
-      join_url: this.urls.joinText, addresses: 1, version: "web", phone_media: g.mediaOnPhones };
+      join_url: this.urls.joinText, addresses: 1, version: "web", phone_media: g.mediaOnPhones,
+      volume: { media: g.volumeMedia, sfx: g.volumeSfx } };
   }
 
   qr(url) {
@@ -613,7 +626,8 @@ export class Engine {
       online: p.connected > 0, answered: key in p.answers && ["question", "reveal"].includes(g.phase), won: g.phase === "reveal" && g.lastResults.has(p.id) }));
     const view = { t: "state", phase: g.phase, online: true, code: this.code, quiz_title: g.quiz?.title || "",
       join_url: this.urls.join, join_text: this.urls.joinText, host_url: this.urls.host,
-      join_qr: this.qr(this.urls.join), host_qr: this.qr(this.urls.host), addresses: 1, server_error: "", players, round: this.roundView() };
+      join_qr: this.qr(this.urls.join), host_qr: this.qr(this.urls.host), addresses: 1, server_error: "", players, round: this.roundView(),
+      volume: { media: g.volumeMedia, sfx: g.volumeSfx } };
     if (g.quiz && g.roundI >= 0 && g.roundI < g.quiz.rounds.length) view.round.questions = g.quiz.rounds[g.roundI].questions.length;
     const q = this.questionView(true), current = g.currentQuestion();
     if (q.key) {
