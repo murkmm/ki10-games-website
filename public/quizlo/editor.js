@@ -1,5 +1,5 @@
-// Quizzy Quiz Writer: write quizzes on a phone or laptop, then send them to the TV app
-// or save them as a .quizzy file. Quizzes are kept in this browser (IndexedDB).
+// Quizlo Quiz Writer: write quizzes on a phone or laptop, then send them to the TV app
+// or save them as a .quizlo file. Quizzes are kept in this browser (IndexedDB).
 import { $, el, toast, store, LETTERS } from "./connection.js";
 import { makeZip, readZip } from "./zip.js";
 import { processImage, decodeAudio, previewClip, stopPreview, renderClip, formatTime, MAX_CLIP_SECONDS } from "./media.js";
@@ -11,7 +11,7 @@ import { SOURCES, hasProxy, download as searchDownload } from "./search.js";
 let dbPromise;
 function db() {
   if (!dbPromise) dbPromise = new Promise((resolve, reject) => {
-    const req = indexedDB.open("quizzy-editor", 1);
+    const req = indexedDB.open("quizlo-editor", 1);
     req.onupgradeneeded = () => {
       req.result.createObjectStore("quizzes", { keyPath: "id" });
       req.result.createObjectStore("media");
@@ -55,7 +55,7 @@ const Media = {
 
 // ---------------------------------------------------------------- the TV app (when this page is served by it)
 
-const KEY_STORE = "quizzy.hostkey." + location.host;
+const KEY_STORE = "quizlo.hostkey." + location.host;
 const params = new URLSearchParams(location.search);
 if (params.get("k")) { store(KEY_STORE, params.get("k")); history.replaceState(null, "", location.pathname + location.hash); }
 const tv = { connected: false, key: store(KEY_STORE) || "" };
@@ -64,7 +64,7 @@ async function detectTv() {
   if (location.protocol !== "http:") return;
   try {
     const r = await fetch("/api/info", { cache: "no-store" });
-    tv.connected = (await r.json()).app === "quizzy";
+    tv.connected = (await r.json()).app === "quizlo";
   } catch (_) {}
 }
 
@@ -83,7 +83,7 @@ const TIMES = [[0, "No time limit"], [10, "10 seconds"], [20, "20 seconds"], [30
 const TYPE_NAMES = { choice: "Multiple choice", tf: "True or false", closest: "Closest number" };
 
 function newQuiz() {
-  return { id: uid(), title: "", author: store("quizzy.author") || "", rounds: [newRound(1)], created: Date.now(), updated: Date.now() };
+  return { id: uid(), title: "", author: store("quizlo.author") || "", rounds: [newRound(1)], created: Date.now(), updated: Date.now() };
 }
 function newRound(n) { return { title: `Round ${n}`, questions: [] }; }
 function newQuestion(kind = "choice", from) {
@@ -179,14 +179,14 @@ async function buildQuizFile(q) {
     if (qs.length) json.rounds.push({ title: r.title.trim() || `Round ${ri + 1}`, questions: qs });
   }
   files.unshift({ name: "quiz.json", data: JSON.stringify(json, null, 1) });
-  return { blob: await makeZip(files), skipped, empty: json.rounds.length === 0, name: slug(json.title) + ".quizzy" };
+  return { blob: await makeZip(files), skipped, empty: json.rounds.length === 0, name: slug(json.title) + ".quizlo" };
 }
 
 async function importQuizFile(blob) {
   let entries;
-  try { entries = await readZip(blob); } catch (_) { throw new Error("That isn't a Quizzy quiz file."); }
+  try { entries = await readZip(blob); } catch (_) { throw new Error("That isn't a Quizlo quiz file."); }
   const raw = entries.get("quiz.json");
-  if (!raw) throw new Error("That isn't a Quizzy quiz file.");
+  if (!raw) throw new Error("That isn't a Quizlo quiz file.");
   const data = JSON.parse(new TextDecoder().decode(raw));
   let id = String(data.id || uid());
   const existing = await Quizzes.get(id);
@@ -283,9 +283,9 @@ async function homeView() {
       el("div", { class: "small muted" }, `${n} question${n === 1 ? "" : "s"} · ${q.rounds.length} round${q.rounds.length === 1 ? "" : "s"} · edited ${ago(q.updated)}`)));
   }
   const parts = [
-    el("div", { class: "bar" }, el("div", { class: "logo" }, "Quizzy"), el("span", { class: "muted" }, "Quiz Writer")),
+    el("div", { class: "bar" }, el("div", { class: "logo" }, "Quizlo"), el("span", { class: "muted" }, "Quiz Writer")),
   ];
-  if (tv.connected) parts.push(el("div", { class: "card" }, "✅ Connected to the Quizzy app on the TV. You can send quizzes straight to it."));
+  if (tv.connected) parts.push(el("div", { class: "card" }, "✅ Connected to the Quizlo app on the TV. You can send quizzes straight to it."));
   parts.push(
     el("button", { class: "primary big", onclick: async () => { quiz = newQuiz(); await flush(); go(`quiz/${quiz.id}`); } }, "＋ Write a new quiz"),
     el("h2", { style: "margin-top:24px" }, "My quizzes"),
@@ -302,7 +302,7 @@ async function homeView() {
       for (const q of qs) box.append(el("div", { class: "row", style: "padding:6px 0" },
         el("div", { class: "grow" }, q.title, el("div", { class: "small muted" }, `${q.questions} questions`)),
         el("button", { class: "small", onclick: async () => {
-          const r = await fetch(`/api/quiz/${encodeURIComponent(q.id)}.quizzy?k=${encodeURIComponent(tv.key)}`);
+          const r = await fetch(`/api/quiz/${encodeURIComponent(q.id)}.quizlo?k=${encodeURIComponent(tv.key)}`);
           if (!r.ok) return toast("Couldn't copy that quiz.");
           try { const nq = await importQuizFile(await r.blob()); toast("Copied - you can edit it now"); go(`quiz/${nq.id}`); }
           catch (e) { toast(e.message); }
@@ -319,7 +319,7 @@ const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.p
 const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone;
 
 async function openFile() {
-  const file = await pickFile(".quizzy,application/zip,application/octet-stream");
+  const file = await pickFile(".quizlo,.quizzy,application/zip,application/octet-stream");
   if (!file) return;
   try { const q = await importQuizFile(file); toast(`Opened "${q.title || "Untitled quiz"}"`); go(`quiz/${q.id}`); }
   catch (e) { toast(e.message || "That file couldn't be opened."); }
@@ -332,7 +332,7 @@ function quizView() {
   const title = el("input", { class: "title-input", value: q.title, placeholder: "Quiz name, e.g. Christmas Quiz 2026", maxlength: 80 });
   title.oninput = () => { q.title = title.value; save(); };
   const author = el("input", { value: q.author, placeholder: "Your name (optional)", maxlength: 40 });
-  author.oninput = () => { q.author = author.value; store("quizzy.author", author.value); save(); };
+  author.oninput = () => { q.author = author.value; store("quizlo.author", author.value); save(); };
 
   const rounds = q.rounds.map((r, ri) => {
     const rt = el("input", { value: r.title, placeholder: `Round ${ri + 1} name, e.g. Christmas Films`, maxlength: 60, style: "font-weight:600" });
@@ -643,7 +643,7 @@ async function runSearch(rerender) {
   rerender();
   try {
     const src = SOURCES[p.kind].find((s) => s.id === p.source) || SOURCES[p.kind][0];
-    if (src.needsProxy && !(await hasProxy())) throw new Error("Song search works on the Quizzy website, or when this page is opened from the TV app.");
+    if (src.needsProxy && !(await hasProxy())) throw new Error("Song search works on the Quizlo website, or when this page is opened from the TV app.");
     p.results = await src.search(p.query.trim());
   } catch (e) {
     p.error = (e && e.message && !/fetch|network/i.test(e.message)) ? e.message : "The search didn't work - check this device is online and try again.";
@@ -824,6 +824,6 @@ function videoTrimmer(q, rerender) {
   try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (_) {}
   await detectTv();
   try { await db(); }
-  catch (_) { view(el("div", { class: "card" }, "This browser won't let Quizzy save quizzes. If you're in a private/incognito window, please open this page in a normal window.")); return; }
+  catch (_) { view(el("div", { class: "card" }, "This browser won't let Quizlo save quizzes. If you're in a private/incognito window, please open this page in a normal window.")); return; }
   route();
 })();

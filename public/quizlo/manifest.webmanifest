@@ -1,5 +1,5 @@
 {
-  "name": "Quizzy Quiz Writer",
+  "name": "Quizlo Quiz Writer",
   "short_name": "Quiz Writer",
   "start_url": "./editor.html",
   "display": "standalone",

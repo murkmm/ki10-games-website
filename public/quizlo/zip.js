@@ -1,4 +1,4 @@
-// Minimal ZIP writer/reader for .quizzy files (quiz.json + media/*).
+// Minimal ZIP writer/reader for .quizlo files (quiz.json + media/*).
 // Writes uncompressed ("stored") entries, which Godot's ZIPReader reads directly.
 // Reads stored and deflated entries.
 

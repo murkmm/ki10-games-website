@@ -1,6 +1,6 @@
-// Cloudflare Pages Function: GET /api/quizzy-proxy?url=<https url>
+// Cloudflare Pages Function: GET /api/quizlo-proxy?url=<https url>
 //
-// Lets the Quizzy Quiz Writer (served from this site at /quizzy/) download pictures, songs and
+// Lets the Quizlo Quiz Writer (served from this site at /quizlo/) download pictures, songs and
 // videos from search results on sites that don't allow web pages to read them directly (CORS).
 // Only public https addresses and media/JSON responses are passed through.
 
@@ -36,7 +36,7 @@ export async function onRequestGet({ request }) {
   let upstream;
   try {
     upstream = await fetch(target, {
-      headers: { "User-Agent": "QuizzyQuizWriter/0.2 (+https://ki10games.com/quizzy/)", Accept: "*/*" },
+      headers: { "User-Agent": "QuizloQuizWriter/0.2 (+https://ki10games.com/quizlo/)", Accept: "*/*" },
       redirect: "follow",
       cf: { cacheTtl: 86400, cacheEverything: true },
     });

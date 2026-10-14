@@ -2,10 +2,10 @@
 // straight into a question.
 //
 // Most media sites don't let web pages download their files directly (CORS), so requests go
-// through a small proxy at /api/quizzy-proxy. It is provided by the Quizzy TV app, and on the
+// through a small proxy at /api/quizlo-proxy. It is provided by the Quizlo TV app, and on the
 // website by a Cloudflare Pages Function (see tools/web-host/).
 
-const PROXY = "/api/quizzy-proxy";
+const PROXY = "/api/quizlo-proxy";
 let proxyOk = null;
 
 export async function hasProxy() {

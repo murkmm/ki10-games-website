@@ -1,4 +1,4 @@
-// Keeps a WebSocket open to the Quizzy app and reconnects automatically
+// Keeps a WebSocket open to the Quizlo app and reconnects automatically
 // (phones drop connections whenever the screen locks).
 export class Connection {
   constructor({ onOpen, onMessage, onStatus }) {
