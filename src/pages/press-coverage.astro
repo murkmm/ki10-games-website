@@ -1,0 +1,55 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const metadata = {
+  title: 'Press Coverage',
+  description: 'Ki10 Games in the news. Read independent coverage of The One Bullet Job and our other games.',
+};
+
+const coverage = [
+  {
+    outlet: 'Pocket Gamer',
+    title: 'The One Bullet Job is coming to Android',
+    date: '13 October 2026',
+    game: 'The One Bullet Job',
+    summary: 'A preview of our turn-based heist puzzler and its one-bullet twist.',
+    href: 'https://www.pocketgamer.com/the-one-bullet-job/coming-to-android/',
+  },
+  {
+    outlet: 'GamingonPhone',
+    title: 'The One Bullet Job is a turn-based heist puzzle game launching on Android this October 16',
+    date: '13 October 2026',
+    game: 'The One Bullet Job',
+    summary: 'A look at the 120 puzzles, guard patrols, daily heists and unlockable crew cosmetics.',
+    href: 'https://gamingonphone.com/news/the-one-bullet-job-is-a-turn-based-heist-puzzle-game-launching-on-android-this-october-16/',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="In the news"
+    title="Press coverage"
+    subtitle="It's always lovely to see someone writing about our games. Here are the articles we've spotted so far."
+  />
+
+  <section class="mx-auto max-w-5xl px-4 pb-16 md:px-6">
+    <div class="grid gap-5 md:grid-cols-2">
+      {coverage.map((article) => (
+        <article class="flex flex-col rounded-2xl border border-gray-200 p-6 transition hover:border-primary dark:border-white/10 dark:hover:border-accent">
+          <p class="text-xs font-semibold uppercase tracking-wide text-muted">{article.outlet} · {article.date}</p>
+          <h2 class="mt-3 font-heading text-xl font-bold tracking-tight">{article.title}</h2>
+          <p class="mt-3 text-sm text-muted">{article.summary}</p>
+          <p class="mt-2 text-xs font-medium text-secondary">{article.game}</p>
+          <a href={article.href} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 font-semibold text-primary hover:underline dark:text-accent">
+            Read the article <span aria-hidden="true">↗</span>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="mt-8 text-sm text-muted">
+      Writing about one of our games? Our <a href="/press" class="font-semibold text-primary hover:underline dark:text-accent">press kit</a> has screenshots, logos and game details, or you can <a href="/contact" class="font-semibold text-primary hover:underline dark:text-accent">get in touch</a>.
+    </p>
+  </section>
+</Layout>
