@@ -50,6 +50,7 @@ export const footerData = {
         { text: 'Devlog', href: getBlogPermalink() },
         { text: 'Contact', href: getPermalink('/contact') },
         { text: 'Press kit', href: getPermalink('/press') },
+        { text: 'Press coverage', href: getPermalink('/press-coverage') },
       ],
     },
   ],
