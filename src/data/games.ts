@@ -143,7 +143,7 @@ export const games: Game[] = [
     slug: 'the-one-bullet-job',
     title: 'The One Bullet Job',
     genre: 'Heist puzzle',
-    status: 'in-development',
+    status: 'released',
     tagline: 'Get in. Get the cash. Get out.',
     pitch:
       'The One Bullet Job is a turn based heist puzzle for your phone. Every job is a small room: steal the cash, slip past the guards and escape with the loot before your moves run out. You usually get one bullet, so make it count.',
@@ -154,7 +154,7 @@ export const games: Game[] = [
     ],
     engine: 'Godot',
     platforms: ['Android'],
-    releaseLine: 'Launching 16 October 2026 on Android',
+    releaseLine: 'Out now on Android',
     features: [
       {
         title: 'One bullet. Make it count.',
@@ -190,7 +190,14 @@ export const games: Game[] = [
         icon: 'tabler:mask',
       },
     ],
-    links: [],
+    links: [
+      {
+        label: 'Get it on Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.ki10games.onebulletjob',
+        icon: 'tabler:brand-google-play',
+        isPrimary: true,
+      },
+    ],
     gradient: 'from-amber-300 via-yellow-600 to-stone-900',
     hero: objHero,
     card: objCard,
