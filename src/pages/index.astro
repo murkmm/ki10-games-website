@@ -1,23 +1,32 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import Layout from '~/layouts/PageLayout.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
-import { games } from '~/data/games';
+import { games, getGame, statusLabels } from '~/data/games';
 import { authors } from '~/data/authors';
 import { friends } from '~/data/friends';
 import { findLatestPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 
-const featured = games.find((game) => game.slug === 'boop-n-burn')!;
-const otherGames = ['skill-check', 'the-one-bullet-job', 'kit-knight-in-training'].map(
-  (slug) => games.find((game) => game.slug === slug)!
-);
+// The hero spotlights one game, usually whatever's newest. Change the slug to swap it;
+// everything else in the hero and the grid below follows from the game's data.
+const featured = getGame('the-one-bullet-job')!;
+const otherGames = games.filter((game) => game !== featured);
+// Only an external store link earns a button in the hero. Sign-up links stay on the game's page.
+const storeLink = featured.links.find((link) => link.isPrimary && link.href.startsWith('http'));
+
+const released = games.filter((game) => game.status === 'released').map((game) => game.title);
+const releasedLine =
+  new Intl.ListFormat('en-GB', { type: 'conjunction' }).format(released) +
+  (released.length === 1 ? ' is out now.' : ' are out now.');
+
 const [latest] = await findLatestPosts({ count: 1 });
 const metadata = {
   title: 'Ki10 Games — Two friends making games.',
   ignoreTitleTemplate: true,
   description:
-    'Games from a two-person independent studio in the UK. Play Skill Check and discover Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
+    'Games from a two-person independent studio in the UK. Play The One Bullet Job and Skill Check, and discover Boop n Burn and KIT: Knight in Training.',
 };
 ---
 
@@ -39,15 +48,16 @@ const metadata = {
           >
         </div>
         <div class="studio-signoff">
-          <span aria-hidden="true" class="status-dot"></span> Skill Check is out now on Android and web.
+          <span aria-hidden="true" class="status-dot"></span>
+          {releasedLine}
         </div>
       </div>
-      <a class="showcase" href="/projects/boop-n-burn">
+      <div class:list={['showcase', { 'has-logo': featured.heroHasLogo }]}>
         {
           featured.hero && (
             <Image
               src={featured.hero}
-              alt="Players battling above the lava in Boop n Burn's shipping yard arena"
+              alt={'Key art for ' + featured.title}
               widths={[600, 1000, 1600]}
               sizes="(min-width: 1280px) 770px, (min-width: 900px) 60vw, 100vw"
               loading="eager"
@@ -56,14 +66,31 @@ const metadata = {
           )
         }
         <span class="showcase-top"
-          ><span class="image-label">In development</span><span class="image-label">Up to 16 players</span></span
+          ><span class:list={['image-label', { released: featured.status === 'released' }]}
+            >{statusLabels[featured.status]}</span
+          ><span class="image-label">{featured.platforms.join(' · ')}</span></span
         >
         <div class="showcase-caption">
-          <p>Currently causing chaos</p><h2>Boop n Burn</h2><p class="game-tagline">
-            The floor is lava.<br />Your mates are the real problem.
-          </p><span class="showcase-cta">Meet the game <span aria-hidden="true">↗︎</span></span>
+          <div class:list={[{ 'sr-only': featured.heroHasLogo }]}>
+            <p class="showcase-eyebrow">{featured.genre}</p>
+            <h2>{featured.title}</h2>
+            <p class="game-tagline">{featured.tagline}</p>
+          </div>
+          <div class="showcase-cta">
+            {
+              storeLink && (
+                <a class="store-button" href={storeLink.href} target="_blank" rel="noopener noreferrer">
+                  <Icon name={storeLink.icon} aria-hidden="true" />
+                  {storeLink.label}
+                </a>
+              )
+            }
+            <a class="meet-link" href={'/projects/' + featured.slug}
+              >Meet the game<span class="sr-only">: {featured.title}</span> <span aria-hidden="true">↗︎</span></a
+            >
+          </div>
         </div>
-      </a>
+      </div>
     </section>
 
     <section class="games-section page-width" id="our-games" aria-labelledby="games-title">
@@ -89,7 +116,7 @@ const metadata = {
                     />
                   )}
                   <span class:list={['image-label', { released: game.status === 'released' }]}>
-                    {game.status === 'released' ? 'Out now' : 'In development'}
+                    {statusLabels[game.status]}
                   </span>
                 </div>
                 <div class="tile-copy">
@@ -349,7 +376,10 @@ const metadata = {
     padding: 2rem;
     width: 100%;
   }
-  .showcase-caption > p:first-child {
+  .has-logo > img {
+    object-position: left center;
+  }
+  .showcase-eyebrow {
     font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -368,17 +398,63 @@ const metadata = {
     line-height: 1.6;
     font-size: 0.95rem;
   }
+  /* "Meet the game" stretches over the whole card, so anywhere you click opens the game's page.
+     The store button sits above it so it still goes straight to the store. */
+  .meet-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .meet-link:focus-visible {
+    outline: none;
+  }
+  .showcase:has(.meet-link:focus-visible) {
+    outline: 3px solid var(--ember);
+    outline-offset: 3px;
+  }
   .showcase-cta {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem 1rem;
     border-top: 1px solid #ffffff45;
     padding-top: 1rem;
     margin-top: 1.25rem;
     font-size: 0.8rem;
     font-weight: 700;
   }
-  .showcase-cta span {
+  /* With no title above it, the divider has nothing to divide. */
+  .has-logo .showcase-cta {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+  .store-button {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.4rem;
+    background: #fff;
+    color: #1d231f;
+  }
+  .store-button:hover {
+    background: #ffe1b7;
+  }
+  .store-button svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .meet-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+  }
+  .meet-link [aria-hidden] {
     font-size: 1.3rem;
   }
   .section-heading {

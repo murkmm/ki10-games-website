@@ -62,6 +62,8 @@ export interface Game {
   /** Tailwind gradient used for the art fallback and status accents. */
   gradient: string;
   hero?: ImageMetadata;
+  /** Set when the hero art already has the game's logo on its left, so the homepage shows that instead of printing the title over it. */
+  heroHasLogo?: boolean;
   card?: ImageMetadata;
   /** Each shot is an image, or a looping clip from /public/videos (give the name without an extension). */
   gallery?: ({ image: ImageMetadata; caption: string } | { video: string; caption: string })[];
@@ -200,6 +202,7 @@ export const games: Game[] = [
     ],
     gradient: 'from-amber-300 via-yellow-600 to-stone-900',
     hero: objHero,
+    heroHasLogo: true,
     card: objCard,
     galleryRatio: 'aspect-[9/16]',
     gallery: [
