@@ -672,6 +672,18 @@ const metadata = {
     .showcase-caption {
       padding: 1.5rem;
     }
+    /* Cropping to fill a tall phone card cuts the logo off, so show the whole art with the buttons below it. */
+    .showcase.has-logo {
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
+      background: #111812;
+    }
+    .has-logo > img {
+      position: static;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
     .studio-story {
       gap: 1.5rem;
       padding-block: 2.5rem;
