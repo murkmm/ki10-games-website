@@ -1,0 +1,358 @@
+---
+publishDate: 2026-10-31T17:00:00Z
+author: Mark
+title: 'Devlog #13: Save File 0'
+excerpt: "Happy Halloween! Meet Save File 0, a first-person survival horror game for the Game Boy Color that's coming to a real cartridge. The Kickstarter pre-launch page is live today."
+image: '../../assets/images/sf0-banner.png'
+cardImage: '../../assets/images/sf0-banner.png'
+category: Devlog
+draft: false
+tags:
+  - devlog
+  - announcement
+  - behind the scenes
+  - Save File 0
+  - Kickstarter
+metadata:
+  canonical: https://ki10games.com/devlog-13-save-file-0
+---
+
+import { Image } from 'astro:assets';
+
+import earlyReception from '../../assets/images/sf0-early-reception.png';
+import earlyOccupant from '../../assets/images/sf0-early-occupant.png';
+import build2Player from '../../assets/images/sf0-build-2-player.png';
+import build2File0 from '../../assets/images/sf0-build-2-file0.png';
+import build4Corridor from '../../assets/images/sf0-build-4-corridor.png';
+import build8Before from '../../assets/images/sf0-build-8-before.png';
+import build8After from '../../assets/images/sf0-build-8-after.png';
+import build10Corridor from '../../assets/images/sf0-build-10-corridor.png';
+import build14Revolver from '../../assets/images/sf0-build-14-revolver.png';
+import build16File0 from '../../assets/images/sf0-build-16-file0.png';
+import notClosed from '../../assets/images/sf0-not-closed.png';
+
+export const kickstarterLink = 'https://www.kickstarter.com/projects/ki10games/1147114818';
+export const pixel = { imageRendering: 'pixelated' };
+
+Happy Halloween!
+
+I've been dying to tell you about this one, and I couldn't think of a better day to do it. Meet **Save File 0**: a first-person survival horror game for the **Game Boy Color**.
+
+Not a game made to look like a Game Boy game, either. It's an actual Game Boy Color ROM that runs on the real console, and the plan is to release it on a **real cartridge**. The Kickstarter pre-launch page goes live today, and if you hit Follow, Kickstarter will email you the moment the campaign starts in early 2027.
+
+<p class="text-center">
+  <a href={kickstarterLink} class="font-bold underline">
+    Follow Save File 0 on Kickstarter
+  </a>
+</p>
+
+Here's the teaser trailer first, so you know what I'm on about:
+
+<figure class="flex flex-col items-center">
+  <video
+    class="w-full rounded-md"
+    controls
+    playsinline
+    preload="none"
+    poster="/videos/sf0-teaser-poster.png"
+    aria-label="Save File 0 teaser trailer"
+  >
+    <source src="/videos/sf0-teaser.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The teaser. Every shot is real gameplay, recorded from the game. Contains brief flashing.
+  </figcaption>
+</figure>
+
+### **What Is Save File 0?**
+
+You're covering the night QA shift at **Oriole Software**. Their new build has a save bug that nobody can reproduce. Mara was looking into it, but she isn't answering her phone. Her handover note is simple: make a save, load it back, write down anything odd.
+
+So you make a save. Then you open the save index, and there's a second file under yours.
+
+**00 FILE 0.** No time. No owner.
+
+Load it and you're back in the same office. Same desk, same copier, same corridors. Except Mara's revolver is lying on the reception counter, and you're not alone in the building any more.
+
+<figure class="flex flex-col items-center">
+  <video
+    class="max-w-full rounded-md"
+    style={pixel}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A green save index lists 01 PLAYER and 00 FILE 0. Loading FILE 0 makes the screen tear apart."
+  >
+    <source src="/videos/sf0-save-index-file0.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The save index. You definitely didn't make that second one. (This was recorded on an older build, and the wording's changed since.)
+  </figcaption>
+</figure>
+
+### **Why a QA Tester?**
+
+I've spent over nine years in games QA, and anyone who's done the job knows this feeling. You're in late, the office is empty, and there's a save bug that only happens when nobody's watching. The build is doing something it shouldn't, and you can't prove it.
+
+That's where Save File 0 starts. I wanted the scary part to come from the **save system itself**, and it turns out a Game Boy cartridge is surprisingly good at that. More on that in a bit.
+
+### **Two Saves, One Office**
+
+The whole game is built around one idea: **each save file is its own copy of the building**, and when you load a save, you load in exactly where you're standing.
+
+Your own save is the ordinary office. It's quiet, and it's where you patch yourself up. FILE 0 is the same office, but wrong, and it's where things hunt you.
+
+<figure class="flex flex-col items-center">
+  <video
+    class="max-w-full rounded-md"
+    style={pixel}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="At a desk computer, the player loads their own save and the room turns warm and empty. Loading FILE 0 brings the server racks back."
+  >
+    <source src="/videos/sf0-two-saves-one-office.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Same desk, different save.
+  </figcaption>
+</figure>
+
+Most of the puzzles come from switching between the two:
+
+- **A door you open in your save stays open in FILE 0.**
+- **Server racks block a room in FILE 0**, but they aren't there in your save. So you walk round them in your save, then load FILE 0 on the other side.
+- You end up thinking about **where to stand**, not just where to go.
+
+### **The Occupant**
+
+The thing in FILE 0 can't be killed. A shot staggers it for a few seconds, and that's all you get.
+
+You'll usually hear it before you see it. Its footsteps come from the side it's on and get louder as it gets closer, and if the hum in the building suddenly cuts out, it's about to come through a door. Your options are the old ones: break its line of sight, or find a locker and keep very still. Just don't let it see you climb in.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <video
+        class="w-full rounded-md"
+        style={pixel}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label="A tall, thin figure appears in a doorway and steps forward."
+      >
+        <source src="/videos/sf0-occupant-doorway.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="md:w-1/2">
+      <video
+        class="w-full rounded-md"
+        style={pixel}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label="The view through a locker's vents as the figure walks up the corridor towards it."
+      >
+        <source src="/videos/sf0-locker.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Left: the Occupant. Right: the inside of a locker, which is where you'll want to be.
+  </figcaption>
+</figure>
+
+It isn't the only thing in there, mind. There are **crawling remnants** that take two shots each, and you never have many bullets. And there's the office copier, which starts printing on its own.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <video
+        class="w-full rounded-md"
+        style={pixel}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label="A crawling figure scuttles closer. Two shots and it goes down."
+      >
+        <source src="/videos/sf0-crawler.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="md:w-1/2">
+      <video
+        class="w-full rounded-md"
+        style={pixel}
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label="An office copier wakes up by itself and prints a photo."
+      >
+        <source src="/videos/sf0-copier-printout.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Two shots each. The page from the copier is still warm.
+  </figcaption>
+</figure>
+
+### **The Cartridge Remembers**
+
+Because Save File 0 runs from a real cartridge with its own save memory, it can do things a download can't. I'm not going to spoil most of them, but here's a small one.
+
+If you switch your Game Boy off while FILE 0 is loaded, the game notices.
+
+<figure class="flex flex-col items-center">
+  <Image src={notClosed} format="png" alt="The title screen reads: FILE 0 WAS NOT CLOSED." class="max-w-xs rounded-md" style={pixel} />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    It waited for you.
+  </figcaption>
+</figure>
+
+### **How It Started (and How It's Going)**
+
+Old QA habits: **every build gets archived** before I change anything, with the ROM, screenshots and footage. That means I can show you exactly how the game got from there to here. Save File 0 is on **build 17** now, not counting all the point releases in between.
+
+Here's one of the very earliest versions. Flat walls, a big **CHECK A TERMINAL** prompt, and an Occupant that was more "thin bloke in a corridor" than anything scary.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <Image src={earlyReception} format="png" alt="An early build: flat grey walls and the prompt CHECK A TERMINAL." class="w-full rounded-md" style={pixel} />
+    </div>
+    <div class="md:w-1/2">
+      <Image src={earlyOccupant} format="png" alt="An early build: a small grey figure at the end of a plain corridor." class="w-full rounded-md" style={pixel} />
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The early days. Even then, there was an FPS counter in the corner.
+  </figcaption>
+</figure>
+
+By **build 2**, the two saves were in, with a big label at the bottom telling you which one you were in. FILE 0 went red, and the floor went a sort of rusty brown.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <Image src={build2Player} format="png" alt="Build 2: a bright, plain reception labelled SAVE: PLAYER." class="w-full rounded-md" style={pixel} />
+    </div>
+    <div class="md:w-1/2">
+      <Image src={build2File0} format="png" alt="Build 2: a dark corridor with a figure in it, labelled SAVE: FILE 0 in red." class="w-full rounded-md" style={pixel} />
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Build 2: your save on the left, FILE 0 on the right. Subtle, it was not.
+  </figcaption>
+</figure>
+
+By **build 4**, the walls were starting to look like walls, with panelling and proper office props.
+
+<figure class="flex flex-col items-center">
+  <Image src={build4Corridor} format="png" alt="Build 4: a corridor with panelled walls and a fire extinguisher." class="max-w-sm rounded-md" style={pixel} />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Build 4. The fire extinguisher has been through a lot since.
+  </figcaption>
+</figure>
+
+**Build 8** made the furniture bigger up close and added a live HUD along the top. Before that, objects stayed tiny even when you were stood right next to them.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <Image src={build8Before} format="png" alt="Before build 8: a small desk computer in front of the player." class="w-full rounded-md" style={pixel} />
+    </div>
+    <div class="md:w-1/2">
+      <Image src={build8After} format="png" alt="Build 8: the same desk computer, larger, with a health and ammo bar at the top." class="w-full rounded-md" style={pixel} />
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Same spot, before and after build 8.
+  </figcaption>
+</figure>
+
+By **build 10**, the HUD had become hearts, bullets and a compass floating over the room. **Build 12** added the minimap, **build 14** put Mara's revolver on the desk for you to find, and **build 16** added the label that tells you which save you're in.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/3">
+      <Image src={build10Corridor} format="png" alt="Build 10: a blue corridor with hearts, bullets and the room name at the top." class="w-full rounded-md" style={pixel} />
+    </div>
+    <div class="md:w-1/3">
+      <Image src={build14Revolver} format="png" alt="Build 14: Mara's revolver lying on the reception desk in FILE 0." class="w-full rounded-md" style={pixel} />
+    </div>
+    <div class="md:w-1/3">
+      <Image src={build16File0} format="png" alt="Build 16: FILE 0's reception, with the save name, health, ammo and minimap at the top." class="w-full rounded-md" style={pixel} />
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Builds 10, 14 and 16.
+  </figcaption>
+</figure>
+
+### **Getting a Game Boy Color to Do This**
+
+The Game Boy Color was never meant to run a first-person game. Save File 0 uses a **raycaster**: 40 rays across the screen, drawn as four-pixel wall columns, aiming for a steady **30 frames per second** using the GBC's double-speed mode.
+
+The hardest part isn't drawing the picture. It's getting it onto the screen. The Game Boy only lets you touch video memory during a tiny gap between frames, about **ten scanlines** long. The finished frame, the HUD, the minimap and the colour palettes all have to share that gap. A lot of the work so far has been fitting everything in, and catching the cases where something quietly misses its slot. The minimap, for example, used to freeze whenever you moved, because it kept missing the gap.
+
+Sound uses all four of the Game Boy's channels: the building's hum, your heartbeat, footsteps, doors and the odd creak you'd rather not think about.
+
+So far I've been testing in emulators, including one set up to copy the real hardware's timing. Next up is playing it on my own Game Boy Color from a real cartridge, and I'll film that for the next devlog.
+
+It's written in C and assembly with **GBDK**, and I use AI tools to help with the programming side.
+
+### **Built Like a QA Tester**
+
+Most of the changes come from playing it and writing notes like I would for any bug report. A few favourites:
+
+- **The game used to explain its own rules on screen.** It doesn't any more. You find out what FILE 0 does by loading it.
+- **There were six first aid kits in the game, all hidden in shelves**, and nobody found any of them. Now there are cases you can actually see.
+- **In one build you could get yourself stuck** somewhere your save wouldn't load. I fixed it and added a test so it can't come back. That one's the QA brain again.
+
+That's also why some of the text in these clips looks different to what you'll play. The save screens changed again in the latest build.
+
+### **The Physical Release and the Kickstarter**
+
+The plan is a proper physical release:
+
+- A **real Game Boy Color cartridge** with your saves stored on the cart.
+- A **complete-in-box edition** with a printed box and instruction manual.
+- A **digital ROM** too, if you'd rather play it on a flash cart or an emulator.
+
+The **Kickstarter pre-launch page** is live today. Following it costs nothing, and it makes a big difference on launch day.
+
+### **What's Next**
+
+- **November:** the first prototype cartridge, running on real hardware. I'll show it here first.
+- **Before the campaign:** a free playable demo, so you can try it before you back it.
+- **Early 2027:** the Kickstarter.
+
+And no, the other games haven't gone anywhere. **Boop n Burn** is still heading for Steam Next Fest in February.
+
+If this sounds like your kind of thing, you can follow Save File 0 below. You can also find us on [Discord](https://discord.gg/NqtVzsmj3A) if you want to chat about it, and I'd love to hear what you think.
+
+<p class="text-center">
+  <a href={kickstarterLink} class="font-bold underline">
+    Follow Save File 0 on Kickstarter
+  </a>
+</p>
+
+Thanks for reading, and happy Halloween,
+
+Mark
+
+<p class="text-sm italic text-gray-500 dark:text-gray-400">
+  All footage and screenshots were captured in an emulator from builds of Save File 0, and some on-screen text has changed since. Save File 0 is an independent game. It is not licensed or endorsed by Nintendo. Game Boy Color is a trademark of Nintendo.
+</p>
