@@ -30,6 +30,8 @@ import build10Corridor from '../../assets/images/sf0-build-10-corridor.png';
 import build14Revolver from '../../assets/images/sf0-build-14-revolver.png';
 import build16File0 from '../../assets/images/sf0-build-16-file0.png';
 import notClosed from '../../assets/images/sf0-not-closed.png';
+import warmChair from '../../assets/images/sf0-warm-chair.png';
+import build18Crawler from '../../assets/images/sf0-build-18-crawler.png';
 
 export const kickstarterLink = 'https://www.kickstarter.com/projects/ki10games/1147114818';
 export const pixel = { imageRendering: 'pixelated' };
@@ -72,7 +74,7 @@ So you make a save. Then you open the save index, and there's a second file unde
 
 **00 FILE 0.** No time. No owner.
 
-Load it and you're back in the same office. Same desk, same copier, same corridors. Except Mara's revolver is lying on the reception counter, and you're not alone in the building any more.
+Load it and you're back in the same office. Same desk, same copier, same corridors. Except Mara's revolver is lying on the reception counter, with a note under it: *Don't touch slot 0. If you loaded it, take this. It only buys a few seconds.* And you're not alone in the building any more.
 
 <figure class="flex flex-col items-center">
   <video
@@ -128,6 +130,15 @@ Most of the puzzles come from switching between the two:
 - **Server racks block a room in FILE 0**, but they aren't there in your save. So you walk round them in your save, then load FILE 0 on the other side.
 - You end up thinking about **where to stand**, not just where to go.
 
+And sometimes FILE 0 leaks back the other way. Visit it, load your own save again, and things aren't quite how you left them.
+
+<figure class="flex flex-col items-center">
+  <Image src={warmChair} format="png" alt="Back in the player's own save, an office chair in a quiet corridor. The message reads: CHAIR'S STILL WARM." class="max-w-sm rounded-md" style={pixel} />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Your save, after a trip into FILE 0. Nobody else is in tonight.
+  </figcaption>
+</figure>
+
 ### **The Occupant**
 
 The thing in FILE 0 can't be killed. A shot staggers it for a few seconds, and that's all you get.
@@ -170,7 +181,7 @@ You'll usually hear it before you see it. Its footsteps come from the side it's 
   </figcaption>
 </figure>
 
-It isn't the only thing in there, mind. There are **crawling remnants** that take two shots each, and you never have many bullets. And there's the office copier, which starts printing on its own.
+It isn't the only thing in there, mind. There are **crawling remnants** that take two shots each, and you never have many bullets. Or one shot, if you've got the nerve to wait until one rears up to lunge at you. And there's the office copier, which starts printing on its own.
 
 <figure class="flex flex-col items-center">
   <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
@@ -223,7 +234,7 @@ If you switch your Game Boy off while FILE 0 is loaded, the game notices.
 
 ### **How It Started (and How It's Going)**
 
-Old QA habits: **every build gets archived** before I change anything, with the ROM, screenshots and footage. That means I can show you exactly how the game got from there to here. Save File 0 is on **build 17** now, not counting all the point releases in between.
+Old QA habits: **every build gets archived** before I change anything, with the ROM, screenshots and footage. That means I can show you exactly how the game got from there to here. Save File 0 is on **build 18** now, not counting all the point releases in between.
 
 Here's one of the very earliest versions. Flat walls, a big **CHECK A TERMINAL** prompt, and an Occupant that was more "thin bloke in a corridor" than anything scary.
 
@@ -301,6 +312,15 @@ By **build 10**, the HUD had become hearts, bullets and a compass floating over 
   </figcaption>
 </figure>
 
+And **build 18**, the latest, redrew the crawlers so they look like what's left of people rather than bugs, and added the point-blank shot: wait for one to rear up, and a single round puts it down.
+
+<figure class="flex flex-col items-center">
+  <Image src={build18Crawler} format="png" alt="Build 18: a hunched, crawling figure at the player's feet in a dark corridor. The message reads: POINT-BLANK. DOWN." class="max-w-sm rounded-md" style={pixel} />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Build 18. Waiting for it to get that close is the hard part.
+  </figcaption>
+</figure>
+
 ### **Getting a Game Boy Color to Do This**
 
 The Game Boy Color was never meant to run a first-person game. Save File 0 uses a **raycaster**: 40 rays across the screen, drawn as four-pixel wall columns, aiming for a steady **30 frames per second** using the GBC's double-speed mode.
@@ -309,7 +329,7 @@ The hardest part isn't drawing the picture. It's getting it onto the screen. The
 
 Sound uses all four of the Game Boy's channels: the building's hum, your heartbeat, footsteps, doors and the odd creak you'd rather not think about.
 
-So far I've been testing in emulators, including one set up to copy the real hardware's timing. Next up is playing it on my own Game Boy Color from a real cartridge, and I'll film that for the next devlog.
+So far I've been testing in emulators, including one set up to copy the real hardware's timing. In that one, build 18 holds 30 frames per second in every room, even with the Occupant and three crawlers in the corridor at once. The real proof is the cartridge, though. Next up is playing it on my own Game Boy Color from a real cartridge, and I'll film that for the next devlog.
 
 It's written in C and assembly with **GBDK**, and I use AI tools to help with the programming side.
 
