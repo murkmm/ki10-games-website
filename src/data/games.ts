@@ -37,8 +37,13 @@ import sf0ShotRevolverNote from '~/assets/images/sf0-shot-revolver-note.png';
 import sf0ShotCopierPhoto from '~/assets/images/sf0-shot-copier-photo.png';
 import sf0ShotLocker from '~/assets/images/sf0-shot-locker.png';
 
-/** The Save File 0 Kickstarter page. Swap this for the custom URL once Kickstarter gives us one. */
-export const saveFile0Kickstarter = 'https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color';
+/** The Save File 0 Kickstarter page. The ?ref= tags come from Kickstarter's custom referral tags,
+ *  so its dashboard shows where follows and pledges came from. */
+export const saveFile0KickstarterBase = 'https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color';
+/** Website buttons (homepage, game page) count under the 'shortlink' tag, like ki10games.com/savefile0. */
+export const saveFile0Kickstarter = saveFile0KickstarterBase + '?ref=5btpvk';
+/** Links inside the Devlog #13 post. */
+export const saveFile0KickstarterDevlog = saveFile0KickstarterBase + '?ref=mhxkty';
 
 export type GameStatus = 'released' | 'in-development' | 'on-hold';
 
