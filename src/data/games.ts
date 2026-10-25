@@ -132,6 +132,7 @@ export const games: Game[] = [
     ],
     links: [
       { label: 'Follow on Kickstarter', href: saveFile0Kickstarter, icon: 'tabler:brand-kickstarter', isPrimary: true },
+      { label: 'Watch the trailer', href: 'https://youtu.be/nbiv6W50Lho', icon: 'tabler:brand-youtube' },
       { label: 'Read the announcement', href: '/devlog-13-save-file-0', icon: 'tabler:notebook' },
     ],
     gradient: 'from-emerald-400 via-green-800 to-zinc-950',
