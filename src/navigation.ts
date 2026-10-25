@@ -40,6 +40,7 @@ export const footerData = {
         { text: 'Boop n Burn', href: getPermalink('/projects/boop-n-burn') },
         { text: 'The One Bullet Job', href: getPermalink('/projects/the-one-bullet-job') },
         { text: 'KIT: Knight in Training', href: getPermalink('/projects/kit-knight-in-training') },
+        { text: 'Save File 0', href: getPermalink('/projects/save-file-0') },
       ],
     },
     {

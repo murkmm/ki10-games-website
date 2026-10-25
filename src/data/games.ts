@@ -30,6 +30,15 @@ import objPlayVents from '~/assets/images/obj-play-vents.webp';
 import objPlayWatch from '~/assets/images/obj-play-watch.webp';
 import objResult from '~/assets/images/obj-result.webp';
 import objOutfit from '~/assets/images/obj-outfit-preview.webp';
+import sf0Hero from '~/assets/images/sf0-hero.png';
+import sf0Card from '~/assets/images/sf0-card.png';
+import sf0ShotOccupant from '~/assets/images/sf0-shot-occupant.png';
+import sf0ShotRevolverNote from '~/assets/images/sf0-shot-revolver-note.png';
+import sf0ShotCopierPhoto from '~/assets/images/sf0-shot-copier-photo.png';
+import sf0ShotLocker from '~/assets/images/sf0-shot-locker.png';
+
+/** The Save File 0 Kickstarter page. Swap this for the custom URL once Kickstarter gives us one. */
+export const saveFile0Kickstarter = 'https://www.kickstarter.com/projects/ki10games/1147114818';
 
 export type GameStatus = 'released' | 'in-development' | 'on-hold';
 
@@ -82,6 +91,65 @@ export const statusLabels: Record<GameStatus, string> = {
 };
 
 export const games: Game[] = [
+  {
+    slug: 'save-file-0',
+    title: 'Save File 0',
+    genre: 'Survival horror',
+    status: 'in-development',
+    tagline: 'First-person survival horror for the Game Boy Color, coming to a real cartridge.',
+    pitch:
+      'You’re covering the night QA shift at Oriole Software. The new build has a save bug nobody can reproduce, so you make a save, and the save index lists a second file that shouldn’t exist. Load it, and you’re back in the same office. You’re just not alone in it any more.',
+    body: [
+      'Save File 0 isn’t a game made to look like a Game Boy game. It’s a real Game Boy Color ROM, written in C and assembly, that runs on the original console. A raycaster draws the office in first person, and it’s built to hold 30 frames per second on the Game Boy Color’s double speed mode.',
+      'Each save file is its own copy of the building, and when you load one you arrive exactly where you’re standing. Your save is the quiet office where you patch yourself up. FILE 0 is the same office, but wrong, and something in there can’t be killed. A shot only staggers it, so you break its line of sight, find a locker and keep very still.',
+      'The plan is a proper physical release: a real cartridge that keeps your saves on the cart, a complete-in-box edition with a printed box and manual, and a digital ROM. The Kickstarter is planned for early 2027, and you can follow the pre-launch page now to hear the moment it starts.',
+    ],
+    engine: 'GBDK (C and assembly)',
+    platforms: ['Game Boy Color'],
+    releaseLine: 'Kickstarter planned for early 2027',
+    features: [
+      {
+        title: 'Two saves, one office',
+        description:
+          'Switch between your save and FILE 0 wherever you’re standing. A door opened in one stays open in the other.',
+        icon: 'tabler:files',
+      },
+      {
+        title: 'Something you can’t kill',
+        description: 'A shot buys you a few seconds. After that it’s lockers, line of sight and running.',
+        icon: 'tabler:ghost-2',
+      },
+      {
+        title: 'Real Game Boy Color hardware',
+        description: 'A native ROM with a first-person raycaster, built to run at 30 frames per second on the console.',
+        icon: 'tabler:device-gamepad',
+      },
+      {
+        title: 'A real cartridge',
+        description: 'Saves are kept on the cartridge itself, and the cartridge has a few tricks a download can’t do.',
+        icon: 'tabler:device-floppy',
+      },
+    ],
+    links: [
+      { label: 'Follow on Kickstarter', href: saveFile0Kickstarter, icon: 'tabler:brand-kickstarter', isPrimary: true },
+      { label: 'Read the announcement', href: '/devlog-13-save-file-0', icon: 'tabler:notebook' },
+    ],
+    gradient: 'from-emerald-400 via-green-800 to-zinc-950',
+    hero: sf0Hero,
+    card: sf0Card,
+    galleryRatio: 'aspect-[10/9]',
+    gallery: [
+      { video: 'sf0-save-index-file0', caption: 'The save index. You didn’t make the second one.' },
+      { video: 'sf0-two-saves-one-office', caption: 'Same desk, different save.' },
+      { video: 'sf0-occupant-doorway', caption: 'The Occupant. It can’t be killed.' },
+      { video: 'sf0-crawler', caption: 'A crawler, and one point-blank shot.' },
+      { image: sf0ShotOccupant, caption: 'Too close.' },
+      { image: sf0ShotRevolverNote, caption: 'Mara’s revolver, and the note she left under it.' },
+      { image: sf0ShotCopierPhoto, caption: 'The copier printed this on its own.' },
+      { image: sf0ShotLocker, caption: 'The view from inside a locker.' },
+    ],
+    devlogTag: 'save-file-0',
+  },
   {
     slug: 'boop-n-burn',
     title: 'Boop n Burn',
