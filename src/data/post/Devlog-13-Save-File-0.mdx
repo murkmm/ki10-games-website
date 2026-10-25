@@ -85,12 +85,12 @@ Load it and you're back in the same office. Same desk, same copier, same corrido
     muted
     playsinline
     preload="metadata"
-    aria-label="A green save index lists 01 PLAYER and 00 FILE 0. Loading FILE 0 makes the screen tear apart."
+    aria-label="A green save index lists 01 PLAYER, saved, and 00 FILE 0 with no time. Loading FILE 0 asks for an owner it does not know, then the screen tears apart into SAVE DATA ERROR."
   >
     <source src="/videos/sf0-save-index-file0.mp4" type="video/mp4" />
   </video>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    The save index. You definitely didn't make that second one. (This was recorded on an older build, and the wording's changed since.)
+    The save index, recorded in build 18.
   </figcaption>
 </figure>
 
@@ -128,14 +128,14 @@ Most of the puzzles come from switching between the two:
 
 - **A door you open in your save stays open in FILE 0.**
 - **Server racks block a room in FILE 0**, but they aren't there in your save. So you walk round them in your save, then load FILE 0 on the other side.
-- You end up thinking about **where to stand**, not just where to go.
+- So a lot of the game is about choosing **where to stand** before you load.
 
 And sometimes FILE 0 leaks back the other way. Visit it, load your own save again, and things aren't quite how you left them.
 
 <figure class="flex flex-col items-center">
   <Image src={warmChair} format="png" alt="Back in the player's own save, an office chair in a quiet corridor. The message reads: CHAIR'S STILL WARM." class="max-w-sm rounded-md" style={pixel} />
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    Your save, after a trip into FILE 0. Nobody else is in tonight.
+    Your own save, after a trip into FILE 0.
   </figcaption>
 </figure>
 
@@ -144,6 +144,8 @@ And sometimes FILE 0 leaks back the other way. Visit it, load your own save agai
 The thing in FILE 0 can't be killed. A shot staggers it for a few seconds, and that's all you get.
 
 You'll usually hear it before you see it. Its footsteps come from the side it's on and get louder as it gets closer, and if the hum in the building suddenly cuts out, it's about to come through a door. Your options are the old ones: break its line of sight, or find a locker and keep very still. Just don't let it see you climb in.
+
+And because everyone asks how you run away from something on a D-pad: **B + Down** spins you round 180° on the spot, and holding **B** turns Left and Right into a sidestep.
 
 <figure class="flex flex-col items-center">
   <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
@@ -194,7 +196,7 @@ It isn't the only thing in there, mind. There are **crawling remnants** that tak
         muted
         playsinline
         preload="metadata"
-        aria-label="A crawling figure scuttles closer. Two shots and it goes down."
+        aria-label="A crawling figure scuttles closer and rears up. One point-blank shot puts it down."
       >
         <source src="/videos/sf0-crawler.mp4" type="video/mp4" />
       </video>
@@ -215,7 +217,7 @@ It isn't the only thing in there, mind. There are **crawling remnants** that tak
     </div>
   </div>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    Two shots each. The page from the copier is still warm.
+    Left: a crawler and the point-blank shot. Right: the copier, printing on its own.
   </figcaption>
 </figure>
 
@@ -228,7 +230,7 @@ If you switch your Game Boy off while FILE 0 is loaded, the game notices.
 <figure class="flex flex-col items-center">
   <Image src={notClosed} format="png" alt="The title screen reads: FILE 0 WAS NOT CLOSED." class="max-w-xs rounded-md" style={pixel} />
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    It waited for you.
+    The title screen, after switching off with FILE 0 loaded.
   </figcaption>
 </figure>
 
@@ -264,7 +266,7 @@ By **build 2**, the two saves were in, with a big label at the bottom telling yo
     </div>
   </div>
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    Build 2: your save on the left, FILE 0 on the right. Subtle, it was not.
+    Build 2: your save on the left, FILE 0 on the right.
   </figcaption>
 </figure>
 
@@ -273,7 +275,7 @@ By **build 4**, the walls were starting to look like walls, with panelling and p
 <figure class="flex flex-col items-center">
   <Image src={build4Corridor} format="png" alt="Build 4: a corridor with panelled walls and a fire extinguisher." class="max-w-sm rounded-md" style={pixel} />
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    Build 4. The fire extinguisher has been through a lot since.
+    Build 4.
   </figcaption>
 </figure>
 
@@ -312,12 +314,12 @@ By **build 10**, the HUD had become hearts, bullets and a compass floating over 
   </figcaption>
 </figure>
 
-And **build 18**, the latest, redrew the crawlers so they look like what's left of people rather than bugs, and added the point-blank shot: wait for one to rear up, and a single round puts it down.
+And **build 18**, the latest, redrew the crawlers so they look like what's left of people rather than bugs.
 
 <figure class="flex flex-col items-center">
   <Image src={build18Crawler} format="png" alt="Build 18: a hunched, crawling figure at the player's feet in a dark corridor. The message reads: POINT-BLANK. DOWN." class="max-w-sm rounded-md" style={pixel} />
   <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
-    Build 18. Waiting for it to get that close is the hard part.
+    Build 18's redrawn crawler, going down to a point-blank shot.
   </figcaption>
 </figure>
 
@@ -325,7 +327,7 @@ And **build 18**, the latest, redrew the crawlers so they look like what's left 
 
 The Game Boy Color was never meant to run a first-person game. Save File 0 uses a **raycaster**: 40 rays across the screen, drawn as four-pixel wall columns, aiming for a steady **30 frames per second** using the GBC's double-speed mode.
 
-The hardest part isn't drawing the picture. It's getting it onto the screen. The Game Boy only lets you touch video memory during a tiny gap between frames, about **ten scanlines** long. The finished frame, the HUD, the minimap and the colour palettes all have to share that gap. A lot of the work so far has been fitting everything in, and catching the cases where something quietly misses its slot. The minimap, for example, used to freeze whenever you moved, because it kept missing the gap.
+Drawing the picture is the easy bit. The hard part is getting it onto the screen. The Game Boy only lets you touch video memory during a tiny gap between frames, about **ten scanlines** long. The finished frame, the HUD, the minimap and the colour palettes all have to share that gap. A lot of the work so far has been fitting everything in, and catching the cases where something quietly misses its slot. The minimap, for example, used to freeze whenever you moved, because it kept missing the gap.
 
 Sound uses all four of the Game Boy's channels: the building's hum, your heartbeat, footsteps, doors and the odd creak you'd rather not think about.
 
@@ -341,7 +343,6 @@ Most of the changes come from playing it and writing notes like I would for any 
 - **There were six first aid kits in the game, all hidden in shelves**, and nobody found any of them. Now there are cases you can actually see.
 - **In one build you could get yourself stuck** somewhere your save wouldn't load. I fixed it and added a test so it can't come back. That one's the QA brain again.
 
-That's also why some of the text in these clips looks different to what you'll play. The save screens changed again in the latest build.
 
 ### **The Physical Release and the Kickstarter**
 
