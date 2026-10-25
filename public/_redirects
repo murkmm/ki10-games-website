@@ -5,5 +5,5 @@
 
 # Short link for Save File 0, for trailers, posters and bios. 302 so it can point somewhere else after the campaign.
 # If Kickstarter gives the project a custom URL, update this and saveFile0Kickstarter in src/data/games.ts.
-/savefile0 https://www.kickstarter.com/projects/ki10games/1147114818 302
-/savefile0/ https://www.kickstarter.com/projects/ki10games/1147114818 302
+/savefile0 https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color 302
+/savefile0/ https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color 302

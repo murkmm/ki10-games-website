@@ -38,7 +38,7 @@ import sf0ShotCopierPhoto from '~/assets/images/sf0-shot-copier-photo.png';
 import sf0ShotLocker from '~/assets/images/sf0-shot-locker.png';
 
 /** The Save File 0 Kickstarter page. Swap this for the custom URL once Kickstarter gives us one. */
-export const saveFile0Kickstarter = 'https://www.kickstarter.com/projects/ki10games/1147114818';
+export const saveFile0Kickstarter = 'https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color';
 
 export type GameStatus = 'released' | 'in-development' | 'on-hold';
 
