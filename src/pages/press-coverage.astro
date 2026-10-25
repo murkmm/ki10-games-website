@@ -9,8 +9,33 @@ const metadata = {
 
 const coverage = [
   {
+    outlet: 'The Game Scorecard',
+    title: 'The One Bullet Job',
+    game: 'The One Bullet Job',
+    summary: 'The Game Scorecard’s review page for The One Bullet Job.',
+    href: 'https://thegamescorecard.com/game/the_one_bullet_job',
+  },
+  {
+    outlet: 'Androiduj.cz',
+    title: 'The One Bullet Job míří na Android: Naplánujte dokonalou loupež s jediným nábojem',
+    date: '22 October 2026',
+    game: 'The One Bullet Job',
+    summary:
+      'A Czech look at the game: plan the perfect bank job with a single bullet, across 120 levels plus daily heists and leaderboards.',
+    href: 'https://www.androiduj.cz/the-one-bullet-job-miri-na-android-naplanujte-dokonalou-loupez-s-jedinym-nabojem/',
+  },
+  {
+    outlet: 'DroidGamers',
+    title: 'The One Bullet Job Is a Turn-Based Heist Puzzle with Grids, Out Now',
+    date: 'October 2026',
+    game: 'The One Bullet Job',
+    summary:
+      'A launch write-up covering the fixed guard routes, the three-star scoring and the 20 chapters, from the bank to the casino.',
+    href: 'https://www.droidgamers.com/news/the-one-bullet-job/',
+  },
+  {
     outlet: 'Pocket Gamer',
-    title: 'The One Bullet Job is coming to Android',
+    title: 'The One Bullet Job is a heist puzzler where you only get one shot. Literally.',
     date: '13 October 2026',
     game: 'The One Bullet Job',
     summary: 'A preview of our turn-based heist puzzler and its one-bullet twist.',
@@ -38,7 +63,7 @@ const coverage = [
     <div class="grid gap-5 md:grid-cols-2">
       {coverage.map((article) => (
         <article class="flex flex-col rounded-2xl border border-gray-200 p-6 transition hover:border-primary dark:border-white/10 dark:hover:border-accent">
-          <p class="text-xs font-semibold uppercase tracking-wide text-muted">{article.outlet} · {article.date}</p>
+          <p class="text-xs font-semibold uppercase tracking-wide text-muted">{article.date ? `${article.outlet} · ${article.date}` : article.outlet}</p>
           <h2 class="mt-3 font-heading text-xl font-bold tracking-tight">{article.title}</h2>
           <p class="mt-3 text-sm text-muted">{article.summary}</p>
           <p class="mt-2 text-xs font-medium text-secondary">{article.game}</p>
