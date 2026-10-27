@@ -1,0 +1,35 @@
+# Publishes the Save File 0 announcement (PR #8) at 5pm UK time on Saturday 31 October 2026.
+# Cloudflare Pages then deploys main as usual. Safe to delete after Halloween.
+name: Halloween launch (merge PR 8)
+
+on:
+  schedule:
+    - cron: '0 17 31 10 *'   # 17:00 UTC = 5pm UK (clocks have gone back)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Only check the PR, do not merge'
+        default: 'true'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge the Save File 0 PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+        run: |
+          if [ "$(date -u +%Y)" != "2026" ]; then echo "Only runs in 2026."; exit 0; fi
+          state=$(gh pr view 8 --repo "$REPO" --json state -q .state)
+          mergeable=$(gh pr view 8 --repo "$REPO" --json mergeable -q .mergeable)
+          echo "PR 8 state: $state, mergeable: $mergeable"
+          if [ "$state" != "OPEN" ]; then echo "Already merged or closed. Nothing to do."; exit 0; fi
+          if [ "$mergeable" = "CONFLICTING" ]; then echo "::error::PR 8 has conflicts with main. Merge it by hand."; exit 1; fi
+          if [ "$DRY_RUN" = "true" ]; then echo "Dry run: would merge PR 8 now."; exit 0; fi
+          gh pr merge 8 --repo "$REPO" --merge --subject "Save File 0 announcement goes live (Halloween)"
