@@ -71,6 +71,6 @@ export const footerData = {
     { ariaLabel: 'Steam', icon: 'tabler:brand-steam', href: 'https://steamcommunity.com/groups/Ki10Games' },
   ],
   footNote: `
-    &copy; ${new Date().getFullYear()} Ki10 Games Ltd · Company No. 15687835 · Registered in England and Wales · All rights reserved.
+    &copy; ${new Date().getFullYear()} Ki10 Games Ltd · Company No. 15687835 · Registered in England and Wales · <a href="https://find-and-update.company-information.service.gov.uk/company/15687835" target="_blank" rel="noopener noreferrer">Company register</a> · <a href="mailto:business@ki10games.com">Business enquiries</a> · All rights reserved.
   `,
 };
