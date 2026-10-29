@@ -24,6 +24,10 @@ export const headerData = {
       href: getBlogPermalink(),
     },
     {
+      text: 'QA Services',
+      href: getPermalink('/qa-services'),
+    },
+    {
       text: 'Contact',
       href: getPermalink('/contact'),
     },
@@ -49,6 +53,7 @@ export const footerData = {
         { text: 'Team', href: getPermalink('/team') },
         { text: 'Devlog', href: getBlogPermalink() },
         { text: 'Contact', href: getPermalink('/contact') },
+        { text: 'QA Services', href: getPermalink('/qa-services') },
         { text: 'Press kit', href: getPermalink('/press') },
         { text: 'Press coverage', href: getPermalink('/press-coverage') },
       ],
