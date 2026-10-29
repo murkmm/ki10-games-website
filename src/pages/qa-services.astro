@@ -114,15 +114,14 @@ function enquiry(name: string) {
     <section id="packages" class="section container pricing">
       <div class="center"><p class="eyebrow orange">FIXED PRICES · FLEXIBLE SCOPE</p><h2>Affordable testing.<br /><em>No fuss.</em></h2><p>You pick a package, we agree the priorities, and I tell you exactly what you'll get.</p></div>
       <div class="plans">
-        {packages.map((pkg) => <article class:list={['plan', { featured: pkg.featured }]}>
-          {pkg.featured && <div class="featured-tag">GOOD FOR DEMOS</div>}
+        {packages.map((pkg) => <article class="plan">
           <p class="plan-hours">{pkg.hours} total · testing + reporting</p>
           <h3>{pkg.name}</h3><p class="plan-sub">{pkg.line}</p>
           <p class="price"><span>£</span>{pkg.price}</p>
           <p class="for">{pkg.for}</p><div class="plan-divider"></div>
           <p class="list-label">INCLUDED</p>
           <ul>{pkg.features.map((item) => <li><Icon name="tabler:check" aria-hidden="true" /> {item}</li>)}</ul>
-          <a class:list={['plan-link', { best: pkg.featured }]} href={enquiry(pkg.name)}>Enquire about {pkg.name} <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
+          <a class="plan-link" href={enquiry(pkg.name)}>Enquire about {pkg.name} <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
         </article>)}
       </div>
       <p class="pricing-fine">Introductory package prices in GBP, subject to agreed scope and device compatibility. One build per package. Retesting and further builds are separate. Applicable VAT, if any, will be confirmed in the quote; no VAT status is implied here.</p>
@@ -148,7 +147,7 @@ function enquiry(name: string) {
       <div class="faq-list">{faqs.map(([question, answer]) => <details><summary>{question}<Icon name="tabler:plus" aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
     </section>
 
-    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">YOUR GAME HAS COME THIS FAR</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Send me a little information about your game and I'll let you know how I can help. No pressure.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
+    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">KI10 GAMES / QA SERVICES</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Send me a little information about your game and I'll let you know how I can help. No pressure.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
   </main>
 </Layout>
 <style>
