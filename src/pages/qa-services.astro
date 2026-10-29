@@ -10,7 +10,7 @@ const packages = [
   { name: 'Indie Playtest', price: '£65', duration: '3 hours', description: 'More coverage for demos and important updates.', items: ['Targeted gameplay and progression checks', 'Prioritised bugs with reproduction steps', 'Usability and player-experience feedback', 'Screenshots or short clips where useful'] },
   { name: 'Release Readiness', price: '£120', duration: '6 hours', description: 'A deeper pass before a milestone or launch.', items: ['Agreed testing focus and coverage', 'Prioritised defect log with evidence', 'Progression, UI and save/load checks as applicable', 'Written summary and handover'] },
 ];
-const enquiry = (name) => 'mailto:business@ki10games.com?subject=' + encodeURIComponent('QA enquiry — ' + name) + '&body=' + encodeURIComponent('Hi Ki10 Games,\n\nGame name / link:\nPlatform and build availability:\nPreferred package:\nTarget date:\nAnything specific to test:\n\nThanks!');
+const enquiry = (name: string) => 'mailto:business@ki10games.com?subject=' + encodeURIComponent('QA enquiry — ' + name) + '&body=' + encodeURIComponent('Hi Ki10 Games,\n\nGame name / link:\nPlatform and build availability:\nPreferred package:\nTarget date:\nAnything specific to test:\n\nThanks!');
 ---
 <Layout metadata={metadata}>
   <main class="qa-page">
@@ -39,9 +39,73 @@ const enquiry = (name) => 'mailto:business@ki10games.com?subject=' + encodeURICo
       <ol><li><strong>Tell us about your game.</strong> Share the platform, build access, milestone and anything you want us to focus on.</li><li><strong>Agree the scope.</strong> We'll confirm compatibility, availability, delivery date and the best package before you book.</li><li><strong>We test and report.</strong> You'll receive clear defects, steps to reproduce, severity assessments and a concise summary.</li></ol>
     </section>
 
+
+    <section class="example" aria-labelledby="example-title">
+      <div class="split example-head">
+        <div>
+          <p class="eyebrow">See what you get</p>
+          <h2 id="example-title">A useful report, not a pile of vague feedback.</h2>
+        </div>
+        <div>
+          <p>Every issue we report aims to give your developer a clear starting point: what happened, how to reproduce it, why it matters and what evidence supports it. We also summarise the areas tested and noteworthy risks.</p>
+          <p class="small"><strong>Illustrative example:</strong> The sample below demonstrates our reporting format. It is fictional and is not a claim about a real client or game.</p>
+        </div>
+      </div>
+      <article class="example-card" aria-label="Illustrative game QA bug report">
+        <div class="example-top">
+          <span class="issue-id">BUG-001 · Gameplay / Progression</span>
+          <span class="severity">HIGH · Progression blocker</span>
+        </div>
+        <h3>Player cannot move after closing the inventory at a checkpoint</h3>
+        <dl class="issue-meta">
+          <div><dt>Build</dt><dd>Example PC build 0.1.0</dd></div>
+          <div><dt>Platform</dt><dd>Windows · Controller</dd></div>
+          <div><dt>Reproduction</dt><dd>Illustrative: 3 of 3 attempts</dd></div>
+          <div><dt>Status</dt><dd>New · Not retested</dd></div>
+        </dl>
+        <div class="issue-body">
+          <div>
+            <h4>Steps to reproduce</h4>
+            <ol>
+              <li>Load the example checkpoint save.</li>
+              <li>Open the inventory with the controller.</li>
+              <li>Close the inventory using the back button.</li>
+              <li>Attempt to move the character.</li>
+            </ol>
+          </div>
+          <div>
+            <h4>Expected result</h4>
+            <p>Movement resumes normally after closing the inventory.</p>
+            <h4>Actual result</h4>
+            <p>The camera responds, but character movement remains locked until the checkpoint is reloaded.</p>
+            <h4>Evidence</h4>
+            <p>A real report would attach the supporting clip or screenshot and relevant save/build details here.</p>
+          </div>
+        </div>
+      </article>
+      <p class="small">Your actual report is tailored to your game and the time booked. We won't invent issues or promise a minimum bug count.</p>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <p class="eyebrow">Good to know</p>
+      <h2 id="faq-title">Frequently asked questions.</h2>
+      <div class="faq-grid">
+        <div><h3>Which platforms can you test?</h3><p>Windows PC, Android and Steam Deck testing may be available, subject to confirming the specific build, requirements and devices before booking. We don't claim console certification or devkit coverage.</p></div>
+        <div><h3>What will I receive?</h3><p>A structured defect list with reproduction steps, severity and evidence where useful, plus a brief summary of test coverage and findings. We can agree a practical format for your workflow.</p></div>
+        <div><h3>How quickly can you test my game?</h3><p>We agree the testing window and delivery date before accepting the booking. Availability depends on build access and project scope.</p></div>
+        <div><h3>Can you sign an NDA?</h3><p>Yes. We can discuss a reasonable confidentiality agreement before you share an unreleased build. We won't share your assets or findings publicly without permission.</p></div>
+        <div><h3>Do the hours include reporting?</h3><p>Yes. Each package covers the agreed total time spent testing and documenting findings. If your game needs more coverage, we'll discuss it before any additional work.</p></div>
+        <div><h3>Does a package include retesting?</h3><p>Not automatically. Each package covers one agreed build. Retesting fixes or ongoing testing can be quoted separately.</p></div>
+        <div><h3>How does booking and payment work?</h3><p>Tell us about your game by email. We'll confirm that we can run it, agree the scope and price, and explain payment terms before work starts. There's no automated checkout.</p></div>
+        <div><h3>Can you guarantee my game is ready to release?</h3><p>No finite test can guarantee a bug-free release. We'll flag important issues and risks so you can make an informed shipping decision.</p></div>
+      </div>
+    </section>
+
     <section class="cta" aria-labelledby="cta-title"><p class="eyebrow">Let's make your next build stronger</p><h2 id="cta-title">Have a demo or launch coming up?</h2><p>Send us a few details. We'll tell you whether we can help, with no obligation to book.</p><a class="button" href={enquiry('New project')}>Email business@ki10games.com ↗</a><p class="small">Need to learn more about the studio? <a href="/projects">Explore our games</a> or <a href="/contact">visit our contact page</a>.</p></section>
   </main>
 </Layout>
 <style>
 .qa-page{--accent:#a53a13;--line:#8884;max-width:1200px;width:calc(100% - 3rem);margin:auto}.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:var(--aw-color-secondary)}.hero{padding:5rem 0 4rem;border-bottom:1px solid var(--line)}h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:850;letter-spacing:-.06em;line-height:1.06;margin:1rem 0 1.5rem}h1 span{color:var(--aw-color-secondary)}.lead{font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.7;max-width:65ch;color:var(--aw-color-text-muted)}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin:2rem 0}.button{display:inline-block;background:var(--accent);color:white!important;padding:.85rem 1.15rem;border-radius:.45rem;font-size:.9rem;font-weight:750;text-decoration:none!important}.button:hover{background:#7c2c0e}.subtle-link,.intro a,.small a{font-weight:700;text-decoration:underline;text-underline-offset:3px}.small{font-size:.83rem;color:var(--aw-color-text-muted);line-height:1.65}.split{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;padding:4rem 0;border-bottom:1px solid var(--line)}h2{font-size:clamp(2rem,3vw,3rem);font-weight:800;letter-spacing:-.045em;line-height:1.15;margin:.6rem 0 1.2rem}.split p,.split li{line-height:1.8;color:var(--aw-color-text-muted);margin-bottom:1rem}.packages{padding:4rem 0;border-bottom:1px solid var(--line);scroll-margin-top:6rem}.section-lead{color:var(--aw-color-text-muted);max-width:65ch;line-height:1.7}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin:2rem 0}.card{border:1px solid var(--line);border-radius:.9rem;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem}.card h3{font-size:1.5rem;font-weight:800}.price{font-size:2.6rem;font-weight:850;letter-spacing:-.05em}.card p:not(.eyebrow){color:var(--aw-color-text-muted);line-height:1.6}.card ul{list-style:disc;padding-left:1.2rem;line-height:1.75;flex:1}.card li{padding-bottom:.35rem}.card .button{text-align:center;margin-top:1rem}.process ol{list-style:decimal;padding-left:1.4rem}.process li{padding-left:.4rem}.cta{text-align:center;padding:4.5rem 1rem 5rem}.cta p{max-width:60ch;margin:0 auto 1.5rem;line-height:1.7;color:var(--aw-color-text-muted)}.cta .small{margin-top:1.5rem}@media(max-width:800px){.cards{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:1rem}.hero{padding:3rem 0}.qa-page{width:calc(100% - 2rem)}} 
+
+.example{padding:4rem 0;border-bottom:1px solid var(--line)}.example-head{border:0;padding:0 0 1rem}.example-head p{line-height:1.7}.example-card{padding:1.5rem;border:1px solid var(--line);border-radius:.85rem;background:rgba(125,125,125,.045);margin:1rem 0}.example-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;align-items:center}.issue-id{font-size:.76rem;font-weight:800;letter-spacing:.05em}.severity{font-size:.75rem;font-weight:750;padding:.4rem .6rem;background:#8b301b;color:#fff;border-radius:.3rem}.example-card h3{font-size:1.35rem;font-weight:800;margin:1.1rem 0}.issue-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;border-block:1px solid var(--line);padding:1rem 0}.issue-meta dt{font-size:.7rem;color:var(--aw-color-text-muted);font-weight:700;text-transform:uppercase}.issue-meta dd{font-size:.85rem;font-weight:650;margin:.25rem 0}.issue-body{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:1.25rem 0}.issue-body h4{font-size:.95rem;font-weight:800;margin:.55rem 0}.issue-body p,.issue-body li{font-size:.9rem;line-height:1.7;color:var(--aw-color-text-muted)}.issue-body ol{list-style:decimal;padding-left:1.25rem}.faq{padding:4rem 0;border-bottom:1px solid var(--line)}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem 3rem;margin-top:2rem}.faq-grid h3{font-size:1.05rem;font-weight:800;margin-bottom:.5rem}.faq-grid p{font-size:.93rem;line-height:1.75;color:var(--aw-color-text-muted)}@media(max-width:800px){.issue-meta{grid-template-columns:1fr 1fr}.issue-body,.faq-grid{grid-template-columns:1fr}}
 </style>
