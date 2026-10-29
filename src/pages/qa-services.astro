@@ -1,0 +1,47 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Affordable Indie Game QA Testing | Ki10 Games',
+  description: 'Professional manual game QA for solo developers and small studios. Fixed-price PC and Android testing from £25, with clear bug reports and practical feedback.',
+};
+const packages = [
+  { name: 'Quick Check', price: '£25', duration: '1 hour', description: 'A focused look at your latest build.', items: ['Exploratory manual testing', 'Concise bug report with reproduction steps', 'Screenshots where useful', 'Short findings summary'] },
+  { name: 'Indie Playtest', price: '£65', duration: '3 hours', description: 'More coverage for demos and important updates.', items: ['Targeted gameplay and progression checks', 'Prioritised bugs with reproduction steps', 'Usability and player-experience feedback', 'Screenshots or short clips where useful'] },
+  { name: 'Release Readiness', price: '£120', duration: '6 hours', description: 'A deeper pass before a milestone or launch.', items: ['Agreed testing focus and coverage', 'Prioritised defect log with evidence', 'Progression, UI and save/load checks as applicable', 'Written summary and handover'] },
+];
+const enquiry = (name) => 'mailto:business@ki10games.com?subject=' + encodeURIComponent('QA enquiry — ' + name) + '&body=' + encodeURIComponent('Hi Ki10 Games,\n\nGame name / link:\nPlatform and build availability:\nPreferred package:\nTarget date:\nAnything specific to test:\n\nThanks!');
+---
+<Layout metadata={metadata}>
+  <main class="qa-page">
+    <section class="hero">
+      <p class="eyebrow">Ki10 Games · QA Services</p>
+      <h1>Better builds.<br/><span>Indie-friendly prices.</span></h1>
+      <p class="lead">Professional manual game testing for solo developers and small teams. Clear, actionable bug reports without the cost or commitment of a full QA department.</p>
+      <div class="actions"><a class="button" href="#packages">Explore packages ↓</a><a class="subtle-link" href={enquiry('General enquiry')}>Tell us about your game ↗</a></div>
+      <p class="small">UK-based · Remote testing · Fixed-price packages</p>
+    </section>
+
+    <section class="intro split" aria-labelledby="why-title">
+      <div><p class="eyebrow">Made by developers, for developers</p><h2 id="why-title">An extra pair of experienced eyes.</h2></div>
+      <div><p>We know how much work goes into shipping an indie game. Ki10 Games makes games too, so we understand tight budgets, short deadlines and the value of feedback you can actually act on.</p><p>Our QA service is led by Mark McManus, with around nine years of professional game QA experience. You can explore his work history and game projects on <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">his professional portfolio ↗</a>.</p><p>We focus on hands-on manual testing: gameplay, progression, controls, UI, save/load behaviour and reproducible defects. No automation or platform certification is included.</p></div>
+    </section>
+
+    <section id="packages" class="packages" aria-labelledby="packages-title">
+      <p class="eyebrow">Straightforward pricing</p><h2 id="packages-title">Choose the right-sized pass.</h2>
+      <p class="section-lead">No long-term contract required. All prices are introductory fixed package prices in GBP, subject to confirming your build and scope.</p>
+      <div class="cards">{packages.map((pkg) => <article class="card"><p class="eyebrow">{pkg.duration} · Manual QA</p><h3>{pkg.name}</h3><div class="price">{pkg.price}</div><p>{pkg.description}</p><ul>{pkg.items.map((item) => <li>{item}</li>)}</ul><a class="button" href={enquiry(pkg.name)}>Enquire about {pkg.name} ↗</a></article>)}</div>
+      <p class="small">Testing and report writing are included within each package's allotted hours. One agreed build per booking. Available platforms and device coverage are confirmed before work starts; fixes and retesting are quoted separately. No testing pass can guarantee a bug-free release.</p>
+    </section>
+
+    <section class="split process" aria-labelledby="process-title">
+      <div><p class="eyebrow">How it works</p><h2 id="process-title">Simple from start to finish.</h2></div>
+      <ol><li><strong>Tell us about your game.</strong> Share the platform, build access, milestone and anything you want us to focus on.</li><li><strong>Agree the scope.</strong> We'll confirm compatibility, availability, delivery date and the best package before you book.</li><li><strong>We test and report.</strong> You'll receive clear defects, steps to reproduce, severity assessments and a concise summary.</li></ol>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title"><p class="eyebrow">Let's make your next build stronger</p><h2 id="cta-title">Have a demo or launch coming up?</h2><p>Send us a few details. We'll tell you whether we can help, with no obligation to book.</p><a class="button" href={enquiry('New project')}>Email business@ki10games.com ↗</a><p class="small">Need to learn more about the studio? <a href="/projects">Explore our games</a> or <a href="/contact">visit our contact page</a>.</p></section>
+  </main>
+</Layout>
+<style>
+.qa-page{--accent:#a53a13;--line:#8884;max-width:1200px;width:calc(100% - 3rem);margin:auto}.eyebrow{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:var(--aw-color-secondary)}.hero{padding:5rem 0 4rem;border-bottom:1px solid var(--line)}h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:850;letter-spacing:-.06em;line-height:1.06;margin:1rem 0 1.5rem}h1 span{color:var(--aw-color-secondary)}.lead{font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.7;max-width:65ch;color:var(--aw-color-text-muted)}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin:2rem 0}.button{display:inline-block;background:var(--accent);color:white!important;padding:.85rem 1.15rem;border-radius:.45rem;font-size:.9rem;font-weight:750;text-decoration:none!important}.button:hover{background:#7c2c0e}.subtle-link,.intro a,.small a{font-weight:700;text-decoration:underline;text-underline-offset:3px}.small{font-size:.83rem;color:var(--aw-color-text-muted);line-height:1.65}.split{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;padding:4rem 0;border-bottom:1px solid var(--line)}h2{font-size:clamp(2rem,3vw,3rem);font-weight:800;letter-spacing:-.045em;line-height:1.15;margin:.6rem 0 1.2rem}.split p,.split li{line-height:1.8;color:var(--aw-color-text-muted);margin-bottom:1rem}.packages{padding:4rem 0;border-bottom:1px solid var(--line);scroll-margin-top:6rem}.section-lead{color:var(--aw-color-text-muted);max-width:65ch;line-height:1.7}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin:2rem 0}.card{border:1px solid var(--line);border-radius:.9rem;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem}.card h3{font-size:1.5rem;font-weight:800}.price{font-size:2.6rem;font-weight:850;letter-spacing:-.05em}.card p:not(.eyebrow){color:var(--aw-color-text-muted);line-height:1.6}.card ul{list-style:disc;padding-left:1.2rem;line-height:1.75;flex:1}.card li{padding-bottom:.35rem}.card .button{text-align:center;margin-top:1rem}.process ol{list-style:decimal;padding-left:1.4rem}.process li{padding-left:.4rem}.cta{text-align:center;padding:4.5rem 1rem 5rem}.cta p{max-width:60ch;margin:0 auto 1.5rem;line-height:1.7;color:var(--aw-color-text-muted)}.cta .small{margin-top:1.5rem}@media(max-width:800px){.cards{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:1rem}.hero{padding:3rem 0}.qa-page{width:calc(100% - 2rem)}} 
+</style>
