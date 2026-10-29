@@ -3,7 +3,7 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated_: September 11, 2025
+_Last updated_: October 29, 2026
 
 This Privacy Policy describes how Ki10 Games ("the Company", "We", "Us", or "Our") collects, uses, and protects your information when you use our website, located at ki10games.com (the "Website"). It also explains your privacy rights and how the law protects you.
 
@@ -32,6 +32,7 @@ For the purposes of this Privacy Policy:
 We collect and process personal data that you voluntarily provide to us when you use our Website:
 
 - **When you contact us by email**: If you send an email to a public email address on our Website (e.g., contact@ki10games.com), we collect your email address and any other information you choose to include in your message. We process this data to respond to your inquiry and communicate with you.
+- **When you enquire about or book QA services**: We may process your contact and business billing details, project/build details, correspondence, agreed scope and invoice records to respond, fulfil the engagement and meet our legal/accounting obligations. Where a payment provider is used, that provider handles the payment details under its own applicable privacy notice. We do not ask you to send card numbers by email.
 - **When you sign up for our newsletter**: If you subscribe to our mailing list via our Mailchimp form, we collect your email address. We process this data to send you news, updates, and marketing communications about our projects.
 
 ### Data Collected Automatically (Usage Data)
@@ -48,6 +49,7 @@ We use your Personal Data for the following purposes:
 
 - **To provide and maintain our Website**, including monitoring its usage.
 - **To respond to your inquiries** when you contact us via email.
+- **To quote for and deliver QA services**, issue invoices, maintain accounting records and securely handle the project information you choose to share.
 - **To send you newsletters and promotional updates** if you have subscribed to our mailing list.
 - **To protect our legal interests** and comply with legal obligations.
 
@@ -55,7 +57,7 @@ We use your Personal Data for the following purposes:
 
 We do not sell your personal data. We may share your information with the following:
 
-- **Service Providers**: We use third-party services like **Mailchimp** to manage our mailing list. These providers are obligated to protect your data.
+- **Service Providers**: We use third-party services like **Mailchimp** to manage our mailing list. If you book paid work, we may also use a payment processor (such as Stripe) or business invoicing provider to send bills and process payments. Each provider processes data as necessary for its service, under the applicable arrangements.
 - **For legal purposes**: We may disclose your data if required to do so by law or in response to a valid request by a public authority.
 
 ## Retention of Your Personal Data
