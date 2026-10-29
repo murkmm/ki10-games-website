@@ -1,6 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import markPhoto from '~/assets/images/team-mark.webp';
 
 const metadata = {
   title: 'Indie Game QA Testing from £25 | Ki10 Games',
@@ -13,7 +15,7 @@ const packages = [
     name: 'Quick Check',
     price: '25',
     hours: '1 hour',
-    line: 'A fresh pair of experienced eyes.',
+    line: 'An extra check on a feature or build.',
     for: 'A new feature, a quick demo check or an early build',
     features: ['Focused exploratory testing', 'Clear defects with reproduction steps', 'Concise findings summary'],
   },
@@ -21,7 +23,7 @@ const packages = [
     name: 'Indie Playtest',
     price: '65',
     hours: '3 hours',
-    line: 'More confidence in your next build.',
+    line: 'A proper look at your demo or milestone.',
     for: 'Demos, development milestones and important updates',
     featured: true,
     features: ['Gameplay, controls, UI and progression checks', 'Prioritised defect list and evidence where useful', 'Practical usability observations and handover'],
@@ -30,7 +32,7 @@ const packages = [
     name: 'Release Readiness',
     price: '120',
     hours: '6 hours',
-    line: 'Make your last pass count.',
+    line: 'A bit more time before you release.',
     for: 'Upcoming showcases, demos and releases',
     features: ['Agreed risk-focused testing coverage', 'Bug reports with steps, severity and evidence', 'Written release-readiness summary'],
   },
@@ -65,66 +67,55 @@ function enquiry(name: string) {
     <section class="hero container">
       <div class="hero-copy">
         <p class="eyebrow hero-kicker"><span class="pulse"></span> KI10 GAMES / QA SERVICES</p>
-        <h1>Catch the bugs.<br /><em>Keep the fun.</em></h1>
-        <p class="hero-sub">Your indie game deserves a professional second look. Get <strong>real, hands-on QA</strong> from a tester with nine years of industry experience — at prices built for small studios.</p>
+        <h1>Need another pair of eyes on your game?</h1>
+        <p class="hero-sub">I'm Mark. I've spent <strong>10 years testing games professionally</strong>, and now I make my own at Ki10. If you need someone to put your demo or next build through its paces, I can help.</p>
         <div class="buttons">
-          <a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
-          <a class="btn ghost" href="#packages">See packages <Icon name="tabler:arrow-down" aria-hidden="true" /></a>
+          <a class="btn primary" href={enquiry('Project enquiry')}>Ask about testing <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
+          <a class="btn ghost" href="#packages">See prices <Icon name="tabler:arrow-down" aria-hidden="true" /></a>
         </div>
-        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £25 · No retainer · No obligation to enquire</p>
+        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £25 · No retainer · No pressure</p>
       </div>
-      <div class="hero-art" aria-label="Illustrative bug report panel">
-        <span class="halo"></span><span class="halo inner"></span>
-        <div class="stamp stamp-a"><Icon name="tabler:target-arrow" aria-hidden="true" /> PROGRESSION</div>
-        <div class="stamp stamp-b"><Icon name="tabler:device-gamepad-2" aria-hidden="true" /> CONTROLS</div>
-        <div class="terminal">
-          <div class="terminal-head"><span class="dots"><i></i><i></i><i></i></span><span>KI10 / QA REPORT</span><span class="fake">SAMPLE</span></div>
-          <div class="terminal-body">
-            <div class="code-line"><span>BUILD REVIEW // 001</span><Icon name="tabler:bug" aria-hidden="true" /></div>
-            <h2>A little issue.<br /><em>A clear way to fix it.</em></h2>
-            <div class="bug-ticket">
-              <div class="ticket-row"><span>BUG-001</span><strong>HIGH PRIORITY</strong></div>
-              <p>Movement locks after closing the inventory</p>
-              <div class="chips"><span>Input</span><span>3 / 3 repro</span><span>Windows</span></div>
-            </div>
-            <div class="expected"><div><small>EXPECTED</small><p>Movement resumes</p></div><div><small>ACTUAL</small><p>Player remains stuck</p></div></div>
-            <div class="terminal-bottom"><span class="led"></span> STEPS · SEVERITY · EVIDENCE</div>
-          </div>
+      <aside class="tester-card">
+        <div class="tester-head">
+          <Image src={markPhoto} alt="Mark McManus, Ki10 Games co-founder" width={94} height={94} class="tester-photo" loading="eager" />
+          <div><p class="eyebrow">Your tester</p><h2>Mark McManus</h2><p>Ki10 Games co-founder</p></div>
         </div>
-        <p class="art-note">Illustrative report example — not real client work</p>
-      </div>
+        <p>I've been working in games QA for 10 years. I know the difference between a report that helps you fix something and one that just leaves you with more questions.</p>
+        <p class="personal">I make games too, so I know there's never enough time or money to test absolutely everything. I'll help you concentrate on the bits that matter most.</p>
+        <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">Read about my experience <span aria-hidden="true">↗</span></a>
+      </aside>
     </section>
 
     <section class="credentials">
       <div class="container credentials-grid">
-        <div><strong>9 years</strong><span>Professional game QA experience</span></div>
-        <div><strong>Game developers</strong><span>We build and ship our own games</span></div>
+        <div><strong>10 years</strong><span>Professional game QA experience</span></div>
+        <div><strong>We make games too</strong><span>We understand small-team budgets</span></div>
         <div><strong>UK-based</strong><span>Remote support for small studios</span></div>
-        <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">See Mark's work history <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
+        <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">Read about Mark’s work <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
       </div>
     </section>
 
     <section class="section container">
-      <div class="heading-grid"><div><p class="eyebrow orange">WHY KI10?</p><h2>Not just “I played it.”<br /><em>Here's what broke.</em></h2></div><p>We know what it's like to ship a game with a tiny team. Your budget is limited and every fix matters. We turn play sessions into practical findings you can actually investigate.</p></div>
+      <div class="heading-grid"><div><p class="eyebrow orange">WHY KI10?</p><h2>Useful feedback.<br /><em>Clear bugs.</em></h2></div><p>We know what it’s like to be a small team getting ready to ship. We’ll spend the agreed time testing the areas you care about, then give you findings you can use.</p></div>
       <div class="benefits">
         <article><span class="benefit-icon"><Icon name="tabler:route" aria-hidden="true" /></span><h3>Find the blockers</h3><p>Progression problems, soft locks, broken objectives and gameplay edge cases.</p></article>
         <article><span class="benefit-icon"><Icon name="tabler:device-gamepad-2" aria-hidden="true" /></span><h3>Understand the friction</h3><p>Controller quirks, usability issues, confusing UI and moments where players get stuck.</p></article>
-        <article><span class="benefit-icon"><Icon name="tabler:clipboard-check" aria-hidden="true" /></span><h3>Make the fixes easier</h3><p>Reports with reproduction steps, severity and supporting screenshots or clips where useful.</p></article>
+        <article><span class="benefit-icon"><Icon name="tabler:clipboard-check" aria-hidden="true" /></span><h3>Give you something to work with</h3><p>Reports with reproduction steps, severity and supporting screenshots or clips where useful.</p></article>
       </div>
     </section>
 
     <section class="milestone"><div class="container">
       <p class="eyebrow">THE RIGHT TIME FOR QA</p>
-      <h2>A demo. An update. A release.<br /><em>Get another set of eyes.</em></h2>
-      <p>Whether you're preparing for a showcase, releasing your first public build or trying to tidy up a tricky feature, we'll agree on the most useful test focus before you spend a penny.</p>
-      <a href={enquiry('Milestone testing')} class="text-cta">Talk through your next milestone <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
+      <h2>A demo coming up?<br /><em>Let's give it a proper test.</em></h2>
+      <p>If you’re working alone, it can be difficult to see problems in a game you know inside out. Tell me what you're getting ready for and we'll work out what needs checking.</p>
+      <a href={enquiry('Milestone testing')} class="text-cta">Tell me about your game <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
     </div></section>
 
     <section id="packages" class="section container pricing">
-      <div class="center"><p class="eyebrow orange">FIXED PRICES · FLEXIBLE SCOPE</p><h2>Professional QA.<br /><em>Indie-sized budget.</em></h2><p>No long contracts. No mysterious day rates. A defined number of hours and a clear deliverable.</p></div>
+      <div class="center"><p class="eyebrow orange">FIXED PRICES · FLEXIBLE SCOPE</p><h2>Affordable testing.<br /><em>No fuss.</em></h2><p>You pick a package, we agree the priorities, and I tell you exactly what you'll get.</p></div>
       <div class="plans">
         {packages.map((pkg) => <article class:list={['plan', { featured: pkg.featured }]}>
-          {pkg.featured && <div class="featured-tag"><Icon name="tabler:star-filled" aria-hidden="true" /> MOST POPULAR STARTING POINT</div>}
+          {pkg.featured && <div class="featured-tag">GOOD FOR DEMOS</div>}
           <p class="plan-hours">{pkg.hours} total · testing + reporting</p>
           <h3>{pkg.name}</h3><p class="plan-sub">{pkg.line}</p>
           <p class="price"><span>£</span>{pkg.price}</p>
@@ -148,33 +139,93 @@ function enquiry(name: string) {
     </section>
 
     <section class="booking"><div class="container booking-grid">
-      <div><p class="eyebrow">SIMPLE FROM THE FIRST EMAIL</p><h2>No awkward process.<br /><em>Just useful testing.</em></h2><p>We don't take payment on this page. We check your game and agree what you'll get first. Then you receive an invoice, so everything is clear before work starts.</p><a class="btn light" href={enquiry('New project')}>Start an enquiry <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
+      <div><p class="eyebrow">SIMPLE FROM THE FIRST EMAIL</p><h2>A straightforward way<br /><em>to get your game tested.</em></h2><p>We don't take payment on this page. We check your game and agree what you'll get first. Then you receive an invoice, so everything is clear before work starts.</p><a class="btn light" href={enquiry('New project')}>Start an enquiry <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
       <ol><li><span>01</span><div><strong>Tell us about your game</strong><p>Share your platform, build requirements and next milestone.</p></div></li><li><span>02</span><div><strong>Agree your package</strong><p>We confirm compatibility, focus areas, the delivery date and price.</p></div></li><li><span>03</span><div><strong>Approve and pay</strong><p>We send an invoice with payment instructions. Small bookings are paid upfront.</p></div></li><li><span>04</span><div><strong>Get your findings</strong><p>Receive prioritised issues, evidence where relevant and a short summary.</p></div></li></ol>
     </div></section>
 
     <section class="section container faq">
-      <div class="heading-grid"><div><p class="eyebrow orange">QUESTIONS?</p><h2>The practical stuff,<br /><em>sorted.</em></h2></div><p>No surprises. Here's how booking works and what you can expect. If you need something different, just ask.</p></div>
+      <div class="heading-grid"><div><p class="eyebrow orange">QUESTIONS?</p><h2>A few things<br /><em>worth knowing.</em></h2></div><p>No surprises. Here's how booking works and what you can expect. If you need something different, just ask.</p></div>
       <div class="faq-list">{faqs.map(([question, answer]) => <details><summary>{question}<Icon name="tabler:plus" aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
     </section>
 
-    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">YOUR GAME HAS COME THIS FAR</p><h2>Let's catch the issues<br /><em>before your players do.</em></h2><p>Tell us a little about your game. We'll help you pick a sensible test scope, without a hard sell.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
+    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">YOUR GAME HAS COME THIS FAR</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Send me a little information about your game and I'll let you know how I can help. No pressure.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
   </main>
 </Layout>
 <style>
-.qa{--hot:#ad451d;--ink:#202723;--dark:#18231f;--border:#858d853b;overflow:hidden}
-.container{max-width:1200px;width:calc(100% - 3rem);margin-inline:auto}.qa em{font-style:normal;color:#af491f}.eyebrow{font-size:.7rem;font-weight:850;letter-spacing:.13em;line-height:1.4}.orange{color:#b0491c}
-.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;min-height:640px;padding-block:4rem}.hero-kicker{color:var(--aw-color-text-muted);display:flex;align-items:center;gap:.65rem}.pulse{height:9px;width:9px;border-radius:50%;background:#b95c30;box-shadow:0 0 0 5px #b95c3024}.hero h1{font-size:clamp(3.3rem,6vw,6.1rem);line-height:1;letter-spacing:-.07em;font-weight:900;max-width:12ch;margin:1.3rem 0 1.8rem}.hero-sub{font-size:clamp(1.08rem,1.8vw,1.22rem);color:var(--aw-color-text-muted);line-height:1.7;max-width:48ch}.hero-sub strong{color:var(--aw-color-text)}
-.buttons{display:flex;gap:.75rem;flex-wrap:wrap;margin:2rem 0 1.1rem}.btn{display:inline-flex;gap:.6rem;align-items:center;justify-content:center;padding:.9rem 1.15rem;border-radius:8px;text-decoration:none!important;font-size:.88rem;font-weight:800;transition:transform .2s}.btn:hover,.plan-link:hover{transform:translateY(-2px)}.btn :global(svg),.text-cta :global(svg),.credentials a :global(svg),.custom a :global(svg),.plan-link :global(svg){width:17px;height:17px;flex:none}.primary{background:#ac421a;color:#fff!important;box-shadow:0 8px 25px #ad451d2b}.primary:hover{background:#8a3514}.ghost{color:var(--aw-color-text)!important;border:1px solid var(--border)}.hero-note{display:flex;gap:.5rem;align-items:center;color:var(--aw-color-text-muted);font-size:.8rem}.hero-note :global(svg){width:17px;height:17px;color:#4a966d}
-.hero-art{position:relative;min-height:500px;display:grid;place-items:center}.halo{position:absolute;inset:4% 1%;border:1px solid #b8805f4d;border-radius:50%;transform:rotate(24deg)}.halo.inner{inset:12% -2%;transform:rotate(-20deg)}.stamp{position:absolute;z-index:3;background:#24342c;color:#ffe2bf;border:1px solid #8b9a8d77;box-shadow:0 8px 28px #0004;padding:.65rem .8rem;border-radius:6px;letter-spacing:.1em;font:800 .66rem ui-monospace,monospace;display:flex;align-items:center;gap:.4rem}.stamp :global(svg){width:16px;height:16px;color:#f0a26c}.stamp-a{right:0;top:7%;transform:rotate(7deg)}.stamp-b{left:1%;bottom:19%;transform:rotate(-5deg)}.terminal{position:relative;z-index:1;width:96%;max-width:545px;background:#18241e;color:#edf4ed;border-radius:16px;overflow:hidden;transform:rotate(-2deg);box-shadow:0 35px 85px #0c231e46;border:1px solid #6b7d6e}.terminal-head{display:flex;align-items:center;gap:.9rem;padding:.8rem 1.1rem;background:#2a3a31;border-bottom:1px solid #617064;font:700 .61rem ui-monospace,monospace;letter-spacing:.12em;color:#c1cfbf}.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:#bd7655}.dots i:nth-child(2){background:#d3ae69}.dots i:nth-child(3){background:#8bc19c}.fake{margin-left:auto;color:#ffb27d;background:#3b503f;padding:.2rem .4rem;border-radius:3px}.terminal-body{padding:2rem}.code-line{display:flex;align-items:center;justify-content:space-between;color:#f1ad7d;font:700 .67rem ui-monospace,monospace;letter-spacing:.1em}.code-line :global(svg){width:22px;height:22px}.terminal h2{font-size:clamp(1.5rem,2.7vw,2.25rem);font-weight:850;line-height:1.15;letter-spacing:-.045em;margin:1.2rem 0 1.5rem}.terminal h2 em{color:#b2c5b7}.bug-ticket{padding:1rem;border-radius:9px;background:#2a3d31;border:1px solid #637764}.ticket-row{display:flex;justify-content:space-between;gap:.3rem;font:800 .65rem ui-monospace,monospace;color:#c4d4c6}.ticket-row strong{color:#ffe3ca;background:#874225;padding:.33rem .5rem;border-radius:3px;font-size:.6rem}.bug-ticket p{font-size:1.05rem;line-height:1.35;font-weight:750;margin:1rem 0}.chips{display:flex;gap:.45rem;flex-wrap:wrap}.chips span{font:700 .66rem ui-monospace,monospace;color:#d9e6d9;background:#3c5241;padding:.3rem .5rem;border-radius:4px}.expected{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.75rem}.expected div{background:#2a3d31;border-radius:6px;padding:.8rem}.expected small{font:800 .6rem ui-monospace,monospace;color:#f0ab79}.expected p{font-size:.8rem;margin:.3rem 0 0}.terminal-bottom{display:flex;align-items:center;gap:.45rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid #667969;font:700 .63rem ui-monospace,monospace;color:#afc6b2}.led{height:7px;width:7px;border-radius:50%;background:#73d49d}.art-note{position:absolute;right:1rem;bottom:0;color:var(--aw-color-text-muted);font-size:.72rem}
-.credentials{background:#1b2520;color:#f5f4ef}.credentials-grid{display:grid;grid-template-columns:repeat(3,1fr) 1.2fr;gap:1.6rem;align-items:center;padding-block:1.6rem}.credentials-grid>div{display:flex;flex-direction:column;gap:.25rem;border-right:1px solid #71807566}.credentials strong{font-size:1.2rem;font-weight:850;letter-spacing:-.03em}.credentials span{font-size:.74rem;color:#b5c2b4}.credentials a{display:inline-flex;align-items:center;gap:.3rem;color:#ffac77;font-weight:800;font-size:.82rem}
-.section{padding-block:5.4rem}.heading-grid{display:grid;grid-template-columns:1fr .85fr;align-items:center;gap:3rem;margin-bottom:2rem}.section h2,.milestone h2,.booking h2,.bottom h2{font-size:clamp(2.2rem,4.6vw,4.6rem);font-weight:900;line-height:1.07;letter-spacing:-.06em;margin-top:.85rem}.heading-grid>p,.heading-grid>div:last-child:not(:first-child){color:var(--aw-color-text-muted);line-height:1.8;font-size:1.03rem}.heading-grid>div:last-child p+p{margin-top:.7rem}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.benefits article{border-radius:13px;border:1px solid var(--border);padding:1.8rem;background:#99999908}.benefit-icon{display:grid;place-items:center;width:47px;height:47px;border-radius:10px;background:#b9532118;color:#b34b1e}.benefit-icon :global(svg){width:24px;height:24px}.benefits h3{font-size:1.25rem;font-weight:850;letter-spacing:-.025em;margin:1.2rem 0 .6rem}.benefits p{font-size:.91rem;line-height:1.75;color:var(--aw-color-text-muted)}
-.milestone{background:#e9e4d8;color:#24302a;padding-block:4.6rem;position:relative}.milestone:before{content:'';position:absolute;inset:0;opacity:.15;background-image:linear-gradient(#83928270 1px,transparent 1px),linear-gradient(90deg,#83928270 1px,transparent 1px);background-size:48px 48px;pointer-events:none}.milestone>.container{position:relative}.milestone h2{color:#25332c;margin:.9rem 0 1.4rem}.milestone .eyebrow{color:#9b3d16}.milestone p:not(.eyebrow){line-height:1.75;max-width:670px;color:#546054}.text-cta{display:inline-flex;gap:.5rem;align-items:center;margin-top:1.5rem;color:#a63f18;font-weight:850;text-decoration:underline;text-underline-offset:5px}
-.center{text-align:center;max-width:760px;margin:0 auto 3.1rem}.center p:last-child{margin-top:1rem;line-height:1.7;color:var(--aw-color-text-muted)}.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.plan{position:relative;display:flex;flex-direction:column;padding:2rem 1.5rem;border:1px solid var(--border);border-radius:14px;background:#99999908}.plan.featured{background:#202c25;border:2px solid #bd724d;color:#f2f6ee;box-shadow:0 20px 55px #16251e27}.featured-tag{position:absolute;top:-17px;left:1rem;display:flex;align-items:center;gap:.4rem;border-radius:5px;padding:.55rem .8rem;color:#fff;background:#af471f;font-size:.67rem;font-weight:850;letter-spacing:.07em}.featured-tag :global(svg){width:13px;height:13px}.plan-hours{font-size:.68rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase;color:#ad4b20}.featured .plan-hours{color:#eda676}.plan h3{font-size:1.55rem;font-weight:850;letter-spacing:-.04em;margin:.8rem 0 .3rem}.plan-sub{font-size:.87rem;color:var(--aw-color-text-muted)}.featured .plan-sub{color:#c2cfc2}.price{font-size:4.1rem;font-weight:900;letter-spacing:-.07em;margin:1.1rem 0 .35rem}.price span{font-size:2rem;vertical-align:top;margin-right:.12rem}.for{min-height:3.2rem;font-size:.85rem;line-height:1.5;color:var(--aw-color-text-muted)}.featured .for{color:#c2cfc2}.plan-divider{margin:1.25rem 0;height:1px;background:var(--border)}.featured .plan-divider{background:#748475}.list-label{font-size:.67rem;font-weight:850;color:#a8481b;letter-spacing:.1em;margin-bottom:1rem}.featured .list-label{color:#eda676}.plan ul{display:grid;gap:.85rem;flex:1;margin-bottom:1.8rem}.plan li{display:flex;align-items:flex-start;gap:.5rem;font-size:.88rem;line-height:1.55}.plan li :global(svg){width:17px;height:17px;flex:none;color:#bd5824}.featured .plan li :global(svg){color:#f4a472}.plan-link{display:flex;justify-content:center;align-items:center;gap:.4rem;padding:.9rem .5rem;border:1px solid var(--border);border-radius:8px;font-weight:800;font-size:.81rem;text-decoration:none!important;transition:transform .2s}.plan-link.best{background:#eca46f;color:#1b2a21;border-color:#eca46f}.pricing-fine{margin:1.3rem auto;text-align:center;max-width:80ch;font-size:.78rem;line-height:1.7;color:var(--aw-color-text-muted)}.custom{display:flex;align-items:center;gap:1rem;border:1px solid var(--border);border-radius:11px;padding:1.4rem;margin-top:2rem}.custom>:global(svg){width:30px;height:30px;color:#bd4e1c;flex:none}.custom>div{flex:1}.custom strong{font-size:.95rem;font-weight:850}.custom p{font-size:.85rem;color:var(--aw-color-text-muted)}.custom a{display:flex;gap:.4rem;align-items:center;white-space:nowrap;font-weight:850}
-.sample-section{border-top:1px solid var(--border)}.sample-disclaimer{font-size:.83rem}.sample{border:1px solid var(--border);border-radius:13px;overflow:hidden;box-shadow:0 20px 45px #0000000a}.sample-top{background:#243029;color:#f5f2ed;padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}.sample-top span{font-size:.69rem;font-weight:850;letter-spacing:.13em;color:#eea97c}.sample-top h3{font-size:1.35rem;font-weight:850;margin-top:.45rem}.sample-top>strong{display:flex;gap:.5rem;align-items:center;background:#803c23;border-radius:6px;padding:.5rem .7rem;color:#ffe0ca;white-space:nowrap;font-size:.73rem}.sample-top :global(svg){width:16px;height:16px}.sample-details{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;border-bottom:1px solid var(--border);padding:1.2rem 2rem}.sample-details div{display:grid;gap:.25rem}.sample-details small{font-size:.65rem;color:var(--aw-color-text-muted);letter-spacing:.1em;font-weight:850}.sample-details strong{font-size:.82rem}.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;padding:1.7rem 2rem}.sample h4{font-size:.79rem;color:#ac461c;font-weight:850;letter-spacing:.08em;margin:0 0 .5rem}.sample ol{list-style:decimal;padding-left:1.2rem}.sample li,.sample p{font-size:.9rem;color:var(--aw-color-text-muted);line-height:1.9}.sample-grid h4:not(:first-child){margin-top:1rem}
-.booking{background:#192520;color:#f2f5ef;padding-block:5rem}.booking-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:start}.booking h2{color:#f6f6f1;margin:.9rem 0 1.2rem}.booking h2 em{color:#e9a475}.booking .eyebrow{color:#eda477}.booking-grid>div>p:not(.eyebrow){color:#c4d1c6;line-height:1.75;margin-bottom:1.5rem}.btn.light{background:#f5f1e6;color:#263027}.booking ol{list-style:none}.booking li{display:flex;gap:1.5rem;padding:1.3rem 0;border-bottom:1px solid #5a6c5e}.booking li>span{font:850 1.3rem ui-monospace,monospace;color:#e6a277}.booking li strong{font-size:1.05rem}.booking li p{font-size:.87rem;color:#b9cabc;line-height:1.75;margin-top:.25rem}
-.faq-list{border-top:1px solid var(--border);max-width:990px}.faq details{border-bottom:1px solid var(--border)}.faq summary{list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center;cursor:pointer;padding:1.2rem .2rem;font-weight:850}.faq summary::-webkit-details-marker{display:none}.faq summary :global(svg){height:19px;width:19px;color:#b54e20;flex:none}.faq details[open] summary :global(svg){transform:rotate(45deg)}.faq details p{padding:0 1rem 1.3rem .2rem;font-size:.9rem;color:var(--aw-color-text-muted);line-height:1.75}
-.bottom{padding-bottom:5rem}.bottom-panel{text-align:center;background:#e9e2d6;color:#27312b;padding:4.2rem 2rem;border-radius:17px}.bottom h2{color:#263129;margin:.9rem 0 1.2rem}.bottom .eyebrow{color:#9f401a}.bottom-panel>p:not(.eyebrow){max-width:650px;margin:auto;line-height:1.7;color:#506052}.bottom .buttons{justify-content:center}.outline{border:1px solid #899786;color:#263027!important}.bottom .email{font-size:.8rem}.bottom .email a{font-weight:850;text-decoration:underline}
-@media(max-width:1100px){.credentials-grid{grid-template-columns:1fr 1fr}.credentials-grid>div{border:0}.stamp-a{right:0}.stamp-b{left:0}}
-@media(max-width:820px){.hero{grid-template-columns:1fr;padding-block:3rem;gap:1rem}.hero-art{min-height:475px}.heading-grid,.booking-grid{grid-template-columns:1fr;gap:1.2rem}.benefits,.plans{grid-template-columns:1fr}.plan{max-width:650px;width:100%;margin-inline:auto}.section{padding-block:4rem}.custom{flex-wrap:wrap}}
-@media(max-width:540px){.container{width:calc(100% - 2rem)}.hero h1{font-size:clamp(3rem,11vw,4.2rem)}.hero-art{min-height:370px}.terminal-body{padding:1.15rem}.terminal h2{font-size:1.35rem}.stamp{display:none}.art-note{font-size:.63rem;right:0}.credentials-grid{grid-template-columns:1fr 1fr;gap:1rem}.credentials-grid a{grid-column:1/-1}.sample-top{flex-direction:column;align-items:flex-start;padding:1.1rem}.sample-details{grid-template-columns:1fr 1fr;padding:1rem}.sample-grid{grid-template-columns:1fr;padding:1.3rem;gap:1.1rem}.sample-top>strong{font-size:.65rem}.booking{padding-block:3.5rem}.bottom-panel{padding:3rem 1rem}.custom a{width:100%}}
+.qa{--line:#dedbd4;--surface:#f7f5ef;--ink:#242621;--muted:#63675f;--ember:#a53a13;color:var(--ink)}
+:global(.dark) .qa{--line:#33372e;--surface:#1b1e19;--ink:#f2f3e9;--muted:#c4c9bc;--ember:#f7a35a}
+.container{max-width:1200px;width:calc(100% - 3rem);margin-inline:auto}
+.eyebrow{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember)}
+.hero{display:grid;grid-template-columns:1.3fr .8fr;align-items:center;gap:4rem;padding-block:4.3rem 4.7rem}
+.hero h1{font-size:clamp(2.8rem,5vw,4.7rem);line-height:1.08;letter-spacing:-.06em;font-weight:800;max-width:13ch;margin:1rem 0 1.6rem}
+.hero-sub{font-size:1.08rem;line-height:1.85;color:var(--muted);max-width:55ch}
+.hero-sub strong{color:var(--ink)}
+.buttons{display:flex;flex-wrap:wrap;align-items:center;gap:1.3rem;margin:2rem 0 1rem}
+.btn{display:inline-flex;gap:1.2rem;align-items:center;justify-content:center;padding:.88rem 1.15rem;font-size:.88rem;font-weight:750;border-radius:.4rem;text-decoration:none!important}
+.btn :global(svg),.text-cta :global(svg),.credentials a :global(svg),.custom a :global(svg),.plan-link :global(svg){width:17px;height:17px;flex:none}
+.primary{color:white!important;background:#a53a13}.primary:hover{background:#7e2d11}.ghost{color:var(--ink)!important;text-decoration:underline!important;text-underline-offset:4px}.hero-note{font-size:.8rem;color:var(--muted);display:flex;align-items:center;gap:.45rem}.hero-note :global(svg){width:16px;height:16px;color:#55896a}
+.tester-card{border:1px solid var(--line);border-radius:.6rem;background:var(--surface);padding:1.8rem}
+.tester-head{display:flex;align-items:center;gap:1rem;padding-bottom:1.3rem;border-bottom:1px solid var(--line)}
+.tester-head :global(img){width:88px;height:88px;object-fit:cover;border-radius:50%;flex:none}
+.tester-head h2{font-size:1.4rem;font-weight:800;margin:.25rem 0}
+.tester-head p:last-child{font-size:.83rem;color:var(--muted)}
+.tester-card>p{font-size:.96rem;line-height:1.85;margin-top:1.3rem}.tester-card>.personal{color:var(--muted)}
+.tester-card>a{display:inline-block;margin-top:1.4rem;font-size:.89rem;font-weight:750;text-decoration:underline;text-underline-offset:4px}
+.credentials{background:#242621;color:#f5f3ed}
+.credentials-grid{display:grid;grid-template-columns:repeat(3,1fr) 1.2fr;gap:1.6rem;align-items:center;padding-block:1.6rem}
+.credentials-grid>div{display:flex;flex-direction:column;gap:.35rem;border-right:1px solid #ffffff40}
+.credentials strong{font-size:1.13rem;font-weight:800}.credentials span{font-size:.79rem;color:#d5d8d2}
+.credentials a{font-weight:750;font-size:.85rem;color:#f4b386;display:inline-flex;align-items:center;gap:.4rem}
+.section{padding-block:4.5rem}.heading-grid{display:grid;grid-template-columns:1fr .85fr;align-items:center;gap:3rem;margin-bottom:2rem}
+.section h2,.milestone h2,.booking h2,.bottom h2{font-size:clamp(2.05rem,3.8vw,3.4rem);font-weight:800;line-height:1.15;letter-spacing:-.045em;margin:.75rem 0 1rem}
+.qa em{font-style:normal;color:var(--ember)}
+.heading-grid>p,.heading-grid>div:last-child:not(:first-child){font-size:1rem;color:var(--muted);line-height:1.8}
+.heading-grid>div:last-child p+p{margin-top:.7rem}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.benefits article{border-top:2px solid var(--line);padding-top:1.4rem}
+.benefit-icon{color:var(--ember)}.benefit-icon :global(svg){width:24px;height:24px}
+.benefits h3{font-size:1.18rem;font-weight:800;margin:.95rem 0 .5rem}.benefits p{font-size:.92rem;line-height:1.75;color:var(--muted)}
+.milestone{padding-block:3.6rem;background:var(--surface);border-block:1px solid var(--line)}
+.milestone .container{max-width:1200px}.milestone h2{margin:1rem 0}.milestone p:not(.eyebrow){line-height:1.75;color:var(--muted);max-width:700px}
+.text-cta{display:inline-flex;gap:.6rem;align-items:center;margin-top:1.2rem;font-weight:750;text-decoration:underline;text-underline-offset:4px}
+.center{text-align:center;max-width:730px;margin:0 auto 2.7rem}.center p:last-child{line-height:1.75;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.plan{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:.6rem;padding:1.6rem;background:var(--surface)}
+.plan.featured{border-color:#a53a1380}
+.featured-tag{position:absolute;top:-13px;right:1rem;background:#a53a13;color:white;font-size:.65rem;font-weight:800;letter-spacing:.08em;padding:.4rem .7rem;border-radius:.3rem}
+.plan-hours{font-size:.75rem;color:var(--muted)}.plan h3{font-size:1.4rem;font-weight:800;margin:.8rem 0 .3rem}
+.plan-sub{font-size:.9rem;color:var(--muted);min-height:2.7rem}.price{font-size:2.9rem;font-weight:850;letter-spacing:-.05em;margin:.9rem 0}
+.price span{font-size:2rem}.for{font-size:.87rem;color:var(--muted);line-height:1.6;min-height:3rem}
+.plan-divider{border-top:1px solid var(--line);margin:1.1rem 0}.list-label{font-size:.72rem;font-weight:750;color:var(--ember)}
+.plan ul{display:grid;gap:.75rem;flex:1;margin:1rem 0 1.8rem}.plan li{display:flex;align-items:flex-start;gap:.5rem;font-size:.89rem;line-height:1.5}
+.plan li :global(svg){width:16px;height:16px;flex:none;color:var(--ember)}
+.plan-link{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--line);font-weight:750;font-size:.85rem}
+.plan-link:hover{text-decoration:underline}.pricing-fine{font-size:.78rem;line-height:1.75;color:var(--muted);margin-top:1.4rem}
+.custom{border-top:1px solid var(--line);margin-top:2rem;padding-top:1.3rem;display:flex;align-items:center;gap:1rem}
+.custom>:global(svg){width:24px;height:24px;color:var(--ember);flex:none}.custom>div{flex:1}
+.custom strong{font-weight:750}.custom p{font-size:.89rem;color:var(--muted);margin-top:.2rem}.custom a{font-size:.88rem;white-space:nowrap;font-weight:750;display:flex;gap:.4rem;align-items:center;text-decoration:underline}
+.sample-section{border-top:1px solid var(--line)}.sample-disclaimer{font-size:.83rem}
+.sample{border:1px solid var(--line);border-radius:.6rem;overflow:hidden;background:var(--surface)}
+.sample-top{padding:1.4rem 1.6rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;border-bottom:1px solid var(--line)}
+.sample-top span{font-size:.7rem;font-weight:750;color:var(--ember)}.sample-top h3{font-size:1.3rem;font-weight:800;margin-top:.5rem}
+.sample-top>strong{display:flex;align-items:center;gap:.4rem;font-size:.8rem;white-space:nowrap}.sample-top :global(svg){width:17px;height:17px}
+.sample-details{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:1.2rem 1.6rem;border-bottom:1px solid var(--line)}
+.sample-details div{display:grid;gap:.35rem}.sample-details small{font-size:.7rem;color:var(--muted)}.sample-details strong{font-size:.84rem}
+.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:1.5rem 1.6rem}
+.sample h4{font-size:.8rem;text-transform:uppercase;color:var(--ember);font-weight:800;margin:.5rem 0}.sample ol{list-style:decimal;padding-left:1.2rem}
+.sample li,.sample p{font-size:.91rem;line-height:1.8;color:var(--muted)}.sample-grid h4:not(:first-child){margin-top:1rem}
+.booking{padding-block:4.3rem;background:#242621;color:#f4f4ed}
+.booking-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem}.booking .eyebrow{color:#f1b58f}.booking h2{color:#f4f4ed}
+.booking h2 em{color:#f1b58f}.booking-grid>div>p:not(.eyebrow){color:#d6dad0;line-height:1.8;margin-bottom:1.4rem}
+.btn.light{background:#f6f3e9;color:#242621}.booking ol{list-style:none}.booking li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid #ffffff3b}
+.booking li>span{min-width:2rem;font-size:1.1rem;font-weight:800;color:#f1b58f}.booking li p{margin-top:.3rem;font-size:.89rem;line-height:1.75;color:#d1d8cf}
+.faq-list{max-width:950px;border-top:1px solid var(--line)}.faq details{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;list-style:none;padding:1.2rem .2rem;cursor:pointer;font-weight:750}.faq summary::-webkit-details-marker{display:none}
+.faq summary :global(svg){width:18px;height:18px;color:var(--ember)}.faq details[open] summary :global(svg){transform:rotate(45deg)}
+.faq details p{font-size:.91rem;line-height:1.8;color:var(--muted);padding:0 1.2rem 1.3rem .2rem}
+.bottom{padding-bottom:4.5rem}.bottom-panel{padding:3.5rem;background:var(--surface);border:1px solid var(--line);border-radius:.7rem}
+.bottom h2{margin:.9rem 0 1.2rem}.bottom-panel>p:not(.eyebrow){max-width:650px;color:var(--muted);line-height:1.8}
+.bottom .buttons{justify-content:flex-start}.outline{color:var(--ink);text-decoration:underline!important}
+.bottom .email{font-size:.83rem}.bottom .email a{text-decoration:underline}
+@media(max-width:950px){.hero{grid-template-columns:1fr;gap:2rem}.tester-card{max-width:650px}.credentials-grid{grid-template-columns:1fr 1fr}.credentials-grid>div{border:0}.heading-grid,.booking-grid{grid-template-columns:1fr;gap:1rem}.benefits,.plans{grid-template-columns:1fr}.plan{max-width:750px;width:100%;margin:auto}.plan-sub,.for{min-height:auto}}
+@media(max-width:600px){.container{width:calc(100% - 2rem)}.hero{padding-block:2.9rem}.tester-card{padding:1.3rem}.tester-head :global(img){width:70px;height:70px}.credentials-grid{gap:1rem}.credentials-grid a{grid-column:1/-1}.sample-details{grid-template-columns:1fr 1fr}.sample-grid{grid-template-columns:1fr}.sample-top{flex-direction:column;align-items:flex-start}.custom{flex-wrap:wrap}.bottom-panel{padding:2rem}.booking{padding-block:3rem}}
 </style>
