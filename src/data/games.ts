@@ -107,11 +107,11 @@ export const games: Game[] = [
     body: [
       'Save File 0 isn’t a game made to look like a Game Boy game. It’s a real Game Boy Color ROM, written in C and assembly, that runs on the original console. A raycaster draws the office in first person, and it’s built to hold 30 frames per second on the Game Boy Color’s double speed mode.',
       'Each save file is its own copy of the building, and when you load one you arrive exactly where you’re standing. Your save is the quiet office where you patch yourself up. FILE 0 is the same office, but wrong, and something in there can’t be killed. A shot only staggers it, so you break its line of sight, find a locker and keep very still.',
-      'The plan is a proper physical release: a real cartridge that keeps your saves on the cart, a complete-in-box edition with a printed box and manual, and a digital ROM. The Kickstarter is planned for early 2027, and you can follow the pre-launch page now to hear the moment it starts.',
+      'I want to give Save File 0 a proper physical release: a real cartridge that keeps your saves on the cart, a complete-in-box edition with a printed box and manual, and a digital ROM. We’re exploring the best way to make that happen and will share release details when they’re ready.',
     ],
     engine: 'GBDK (C and assembly)',
     platforms: ['Game Boy Color'],
-    releaseLine: 'Kickstarter planned for early 2027',
+    releaseLine: 'In development · physical release planned',
     features: [
       {
         title: 'Two saves, one office',
@@ -136,8 +136,7 @@ export const games: Game[] = [
       },
     ],
     links: [
-      { label: 'Follow on Kickstarter', href: saveFile0Kickstarter, icon: 'tabler:brand-kickstarter', isPrimary: true },
-      { label: 'Watch the trailer', href: 'https://youtu.be/nbiv6W50Lho', icon: 'tabler:brand-youtube' },
+      { label: 'Watch the trailer', href: 'https://youtu.be/nbiv6W50Lho', icon: 'tabler:brand-youtube', isPrimary: true },
       { label: 'Read the announcement', href: '/devlog-13-save-file-0', icon: 'tabler:notebook' },
     ],
     gradient: 'from-emerald-400 via-green-800 to-zinc-950',
