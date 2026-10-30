@@ -5,7 +5,7 @@ import { games } from '~/data/games';
 const metadata = {
   title: 'Our Games',
   description:
-    'Explore the games we make at Ki10: Skill Check, Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
+    'Explore the games we make at Ki10: Save File 0, Skill Check, Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
 };
 const released = games.filter((game) => game.status === 'released');
 const developing = games.filter((game) => game.status === 'in-development');
@@ -22,7 +22,7 @@ const sections = [
     <header>
       <p class="eyebrow">Made at Ki10</p>
       <h1>Our games.</h1>
-      <p>A daily trivia game, a party brawler, a heist and a kitten with a sword. We’ve got a few things on the go.</p>
+      <p>A daily trivia game, a party brawler, a heist, a Game Boy Color horror game and a kitten with a sword. We’ve got a few things on the go.</p>
       <nav aria-label="Game categories">
         <a href="#released">Play something now <span aria-hidden="true">↓</span></a><a href="#development"
           >See what’s coming <span aria-hidden="true">↓</span></a>

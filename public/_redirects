@@ -2,3 +2,7 @@
 /quizlo https://quizlo.co.uk/ 301
 /quizlo/ https://quizlo.co.uk/ 301
 /quizlo/* https://quizlo.co.uk/:splat 301
+
+# Save File 0 short link now directs to the game announcement while crowdfunding is on hold.
+/savefile0 /projects/save-file-0 302
+/savefile0/ /projects/save-file-0 302
