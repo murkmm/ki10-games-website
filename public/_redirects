@@ -3,7 +3,6 @@
 /quizlo/ https://quizlo.co.uk/ 301
 /quizlo/* https://quizlo.co.uk/:splat 301
 
-# Short link for Save File 0, for trailers, posters and bios. 302 so it can point somewhere else after the campaign.
-# If Kickstarter gives the project a custom URL, update this and saveFile0Kickstarter in src/data/games.ts.
-/savefile0 https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color?ref=5btpvk 302
-/savefile0/ https://www.kickstarter.com/projects/ki10games/save-file-0-survival-horror-for-game-boy-color?ref=5btpvk 302
+# Save File 0 short link now directs to the game announcement while crowdfunding is on hold.
+/savefile0 /projects/save-file-0 302
+/savefile0/ /projects/save-file-0 302
