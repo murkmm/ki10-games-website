@@ -11,7 +11,7 @@ import { getPermalink } from '~/utils/permalinks';
 
 // The hero spotlights one game, usually whatever's newest. Change the slug to swap it;
 // everything else in the hero and the grid below follows from the game's data.
-const featured = getGame('the-one-bullet-job')!;
+const featured = getGame('save-file-0')!;
 const otherGames = games.filter((game) => game !== featured);
 // Only an external store link earns a button in the hero. Sign-up links stay on the game's page.
 const storeLink = featured.links.find((link) => link.isPrimary && link.href.startsWith('http'));
@@ -26,7 +26,7 @@ const metadata = {
   title: 'Ki10 Games — Two friends making games.',
   ignoreTitleTemplate: true,
   description:
-    'Games from a two-person independent studio in the UK. Play The One Bullet Job and Skill Check, and discover Boop n Burn and KIT: Knight in Training.',
+    'Games from a two-person independent studio in the UK. Play The One Bullet Job and Skill Check, and discover Save File 0, Boop n Burn and KIT: Knight in Training.',
 };
 ---
 
@@ -42,10 +42,7 @@ const metadata = {
           shoving your mates into lava.
         </p>
         <div class="hero-actions">
-          <a class="studio-button primary" href="#our-games">Explore our games <span aria-hidden="true">↓</span></a><a
-            class="play-link"
-            href="https://skillcheckgame.com/">Play Skill Check <span aria-hidden="true">↗︎</span></a
-          >
+          <a class="studio-button primary" href="#our-games">Explore our games <span aria-hidden="true">↓</span></a>
         </div>
         <div class="studio-signoff">
           <span aria-hidden="true" class="status-dot"></span>
@@ -288,15 +285,11 @@ const metadata = {
   .studio-button:hover {
     background: #7d2c0e;
   }
-  .play-link,
   .text-link {
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--ink);
     text-underline-offset: 4px;
-  }
-  .play-link {
-    text-decoration: underline;
   }
   .text-link:hover {
     text-decoration: underline;

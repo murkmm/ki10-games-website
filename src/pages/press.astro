@@ -8,7 +8,7 @@ import { games } from '~/data/games';
 const metadata = {
   title: 'Press Kit',
   description:
-    'Press kit for Ki10 Games. Studio fact sheet, logos, screenshots and game information for Skill Check, Boop n Burn, The One Bullet Job and KIT.',
+    'Press kit for Ki10 Games. Studio fact sheet, logos, screenshots and game information for Save File 0, Skill Check, Boop n Burn, The One Bullet Job and KIT.',
 };
 
 const studioFacts = [
@@ -22,6 +22,21 @@ const studioFacts = [
 
 /** Press assets are copied into /public/press so their URLs stay stable. */
 const pressAssets: Record<string, { label: string; href: string }[]> = {
+  'save-file-0': [
+    { label: 'Logo (transparent)', href: '/press/save-file-0/save-file-0-logo-transparent.png' },
+    { label: 'Key art, 1920×1080', href: '/press/save-file-0/save-file-0-key-art-1920x1080.png' },
+    { label: 'Handheld and box mock-up', href: '/press/save-file-0/save-file-0-handheld-and-box-mockup-1920x1080.png' },
+    { label: 'Physical release mock-up', href: '/press/save-file-0/save-file-0-physical-release-mockup-1360x760.png' },
+    { label: 'Teaser trailer (1080p MP4)', href: '/press/save-file-0/save-file-0-teaser-1080p.mp4' },
+    { label: 'The Occupant in a doorway', href: '/press/save-file-0/save-file-0-01-occupant-in-the-doorway.png' },
+    { label: 'Save index with FILE 0', href: '/press/save-file-0/save-file-0-03-save-index-file0.png' },
+    { label: 'Mara’s revolver note', href: '/press/save-file-0/save-file-0-07-revolver-note.png' },
+    { label: 'A crawler', href: '/press/save-file-0/save-file-0-09-crawler.png' },
+    { label: 'Photo from the copier', href: '/press/save-file-0/save-file-0-11-photo-from-the-copier.png' },
+    { label: 'Inside a locker', href: '/press/save-file-0/save-file-0-12-locker-vents.png' },
+    { label: 'Same spot in FILE 0', href: '/press/save-file-0/save-file-0-13-file0-racks-and-locker.png' },
+    { label: 'Same spot in your save', href: '/press/save-file-0/save-file-0-14-same-spot-in-player.png' },
+  ],
   'skill-check': [
     { label: 'Main menu', href: '/press/skill-check/skillcheck-menu.webp' },
     { label: 'Matching set', href: '/press/skill-check/skillcheck-card-select.webp' },
@@ -84,7 +99,7 @@ const logos = [
         Ki10 Games is a two person independent studio in the UK, founded by Mark McManus (design, programming and QA)
         and Scott Hamilton (art and world building). The name comes from the studio goal, which is to sell ten copies.
         We don't stick to one genre either: our released games include a daily trivia game and a turn-based heist puzzler, and we're currently building a
-        party brawler.
+        party brawler and a survival horror game for the Game Boy Color.
       </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
