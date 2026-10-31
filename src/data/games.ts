@@ -129,6 +129,7 @@ export const games: Game[] = [
     ],
     links: [
       { label: 'Watch the trailer', href: 'https://youtu.be/nbiv6W50Lho', icon: 'tabler:brand-youtube', isPrimary: true },
+      { label: 'Get updates', href: '#save-file-0-updates', icon: 'tabler:mail' },
       { label: 'Read the announcement', href: '/devlog-13-save-file-0', icon: 'tabler:notebook' },
     ],
     gradient: 'from-emerald-400 via-green-800 to-zinc-950',
@@ -194,7 +195,7 @@ export const games: Game[] = [
         icon: 'tabler:map-2',
       },
     ],
-    links: [{ label: 'Get demo updates', href: '#studio-updates', icon: 'tabler:mail', isPrimary: true }],
+    links: [{ label: 'Get demo updates', href: '/contact#newsletter', icon: 'tabler:mail', isPrimary: true }],
     gradient: 'from-orange-500 via-red-600 to-rose-700',
     hero: bnbShipyard,
     card: bnbRuins,
