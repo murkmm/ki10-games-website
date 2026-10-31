@@ -188,6 +188,69 @@ const metadata = {
   }
 
   {
+    game.slug === 'save-file-0' && (
+      <section id="save-file-0-updates" class="scroll-mt-24 mx-auto max-w-6xl px-4 pb-16 md:px-6" aria-labelledby="save-file-0-updates-heading">
+        <div class="rounded-2xl border border-gray-200 p-6 sm:p-10 dark:border-white/10">
+          <div class="mx-auto max-w-2xl">
+            <p class="text-sm font-bold uppercase tracking-wide text-primary dark:text-accent">Save File 0 updates</p>
+            <h2 id="save-file-0-updates-heading" class="mt-2 font-heading text-3xl font-bold tracking-tight">
+              Want to know when you can play it?
+            </h2>
+            <p class="mt-4 text-muted">
+              We're working towards a free playable demo and exploring a proper physical Game Boy Color release.
+              Join our studio mailing list and we'll share updates when there's something worth showing.
+            </p>
+            <form
+              action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
+              method="post"
+              target="_blank"
+              class="mt-6"
+            >
+              <label for="save-file-0-email" class="block text-sm font-semibold">Email address</label>
+              <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+                <input
+                  id="save-file-0-email"
+                  type="email"
+                  name="EMAIL"
+                  autocomplete="email"
+                  required
+                  placeholder="you@example.com"
+                  class="min-w-0 flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                />
+                <button type="submit" name="subscribe" class="btn btn-primary shrink-0">
+                  Get game updates
+                </button>
+              </div>
+              <label class="mt-4 flex items-start gap-3 text-sm text-muted">
+                <input
+                  type="checkbox"
+                  name="gdpr[43380]"
+                  value="Y"
+                  required
+                  class="mt-1 h-4 w-4 shrink-0 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                <span>Yes, email me Ki10 Games devlogs and studio news, including Save File 0 updates.</span>
+              </label>
+              <div aria-hidden="true" class="absolute -left-[5000px]">
+                <input
+                  type="text"
+                  name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d"
+                  tabindex="-1"
+                  value=""
+                />
+              </div>
+              <p class="mt-3 text-xs text-muted">
+                This is our studio mailing list, not a separate Save File 0-only list.
+                You can unsubscribe at any time. See our <a href="/privacy" class="underline hover:text-primary">privacy policy</a>.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
     posts.length > 0 && (
       <section class="mx-auto max-w-6xl px-4 pb-16 md:px-6">
         <div class="mb-8 flex flex-wrap items-baseline justify-between gap-3">
@@ -220,8 +283,8 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: game.slug === 'boop-n-burn' ? 'Get demo updates' : 'Get studio updates',
-        href: '#studio-updates',
+        text: game.slug === 'save-file-0' ? 'Get Save File 0 updates' : game.slug === 'boop-n-burn' ? 'Get demo updates' : 'Get studio updates',
+        href: game.slug === 'save-file-0' ? '#save-file-0-updates' : '/contact#newsletter',
         icon: 'tabler:mail',
       },
       { text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
