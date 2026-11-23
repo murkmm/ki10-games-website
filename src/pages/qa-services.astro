@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 import markPhoto from '~/assets/images/team-mark.webp';
 
 const metadata = {
-  title: 'Indie Game QA Testing from £25 | Ki10 Games',
+  title: 'Indie Game QA Testing from £35 | Ki10 Games',
   description:
     'Professional manual game QA for small indie developers. Affordable fixed-price testing, actionable bug reports and an experienced UK game tester on your side.',
 };
@@ -13,7 +13,8 @@ const metadata = {
 const packages = [
   {
     name: 'Quick Check',
-    price: '25',
+    price: '35',
+    usd: '45',
     hours: '1 hour',
     line: 'An extra check on a feature or build.',
     for: 'A new feature, a quick demo check or an early build',
@@ -21,7 +22,8 @@ const packages = [
   },
   {
     name: 'Indie Playtest',
-    price: '65',
+    price: '95',
+    usd: '120',
     hours: '3 hours',
     line: 'A proper look at your demo or milestone.',
     for: 'Demos, development milestones and important updates',
@@ -30,7 +32,8 @@ const packages = [
   },
   {
     name: 'Release Readiness',
-    price: '120',
+    price: '180',
+    usd: '230',
     hours: '6 hours',
     line: 'A bit more time before you release.',
     for: 'Upcoming showcases, demos and releases',
@@ -73,7 +76,7 @@ function enquiry(name: string) {
           <a class="btn primary" href={enquiry('Project enquiry')}>Ask about testing <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
           <a class="btn ghost" href="#packages">See prices <Icon name="tabler:arrow-down" aria-hidden="true" /></a>
         </div>
-        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £25 · No retainer · No pressure</p>
+        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £35 · One-off or monthly · No pressure</p>
       </div>
       <aside class="tester-card">
         <div class="tester-head">
@@ -118,14 +121,15 @@ function enquiry(name: string) {
           <p class="plan-hours">{pkg.hours} total · testing + reporting</p>
           <h3>{pkg.name}</h3><p class="plan-sub">{pkg.line}</p>
           <p class="price"><span>£</span>{pkg.price}</p>
+          <p class="price-usd">or US${pkg.usd}</p>
           <p class="for">{pkg.for}</p><div class="plan-divider"></div>
           <p class="list-label">INCLUDED</p>
           <ul>{pkg.features.map((item) => <li><Icon name="tabler:check" aria-hidden="true" /> {item}</li>)}</ul>
           <a class="plan-link" href={enquiry(pkg.name)}>Enquire about {pkg.name} <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
         </article>)}
       </div>
-      <p class="pricing-fine">Introductory package prices in GBP, subject to agreed scope and device compatibility. One build per package. Retesting and further builds are separate. Applicable VAT, if any, will be confirmed in the quote; no VAT status is implied here.</p>
-      <div class="custom"><Icon name="tabler:messages" aria-hidden="true" /><div><strong>Need ongoing testing instead?</strong><p>Regular builds, bigger milestones or unusual requirements? Ask for a custom quote.</p></div><a href={enquiry('Custom testing')}>Let's talk <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
+      <p class="pricing-fine">Package prices in GBP, or US dollars for clients outside the UK, subject to agreed scope and device compatibility. One build per package. Retesting and further builds are separate. Applicable VAT, if any, will be confirmed in the quote; no VAT status is implied here.</p>
+      <div class="custom"><Icon name="tabler:messages" aria-hidden="true" /><div><strong>Need ongoing testing instead?</strong><p>£32 / US$40 an hour, or £28 / US$35 an hour for a monthly block of 10 hours or more. Regular builds, bigger milestones or unusual requirements? Ask for a quote.</p></div><a href={enquiry('Custom testing')}>Let's talk <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
     </section>
 
     <section class="section container sample-section">
@@ -193,7 +197,7 @@ function enquiry(name: string) {
 .featured-tag{position:absolute;top:-13px;right:1rem;background:#a53a13;color:white;font-size:.65rem;font-weight:800;letter-spacing:.08em;padding:.4rem .7rem;border-radius:.3rem}
 .plan-hours{font-size:.75rem;color:var(--muted)}.plan h3{font-size:1.4rem;font-weight:800;margin:.8rem 0 .3rem}
 .plan-sub{font-size:.9rem;color:var(--muted);min-height:2.7rem}.price{font-size:2.9rem;font-weight:850;letter-spacing:-.05em;margin:.9rem 0}
-.price span{font-size:2rem}.for{font-size:.87rem;color:var(--muted);line-height:1.6;min-height:3rem}
+.price span{font-size:2rem}.price-usd{font-size:.82rem;color:var(--muted);margin:-.6rem 0 .9rem}.for{font-size:.87rem;color:var(--muted);line-height:1.6;min-height:3rem}
 .plan-divider{border-top:1px solid var(--line);margin:1.1rem 0}.list-label{font-size:.72rem;font-weight:750;color:var(--ember)}
 .plan ul{display:grid;gap:.75rem;flex:1;margin:1rem 0 1.8rem}.plan li{display:flex;align-items:flex-start;gap:.5rem;font-size:.89rem;line-height:1.5}
 .plan li :global(svg){width:16px;height:16px;flex:none;color:var(--ember)}

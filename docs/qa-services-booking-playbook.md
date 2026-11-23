@@ -3,13 +3,13 @@
 Internal working guide for the indie QA offering at /qa-services. This is NOT a client contract, legal advice, an invoice, or a confirmation that a payment gateway is connected.
 
 ## Product and scope
-- Quick Check — £25 — **one total hour** of manual testing and reporting.
-- Indie Playtest — £65 — **three total hours** of manual testing and reporting.
-- Release Readiness — £120 — **six total hours** of manual testing and reporting.
+- Quick Check — £35 / US$45 — **one total hour** of manual testing and reporting.
+- Indie Playtest — £95 / US$120 — **three total hours** of manual testing and reporting.
+- Release Readiness — £180 / US$230 — **six total hours** of manual testing and reporting.
 - Every package covers a single agreed game build, testing platforms, scope and report.
 - No guaranteed defect count, certification, automated testing, bug fixes, or included retesting.
 - Windows PC and Android; Steam Deck subject to device/build compatibility confirmed before acceptance.
-- Larger/ongoing engagements quoted separately.
+- Ongoing testing: £32 / US$40 an hour, or £28 / US$35 an hour for a monthly block of 10+ hours. Larger or unusual engagements quoted separately.
 
 ## Client enquiry checklist
 Collect only what you need:
@@ -65,7 +65,7 @@ business@ki10games.com
 **Confirm before launch:** company VAT registration status, registered-office address that must appear in company disclosure, business bank account ownership, the Stripe account's legal entity and payout verification. Do not enter invented details or publish a personal/home address without explicit approval.
 
 ## Payment workflow
-1. Do not expose an instant £25/£65/£120 checkout publicly; test compatibility and scope first.
+1. Do not expose an instant £35/£95/£180 checkout publicly; test compatibility and scope first.
 2. Send the agreed quote and secure the client's written acceptance.
 3. Create a **draft** invoice in the company's billing/invoicing system, check amount and tax.
 4. Send a hosted Stripe invoice for card payments if the Stripe business account is connected and approved, or offer a company bank transfer.
