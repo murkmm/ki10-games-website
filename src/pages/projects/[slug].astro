@@ -1,13 +1,15 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import Layout from '~/layouts/PageLayout.astro';
-import Button from '~/components/ui/Button.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import GameArt from '~/components/games/GameArt.astro';
 import StatusBadge from '~/components/games/StatusBadge.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
-import { Image } from 'astro:assets';
-import { games } from '~/data/games';
+import Lightbox from '~/components/common/Lightbox.astro';
+import YouTubeEmbed from '~/components/common/YouTubeEmbed.astro';
+import TrailerPlayer from '~/components/common/TrailerPlayer.astro';
+import { games, statusLabels } from '~/data/games';
+import { studio } from '~/data/studio';
 import { fetchPosts } from '~/utils/blog';
 import { getPermalink } from '~/utils/permalinks';
 
@@ -28,29 +30,28 @@ const facts = [
   { label: 'Engine', value: game.engine, icon: 'tabler:tools' },
 ];
 
-// A released game shouldn't be asking people to wait for it, and a paused one
-// shouldn't imply a release date we don't have.
 const ctaCopy = {
   released: {
-    title: 'More where that came from',
-    subtitle: 'We post development updates as we go, and the mailing list hears about new releases first.',
+    title: 'Want to hear what we make next?',
+    subtitle: 'We post devlogs as we build and email the mailing list when something new drops.',
   },
   'in-development': {
-    title: "Want to know when it's ready?",
-    subtitle: 'We post development updates as we go, and the mailing list gets release dates first.',
+    title: 'Want to know when it’s ready?',
+    subtitle: 'Join the mailing list or our Discord for playtests, demos and release dates.',
   },
   'on-hold': {
     title: 'Want to know if it comes back?',
-    subtitle:
-      "This one is paused, not cancelled. If it starts moving again, the devlog and the mailing list are where you'll hear about it first.",
+    subtitle: 'If this one starts moving again, the devlog and mailing list are where you’ll hear first.',
   },
 };
 const cta = ctaCopy[game.status];
 
+const isPixelArtGame = game.slug === 'save-file-0';
+const otherGames = games.filter((entry) => entry.slug !== game.slug);
+
 const metadata = {
   title: game.title,
   description: game.tagline,
-  // The game's art makes a better link preview than the studio card. findImage accepts ImageMetadata here.
   openGraph: { type: 'website', images: game.hero ? [{ url: game.hero as unknown as string }] : undefined },
 };
 ---
@@ -58,240 +59,458 @@ const metadata = {
 <Layout metadata={metadata}>
   <StructuredData game={game} />
 
-  <section class="mx-auto max-w-6xl px-4 pt-8 md:px-6 md:pt-12">
-    <a
-      href="/projects"
-      class="inline-flex items-center gap-1 text-sm font-medium text-muted transition hover:text-primary dark:hover:text-accent"
-    >
-      <Icon name="tabler:chevron-left" class="h-4 w-4" />
-      All games
-    </a>
+  <div
+    class="game-detail"
+    style={`--game-accent-light: ${game.accentLight}; --game-accent-dark: ${game.accentDark};`}
+  >
+    <!-- Hero -->
+    <section class="ki10-container pt-8 pb-10 md:pt-12 md:pb-12">
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition hover:text-heading"
+      >
+        <Icon name="tabler:arrow-left" class="h-4 w-4" />
+        All games
+      </a>
 
-    <div class="mt-6 grid items-center gap-10 lg:grid-cols-2">
-      <div>
-        <div class="mb-4 flex flex-wrap items-center gap-3">
-          <StatusBadge status={game.status} />
-          <span class="text-sm font-medium uppercase tracking-wide text-muted">{game.genre}</span>
+      <div class="mt-6 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <div class="mb-4 flex flex-wrap items-center gap-2.5">
+            <StatusBadge status={game.status} />
+            <span class="text-xs font-bold uppercase tracking-wider text-muted">{game.genre}</span>
+          </div>
+
+          <h1 class="font-heading text-4xl font-extrabold leading-tight tracking-tight text-heading md:text-5xl">
+            {game.title}
+          </h1>
+          <p class="game-accent-text mt-3 font-heading text-xl font-bold">{game.tagline}</p>
+          <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">{game.pitch}</p>
+
+          {
+            (game.links.length > 0 || game.steamUrl) && (
+              <div class="mt-7 flex flex-wrap gap-3">
+                {game.steamUrl && (
+                  <a href={game.steamUrl} target="_blank" rel="noopener noreferrer" class="game-accent-btn btn">
+                    <Icon name="tabler:brand-steam" class="h-5 w-5" />
+                    Wishlist on Steam
+                  </a>
+                )}
+                {game.links.map((link) => (
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    class:list={[link.isPrimary && !game.steamUrl ? 'game-accent-btn btn' : 'btn-secondary']}
+                  >
+                    <Icon name={link.icon} class="h-5 w-5" />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            game.slug === 'boop-n-burn' && !game.steamUrl && (
+              <p class="mt-3 text-sm text-muted">
+                Steam page is coming soon — demo and playtest news goes out via our mailing list and{' '}
+                <a
+                  href={studio.discordUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-secondary underline"
+                >
+                  Discord
+                </a>
+                .
+              </p>
+            )
+          }
         </div>
 
-        <h1 class="font-heading text-4xl font-bold leading-tight tracking-tighter md:text-5xl">{game.title}</h1>
-        <p class="mt-3 text-xl font-medium text-secondary">{game.tagline}</p>
-        <p class="mt-5 text-lg text-muted">{game.pitch}</p>
-
-        {
-          game.links.length > 0 && (
-            <div class="mt-8 flex flex-wrap gap-3">
-              {game.links.map((link) => (
-                <Button
-                  variant={link.isPrimary ? 'primary' : 'secondary'}
-                  href={link.href}
-                  icon={link.icon}
-                  target={link.href.startsWith('http') ? '_blank' : undefined}
-                >
-                  {link.label}
-                </Button>
-              ))}
-            </div>
-          )
-        }
-        {
-          game.slug === 'boop-n-burn' && (
-            <p class="mt-3 text-sm text-muted">Demo news goes out with our studio updates.</p>
-          )
-        }
+        <div class="ki10-card overflow-hidden p-1.5">
+          {
+            game.slug === 'save-file-0' ? (
+              <img
+                src="/press/save-file-0/save-file-0-handheld-and-box-mockup-1920x1080.png"
+                alt="Save File 0 on Game Boy Color alongside its physical box and cartridge"
+                loading="eager"
+                class="pixel-art aspect-video w-full rounded-xl object-cover"
+              />
+            ) : (
+              <GameArt
+                title={game.title}
+                gradient={game.gradient}
+                image={game.hero}
+                alt={`Key art for ${game.title}`}
+                loading="eager"
+                showPlaceholderNote={game.needsArt}
+                class="rounded-xl"
+              />
+            )
+          }
+        </div>
       </div>
+    </section>
 
-      <GameArt
-        title={game.title}
-        gradient={game.gradient}
-        image={game.hero}
-        alt={`Key art for ${game.title}`}
-        loading="eager"
-        showPlaceholderNote={game.needsArt}
-      />
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
-    <dl class="grid gap-6 rounded-2xl border border-gray-200 p-6 sm:grid-cols-2 lg:grid-cols-4 dark:border-white/10">
-      {
-        facts.map((fact) => (
-          <div>
-            <dt class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted">
-              <Icon name={fact.icon} class="h-4 w-4" />
-              {fact.label}
-            </dt>
-            <dd class="mt-1.5 font-medium">{fact.value}</dd>
-          </div>
-        ))
-      }
-    </dl>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 pb-16 md:px-6">
-    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-      <div>
-        <h2 class="font-heading text-3xl font-bold tracking-tight">About the game</h2>
-        {game.body.map((paragraph) => <p class="mt-4 text-lg text-muted">{paragraph}</p>)}
-      </div>
-
-      <div class="grid gap-6 sm:grid-cols-2">
+    <!-- Facts strip -->
+    <section class="ki10-container pb-12">
+      <dl class="ki10-panel grid gap-5 p-5 sm:grid-cols-2 sm:p-6 lg:grid-cols-4">
         {
-          game.features.map((feature) => (
-            <div class="rounded-xl border border-gray-200 p-5 dark:border-white/10">
-              <Icon name={feature.icon} class="h-7 w-7 text-primary dark:text-accent" />
-              <h3 class="mt-3 font-bold leading-tight">{feature.title}</h3>
-              <p class="mt-1.5 text-sm text-muted">{feature.description}</p>
+          facts.map((fact) => (
+            <div>
+              <dt class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-muted">
+                <Icon name={fact.icon} class="game-accent-text h-4 w-4" />
+                {fact.label}
+              </dt>
+              <dd class="mt-1.5 font-heading text-base font-bold text-heading">{fact.value}</dd>
             </div>
           ))
         }
-      </div>
-    </div>
-  </section>
+      </dl>
+    </section>
 
-  {
-    game.gallery && game.gallery.length > 0 && (
-      <section class="mx-auto max-w-6xl px-4 pb-16 md:px-6">
-        <h2 class="mb-8 font-heading text-3xl font-bold tracking-tight">Screenshots</h2>
-        <div class:list={['grid gap-6 sm:grid-cols-2', game.galleryRatio ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
-          {game.gallery.map((shot) => (
-            <figure>
-              {'video' in shot ? (
-                <video
-                  autoplay
-                  loop
-                  muted
-                  playsinline
-                  preload="metadata"
-                  aria-label={shot.caption}
-                  class:list={['w-full rounded-xl object-cover shadow-md', game.galleryRatio ?? 'aspect-video']}
-                >
-                  <source src={`/videos/${shot.video}.mp4`} type="video/mp4" />
-                  <source src={`/videos/${shot.video}.webm`} type="video/webm" />
-                </video>
-              ) : (
-                <Image
-                  src={shot.image}
-                  alt={shot.caption}
-                  loading="lazy"
-                  widths={[400, 800]}
-                  sizes="(max-width: 640px) 100vw, 400px"
-                  class:list={['w-full rounded-xl object-cover shadow-md', game.galleryRatio ?? 'aspect-video']}
+    <!-- Trailer Player (native self-hosted MP4 preferred, YouTube fallback) -->
+    {
+      (game.trailerVideo || game.youtubeTrailerId) && (
+        <section class="ki10-container pb-14">
+          <h2 class="mb-5 font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">Trailer</h2>
+          <div class="max-w-4xl">
+            {game.trailerVideo ? (
+              <TrailerPlayer
+                src={game.trailerVideo.src}
+                poster={game.trailerVideo.poster}
+                title={`${game.title} trailer`}
+                caption={game.trailerCaption}
+                youtubeUrl={game.trailerVideo.youtubeUrl}
+                pixelArt={isPixelArtGame}
+              />
+            ) : (
+              game.youtubeTrailerId && (
+                <YouTubeEmbed
+                  videoId={game.youtubeTrailerId}
+                  title={`${game.title} trailer`}
+                  caption={game.trailerCaption}
                 />
-              )}
-              <figcaption class="mt-2 text-sm text-muted">{shot.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-    )
-  }
+              )
+            )}
+          </div>
+        </section>
+      )
+    }
 
-  {
-    game.slug === 'save-file-0' && (
-      <section id="save-file-0-updates" class="scroll-mt-24 mx-auto max-w-6xl px-4 pb-16 md:px-6" aria-labelledby="save-file-0-updates-heading">
-        <div class="rounded-2xl border border-gray-200 p-6 sm:p-10 dark:border-white/10">
-          <div class="mx-auto max-w-2xl">
-            <p class="text-sm font-bold uppercase tracking-wide text-primary dark:text-accent">Save File 0 updates</p>
-            <h2 id="save-file-0-updates-heading" class="mt-2 font-heading text-3xl font-bold tracking-tight">
-              Want to know when you can play it?
-            </h2>
-            <p class="mt-4 text-muted">
-              We're working towards a free playable demo and exploring a proper physical Game Boy Color release.
-              Join our studio mailing list and we'll share updates when there's something worth showing.
-            </p>
-            <form
-              action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
-              method="post"
-              target="_blank"
-              class="mt-6"
-            >
-              <label for="save-file-0-email" class="block text-sm font-semibold">Email address</label>
-              <div class="mt-2 flex flex-col gap-3 sm:flex-row">
-                <input
-                  id="save-file-0-email"
-                  type="email"
-                  name="EMAIL"
-                  autocomplete="email"
-                  required
-                  placeholder="you@example.com"
-                  class="min-w-0 flex-1 rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-white"
-                />
-                <button type="submit" name="subscribe" class="btn btn-primary shrink-0">
-                  Get game updates
-                </button>
-              </div>
-              <label class="mt-4 flex items-start gap-3 text-sm text-muted">
-                <input
-                  type="checkbox"
-                  name="gdpr[43380]"
-                  value="Y"
-                  required
-                  class="mt-1 h-4 w-4 shrink-0 rounded border-gray-300 text-primary focus:ring-primary"
-                />
-                <span>Yes, email me Ki10 Games devlogs and studio news, including Save File 0 updates.</span>
-              </label>
-              <div aria-hidden="true" class="absolute -left-[5000px]">
-                <input
-                  type="text"
-                  name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d"
-                  tabindex="-1"
-                  value=""
-                />
-              </div>
-              <p class="mt-3 text-xs text-muted">
-                This is our studio mailing list, not a separate Save File 0-only list.
-                You can unsubscribe at any time. See our <a href="/privacy" class="underline hover:text-primary">privacy policy</a>.
-              </p>
-            </form>
+    <!-- About & Highlights -->
+    <section class="ki10-container pb-14">
+      <div class="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+        <div>
+          <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">About the game</h2>
+          <div class="mt-4 space-y-4 text-base leading-relaxed text-muted sm:text-lg">
+            {game.body.map((paragraph) => <p>{paragraph}</p>)}
           </div>
         </div>
-      </section>
-    )
-  }
 
-  {
-    posts.length > 0 && (
-      <section class="mx-auto max-w-6xl px-4 pb-16 md:px-6">
-        <div class="mb-8 flex flex-wrap items-baseline justify-between gap-3">
-          <h2 class="font-heading text-3xl font-bold tracking-tight">Devlogs about {game.title}</h2>
+        <div>
+          <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">What’s in it</h2>
+          <ul class="mt-5 divide-y divide-ink border-y border-ink">
+            {
+              game.features.map((feature) => (
+                <li class="flex items-start gap-4 py-4">
+                  <span class="game-accent-badge mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl">
+                    <Icon name={feature.icon} class="h-5 w-5" />
+                  </span>
+                  <div>
+                    <h3 class="font-heading text-base font-bold text-heading">{feature.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-muted">{feature.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots & Clips with Lightbox -->
+    {
+      game.gallery && game.gallery.length > 0 && (
+        <section class="ki10-container pb-14">
+          <div class="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">
+              Screenshots &amp; clips
+            </h2>
+            <p class="text-xs font-semibold text-muted">Click any screenshot or clip to view full size</p>
+          </div>
+          <div class:list={['grid gap-5 sm:grid-cols-2', game.galleryRatio ? 'lg:grid-cols-4' : 'lg:grid-cols-3']}>
+            {game.gallery.map((shot) => (
+              <figure class="flex flex-col">
+                {'video' in shot ? (
+                  <button
+                    type="button"
+                    data-lightbox-src={`/videos/${shot.video}.mp4`}
+                    data-lightbox-type="video"
+                    data-lightbox-pixel={isPixelArtGame ? 'true' : 'false'}
+                    data-lightbox-caption={shot.caption}
+                    class="group relative block w-full overflow-hidden rounded-xl border border-ink bg-black text-left focus-visible:outline-primary"
+                    aria-label={`View clip larger: ${shot.caption}`}
+                  >
+                    <video
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      preload="metadata"
+                      aria-hidden="true"
+                      class:list={[
+                        'w-full object-cover transition duration-300 group-hover:scale-[1.03]',
+                        { 'pixel-art': isPixelArtGame },
+                        game.galleryRatio ?? 'aspect-video',
+                      ]}
+                    >
+                      <source src={`/videos/${shot.video}.mp4`} type="video/mp4" />
+                      <source src={`/videos/${shot.video}.webm`} type="video/webm" />
+                    </video>
+                    <span class="pointer-events-none absolute bottom-2.5 right-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-black/75 text-white opacity-80 transition group-hover:opacity-100">
+                      <Icon name="tabler:arrows-maximize" class="h-4 w-4" />
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    data-lightbox-src={shot.image.src}
+                    data-lightbox-type="image"
+                    data-lightbox-pixel={isPixelArtGame ? 'true' : 'false'}
+                    data-lightbox-caption={shot.caption}
+                    class="group relative block w-full overflow-hidden rounded-xl border border-ink bg-black text-left focus-visible:outline-primary"
+                    aria-label={`View screenshot larger: ${shot.caption}`}
+                  >
+                    <Image
+                      src={shot.image}
+                      alt={shot.caption}
+                      loading="lazy"
+                      widths={[400, 800]}
+                      sizes="(max-width: 640px) 100vw, 400px"
+                      class:list={[
+                        'w-full object-cover transition duration-300 group-hover:scale-[1.03]',
+                        { 'pixel-art': isPixelArtGame },
+                        game.galleryRatio ?? 'aspect-video',
+                      ]}
+                    />
+                    <span class="pointer-events-none absolute bottom-2.5 right-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-black/75 text-white opacity-0 transition group-hover:opacity-100">
+                      <Icon name="tabler:arrows-maximize" class="h-4 w-4" />
+                    </span>
+                  </button>
+                )}
+                <figcaption class="mt-2 text-sm leading-snug text-muted">{shot.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Dedicated Save File 0 Newsletter Signup (preserved from main) -->
+    {
+      game.slug === 'save-file-0' && (
+        <section
+          id="save-file-0-updates"
+          class="ki10-container scroll-mt-24 pb-14"
+          aria-labelledby="save-file-0-updates-heading"
+        >
+          <div class="ki10-card p-6 sm:p-10">
+            <div class="mx-auto max-w-2xl">
+              <p class="game-accent-text text-xs font-extrabold uppercase tracking-widest">Save File 0 updates</p>
+              <h2
+                id="save-file-0-updates-heading"
+                class="mt-2 font-heading text-3xl font-extrabold tracking-tight text-heading"
+              >
+                Want to know when you can play it?
+              </h2>
+              <p class="mt-3 leading-relaxed text-muted">
+                We’re working towards a free playable demo and a proper physical Game Boy Color cartridge release. Join
+                our studio mailing list and we’ll share updates whenever there’s something worth showing.
+              </p>
+              <form
+                action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
+                method="post"
+                target="_blank"
+                class="mt-6"
+              >
+                <label for="save-file-0-email" class="block text-sm font-bold text-heading">
+                  Email address
+                </label>
+                <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+                  <input
+                    id="save-file-0-email"
+                    type="email"
+                    name="EMAIL"
+                    autocomplete="email"
+                    required
+                    placeholder="you@example.com"
+                    class="min-w-0 flex-1 rounded-xl border border-ink bg-subtle/60 px-4 py-3 text-sm text-default placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25"
+                  />
+                  <button type="submit" name="subscribe" class="game-accent-btn btn shrink-0">
+                    Get game updates
+                  </button>
+                </div>
+                <label class="mt-4 flex cursor-pointer items-start gap-3 text-sm text-muted">
+                  <input
+                    type="checkbox"
+                    name="gdpr[43380]"
+                    value="Y"
+                    required
+                    class="mt-0.5 h-4 w-4 shrink-0 rounded border-ink accent-primary"
+                  />
+                  <span>Yes, email me Ki10 Games devlogs and studio news, including Save File 0 updates.</span>
+                </label>
+                <div aria-hidden="true" class="absolute -left-[5000px]">
+                  <input type="text" name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d" tabindex="-1" value="" />
+                </div>
+                <p class="mt-3 text-xs text-muted">
+                  This is our studio mailing list, not a separate Save File 0-only list. You can unsubscribe at any
+                  time. See our{' '}
+                  <a href="/privacy" class="underline hover:text-secondary">
+                    privacy policy
+                  </a>
+                  .
+                </p>
+              </form>
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Related Devlogs -->
+    {
+      posts.length > 0 && (
+        <section class="ki10-container pb-14">
+          <div class="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">
+              Devlogs about {game.title}
+            </h2>
+            <a href={`/tag/${game.devlogTag}`} class="text-sm font-bold text-secondary hover:underline">
+              See all &rarr;
+            </a>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-3">
+            {posts.map((post) => (
+              <a
+                href={getPermalink(post.permalink, 'post')}
+                class="ki10-card ki10-card-interactive group flex flex-col p-5"
+              >
+                <h3 class="font-heading text-lg font-bold leading-snug text-heading group-hover:text-secondary">
+                  {post.title}
+                </h3>
+                <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">{post.excerpt}</p>
+                <span class="mt-auto pt-4 text-xs font-bold text-secondary">Read post &rarr;</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- More Games Cross-Navigation -->
+    <section class="ki10-container border-t border-ink pb-14 pt-12">
+      <div class="mb-6 flex flex-wrap items-baseline justify-between gap-2">
+        <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading">More games from Ki10</h2>
+        <a href="/projects" class="text-sm font-bold text-secondary hover:underline">All games &rarr;</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          otherGames.map((other) => (
+            <a
+              href={`/projects/${other.slug}`}
+              class="ki10-card ki10-card-interactive group overflow-hidden"
+              style={`--ki10-card-accent: ${other.accentLight};`}
+            >
+              <div class="relative aspect-[16/10] overflow-hidden bg-black">
+                {other.card && (
+                  <Image
+                    src={other.card}
+                    alt={other.title}
+                    widths={[320, 560]}
+                    sizes="(min-width: 1024px) 25vw, 50vw"
+                    loading="lazy"
+                    class:list={[
+                      'h-full w-full object-cover transition duration-300 group-hover:scale-105',
+                      { 'pixel-art': other.slug === 'save-file-0' },
+                    ]}
+                  />
+                )}
+              </div>
+              <div class="p-4">
+                <p class="text-[0.7rem] font-bold uppercase tracking-wider text-muted">
+                  {statusLabels[other.status]} · {other.genre}
+                </p>
+                <h3 class="mt-1 font-heading text-base font-extrabold text-heading group-hover:text-secondary">
+                  {other.title}
+                </h3>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Bottom Callout -->
+    <section class="ki10-container pb-16">
+      <div class="ki10-panel flex flex-col items-start justify-between gap-6 p-6 sm:p-8 lg:flex-row lg:items-center">
+        <div class="max-w-xl">
+          <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">{cta.title}</h2>
+          <p class="mt-2 text-muted">{cta.subtitle}</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
           <a
-            href={`/tag/${game.devlogTag}`}
-            class="text-sm font-semibold text-primary hover:underline dark:text-accent"
+            href={game.slug === 'save-file-0' ? '#save-file-0-updates' : '/contact#newsletter'}
+            class="btn-primary"
           >
-            See all &rarr;
+            <Icon name="tabler:mail" class="h-4 w-4" />
+            {
+              game.slug === 'save-file-0'
+                ? 'Get Save File 0 updates'
+                : game.slug === 'boop-n-burn'
+                  ? 'Get demo updates'
+                  : 'Join mailing list'
+            }
+          </a>
+          <a href={studio.discordUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <Icon name="tabler:brand-discord" class="h-4 w-4" />
+            Join Discord
           </a>
         </div>
-        <div class="grid gap-6 sm:grid-cols-3">
-          {posts.map((post) => (
-            <a
-              href={getPermalink(post.permalink, 'post')}
-              class="group rounded-xl border border-gray-200 p-5 transition hover:border-gray-300 hover:shadow-md dark:border-white/10 dark:hover:border-white/25"
-            >
-              <h3 class="font-bold leading-tight group-hover:text-primary dark:group-hover:text-accent">
-                {post.title}
-              </h3>
-              <p class="mt-2 line-clamp-3 text-sm text-muted">{post.excerpt}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-    )
-  }
+      </div>
+    </section>
+  </div>
 
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: game.slug === 'save-file-0' ? 'Get Save File 0 updates' : game.slug === 'boop-n-burn' ? 'Get demo updates' : 'Get studio updates',
-        href: game.slug === 'save-file-0' ? '#save-file-0-updates' : '/contact#newsletter',
-        icon: 'tabler:mail',
-      },
-      { text: 'Read the devlog', href: '/devlog', icon: 'tabler:notebook' },
-      { text: 'Get in touch', href: '/contact', icon: 'tabler:mail' },
-    ]}
-  >
-    <Fragment slot="title">{cta.title}</Fragment>
-    <Fragment slot="subtitle">{cta.subtitle}</Fragment>
-  </CallToAction>
+  <Lightbox />
 </Layout>
+
+<style>
+  .game-detail {
+    --game-accent: var(--game-accent-light);
+    --ki10-card-accent: var(--game-accent-light);
+  }
+  :global(.dark) .game-detail {
+    --game-accent: var(--game-accent-dark);
+    --ki10-card-accent: var(--game-accent-dark);
+  }
+  .game-accent-text {
+    color: var(--game-accent);
+  }
+  .game-accent-badge {
+    color: var(--game-accent);
+    background-color: color-mix(in srgb, var(--game-accent) 13%, transparent);
+  }
+  .game-accent-btn {
+    background-color: var(--game-accent-light);
+    border-color: var(--game-accent-light);
+    color: #fff;
+    font-weight: 700;
+  }
+  .game-accent-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    color: #fff;
+  }
+</style>

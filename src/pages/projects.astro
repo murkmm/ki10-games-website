@@ -1,165 +1,101 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
 import GameCard from '~/components/games/GameCard.astro';
 import { games } from '~/data/games';
+
 const metadata = {
   title: 'Our Games',
   description:
-    'Explore the games we make at Ki10: Save File 0, Skill Check, Boop n Burn, The One Bullet Job and KIT: Knight in Training.',
+    'Explore the games we make at Ki10: Save File 0, The One Bullet Job, Skill Check, Boop n Burn and KIT: Knight in Training.',
 };
+
 const released = games.filter((game) => game.status === 'released');
 const developing = games.filter((game) => game.status === 'in-development');
 const paused = games.filter((game) => game.status === 'on-hold');
+
 const sections = [
-  { title: 'Ready to play.', label: 'Out now', games: released, id: 'released' },
-  { title: 'On the workbench.', label: 'In development', games: developing, id: 'development' },
-  { title: 'On the shelf.', label: 'Paused projects', games: paused, id: 'paused' },
+  {
+    title: 'In development',
+    subtitle: 'What we are actively building right now — from Game Boy Color horror to 16-player lava brawls.',
+    games: developing,
+    id: 'development',
+  },
+  {
+    title: 'Out now',
+    subtitle: 'Free to pick up and play right now on Android and in your browser.',
+    games: released,
+    id: 'released',
+  },
+  {
+    title: 'On hold',
+    subtitle: 'Paused for now, not forgotten.',
+    games: paused,
+    id: 'paused',
+  },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <div class="games-page">
-    <header>
-      <p class="eyebrow">Made at Ki10</p>
-      <h1>Our games.</h1>
-      <p>A daily trivia game, a party brawler, a heist, a Game Boy Color horror game and a kitten with a sword. We’ve got a few things on the go.</p>
-      <nav aria-label="Game categories">
-        <a href="#released">Play something now <span aria-hidden="true">↓</span></a><a href="#development"
-          >See what’s coming <span aria-hidden="true">↓</span></a>
+  <div class="ki10-container py-10 md:py-14">
+    <header class="border-b border-ink pb-8 md:pb-10">
+      <span class="ki10-kicker">
+        <Icon name="tabler:device-gamepad-2" class="h-4 w-4" />
+        Ki10 Catalogue
+      </span>
+      <h1 class="mt-3 font-heading text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">Our games</h1>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        Game Boy Color survival horror, a 16-player lava brawler, a pocket heist puzzle, daily gaming trivia, and a
+        kitten with a sword. We don’t stick to one genre.
+      </p>
+      <nav aria-label="Game categories" class="mt-6 flex flex-wrap gap-3">
+        <a href="#development" class="btn-primary text-sm">
+          In development ({developing.length})
+        </a>
+        <a href="#released" class="btn-secondary text-sm">
+          Out now ({released.length})
+        </a>
       </nav>
     </header>
+
     {
       sections
-        .filter((section) => section.games.length)
+        .filter((section) => section.games.length > 0)
         .map((section) => (
-          <section id={section.id} aria-labelledby={section.id + '-title'}>
-            <div class="section-heading">
-              <>
-                <p class="eyebrow">{section.label}</p>
-                <h2 id={section.id + '-title'}>{section.title}</h2>
-              </>
+          <section id={section.id} aria-labelledby={`${section.id}-title`} class="border-b border-ink py-10 md:py-12">
+            <div class="mb-7">
+              <h2
+                id={`${section.id}-title`}
+                class="font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl"
+              >
+                {section.title}
+              </h2>
+              <p class="mt-1.5 text-sm text-muted sm:text-base">{section.subtitle}</p>
             </div>
-            <div class="game-grid">
-              {section.games.map((game) => (
-                <GameCard game={game} />
+            <div class:list={['grid gap-6', section.games.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-2']}>
+              {section.games.map((game, idx) => (
+                <GameCard game={game} loading={section.id === 'development' && idx === 0 ? 'eager' : 'lazy'} />
               ))}
             </div>
           </section>
         ))
     }
-    <div class="closing">
-      <h2>What have we been up to?</h2><p>
-        We write about progress, problems and the occasional change of plan in our devlog.
-      </p><a href="/devlog">Read the devlog <span aria-hidden="true">→</span></a>
-    </div>
+
+    <section class="pt-10 md:pt-12">
+      <div class="ki10-panel flex flex-col items-start justify-between gap-6 p-6 sm:flex-row sm:items-center sm:p-8">
+        <div>
+          <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading">
+            Want to see how they get made?
+          </h2>
+          <p class="mt-2 max-w-xl text-muted">
+            We write about progress, bugs, prototypes and changes of plan in our devlog.
+          </p>
+        </div>
+        <a href="/devlog" class="btn-primary flex-shrink-0">
+          <Icon name="tabler:notebook" class="h-4 w-4" />
+          Read the devlog
+        </a>
+      </div>
+    </section>
   </div>
 </Layout>
-<style>
-  .games-page {
-    max-width: 1280px;
-    width: calc(100% - 3rem);
-    margin-inline: auto;
-  }
-  header {
-    padding-block: 3rem;
-    border-bottom: 1px solid #8884;
-  }
-  .eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--aw-color-secondary);
-  }
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 1.05;
-    letter-spacing: -0.055em;
-    font-weight: 800;
-    margin: 1rem 0 1.5rem;
-  }
-  header > p:last-of-type {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--aw-color-text-muted);
-    max-width: 62ch;
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
-    margin-top: 1.5rem;
-  }
-  nav a {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  section {
-    padding-block: 3rem;
-    scroll-margin-top: 7rem;
-  }
-  section + section {
-    border-top: 1px solid #8884;
-  }
-  .section-heading {
-    margin-bottom: 1.5rem;
-  }
-  h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.035em;
-    margin-top: 0.5rem;
-  }
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-  #released .game-grid {
-    max-width: 850px;
-    grid-template-columns: 1fr;
-  }
-  #released :global(article) {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  #released :global(article > div:first-child) {
-    aspect-ratio: auto;
-    min-width: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 280px;
-  }
-  .closing {
-    border-top: 1px solid #8884;
-    padding-block: 2.5rem;
-  }
-  .closing p {
-    margin-block: 0.75rem 1.25rem;
-    color: var(--aw-color-text-muted);
-  }
-  .closing a {
-    color: var(--aw-color-secondary);
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-  @media (max-width: 699px) {
-    .games-page {
-      width: calc(100% - 2rem);
-    }
-    .game-grid {
-      grid-template-columns: 1fr;
-    }
-    #released :global(article) {
-      display: flex;
-    }
-    #released :global(article > div:first-child) {
-      aspect-ratio: 16 / 10;
-      height: auto;
-      min-height: 0;
-    }
-  }
-</style>

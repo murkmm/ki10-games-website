@@ -1,9 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 import StatusBadge from '~/components/games/StatusBadge.astro';
+import CopyButton from '~/components/common/CopyButton.astro';
 import { games } from '~/data/games';
+import { studio } from '~/data/studio';
 
 const metadata = {
   title: 'Press Kit',
@@ -11,23 +12,43 @@ const metadata = {
     'Press kit for Ki10 Games. Studio fact sheet, logos, screenshots and game information for Save File 0, Skill Check, Boop n Burn, The One Bullet Job and KIT.',
 };
 
+const releasedCount = games.filter((g) => g.status === 'released').length;
+
 const studioFacts = [
-  { label: 'Studio', value: 'Ki10 Games' },
-  { label: 'Founded', value: 'April 2024' },
-  { label: 'Based in', value: 'United Kingdom' },
-  { label: 'Team size', value: '2' },
-  { label: 'Games released', value: '2' },
-  { label: 'Website', value: 'ki10games.com' },
+  { label: 'Studio', value: studio.name },
+  { label: 'Founded', value: studio.founded },
+  { label: 'Based in', value: studio.location },
+  { label: 'Team size', value: '2 (Mark McManus & Scott Hamilton)' },
+  { label: 'Games released', value: String(releasedCount) },
+  { label: 'Website', value: studio.website },
 ];
 
-/** Press assets are copied into /public/press so their URLs stay stable. */
-const pressAssets: Record<string, { label: string; href: string }[]> = {
+const studioBio =
+  'Ki10 Games is a two-person independent game studio in the UK, founded by Mark McManus (design, programming and QA) and Scott Hamilton (art and world building). Part of the reason the studio is called Ki10 is their original goal of selling ten copies. They don’t stick to one genre: their released games are Skill Check (daily gaming trivia) and The One Bullet Job (turn-based heist puzzle), and they are currently building Save File 0 (first-person survival horror for Game Boy Color), Boop n Burn (floor-is-lava party brawler), and KIT: Knight in Training.';
+
+const factSheetCopyText = [
+  ...studioFacts.map((f) => `${f.label}: ${f.value}`),
+  '',
+  studioBio,
+  '',
+  `Press & general contact: ${studio.contactEmail}`,
+  `Business enquiries: ${studio.businessEmail}`,
+].join('\n');
+
+/** Press assets live in /public/press so their URLs stay stable for press and creators. */
+const pressAssets: Record<string, { label: string; href: string; isVideo?: boolean }[]> = {
   'save-file-0': [
     { label: 'Logo (transparent)', href: '/press/save-file-0/save-file-0-logo-transparent.png' },
     { label: 'Key art, 1920×1080', href: '/press/save-file-0/save-file-0-key-art-1920x1080.png' },
-    { label: 'Handheld and box mock-up', href: '/press/save-file-0/save-file-0-handheld-and-box-mockup-1920x1080.png' },
-    { label: 'Physical release mock-up', href: '/press/save-file-0/save-file-0-physical-release-mockup-1360x760.png' },
-    { label: 'Teaser trailer (1080p MP4)', href: '/press/save-file-0/save-file-0-teaser-1080p.mp4' },
+    {
+      label: 'Handheld & box mock-up',
+      href: '/press/save-file-0/save-file-0-handheld-and-box-mockup-1920x1080.png',
+    },
+    {
+      label: 'Physical release mock-up',
+      href: '/press/save-file-0/save-file-0-physical-release-mockup-1360x760.png',
+    },
+    { label: 'Teaser trailer (1080p MP4)', href: '/press/save-file-0/save-file-0-teaser-1080p.mp4', isVideo: true },
     { label: 'The Occupant in a doorway', href: '/press/save-file-0/save-file-0-01-occupant-in-the-doorway.png' },
     { label: 'Save index with FILE 0', href: '/press/save-file-0/save-file-0-03-save-index-file0.png' },
     { label: 'Mara’s revolver note', href: '/press/save-file-0/save-file-0-07-revolver-note.png' },
@@ -37,11 +58,12 @@ const pressAssets: Record<string, { label: string; href: string }[]> = {
     { label: 'Same spot in FILE 0', href: '/press/save-file-0/save-file-0-13-file0-racks-and-locker.png' },
     { label: 'Same spot in your save', href: '/press/save-file-0/save-file-0-14-same-spot-in-player.png' },
   ],
-  'skill-check': [
-    { label: 'Main menu', href: '/press/skill-check/skillcheck-menu.webp' },
-    { label: 'Matching set', href: '/press/skill-check/skillcheck-card-select.webp' },
-    { label: 'Question in play', href: '/press/skill-check/skillcheck-question.webp' },
-    { label: 'Collection', href: '/press/skill-check/skillcheck-collection.webp' },
+  'boop-n-burn': [
+    { label: 'Shipping yard arena', href: '/press/boop-n-burn/bnb-shipyard.webp' },
+    { label: 'Ruined temple', href: '/press/boop-n-burn/bnb-ruins.webp' },
+    { label: 'Arcade', href: '/press/boop-n-burn/bnb-arcade.webp' },
+    { label: 'Warehouse', href: '/press/boop-n-burn/bnb-warehouse.webp' },
+    { label: 'Desert coliseum', href: '/press/boop-n-burn/bnb-coliseum.webp' },
   ],
   'the-one-bullet-job': [
     { label: 'Logo', href: '/press/the-one-bullet-job/obj-logo.png' },
@@ -57,172 +79,217 @@ const pressAssets: Record<string, { label: string; href: string }[]> = {
     { label: 'Escaped result', href: '/press/the-one-bullet-job/obj-result.webp' },
     { label: 'Masks and outfits', href: '/press/the-one-bullet-job/obj-crew.webp' },
   ],
-  'boop-n-burn': [
-    { label: 'Shipping yard arena', href: '/press/boop-n-burn/bnb-shipyard.webp' },
-    { label: 'Ruined temple', href: '/press/boop-n-burn/bnb-ruins.webp' },
-    { label: 'Arcade', href: '/press/boop-n-burn/bnb-arcade.webp' },
-    { label: 'Warehouse', href: '/press/boop-n-burn/bnb-warehouse.webp' },
-    { label: 'Desert coliseum', href: '/press/boop-n-burn/bnb-coliseum.webp' },
+  'skill-check': [
+    { label: 'Main menu', href: '/press/skill-check/skillcheck-menu.webp' },
+    { label: 'Matching set', href: '/press/skill-check/skillcheck-card-select.webp' },
+    { label: 'Question in play', href: '/press/skill-check/skillcheck-question.webp' },
+    { label: 'Collection', href: '/press/skill-check/skillcheck-collection.webp' },
+  ],
+  'kit-knight-in-training': [
+    { label: 'Briarwatch vista (Godot)', href: '/press/kit/kit-godot-vista.webp' },
+    { label: 'Briarwatch Green (Godot)', href: '/press/kit/kit-godot-village.webp' },
+    { label: 'Long grass leap (Godot)', href: '/press/kit/kit-godot-leap.webp' },
+    { label: 'Grass & terrain pass', href: '/press/kit/kit-grass.jpg' },
   ],
 };
 
 const logos = [
-  { label: 'Primary logo (dark on light)', href: '/press/logos/Ki10_LOGO.png' },
-  { label: 'Reversed logo (light on dark)', href: '/press/logos/Ki10_LOGO_Light.png' },
-  { label: 'Share card, 1200×630', href: '/press/logos/ki10-share-card.png' },
-  { label: 'Team photo (Mark and Scott)', href: '/press/logos/ki10-team.webp' },
+  { label: 'Primary logo (dark on light)', href: '/press/logos/Ki10_LOGO.png', darkBg: false },
+  { label: 'Reversed logo (light on dark)', href: '/press/logos/Ki10_LOGO_Light.png', darkBg: true },
+  { label: 'Share card (1200×630)', href: '/press/logos/ki10-share-card.png', darkBg: false },
+  { label: 'Team photo (Mark & Scott)', href: '/press/logos/ki10-team.webp', darkBg: false },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <HeroText
-    tagline="Press kit"
-    title="Everything you need to write about us"
-    subtitle="Fact sheets, logos and screenshots, free to use in any coverage of Ki10 Games. If you need something that isn't here, just ask!"
-  />
+  <div class="ki10-container py-10 md:py-14">
+    <header class="max-w-3xl">
+      <span class="ki10-kicker">
+        <Icon name="tabler:news" class="h-4 w-4" />
+        Press kit
+      </span>
+      <h1 class="mt-3 font-heading text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
+        Logos, screenshots &amp; fact sheets
+      </h1>
+      <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+        Everything you need to cover Ki10 Games in articles, videos or streams — free to use without asking first. If
+        you need a custom capture or size, drop us an email.
+      </p>
+      <p class="mt-3 text-sm text-muted">
+        Want to see who’s written about our games?{' '}
+        <a href="/press-coverage" class="font-bold text-secondary hover:underline">Read our press coverage &rarr;</a>
+      </p>
+    </header>
 
-  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
-    <div class="rounded-2xl border border-gray-200 p-6 md:p-8 dark:border-white/10">
-      <h2 class="font-heading text-2xl font-bold tracking-tight">Studio fact sheet</h2>
+    <!-- Studio Fact Sheet -->
+    <section class="ki10-card mt-8 p-6 sm:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading">Studio fact sheet</h2>
+        <div class="flex flex-wrap gap-2">
+          <CopyButton text={studioBio} label="Copy bio" copiedLabel="Bio copied!" />
+          <CopyButton text={factSheetCopyText} label="Copy full fact sheet" copiedLabel="Fact sheet copied!" />
+        </div>
+      </div>
+
       <dl class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
           studioFacts.map((fact) => (
             <div>
-              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">{fact.label}</dt>
-              <dd class="mt-1 font-medium">{fact.value}</dd>
+              <dt class="text-xs font-bold uppercase tracking-wider text-muted">{fact.label}</dt>
+              <dd class="mt-1 font-heading font-bold text-heading">{fact.value}</dd>
             </div>
           ))
         }
       </dl>
 
-      <p class="mt-8 text-muted">
-        Ki10 Games is a two person independent studio in the UK, founded by Mark McManus (design, programming and QA)
-        and Scott Hamilton (art and world building). The name comes from the studio goal, which is to sell ten copies.
-        We don't stick to one genre either: our released games include a daily trivia game and a turn-based heist puzzler, and we're currently building a
-        party brawler and a survival horror game for the Game Boy Color.
-      </p>
+      <p class="mt-6 leading-relaxed text-muted">{studioBio}</p>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a
-          href="mailto:business@ki10games.com"
-          class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-secondary"
-        >
+      <div class="mt-7 flex flex-wrap items-center gap-3 border-t border-ink pt-6">
+        <a href={`mailto:${studio.contactEmail}`} class="btn-primary text-sm">
           <Icon name="tabler:mail" class="h-4 w-4" />
-          business@ki10games.com
+          {studio.contactEmail}
         </a>
-        <a
-          href="mailto:contact@ki10games.com"
-          class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-5 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary dark:border-white/20 dark:hover:border-accent dark:hover:text-accent"
-        >
-          <Icon name="tabler:news" class="h-4 w-4" />
-          Press enquiries
+        <CopyButton text={studio.contactEmail} label="Copy press email" />
+        <a href={`mailto:${studio.businessEmail}`} class="btn-secondary text-sm">
+          <Icon name="tabler:briefcase" class="h-4 w-4" />
+          {studio.businessEmail}
         </a>
+        <CopyButton text={studio.businessEmail} label="Copy business email" />
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
-    <p class="text-sm text-muted">Want to see who's written about our games? <a href="/press-coverage" class="font-semibold text-primary hover:underline dark:text-accent">Read our press coverage</a>.</p>
-  </section>
+    <!-- Logos & Studio Photos -->
+    <section class="mt-12">
+      <h2 class="font-heading text-2xl font-extrabold tracking-tight text-heading">Logos &amp; studio photos</h2>
+      <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          logos.map((logo) => (
+            <div class="ki10-card flex flex-col overflow-hidden">
+              <div
+                class:list={[
+                  'flex aspect-[16/10] items-center justify-center p-4',
+                  logo.darkBg ? 'bg-[#13141a]' : 'bg-subtle',
+                ]}
+              >
+                <img
+                  src={logo.href}
+                  alt={logo.label}
+                  loading="lazy"
+                  class="max-h-full max-w-full rounded object-contain"
+                />
+              </div>
+              <div class="flex flex-1 flex-col justify-between gap-3 p-4">
+                <span class="text-sm font-bold text-heading">{logo.label}</span>
+                <a
+                  href={logo.href}
+                  download
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:underline"
+                >
+                  <Icon name="tabler:download" class="h-4 w-4" />
+                  Download file
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
 
-  <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
-    <h2 class="mb-6 font-heading text-2xl font-bold tracking-tight">Logos</h2>
-    <ul class="grid gap-4 sm:grid-cols-3">
+    <!-- Game Press Sheets with Thumbnail Grids -->
+    <div class="mt-12 space-y-8">
       {
-        logos.map((logo) => (
-          <li>
-            <a
-              href={logo.href}
-              download
-              class="flex h-full items-center gap-3 rounded-xl border border-gray-200 p-4 transition hover:border-primary dark:border-white/10 dark:hover:border-accent"
-            >
-              <Icon name="tabler:download" class="h-5 w-5 flex-shrink-0 text-primary dark:text-accent" />
-              <span class="text-sm font-medium">{logo.label}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  {
-    games.map((game) => (
-      <section class="mx-auto max-w-5xl px-4 pb-12 md:px-6">
-        <div class="rounded-2xl border border-gray-200 p-6 md:p-8 dark:border-white/10">
-          <div class="mb-4 flex flex-wrap items-center gap-3">
-            <StatusBadge status={game.status} />
-            <span class="text-xs font-medium uppercase tracking-wide text-muted">{game.genre}</span>
-          </div>
-
-          <h2 class="font-heading text-2xl font-bold tracking-tight">{game.title}</h2>
-          <p class="mt-2 font-medium text-secondary">{game.tagline}</p>
-          <p class="mt-4 text-muted">{game.pitch}</p>
-
-          <dl class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Status</dt>
-              <dd class="mt-1 font-medium">{game.releaseLine}</dd>
+        games.map((game) => (
+          <section id={game.slug} class="ki10-card p-6 sm:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <StatusBadge status={game.status} />
+                <span class="text-xs font-bold uppercase tracking-wider text-muted">{game.genre}</span>
+              </div>
+              <CopyButton text={`${game.title} — ${game.tagline}\n\n${game.pitch}`} label="Copy game pitch" />
             </div>
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Platforms</dt>
-              <dd class="mt-1 font-medium">{game.platforms.join(' · ')}</dd>
-            </div>
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Engine</dt>
-              <dd class="mt-1 font-medium">{game.engine}</dd>
-            </div>
-            <div>
-              <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Page</dt>
-              <dd class="mt-1 font-medium">
-                <a href={`/projects/${game.slug}`} class="text-primary hover:underline dark:text-accent">
-                  /projects/{game.slug}
-                </a>
-              </dd>
-            </div>
-          </dl>
 
-          {game.links.length > 0 && (
-            <p class="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-              {game.links.map((link) => (
-                <a href={link.href} class="text-primary hover:underline dark:text-accent">
-                  {link.label}
-                </a>
-              ))}
-            </p>
-          )}
+            <h2 class="mt-3 font-heading text-2xl font-extrabold tracking-tight text-heading sm:text-3xl">
+              {game.title}
+            </h2>
+            <p class="mt-1 font-heading text-base font-bold text-secondary">{game.tagline}</p>
+            <p class="mt-3 max-w-3xl leading-relaxed text-muted">{game.pitch}</p>
 
-          {pressAssets[game.slug] && (
-            <div class="mt-8">
-              <h3 class="text-xs font-semibold uppercase tracking-wide text-muted">Screenshots</h3>
-              <ul class="mt-3 flex flex-wrap gap-2">
-                {pressAssets[game.slug].map((asset) => (
-                  <li>
+            <dl class="mt-6 grid gap-4 rounded-xl bg-subtle/70 p-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wider text-muted">Status</dt>
+                <dd class="mt-1 text-sm font-bold text-heading">{game.releaseLine}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wider text-muted">Platforms</dt>
+                <dd class="mt-1 text-sm font-bold text-heading">{game.platforms.join(' · ')}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wider text-muted">Engine</dt>
+                <dd class="mt-1 text-sm font-bold text-heading">{game.engine}</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wider text-muted">Game page</dt>
+                <dd class="mt-1 text-sm font-bold">
+                  <a href={`/projects/${game.slug}`} class="text-secondary hover:underline">
+                    /projects/{game.slug}
+                  </a>
+                </dd>
+              </div>
+            </dl>
+
+            {pressAssets[game.slug] && (
+              <div class="mt-7">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-muted">
+                  Downloadable art, screenshots &amp; video ({pressAssets[game.slug].length})
+                </h3>
+                <div class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {pressAssets[game.slug].map((asset) => (
                     <a
                       href={asset.href}
                       download
-                      class="inline-flex items-center gap-1.5 rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium transition hover:border-primary hover:text-primary dark:border-white/20 dark:hover:border-accent dark:hover:text-accent"
+                      class="group flex flex-col overflow-hidden rounded-xl border border-ink bg-subtle/50 transition hover:border-primary"
                     >
-                      <Icon name="tabler:download" class="h-3.5 w-3.5" />
-                      {asset.label}
+                      <div class="flex aspect-video items-center justify-center overflow-hidden bg-black/85">
+                        {asset.isVideo ? (
+                          <div class="flex flex-col items-center gap-1.5 text-white/90">
+                            <Icon name="tabler:movie" class="h-8 w-8 text-accent" />
+                            <span class="text-[0.65rem] font-bold uppercase tracking-wider">1080p MP4</span>
+                          </div>
+                        ) : (
+                          <img
+                            src={asset.href}
+                            alt={`${game.title} — ${asset.label}`}
+                            loading="lazy"
+                            class:list={[
+                              'h-full w-full object-cover transition duration-300 group-hover:scale-105',
+                              { 'pixel-art': game.slug === 'save-file-0' },
+                            ]}
+                          />
+                        )}
+                      </div>
+                      <span class="flex items-center justify-between gap-2 px-3 py-2 text-xs font-semibold text-heading group-hover:text-secondary">
+                        <span class="truncate">{asset.label}</span>
+                        <Icon name="tabler:download" class="h-3.5 w-3.5 flex-shrink-0" />
+                      </span>
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </section>
-    ))
-  }
-
-  <section class="mx-auto max-w-5xl px-4 pb-16 md:px-6">
-    <div class="rounded-2xl bg-gray-50 p-6 md:p-8 dark:bg-white/[0.04]">
-      <h2 class="font-heading text-xl font-bold tracking-tight">Terms of use</h2>
-      <p class="mt-3 text-muted">
-        You're welcome to use the logos, screenshots and text on this page in articles, videos and any other coverage of
-        Ki10 Games, without asking us first. Please just don't alter the logos or present our games as your own work.
-        Monetised video coverage is absolutely fine and very much encouraged.
-      </p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        ))
+      }
     </div>
-  </section>
+
+    <section class="mt-12">
+      <div class="ki10-panel p-6 sm:p-8">
+        <h2 class="font-heading text-xl font-extrabold tracking-tight text-heading">Monetisation &amp; usage</h2>
+        <p class="mt-2 leading-relaxed text-muted">
+          You’re welcome to use the logos, screenshots and text on this page in articles, videos, streams and any other
+          coverage of Ki10 Games without asking us first. Please just don’t alter the logos or present our games as
+          your own work. Monetised video coverage is completely fine and very much encouraged.
+        </p>
+      </div>
+    </section>
+  </div>
 </Layout>

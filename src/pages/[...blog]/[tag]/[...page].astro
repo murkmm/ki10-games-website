@@ -5,6 +5,7 @@ import { blogTagRobots, getStaticPathsBlogTag } from '~/utils/blog';
 import Layout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
 import Headline from '~/components/blog/Headline.astro';
+import DevlogFilterBar from '~/components/blog/DevlogFilterBar.astro';
 import Pagination from '~/components/blog/Pagination.astro';
 
 export const prerender = true;
@@ -16,11 +17,10 @@ export const getStaticPaths = (async ({ paginate }) => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page, tag } = Astro.props as Props;
-
 const currentPage = page.currentPage ?? 1;
 
 const metadata = {
-  title: `Posts by tag '${tag.title}'${currentPage > 1 ? ` Page ${currentPage} ` : ''}`,
+  title: `Devlogs tagged '${tag.title}'${currentPage > 1 ? ` Page ${currentPage}` : ''}`,
   robots: {
     index: blogTagRobots?.index,
     follow: blogTagRobots?.follow,
@@ -29,8 +29,11 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline>Tag: {tag.title}</Headline>
+  <section class="ki10-container py-10 md:py-14">
+    <Headline subtitle="Filtered devlog posts from the studio archive.">
+      Tag: {tag.title}
+    </Headline>
+    <DevlogFilterBar activeSlug={tag.slug} />
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </section>

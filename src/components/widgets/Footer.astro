@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
+import NewsletterForm from '~/components/common/NewsletterForm.astro';
 
 interface Link {
   text?: string;
@@ -26,39 +27,41 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
+<footer class:list={[{ dark: theme === 'dark' }, 'not-prose relative border-t border-ink bg-subtle/50']}>
+  <div class="ki10-container py-12 md:py-14">
+    <div class="grid grid-cols-12 gap-8">
       <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="text-sm text-muted">
+        <a
+          class="inline-block font-heading text-xl font-extrabold tracking-tight text-heading"
+          href={getHomePermalink()}
+        >
+          {SITE?.name}
+        </a>
+        <p class="mt-2 max-w-xs text-sm leading-relaxed text-muted">
+          Two friends making indie games in the UK.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium text-muted">
           {
             secondaryLinks.map(({ text, href }, index) => (
               <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:hover:text-white dark:text-muted hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
+                {index !== 0 ? <span aria-hidden="true">·</span> : ''}
+                <a class="transition hover:text-heading hover:underline" href={href} set:html={text} />
               </>
             ))
           }
         </div>
       </div>
+
       {
         links.map(({ title, links }) => (
           <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
+            <div class="mb-3 font-heading text-sm font-bold text-heading">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
+              <ul class="space-y-2 text-sm">
                 {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
+                  <li>
                     <a
-                      class="text-muted hover:text-gray-700 dark:hover:text-white hover:underline dark:text-muted transition duration-150 ease-in-out"
+                      class="text-muted transition hover:text-secondary hover:underline"
                       href={href}
                       aria-label={ariaLabel}
                     >
@@ -71,91 +74,39 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
           </div>
         ))
       }
-      <div id="studio-updates" class="col-span-12 md:col-span-6 lg:col-span-4" tabindex="-1">
-        <div class="dark:text-gray-300 font-medium mb-2">Stay Updated</div>
-        <div class="text-sm text-muted mb-2">Get our dev log and news delivered to your inbox.</div>
 
-        <div class="mc-signup">
-          <form
-            action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
-            method="post"
-            id="footer-mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            class="validate"
-          >
-            <div id="footer-mc_embed_signup_scroll">
-              <div class="mc-field-group">
-                <label for="footer-mce-EMAIL" class="sr-only">Email address</label>
-                <input
-                  type="email"
-                  autocomplete="email"
-                  name="EMAIL"
-                  class="required email"
-                  id="footer-mce-EMAIL"
-                  required
-                  value=""
-                  placeholder="Your email address"
-                />
-              </div>
-              <div id="footer-mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group">
-                <div class="content__gdpr">
-                  <p class="text-sm !text-muted">
-                    We'll use your email to send you updates. Please let us know how you'd like to hear from us:
-                  </p>
-                  <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
-                    <label class="checkbox subfield" for="footer-gdpr_43380">
-                      <input type="checkbox" id="footer-gdpr_43380" name="gdpr[43380]" class="gdpr" value="Y" />
-                      <span>Dev Logs & Studio News</span>
-                    </label>
-                  </fieldset>
-                </div>
-              </div>
-              <div id="footer-mce-responses" class="clear foot">
-                <div class="response" id="footer-mce-error-response" style="display: none;"></div>
-                <div class="response" id="footer-mce-success-response" style="display: none;"></div>
-              </div>
-              <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                <input type="text" name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d" tabindex="-1" value="" />
-              </div>
-              <div class="optionalParent">
-                <div class="clear foot">
-                  <input
-                    type="submit"
-                    name="subscribe"
-                    id="footer-mc-embedded-subscribe"
-                    class="btn btn-primary"
-                    value="Get Updates"
-                  />
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
+      <div id="studio-updates" class="col-span-12 md:col-span-6 lg:col-span-4" tabindex="-1">
+        <div class="mb-1.5 font-heading text-sm font-bold text-heading">Get devlogs by email</div>
+        <p class="mb-3 text-sm text-muted">New posts, demos and game launches. No spam.</p>
+        <NewsletterForm idPrefix="footer" submitLabel="Subscribe" compact />
       </div>
     </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+
+    <div
+      class="mt-10 flex flex-col items-start justify-between gap-4 border-t border-ink pt-6 md:flex-row md:items-center"
+    >
       {
         socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
+          <ul class="flex flex-shrink-0 flex-wrap items-center gap-1 md:order-2">
             {socialLinks.map(({ ariaLabel, href, text, icon }) => (
               <li>
                 <a
-                  class="text-muted dark:text-muted hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="inline-flex items-center rounded-lg p-2.5 text-muted transition hover:bg-card hover:text-secondary"
                   aria-label={ariaLabel}
                   href={href}
+                  target={href?.startsWith('http') ? '_blank' : undefined}
+                  rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
+                  {icon && <Icon name={icon} class="h-5 w-5" />}
                   <Fragment set:html={text} />
                 </a>
               </li>
             ))}
           </ul>
-        ) : (
-          ''
-        )
+        ) : null
       }
 
-      <div class="text-sm mr-4 dark:text-muted">
+      <div class="text-xs leading-relaxed text-muted md:order-1">
         <Fragment set:html={footNote} />
       </div>
     </div>

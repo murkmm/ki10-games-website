@@ -1,7 +1,7 @@
 {
-  "name": "c-users-markm-desktop-my-websites-ki10-games-website",
-  "version": "1.0.0-beta.52",
-  "description": "AstroWind: A free template using Astro 5.0 and Tailwind CSS. Astro starter theme.",
+  "name": "ki10-games-website",
+  "version": "2.0.0",
+  "description": "Official website and devlog for Ki10 Games.",
   "type": "module",
   "engines": {
     "node": "^18.17.1 || ^20.3.0 || >= 21.0.0"
@@ -25,7 +25,9 @@
     "@astrojs/sitemap": "^3.4.2",
     "@astrolib/analytics": "^0.6.1",
     "@astrolib/seo": "^1.0.0-beta.8",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
     "@fontsource-variable/inter": "^5.2.6",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "astro": "^5.12.9",
     "astro-embed": "^0.9.0",
     "astro-icon": "^1.1.5",

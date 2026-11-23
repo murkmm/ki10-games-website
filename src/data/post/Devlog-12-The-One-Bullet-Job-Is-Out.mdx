@@ -41,9 +41,10 @@ Here's the launch trailer first, so you know what I'm on about:
   <div class="w-full aspect-video">
     <iframe
       class="h-full w-full rounded-md"
-      src={`https://www.youtube-nocookie.com/embed/${trailerId}`}
+      src={`https://www.youtube.com/embed/${trailerId}?rel=0`}
       title="The One Bullet Job launch trailer"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen
       loading="lazy"
     ></iframe>

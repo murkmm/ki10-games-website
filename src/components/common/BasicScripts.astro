@@ -82,6 +82,25 @@ import { UI } from 'astrowind:config';
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });
 
+    attachEvent('[data-copy-text]', 'click', async function (_, elem) {
+      const value = elem.getAttribute('data-copy-text');
+      if (!value) return;
+      const status = elem.querySelector('[data-copy-status]');
+      const defaultLabel = elem.getAttribute('data-copy-label') || 'Copy';
+      const copiedLabel = elem.getAttribute('data-copied-label') || 'Copied!';
+      try {
+        await navigator.clipboard.writeText(value);
+        if (status) status.textContent = copiedLabel;
+        elem.setAttribute('data-copied', 'true');
+        window.setTimeout(() => {
+          if (status) status.textContent = defaultLabel;
+          elem.removeAttribute('data-copied');
+        }, 1800);
+      } catch {
+        window.prompt('Copy to clipboard:', value);
+      }
+    });
+
     attachEvent('[data-aw-social-share]', 'click', function (_, elem) {
       const network = elem.getAttribute('data-aw-social-share');
       const url = encodeURIComponent(elem.getAttribute('data-aw-url'));
@@ -89,20 +108,17 @@ import { UI } from 'astrowind:config';
 
       let href;
       switch (network) {
-        case 'facebook':
-          href = `https://www.facebook.com/sharer.php?u=${url}`;
+        case 'bluesky':
+          href = `https://bsky.app/intent/compose?text=${text}%20${url}`;
           break;
         case 'twitter':
           href = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
           break;
-        case 'linkedin':
-          href = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`;
-          break;
-        case 'whatsapp':
-          href = `https://wa.me/?text=${text}%20${url}`;
+        case 'reddit':
+          href = `https://www.reddit.com/submit?url=${url}&title=${text}`;
           break;
         case 'mail':
-          href = `mailto:?subject=%22${text}%22&body=${text}%20${url}`;
+          href = `mailto:?subject=${text}&body=${text}%20${url}`;
           break;
 
         default:
@@ -111,6 +127,7 @@ import { UI } from 'astrowind:config';
 
       const newlink = document.createElement('a');
       newlink.target = '_blank';
+      newlink.rel = 'noopener noreferrer';
       newlink.href = href;
       newlink.click();
     });

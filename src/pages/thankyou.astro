@@ -5,7 +5,6 @@ import { Icon } from 'astro-icon/components';
 const metadata = {
   title: 'Thank You for Subscribing!',
   description: 'Thanks for joining our mailing list. Please check your inbox to confirm your subscription.',
-  // You can set noindex to prevent search engines from listing this page
   robots: {
     index: false,
   },
@@ -13,50 +12,39 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-4 py-16 sm:py-20">
+  <section class="ki10-container py-16 sm:py-20">
     <div class="mx-auto max-w-2xl text-center">
-      <Icon name="tabler:mail-check" class="mx-auto h-16 w-16 text-green-600" />
-      <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Check your inbox.</h1>
-      <p class="mt-4 text-lg text-muted">Thanks for signing up for the Ki10 devlog.</p>
+      <span class="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-[#e6f7f4] text-[#0d8a78] dark:bg-[#0f2e2b] dark:text-[#2dd4bf]">
+        <Icon name="tabler:mail-check" class="h-9 w-9" />
+      </span>
+      <h1 class="mt-5 font-heading text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
+        Check your inbox
+      </h1>
+      <p class="mt-3 text-lg text-muted">Thanks for signing up for the Ki10 devlog.</p>
 
-      <div
-        class="mt-8 rounded-lg border border-yellow-300 bg-yellow-50 p-6 text-left dark:border-yellow-800 dark:bg-yellow-900/30"
-      >
-        <h2 class="font-bold text-yellow-900 dark:text-yellow-200">Confirm your email</h2>
-        <p class="mt-2 text-yellow-800 dark:text-yellow-300">
-          To complete your subscription, please go to your inbox and click the confirmation link in the email we just
-          sent you.
+      <div class="ki10-panel mt-8 p-6 text-left">
+        <h2 class="font-heading text-lg font-bold text-heading">One last step: confirm your email</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted">
+          To finish subscribing, head to your inbox and click the confirmation link we just sent over.
         </p>
-        <p class="mt-2 text-sm text-yellow-700 dark:text-yellow-400">
-          If you don't see it within a few minutes, please be sure to check your junk or spam folder!
+        <p class="mt-2 text-xs text-muted">
+          If it doesn’t turn up in a few minutes, have a quick peek in your spam or junk folder.
         </p>
       </div>
 
-      <div class="mt-12">
-        <h2 class="text-xl font-semibold">While you’re here</h2>
-        <p class="mt-2 text-muted">While you wait, here are a few things you can do:</p>
-        <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <a
-            href="/devlog"
-            class="rounded-md border border-slate-300 p-4 text-center hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
-          >
-            <p class="font-semibold">Read the Latest Devlog</p>
-            <p class="text-sm text-muted">Catch up on our development progress.</p>
-          </a>
-          <a
-            href="/contact#follow-us"
-            class="rounded-md border border-slate-300 p-4 text-center hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
-          >
-            <p class="font-semibold">Follow Our Socials</p>
-            <p class="text-sm text-muted">Game clips and updates from the studio.</p>
-          </a>
-        </div>
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <a href="/devlog" class="ki10-card ki10-card-interactive p-5 text-left">
+          <p class="font-heading font-bold text-heading">Read the latest devlog &rarr;</p>
+          <p class="mt-1 text-sm text-muted">Catch up on what we’ve been building.</p>
+        </a>
+        <a href="/projects" class="ki10-card ki10-card-interactive p-5 text-left">
+          <p class="font-heading font-bold text-heading">Play our games &rarr;</p>
+          <p class="mt-1 text-sm text-muted">Try Skill Check or The One Bullet Job.</p>
+        </a>
+      </div>
 
-        <div class="mt-8">
-          <a href="/" class="text-sm font-medium text-primary hover:underline dark:text-accent">
-            &laquo; Back to Homepage
-          </a>
-        </div>
+      <div class="mt-8">
+        <a href="/" class="text-sm font-bold text-secondary hover:underline">&larr; Back to homepage</a>
       </div>
     </div>
   </section>

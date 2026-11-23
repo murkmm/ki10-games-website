@@ -1,4 +1,5 @@
 import { getPermalink, getBlogPermalink } from './utils/permalinks';
+import { studio } from './data/studio';
 
 export const headerData = {
   links: [
@@ -7,17 +8,9 @@ export const headerData = {
       href: getPermalink('/'),
     },
     {
-      text: 'About',
-      href: getPermalink('/about'),
-    },
-    {
       // Route stays /projects so existing links and shares keep working.
       text: 'Games',
       href: getPermalink('/projects'),
-    },
-    {
-      text: 'Team',
-      href: getPermalink('/team'),
     },
     {
       text: 'Devlog',
@@ -28,11 +21,19 @@ export const headerData = {
       href: getPermalink('/qa-services'),
     },
     {
+      text: 'About',
+      href: getPermalink('/about'),
+    },
+    {
+      text: 'Team',
+      href: getPermalink('/team'),
+    },
+    {
       text: 'Contact',
       href: getPermalink('/contact'),
     },
   ],
-  actions: [], // This is empty to hide the header button
+  actions: [],
 };
 
 export const footerData = {
@@ -40,11 +41,11 @@ export const footerData = {
     {
       title: 'Games',
       links: [
-        { text: 'Skill Check', href: getPermalink('/projects/skill-check') },
+        { text: 'Save File 0', href: getPermalink('/projects/save-file-0') },
         { text: 'Boop n Burn', href: getPermalink('/projects/boop-n-burn') },
         { text: 'The One Bullet Job', href: getPermalink('/projects/the-one-bullet-job') },
+        { text: 'Skill Check', href: getPermalink('/projects/skill-check') },
         { text: 'KIT: Knight in Training', href: getPermalink('/projects/kit-knight-in-training') },
-        { text: 'Save File 0', href: getPermalink('/projects/save-file-0') },
       ],
     },
     {
@@ -53,25 +54,23 @@ export const footerData = {
         { text: 'About', href: getPermalink('/about') },
         { text: 'Team', href: getPermalink('/team') },
         { text: 'Devlog', href: getBlogPermalink() },
-        { text: 'Contact', href: getPermalink('/contact') },
         { text: 'QA Services', href: getPermalink('/qa-services') },
         { text: 'Press kit', href: getPermalink('/press') },
         { text: 'Press coverage', href: getPermalink('/press-coverage') },
+        { text: 'Contact', href: getPermalink('/contact') },
       ],
     },
   ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'RSS', href: getPermalink('/rss.xml') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/Ki10Games/' },
-    { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://youtube.com/@official.ki10games' },
-    { ariaLabel: 'TikTok', icon: 'tabler:brand-tiktok', href: 'https://www.tiktok.com/@ki10.games' },
-    { ariaLabel: 'Discord', icon: 'tabler:brand-discord', href: 'https://discord.gg/NqtVzsmj3A' },
-    { ariaLabel: 'Steam', icon: 'tabler:brand-steam', href: 'https://steamcommunity.com/groups/Ki10Games' },
+    ...studio.socialLinks.map(({ ariaLabel, icon, href }) => ({ ariaLabel, icon, href })),
+    { ariaLabel: 'RSS Feed', icon: 'tabler:rss', href: getPermalink('/rss.xml') },
   ],
   footNote: `
-    &copy; ${new Date().getFullYear()} Ki10 Games Ltd · Company No. 15687835 · Registered in England and Wales · Registered office: 41 Torwood Road, Chadderton, Oldham, OL9 0RA, United Kingdom · <a href="https://find-and-update.company-information.service.gov.uk/company/15687835" target="_blank" rel="noopener noreferrer">Company register</a> · <a href="mailto:business@ki10games.com">Business enquiries</a> · All rights reserved.
+    &copy; ${new Date().getFullYear()} ${studio.legalName} · Company No. ${studio.companyNumber} · Registered in England and Wales · Registered office: ${studio.registeredOffice} · <a href="${studio.companiesHouseUrl}" target="_blank" rel="noopener noreferrer" class="underline hover:text-secondary">Company register</a> · <a href="mailto:${studio.businessEmail}" class="underline hover:text-secondary">Business enquiries</a> · All rights reserved.
   `,
 };

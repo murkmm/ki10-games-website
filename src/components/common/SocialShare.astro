@@ -7,59 +7,69 @@ export interface Props {
   class?: string;
 }
 
-const { text, url, class: className = 'inline-block' } = Astro.props;
+const { text, url, class: className = 'inline-flex items-center' } = Astro.props;
+const urlString = String(url);
 ---
 
-<div class={className}>
-  <span class="align-super font-bold text-slate-500 dark:text-slate-400">Share:</span>
+<div class:list={['flex flex-wrap items-center gap-2', className]}>
+  <span class="text-xs font-bold uppercase tracking-wider text-muted">Share:</span>
+
   <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Twitter Share"
+    type="button"
+    data-copy-text={urlString}
+    data-copy-label="Copy link"
+    data-copied-label="Copied!"
+    class="inline-flex items-center gap-1.5 rounded-lg border border-ink bg-card px-2.5 py-1.5 text-xs font-semibold text-heading transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent"
+  >
+    <Icon name="tabler:link" class="h-4 w-4" />
+    <span data-copy-status>Copy link</span>
+  </button>
+
+  <button
+    type="button"
+    title="Share on Bluesky"
+    aria-label="Share on Bluesky"
+    data-aw-social-share="bluesky"
+    data-aw-url={urlString}
+    data-aw-text={text}
+    class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-ink bg-card text-muted transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent"
+  >
+    <Icon name="tabler:brand-bluesky" class="h-4 w-4" />
+  </button>
+
+  <button
+    type="button"
+    title="Share on X"
+    aria-label="Share on X"
     data-aw-social-share="twitter"
-    data-aw-url={url}
+    data-aw-url={urlString}
     data-aw-text={text}
-    ><Icon
-      name="tabler:brand-x"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
+    class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-ink bg-card text-muted transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent"
+  >
+    <Icon name="tabler:brand-x" class="h-4 w-4" />
   </button>
-  <button class="ml-2 rtl:ml-0 rtl:mr-2" title="Facebook Share" data-aw-social-share="facebook" data-aw-url={url}
-    ><Icon
-      name="tabler:brand-facebook"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
+
   <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Linkedin Share"
-    data-aw-social-share="linkedin"
-    data-aw-url={url}
+    type="button"
+    title="Share on Reddit"
+    aria-label="Share on Reddit"
+    data-aw-social-share="reddit"
+    data-aw-url={urlString}
     data-aw-text={text}
-    ><Icon
-      name="tabler:brand-linkedin"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
+    class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-ink bg-card text-muted transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent"
+  >
+    <Icon name="tabler:brand-reddit" class="h-4 w-4" />
   </button>
+
   <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Whatsapp Share"
-    data-aw-social-share="whatsapp"
-    data-aw-url={url}
-    data-aw-text={text}
-    ><Icon
-      name="tabler:brand-whatsapp"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
-  </button>
-  <button
-    class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Email Share"
+    type="button"
+    title="Share by email"
+    aria-label="Share by email"
     data-aw-social-share="mail"
-    data-aw-url={url}
+    data-aw-url={urlString}
     data-aw-text={text}
-    ><Icon
-      name="tabler:mail"
-      class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
-    />
+    class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-ink bg-card text-muted transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent"
+  >
+    <Icon name="tabler:mail" class="h-4 w-4" />
   </button>
 </div>

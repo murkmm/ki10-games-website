@@ -1,5 +1,6 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { Icon } from 'astro-icon/components';
 
 import merge from 'lodash.merge';
 import type { ImageMetadata } from 'astro';
@@ -8,7 +9,7 @@ import SinglePost from '~/components/blog/SinglePost.astro';
 import ToBlogLink from '~/components/blog/ToBlogLink.astro';
 
 import { getCanonical, getPermalink } from '~/utils/permalinks';
-import { getStaticPathsBlogPost, blogPostRobots } from '~/utils/blog';
+import { getStaticPathsBlogPost, blogPostRobots, getAdjacentPosts } from '~/utils/blog';
 import { findImage } from '~/utils/images';
 import type { MetaData } from '~/types';
 import RelatedPosts from '~/components/blog/RelatedPosts.astro';
@@ -25,6 +26,7 @@ const { post } = Astro.props as Props;
 
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
+const { previous, next } = await getAdjacentPosts(post);
 
 const metadata = merge(
   {
@@ -49,6 +51,47 @@ const metadata = merge(
   <SinglePost post={{ ...post, image: image }} url={url}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
   </SinglePost>
+
+  {
+    (previous || next) && (
+      <nav aria-label="Devlog series navigation" class="mx-auto max-w-3xl px-4 pb-6 sm:px-6">
+        <div class="grid gap-4 sm:grid-cols-2">
+          {previous ? (
+            <a
+              href={getPermalink(previous.permalink, 'post')}
+              class="ki10-card ki10-card-interactive group flex flex-col p-4"
+            >
+              <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-muted">
+                <Icon name="tabler:arrow-left" class="h-3.5 w-3.5" />
+                Previous devlog
+              </span>
+              <span class="mt-1.5 font-heading text-sm font-bold text-heading group-hover:text-secondary">
+                {previous.title}
+              </span>
+            </a>
+          ) : (
+            <div />
+          )}
+
+          {next && (
+            <a
+              href={getPermalink(next.permalink, 'post')}
+              class="ki10-card ki10-card-interactive group flex flex-col p-4 sm:text-right"
+            >
+              <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-muted sm:justify-end">
+                Next devlog
+                <Icon name="tabler:arrow-right" class="h-3.5 w-3.5" />
+              </span>
+              <span class="mt-1.5 font-heading text-sm font-bold text-heading group-hover:text-secondary">
+                {next.title}
+              </span>
+            </a>
+          )}
+        </div>
+      </nav>
+    )
+  }
+
   <ToBlogLink />
   <RelatedPosts post={post} />
 </Layout>

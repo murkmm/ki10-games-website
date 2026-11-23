@@ -1,0 +1,81 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  videoId: string;
+  title: string;
+  caption?: string;
+}
+
+const { videoId, title, caption } = Astro.props;
+const thumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+---
+
+<figure class="w-full">
+  <div
+    class="group relative aspect-video w-full overflow-hidden rounded-2xl border border-ink bg-black"
+    data-yt-facade={videoId}
+    data-yt-title={title}
+  >
+    <img
+      src={thumbUrl}
+      alt={title}
+      loading="lazy"
+      class="h-full w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.02] group-hover:opacity-100"
+    />
+    <button
+      type="button"
+      aria-label={`Play ${title}`}
+      class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/30 text-white transition hover:bg-black/20"
+    >
+      <span
+        class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-xl transition group-hover:scale-105"
+      >
+        <Icon name="tabler:player-play-filled" class="h-7 w-7 translate-x-0.5" />
+      </span>
+      <span class="rounded-lg bg-black/75 px-3 py-1 text-xs font-bold uppercase tracking-wider">Watch trailer</span>
+    </button>
+  </div>
+  <figcaption class="mt-2.5 flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
+    <span>{caption ?? ''}</span>
+    <a
+      href={watchUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1 text-xs font-bold text-secondary hover:underline"
+    >
+      Watch on YouTube
+      <Icon name="tabler:external-link" class="h-3.5 w-3.5" />
+    </a>
+  </figcaption>
+</figure>
+
+<script is:inline>
+  (() => {
+    const initFacades = () => {
+      document.querySelectorAll('[data-yt-facade]').forEach((box) => {
+        if (box.dataset.ready === 'true') return;
+        box.dataset.ready = 'true';
+        const btn = box.querySelector('button');
+        btn?.addEventListener('click', () => {
+          const id = box.getAttribute('data-yt-facade');
+          const title = box.getAttribute('data-yt-title') || 'Game trailer';
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+          iframe.title = title;
+          iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+          iframe.allow =
+            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          iframe.className = 'h-full w-full border-0';
+          box.innerHTML = '';
+          box.appendChild(iframe);
+        });
+      });
+    };
+
+    initFacades();
+    document.addEventListener('astro:after-swap', initFacades);
+  })();
+</script>

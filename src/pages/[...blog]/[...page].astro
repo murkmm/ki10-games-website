@@ -1,11 +1,12 @@
 ---
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import { Icon } from 'astro-icon/components';
 
 import Layout from '~/layouts/PageLayout.astro';
 import BlogList from '~/components/blog/List.astro';
 import Headline from '~/components/blog/Headline.astro';
+import DevlogFilterBar from '~/components/blog/DevlogFilterBar.astro';
 import Pagination from '~/components/blog/Pagination.astro';
-// import PostTags from "~/components/blog/Tags.astro";
 
 import { blogListRobots, getStaticPathsBlogList } from '~/utils/blog';
 
@@ -20,9 +21,6 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { page } = Astro.props as Props;
 const currentPage = page.currentPage ?? 1;
 
-// const allCategories = await findCategories();
-// const allTags = await findTags();
-
 const metadata = {
   title: `Devlog${currentPage > 1 ? ` Page ${currentPage}` : ''}`,
   robots: {
@@ -36,12 +34,17 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+  <section class="ki10-container py-10 md:py-14">
+    <span class="ki10-kicker mb-3">
+      <Icon name="tabler:notebook" class="h-4 w-4" />
+      Studio Updates
+    </span>
     <Headline
-      subtitle="Welcome to our Dev Log! This is where we post updates and behind the scenes bits from the games we're making at Ki10 Games."
+      subtitle="Progress updates, behind-the-scenes builds, and honest mistakes from the games we’re making at Ki10 Games."
     >
       Development Log
     </Headline>
+    <DevlogFilterBar activeSlug="all" />
     <BlogList posts={page.data} />
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </section>

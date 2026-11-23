@@ -280,3 +280,16 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 
   return selectedPosts;
 }
+
+/** Returns the chronologically previous (older) and next (newer) devlog around a given post. */
+export async function getAdjacentPosts(
+  currentPost: Post
+): Promise<{ previous?: Post; next?: Post }> {
+  const allPosts = await fetchPosts();
+  const idx = allPosts.findIndex((p) => p.slug === currentPost.slug);
+  if (idx === -1) return {};
+  return {
+    next: idx > 0 ? allPosts[idx - 1] : undefined,
+    previous: idx < allPosts.length - 1 ? allPosts[idx + 1] : undefined,
+  };
+}

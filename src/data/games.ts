@@ -67,10 +67,21 @@ export interface Game {
   links: GameLink[];
   /** Tailwind gradient used for the art fallback and status accents. */
   gradient: string;
+  /** Per-game accent colours used on the game's own page and card hover. */
+  accentLight: string;
+  accentDark: string;
   hero?: ImageMetadata;
-  /** Set when the hero art already has the game's logo on its left, so the homepage shows that instead of printing the title over it. */
+  /** Set when the hero art already has the game's logo on its left. */
   heroHasLogo?: boolean;
   card?: ImageMetadata;
+  /** Optional self-hosted MP4 trailer (preferred over YouTube when available — works everywhere, zero cookies). */
+  trailerVideo?: { src: string; poster?: string; youtubeUrl?: string };
+  /** Optional YouTube video ID for a trailer embed on the game page. */
+  youtubeTrailerId?: string;
+  /** Optional caption shown beneath the trailer embed. */
+  trailerCaption?: string;
+  /** Optional Steam store URL (shows a dedicated wishlist button when set). */
+  steamUrl?: string;
   /** Each shot is an image, or a looping clip from /public/videos (give the name without an extension). */
   gallery?: ({ image: ImageMetadata; caption: string } | { video: string; caption: string })[];
   /** Tailwind aspect class for gallery shots. Portrait games need their own. */
@@ -99,11 +110,11 @@ export const games: Game[] = [
     body: [
       'Save File 0 isn’t a game made to look like a Game Boy game. It’s a real Game Boy Color ROM, written in C and assembly, that runs on the original console. A raycaster draws the office in first person, and it’s built to hold 30 frames per second on the Game Boy Color’s double speed mode.',
       'Each save file is its own copy of the building, and when you load one you arrive exactly where you’re standing. Your save is the quiet office where you patch yourself up. FILE 0 is the same office, but wrong, and something in there can’t be killed. A shot only staggers it, so you break its line of sight, find a locker and keep very still.',
-      'I want to give Save File 0 a proper physical release: a real cartridge that keeps your saves on the cart, a complete-in-box edition with a printed box and manual, and a digital ROM. We’re exploring the best way to make that happen and will share release details when they’re ready.',
+      'Save File 0 is heading for a proper physical Game Boy Color cartridge release — complete with box, manual, and on-cartridge saves — alongside a digital ROM. Join our updates list below and we’ll share demo news and release details as soon as we can.',
     ],
     engine: 'GBDK (C and assembly)',
     platforms: ['Game Boy Color'],
-    releaseLine: 'In development · physical release planned',
+    releaseLine: 'In development · Physical Game Boy Color release coming',
     features: [
       {
         title: 'Two saves, one office',
@@ -133,8 +144,16 @@ export const games: Game[] = [
       { label: 'Read the announcement', href: '/devlog-13-save-file-0', icon: 'tabler:notebook' },
     ],
     gradient: 'from-emerald-400 via-green-800 to-zinc-950',
+    accentLight: '#157a46',
+    accentDark: '#5ee88d',
     hero: sf0Hero,
     card: sf0Card,
+    trailerVideo: {
+      src: '/videos/sf0-teaser.mp4',
+      poster: '/videos/sf0-teaser-poster.png',
+      youtubeUrl: 'https://youtu.be/nbiv6W50Lho',
+    },
+    trailerCaption: 'Save File 0 teaser trailer — captured from the real Game Boy Color ROM. Contains brief flashing.',
     galleryRatio: 'aspect-[10/9]',
     gallery: [
       { video: 'sf0-save-index-file0', caption: 'The save index. You didn’t make the second one.' },
@@ -157,8 +176,8 @@ export const games: Game[] = [
     pitch:
       'Boop n Burn drops a lobby of up to sixteen players into an arena with one rule: don’t touch the lava. Shove, bump and boop everyone else in, survive the round, then do it all again. Usually it’s first to three wins.',
     body: [
-      'There’s no health bar and nothing to chip away at. One shove at the wrong moment and you’re gone, watching from the sidelines while the kill feed happily tells everyone exactly who did it to you. Rounds are short and losing is funny, so nobody ever wants to stop at one.',
-      'Shoving costs stamina, so you have to think about when to push instead of just mashing the button. There’s free for all if you want everyone against everyone, and team modes if you’d rather have someone to blame. Matches earn you XP, and levelling up unlocks new gear like staffs and sonic booms (all excellent ways of moving people who’d rather not be moved). So far there are five arenas: a shipping yard at sunset, a warehouse, an arcade, a ruined temple and a desert coliseum.',
+      'In Boop n Burn there’s no health bar — just one well-timed shove into the lava and you’re out for the round. Rounds are short, snappy and loud, built for proper party-game chaos with friends.',
+      'Shoving uses stamina, so you can’t just mash the button without thinking. You can jump into free-for-all or squad up in team modes, earn XP from matches, and unlock new gear like staffs and sonic booms to knock players further. Right now there are five arenas to fight over: a sunset shipping yard, a warehouse, a neon arcade, a ruined temple and a desert coliseum.',
     ],
     engine: 'Godot',
     platforms: ['PC', 'Nintendo Switch', 'Xbox Series X|S'],
@@ -171,40 +190,47 @@ export const games: Game[] = [
         icon: 'tabler:flame',
       },
       {
-        title: 'Shove based combat',
+        title: 'Shove-based combat',
         description:
-          'The whole moveset is momentum, and every push costs stamina. Boop someone at the right angle and the lava does the rest for you.',
+          'The whole moveset is momentum, and every push costs stamina. Catch someone at the right angle and the lava does the rest.',
         icon: 'tabler:arrows-shuffle',
       },
       {
-        title: 'Free for all or teams',
+        title: 'Free-for-all or teams',
         description:
-          'Everyone against everyone, or team modes when you’d rather share the blame for who ended up in the lava.',
+          'Play every player for themselves, or split into teams and try to coordinate who’s going in the lava next.',
         icon: 'tabler:users-group',
       },
       {
         title: 'Unlock as you play',
-        description:
-          'Matches earn XP, and levelling up hands you new gear like staffs and sonic booms for relocating your friends.',
+        description: 'Earn XP from every match to unlock new gear like staffs and sonic booms for bigger knockbacks.',
         icon: 'tabler:trophy',
       },
       {
-        title: 'Five arenas, one rule',
+        title: 'Five arenas to fight over',
         description:
-          'A shipping yard, a warehouse, an arcade, a ruined temple and a desert coliseum. The lava changes colour, the rule never does.',
+          'Fight across a shipping yard, warehouse, arcade, ruined temple and desert coliseum — each with its own layout and hazards.',
         icon: 'tabler:map-2',
       },
     ],
     links: [{ label: 'Get demo updates', href: '/contact#newsletter', icon: 'tabler:mail', isPrimary: true }],
     gradient: 'from-orange-500 via-red-600 to-rose-700',
+    accentLight: '#c84210',
+    accentDark: '#ff7a3d',
+    devlogTag: 'boop-n-burn',
     hero: bnbShipyard,
     card: bnbRuins,
+    trailerVideo: {
+      src: '/videos/bnb-trailer.mp4',
+      poster: bnbShipyard.src,
+    },
+    trailerCaption: 'Boop n Burn cinematic trailer — shoving, climbing and surviving the rising lava.',
     gallery: [
-      { image: bnbShipyard, caption: 'The shipping yard at sunset. Climb high, or get booped off it.' },
-      { image: bnbRuins, caption: 'A ruined temple, with whoever’s winning wearing the crown.' },
-      { image: bnbArcade, caption: 'The arcade, where the lava is an alarming shade of pink.' },
-      { image: bnbWarehouse, caption: 'A full lobby, one warehouse, and not nearly enough floor.' },
-      { image: bnbColiseum, caption: 'The desert coliseum, moments after Dale shoved Jake into the lava. Sorry Jake.' },
+      { image: bnbShipyard, caption: 'Fighting for the high ground in the sunset shipping yard.' },
+      { image: bnbRuins, caption: 'The ruined temple arena — whoever’s leading the match wears the crown.' },
+      { image: bnbArcade, caption: 'The neon arcade arena with glowing pink lava below.' },
+      { image: bnbWarehouse, caption: 'A packed lobby scrambling for space inside the warehouse.' },
+      { image: bnbColiseum, caption: 'Shoving matches across the desert coliseum pillars.' },
     ],
   },
   {
@@ -214,9 +240,9 @@ export const games: Game[] = [
     status: 'released',
     tagline: 'Get in. Get the cash. Get out.',
     pitch:
-      'The One Bullet Job is a turn based heist puzzle for your phone. Every job is a small room: steal the cash, slip past the guards and escape with the loot before your moves run out. You usually get one bullet, so make it count.',
+      'The One Bullet Job is a turn-based heist puzzle for your phone. Every job is a small room: steal the cash, slip past the guards and escape with the loot before your moves run out. You usually get one bullet, so make it count.',
     body: [
-      'The game is played on a grid, one turn at a time. Dash up to three tiles, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. Then the guards take their turn. They follow set routes and their sightlines are drawn right there on the board, so if you get caught, you could have seen it coming.',
+      'The game is played on a grid, one turn at a time. Dash up to three tiles, wait for a patrol to pass, or spend your bullet on the guard who’s in the way. Then the guards take their turn. They follow fixed routes and their sightlines are drawn right on the board, so if you get caught, you could have seen it coming.',
       'Grab one bag of cash to open the exit and earn a star. Take every bag for two, and do it within par for three. Undo is free and retries are instant, so having another go only takes a tap.',
       'There are 120 jobs across 20 chapters, and each chapter adds a new trick: shutters you open by shooting a relay, guards who only see what’s in front of them, sentries who turn every round, laser gates and air vents. Every job is checked by a solver before it goes in, so every single one can be beaten. On top of that there’s a fresh heist every day, and a crew of masks and outfits you earn just by playing.',
     ],
@@ -233,7 +259,7 @@ export const games: Game[] = [
       {
         title: 'Read the patrols',
         description:
-          'Every guard follows a route, and their sightlines are always on the board. Nothing about them is random.',
+          'Every guard walks a fixed patrol route with their sightlines shown right on the grid, so you can plan your whole escape ahead of time.',
         icon: 'tabler:eye',
       },
       {
@@ -254,7 +280,7 @@ export const games: Game[] = [
       },
       {
         title: '20 masks, 10 outfits',
-        description: 'Kit out your crew with stars you earn by playing. Cosmetic only, and never sold.',
+        description: 'Unlock masks by clearing chapters and buy outfits using stars you earn playing — no paid cosmetics.',
         icon: 'tabler:mask',
       },
     ],
@@ -267,19 +293,23 @@ export const games: Game[] = [
       },
     ],
     gradient: 'from-amber-300 via-yellow-600 to-stone-900',
+    accentLight: '#b4690e',
+    accentDark: '#f5b82e',
     hero: objHero,
     heroHasLogo: true,
     card: objCard,
+    youtubeTrailerId: 'w3m4GHdkFXY',
+    trailerCaption: 'The One Bullet Job launch trailer — every move recorded in-game.',
     galleryRatio: 'aspect-[9/16]',
     gallery: [
-      { image: objHome, caption: 'Pick up where you left off, or have a go at the daily heist.' },
-      { image: objPlayVault, caption: 'Plan every move. The cyan tiles are where you can dash.' },
-      { image: objPlayShot, caption: 'One bullet, one guard down. Hope it was the right one.' },
-      { image: objPlayLasers, caption: 'Laser gates switch on and off, so timing is everything.' },
-      { image: objPlayVents, caption: 'Air vents pop you out somewhere the guards aren’t looking.' },
-      { image: objPlayWatch, caption: 'Read the patrols. Every guard follows a route you can learn.' },
-      { image: objResult, caption: 'Three stars and a first clear. Now do it again with less.' },
-      { image: objOutfit, caption: 'The Don. Pinstripes and a buttonhole. This is business.' },
+      { image: objHome, caption: 'Pick up where you left off, or jump into the daily heist.' },
+      { image: objPlayVault, caption: 'Plan every move — the cyan tiles show where you can dash.' },
+      { image: objPlayShot, caption: 'Spending your single bullet to clear a guard out of the way.' },
+      { image: objPlayLasers, caption: 'Laser gates switch on and off each turn, so timing matters.' },
+      { image: objPlayVents, caption: 'Air vents let you slip behind guards on the far side of the room.' },
+      { image: objPlayWatch, caption: 'Every guard follows a fixed patrol route you can read and plan around.' },
+      { image: objResult, caption: 'A three-star clear — all cash grabbed within the move par.' },
+      { image: objOutfit, caption: 'The Don outfit from the crew wardrobe, unlocked with stars.' },
     ],
     devlogTag: 'the-one-bullet-job',
   },
@@ -301,20 +331,19 @@ export const games: Game[] = [
     features: [
       {
         title: 'A new run every day',
-        description:
-          'Every day has its own theme, so there’s always a reason to come back, and always a new way to embarrass yourself.',
+        description: 'Every day has its own theme, so there’s always a reason to come back.',
         icon: 'tabler:calendar-repeat',
       },
       {
         title: 'Play your cards',
         description:
-          'The cards you pick set both the difficulty and the score on offer. Stack a matching set and the bonus gets very big, very quickly.',
+          'The cards you pick set both the difficulty and the score on offer. Stack a matching set and the bonus gets big fast.',
         icon: 'tabler:cards',
       },
       {
         title: 'Franchise deep cuts',
         description:
-          'Questions cover the whole history of gaming, from the obvious mascots to things only the people who were there will remember.',
+          'Questions span decades of games, mixing well-known classics with deep-cut trivia for longtime fans.',
         icon: 'tabler:brain',
       },
       {
@@ -338,6 +367,9 @@ export const games: Game[] = [
       },
     ],
     gradient: 'from-cyan-400 via-cyan-600 to-fuchsia-700',
+    accentLight: '#a21caf',
+    accentDark: '#e879f9',
+    devlogTag: 'skill-check',
     hero: skillcheckHero,
     card: skillcheckCard,
     galleryRatio: 'aspect-[9/16]',
@@ -345,7 +377,7 @@ export const games: Game[] = [
       { image: skillcheckMenu, caption: 'Today’s run, today’s cards, and yesterday’s rank to beat.' },
       { image: skillcheckCardSelect, caption: 'A matching set stacked up. That’s a lot of points riding on a castle.' },
       { image: skillcheckQuestion, caption: 'A question in play. Answer before that bar runs out!' },
-      { image: skillcheckCollection, caption: 'Nearly 1,600 cartridges to hunt down and master. No pressure.' },
+      { image: skillcheckCollection, caption: 'Nearly 1,600 cartridges to collect and master.' },
     ],
   },
   {
@@ -355,7 +387,7 @@ export const games: Game[] = [
     status: 'in-development',
     tagline: 'A kitten with a sword, a world to explore, and a knighthood to earn.',
     pitch:
-      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A colourful world, a camera that shifts between 3D exploration and 2D side on sections, and a small cat with a very large sword.',
+      'KIT is a 3D action adventure in the spirit of the mascot platformers we grew up on. A colourful world, a camera that shifts between 3D exploration and 2D side-on sections, and a small cat with a very large sword.',
     body: [
       'KIT was our first serious project as a studio, and the subject of our first nine devlogs. We covered everything from the camera system and quest tracking right down to the grass. A lot of it works and we’re still proud of it.',
       'And now it’s back. We put KIT on hold to go and learn how to actually finish games, and having done that, we’re rebuilding it in Godot. The core mechanics are already feeling good in the new engine, they just need more fine tuning, and work has started on the first level. The first three screenshots below are from the new Godot version, which is using placeholder models for now, and the rest are from the original Unity one.',
@@ -367,19 +399,19 @@ export const games: Game[] = [
       {
         title: 'A camera that shifts with you',
         description:
-          'Dolly paths, player controlled cameras and full 2D side on sections, all blended so you never notice the joins.',
+          'Dolly paths, player-controlled cameras and full 2D side-on sections, all blended smoothly as you explore.',
         icon: 'tabler:video',
       },
       {
         title: 'Paw Prints of Prowess',
         description:
-          'A map and quest system built around hunting down collectibles hidden all over a hand built world.',
+          'A map and quest system built around hunting down collectibles hidden all over a hand-built world.',
         icon: 'tabler:map-2',
       },
       {
         title: 'A creature garden',
         description:
-          'A companion system where the creatures you meet come home with you. It started life as scope creep and then refused to leave.',
+          'A companion system where the creatures you meet come home with you. It started life as scope creep, and now we can’t imagine the game without it.',
         icon: 'tabler:cat',
       },
       {
@@ -390,6 +422,8 @@ export const games: Game[] = [
     ],
     links: [{ label: 'Read the KIT devlogs', href: '/tag/kit', icon: 'tabler:notebook', isPrimary: true }],
     gradient: 'from-sky-400 via-cyan-500 to-blue-600',
+    accentLight: '#0284c7',
+    accentDark: '#38bdf8',
     devlogTag: 'kit',
     hero: kitGodotVista,
     card: kitGodotCard,

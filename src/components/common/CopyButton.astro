@@ -1,0 +1,26 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  text: string;
+  label?: string;
+  copiedLabel?: string;
+  class?: string;
+}
+
+const { text, label = 'Copy', copiedLabel = 'Copied!', class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  data-copy-text={text}
+  data-copy-label={label}
+  data-copied-label={copiedLabel}
+  class:list={[
+    'inline-flex items-center gap-1.5 rounded-xl border border-ink bg-card px-3.5 py-2 text-xs font-semibold text-heading transition hover:border-primary hover:text-primary dark:hover:border-accent dark:hover:text-accent',
+    className,
+  ]}
+>
+  <Icon name="tabler:copy" class="h-4 w-4" data-copy-icon />
+  <span data-copy-status>{label}</span>
+</button>

@@ -1,0 +1,65 @@
+---
+export interface Props {
+  idPrefix: string;
+  submitLabel?: string;
+  compact?: boolean;
+}
+
+const { idPrefix, submitLabel = 'Subscribe', compact = false } = Astro.props;
+---
+
+<div class="mc-signup">
+  <form
+    action="https://ki10games.us4.list-manage.com/subscribe/post?u=95a2806341f85cb6e7b58cab0&id=67ed6c3e3d&v_id=73&f_id=00b021e1f0"
+    method="post"
+    id={`${idPrefix}-mc-embedded-subscribe-form`}
+    name="mc-embedded-subscribe-form"
+    class="validate space-y-3"
+  >
+    <div>
+      <label
+        for={`${idPrefix}-mce-EMAIL`}
+        class:list={[compact ? 'sr-only' : 'mb-1.5 block text-sm font-semibold text-heading']}
+      >
+        Email address <span class="text-primary">*</span>
+      </label>
+      <input
+        type="email"
+        autocomplete="email"
+        name="EMAIL"
+        id={`${idPrefix}-mce-EMAIL`}
+        required
+        value=""
+        placeholder="you@example.com"
+        class="w-full rounded-xl border border-ink bg-card px-4 py-3 text-sm text-default placeholder:text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25"
+      />
+    </div>
+
+    <div class="rounded-xl bg-subtle/80 p-3 dark:bg-white/[0.04]">
+      <p class="text-xs leading-relaxed text-muted">
+        Tick below so we have your permission to email you devlogs and release news:
+      </p>
+      <fieldset class="mt-2" name="interestgroup_field">
+        <label class="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-default" for={`${idPrefix}-gdpr_43380`}>
+          <input
+            type="checkbox"
+            id={`${idPrefix}-gdpr_43380`}
+            name="gdpr[43380]"
+            value="Y"
+            required
+            class="h-4 w-4 rounded border-ink accent-primary"
+          />
+          <span>Devlogs &amp; studio news</span>
+        </label>
+      </fieldset>
+    </div>
+
+    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+      <input type="text" name="b_95a2806341f85cb6e7b58cab0_67ed6c3e3d" tabindex="-1" value="" />
+    </div>
+
+    <button type="submit" name="subscribe" id={`${idPrefix}-mc-embedded-subscribe`} class="btn-primary w-full">
+      {submitLabel}
+    </button>
+  </form>
+</div>

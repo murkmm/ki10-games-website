@@ -1,6 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
 
 const metadata = {
   title: 'Press Coverage',
@@ -53,28 +53,54 @@ const coverage = [
 ---
 
 <Layout metadata={metadata}>
-  <HeroText
-    tagline="In the news"
-    title="Press coverage"
-    subtitle="It's always lovely to see someone writing about our games. Here are the articles we've spotted so far."
-  />
+  <div class="ki10-container py-10 md:py-14">
+    <header class="max-w-3xl">
+      <span class="ki10-kicker">
+        <Icon name="tabler:news" class="h-4 w-4" />
+        In the news
+      </span>
+      <h1 class="mt-3 font-heading text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">Press coverage</h1>
+      <p class="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+        It’s always lovely seeing someone write about our games. Here are the articles and reviews we’ve spotted so far.
+      </p>
+    </header>
 
-  <section class="mx-auto max-w-5xl px-4 pb-16 md:px-6">
-    <div class="grid gap-5 md:grid-cols-2">
-      {coverage.map((article) => (
-        <article class="flex flex-col rounded-2xl border border-gray-200 p-6 transition hover:border-primary dark:border-white/10 dark:hover:border-accent">
-          <p class="text-xs font-semibold uppercase tracking-wide text-muted">{article.date ? `${article.outlet} · ${article.date}` : article.outlet}</p>
-          <h2 class="mt-3 font-heading text-xl font-bold tracking-tight">{article.title}</h2>
-          <p class="mt-3 text-sm text-muted">{article.summary}</p>
-          <p class="mt-2 text-xs font-medium text-secondary">{article.game}</p>
-          <a href={article.href} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex w-fit items-center gap-2 font-semibold text-primary hover:underline dark:text-accent">
-            Read the article <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-      ))}
+    <section class="mt-10 grid gap-5 md:grid-cols-2">
+      {
+        coverage.map((article) => (
+          <article class="ki10-card ki10-card-interactive group relative flex flex-col p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold uppercase tracking-wider text-muted">
+              <span>{article.date ? `${article.outlet} · ${article.date}` : article.outlet}</span>
+              <span class="rounded-md bg-subtle px-2 py-0.5 text-[0.7rem] text-secondary">{article.game}</span>
+            </div>
+            <h2 class="mt-3 font-heading text-xl font-extrabold leading-snug text-heading group-hover:text-secondary">
+              <a
+                href={article.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="after:absolute after:inset-0 after:content-['']"
+              >
+                {article.title}
+              </a>
+            </h2>
+            <p class="mt-2.5 text-sm leading-relaxed text-muted">{article.summary}</p>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-bold text-secondary">
+              Read article
+              <Icon name="tabler:external-link" class="h-4 w-4" />
+            </span>
+          </article>
+        ))
+      }
+    </section>
+
+    <div class="ki10-panel mt-10 flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
+      <p class="text-sm text-muted">
+        Writing about one of our games? Grab logos, screenshots and trailers from our press kit, or email us directly.
+      </p>
+      <div class="flex flex-shrink-0 flex-wrap gap-3">
+        <a href="/press" class="btn-primary text-sm">Open press kit</a>
+        <a href="/contact" class="btn-secondary text-sm">Get in touch</a>
+      </div>
     </div>
-    <p class="mt-8 text-sm text-muted">
-      Writing about one of our games? Our <a href="/press" class="font-semibold text-primary hover:underline dark:text-accent">press kit</a> has screenshots, logos and game details, or you can <a href="/contact" class="font-semibold text-primary hover:underline dark:text-accent">get in touch</a>.
-    </p>
-  </section>
+  </div>
 </Layout>

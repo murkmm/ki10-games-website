@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import { games } from '~/data/games';
+import { authors } from '~/data/authors';
+
+export interface Props {
+  activeSlug?: string;
+}
+
+const { activeSlug = 'all' } = Astro.props;
+
+const gameFilters = games
+  .filter((g) => g.devlogTag)
+  .map((g) => ({
+    label: g.slug === 'kit-knight-in-training' ? 'KIT' : g.title,
+    href: `/tag/${g.devlogTag}`,
+    slug: g.devlogTag!,
+  }));
+---
+
+<nav aria-label="Filter devlogs" class="mb-8 flex flex-wrap items-center justify-between gap-3 border-y border-ink py-4">
+  <div class="flex flex-wrap items-center gap-2">
+    <a
+      href="/devlog"
+      class:list={[
+        'rounded-lg px-3 py-1.5 text-xs font-bold transition',
+        activeSlug === 'all'
+          ? 'bg-primary text-white'
+          : 'border border-ink bg-card text-heading hover:border-primary hover:text-secondary',
+      ]}
+    >
+      All devlogs
+    </a>
+
+    {
+      gameFilters.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded-lg px-3 py-1.5 text-xs font-bold transition',
+            activeSlug === item.slug
+              ? 'bg-primary text-white'
+              : 'border border-ink bg-card text-heading hover:border-primary hover:text-secondary',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+
+    <span class="mx-1 hidden h-4 w-px bg-ink sm:inline-block" aria-hidden="true"></span>
+
+    {
+      authors.map((author) => (
+        <a
+          href={`/author/${author.slug}`}
+          class:list={[
+            'rounded-lg px-3 py-1.5 text-xs font-bold transition',
+            activeSlug === `author:${author.slug}`
+              ? 'bg-primary text-white'
+              : 'border border-ink bg-subtle/80 text-muted hover:border-primary hover:text-heading',
+          ]}
+        >
+          By {author.name}
+        </a>
+      ))
+    }
+  </div>
+
+  <a
+    href="/rss.xml"
+    class="inline-flex items-center gap-1.5 rounded-lg border border-ink bg-card px-3 py-1.5 text-xs font-bold text-muted transition hover:border-primary hover:text-secondary"
+    title="Subscribe via RSS"
+  >
+    <Icon name="tabler:rss" class="h-3.5 w-3.5" />
+    RSS feed
+  </a>
+</nav>

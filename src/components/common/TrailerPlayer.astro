@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  src: string;
+  poster?: string;
+  title: string;
+  caption?: string;
+  youtubeUrl?: string;
+  pixelArt?: boolean;
+}
+
+const { src, poster, title, caption, youtubeUrl, pixelArt = false } = Astro.props;
+---
+
+<figure class="w-full">
+  <div
+    class="group relative aspect-video w-full overflow-hidden rounded-2xl border border-ink bg-black"
+    data-trailer-player
+  >
+    <video
+      controls
+      playsinline
+      preload="metadata"
+      poster={poster}
+      aria-label={title}
+      class:list={['h-full w-full object-cover', { 'pixel-art': pixelArt }]}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+
+    <button
+      type="button"
+      data-trailer-overlay
+      aria-label={`Play ${title}`}
+      class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/30 text-white transition hover:bg-black/20"
+    >
+      <span
+        class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-xl transition group-hover:scale-105"
+      >
+        <Icon name="tabler:player-play-filled" class="h-7 w-7 translate-x-0.5" />
+      </span>
+      <span class="rounded-lg bg-black/75 px-3 py-1 text-xs font-bold uppercase tracking-wider">Play trailer</span>
+    </button>
+  </div>
+
+  <figcaption class="mt-2.5 flex flex-wrap items-center justify-between gap-2 text-sm text-muted">
+    <span>{caption ?? ''}</span>
+    {
+      youtubeUrl && (
+        <a
+          href={youtubeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-xs font-bold text-secondary hover:underline"
+        >
+          Watch on YouTube
+          <Icon name="tabler:external-link" class="h-3.5 w-3.5" />
+        </a>
+      )
+    }
+  </figcaption>
+</figure>
+
+<script is:inline>
+  (() => {
+    const initPlayers = () => {
+      document.querySelectorAll('[data-trailer-player]').forEach((box) => {
+        if (box.dataset.ready === 'true') return;
+        box.dataset.ready = 'true';
+        const video = box.querySelector('video');
+        const overlay = box.querySelector('[data-trailer-overlay]');
+        if (!video || !overlay) return;
+
+        overlay.addEventListener('click', () => {
+          overlay.remove();
+          video.play().catch(() => {});
+        });
+
+        video.addEventListener('play', () => {
+          overlay.remove();
+        });
+      });
+    };
+
+    initPlayers();
+    document.addEventListener('astro:after-swap', initPlayers);
+  })();
+</script>

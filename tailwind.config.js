@@ -10,8 +10,13 @@ export default {
         primary: 'var(--aw-color-primary)',
         secondary: 'var(--aw-color-secondary)',
         accent: 'var(--aw-color-accent)',
+        mint: 'var(--aw-color-mint)',
         default: 'var(--aw-color-text-default)',
+        heading: 'var(--aw-color-text-heading)',
         muted: 'var(--aw-color-text-muted)',
+        card: 'var(--aw-color-bg-card)',
+        subtle: 'var(--aw-color-bg-subtle)',
+        ink: 'var(--aw-color-border)',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

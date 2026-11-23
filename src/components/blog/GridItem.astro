@@ -17,15 +17,15 @@ const image = await findImage(post.image);
 const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '';
 ---
 
-<article class="mb-6 transition">
-  <div class="relative aspect-video bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6">
+<article class="ki10-card ki10-card-interactive group flex h-full flex-col overflow-hidden">
+  <div class="relative aspect-video overflow-hidden bg-subtle">
     {
       image &&
         (link ? (
-          <a href={link}>
+          <a href={link} class="block h-full w-full">
             <Image
               src={image}
-              class="absolute inset-0 w-full h-full object-contain rounded bg-gray-100 dark:bg-slate-900"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
               widths={[400, 900]}
               width={400}
               sizes="(max-width: 900px) 400px, 900px"
@@ -37,7 +37,7 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
         ) : (
           <Image
             src={image}
-            class="absolute inset-0 w-full h-full object-contain rounded bg-gray-100 dark:bg-slate-900"
+            class="h-full w-full object-cover"
             widths={[400, 900]}
             width={400}
             sizes="(max-width: 900px) 400px, 900px"
@@ -49,17 +49,19 @@ const link = APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : 
     }
   </div>
 
-  <h3 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-100">
-    {
-      link ? (
-        <a class="inline-block hover:text-primary dark:hover:text-accent transition ease-in duration-200" href={link}>
-          {post.title}
-        </a>
-      ) : (
-        post.title
-      )
-    }
-  </h3>
+  <div class="flex flex-1 flex-col p-4">
+    <h3 class="font-heading text-lg font-bold leading-snug text-heading">
+      {
+        link ? (
+          <a class="inline-block transition group-hover:text-secondary" href={link}>
+            {post.title}
+          </a>
+        ) : (
+          post.title
+        )
+      }
+    </h3>
 
-  <p class="text-muted text-base leading-relaxed">{post.excerpt}</p>
+    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">{post.excerpt}</p>
+  </div>
 </article>
