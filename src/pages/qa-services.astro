@@ -7,7 +7,7 @@ import markPhoto from '~/assets/images/team-mark.webp';
 const metadata = {
   title: 'Indie Game QA Testing from £35 | Ki10 Games',
   description:
-    'Professional manual game QA for small indie developers. Affordable fixed-price testing, actionable bug reports and an experienced UK game tester on your side.',
+    'Manual QA testing for indie games from Mark McManus at Ki10 Games. Nearly 10 years in games QA, clear bug reports and fixed prices.',
 };
 
 const packages = [
@@ -16,9 +16,9 @@ const packages = [
     price: '35',
     usd: '45',
     hours: '1 hour',
-    line: 'An extra check on a feature or build.',
+    line: 'A quick look at a new feature or build.',
     for: 'A new feature, a quick demo check or an early build',
-    features: ['Focused exploratory testing', 'Clear defects with reproduction steps', 'Concise findings summary'],
+    features: ['Focused exploratory testing', 'Bugs with steps to reproduce', 'A short summary of what I found'],
   },
   {
     name: 'Indie Playtest',
@@ -28,7 +28,7 @@ const packages = [
     line: 'A proper look at your demo or milestone.',
     for: 'Demos, development milestones and important updates',
     featured: true,
-    features: ['Gameplay, controls, UI and progression checks', 'Prioritised defect list and evidence where useful', 'Practical usability observations and handover'],
+    features: ['Gameplay, controls, UI and progression checks', 'Bugs ranked by priority, with screenshots or clips', 'Notes on anything confusing or awkward to play'],
   },
   {
     name: 'Release Readiness',
@@ -37,19 +37,19 @@ const packages = [
     hours: '6 hours',
     line: 'A bit more time before you release.',
     for: 'Upcoming showcases, demos and releases',
-    features: ['Agreed risk-focused testing coverage', 'Bug reports with steps, severity and evidence', 'Written release-readiness summary'],
+    features: ['Testing focused on your biggest risks', 'Bug reports with steps, severity and evidence', 'A written summary of how ready it is to release'],
   },
 ];
 
 const faqs = [
-  ['What can you test?', 'Windows PC and Android are core targets. Steam Deck may also be available. We confirm device, build and access requirements before booking. We do not provide console certification.'],
-  ['Do the package hours include reporting?', 'Yes. The advertised time includes hands-on testing and preparing your report, for one agreed build. We agree priority areas before starting.'],
-  ['How do booking and payment work?', 'Email us about your game. We confirm compatibility, the scope, a delivery date and a fixed quote. Once you accept, we issue an invoice. Small one-off packages are paid before testing begins. Payments are arranged through the invoice, not through this website.'],
-  ['Can you sign an NDA?', 'Yes. We can discuss reasonable confidentiality terms before you share a private build. We do not publish client builds or reports without permission.'],
-  ['Do you include retesting?', 'A booking covers one agreed build; retests and further builds are quoted separately.'],
-  ['How soon will I get my report?', 'We agree the delivery date before you book, based on build readiness and our availability.'],
-  ['What if no bugs are found?', 'You still receive an honest summary of the areas tested and any observations. We never invent defects or guarantee a minimum number of findings.'],
-  ['Does your testing guarantee a bug-free launch?', 'No finite QA pass guarantees a bug-free game. We provide evidence and risk information to help your team decide what to fix next.'],
+  ['What can you test?', "Mainly Windows PC and Android. I can sometimes test on Steam Deck too, depending on the build. I'll check your device and build requirements before you book. I don't do console certification."],
+  ['Do the package hours include reporting?', "Yes. The hours cover the testing and writing up the report, for one build. We'll agree what to focus on before I start."],
+  ['How do booking and payment work?', "Email me about your game and I'll confirm the platforms, what I'll test, when you'll get the report and a fixed price. Once you're happy, I'll send an invoice. Small one-off packages are paid before I start, and all payments go through the invoice, not this website."],
+  ['Can you sign an NDA?', "Yes. I'm happy to agree reasonable confidentiality terms before you send a private build, and I never share client builds or reports without permission."],
+  ['Do you include retesting?', 'Each booking covers one build. Retesting fixes or checking later builds is quoted separately.'],
+  ['How soon will I get my report?', "We'll agree a delivery date before you book, based on when your build's ready and when I'm free."],
+  ['What if no bugs are found?', "You'll still get an honest summary of what I tested and anything I noticed. I'll never make up bugs or promise a certain number of them."],
+  ['Does your testing guarantee a bug-free launch?', "No. No amount of testing can promise that. What I can do is show you what's broken and where the risks are, so you can decide what to fix first."],
 ];
 
 function enquiry(name: string) {
@@ -60,7 +60,7 @@ function enquiry(name: string) {
     '', 'Thanks!',
   ];
   return 'mailto:business@ki10games.com?subject=' +
-    encodeURIComponent('QA enquiry — ' + name) +
+    encodeURIComponent('QA enquiry: ' + name) +
     '&body=' + encodeURIComponent(lines.join('\n'));
 }
 ---
@@ -71,51 +71,51 @@ function enquiry(name: string) {
       <div class="hero-copy">
         <p class="eyebrow hero-kicker"><span class="pulse"></span> KI10 GAMES / QA SERVICES</p>
         <h1>Need another pair of eyes on your game?</h1>
-        <p class="hero-sub">I'm Mark. I've spent <strong>10 years testing games professionally</strong>, and now I make my own at Ki10. If you need someone to put your demo or next build through its paces, I can help.</p>
+        <p class="hero-sub">I'm Mark. I've spent <strong>nearly 10 years testing games</strong> at places like Supermassive Games, Creative Assembly and Unity, and now I make my own at Ki10. If you've got a demo or a build that needs another pair of eyes, I can help.</p>
         <div class="buttons">
           <a class="btn primary" href={enquiry('Project enquiry')}>Ask about testing <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
           <a class="btn ghost" href="#packages">See prices <Icon name="tabler:arrow-down" aria-hidden="true" /></a>
         </div>
-        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £35 · One-off or monthly · No pressure</p>
+        <p class="hero-note"><Icon name="tabler:circle-check" aria-hidden="true" /> From £35 · One-off or monthly</p>
       </div>
       <aside class="tester-card">
         <div class="tester-head">
           <Image src={markPhoto} alt="Mark McManus, Ki10 Games co-founder" width={94} height={94} class="tester-photo" loading="eager" />
           <div><p class="eyebrow">Your tester</p><h2>Mark McManus</h2><p>Ki10 Games co-founder</p></div>
         </div>
-        <p>I've been working in games QA for 10 years. I know the difference between a report that helps you fix something and one that just leaves you with more questions.</p>
-        <p class="personal">I make games too, so I know there's never enough time or money to test absolutely everything. I'll help you concentrate on the bits that matter most.</p>
+        <p>I've been in games QA for nearly 10 years. I know the difference between a bug report that helps you fix something and one that just leaves you with more questions.</p>
+        <p class="personal">I make games too, so I know there's never enough time or money to test everything. I'll focus on the bits that matter most to you.</p>
         <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">Read about my experience <span aria-hidden="true">↗</span></a>
       </aside>
     </section>
 
     <section class="credentials">
       <div class="container credentials-grid">
-        <div><strong>10 years</strong><span>Professional game QA experience</span></div>
-        <div><strong>We make games too</strong><span>We understand small-team budgets</span></div>
-        <div><strong>UK-based</strong><span>Remote support for small studios</span></div>
+        <div><strong>Nearly 10 years</strong><span>in games QA</span></div>
+        <div><strong>I make games too</strong><span>so I know what small budgets are like</span></div>
+        <div><strong>Based in the UK</strong><span>testing remotely for studios anywhere</span></div>
         <a href="https://markmcmanus.net/" target="_blank" rel="noopener noreferrer">Read about Mark’s work <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
       </div>
     </section>
 
     <section class="section container">
-      <div class="heading-grid"><div><p class="eyebrow orange">WHY KI10?</p><h2>Useful feedback.<br /><em>Clear bugs.</em></h2></div><p>We know what it’s like to be a small team getting ready to ship. We’ll spend the agreed time testing the areas you care about, then give you findings you can use.</p></div>
+      <div class="heading-grid"><div><p class="eyebrow orange">WHAT I TEST</p><h2>What I'll<br /><em>look at.</em></h2></div><p>I'll spend the agreed time on the parts of your game you care about most, then send you a report you can actually work from.</p></div>
       <div class="benefits">
-        <article><span class="benefit-icon"><Icon name="tabler:route" aria-hidden="true" /></span><h3>Find the blockers</h3><p>Progression problems, soft locks, broken objectives and gameplay edge cases.</p></article>
-        <article><span class="benefit-icon"><Icon name="tabler:device-gamepad-2" aria-hidden="true" /></span><h3>Understand the friction</h3><p>Controller quirks, usability issues, confusing UI and moments where players get stuck.</p></article>
-        <article><span class="benefit-icon"><Icon name="tabler:clipboard-check" aria-hidden="true" /></span><h3>Give you something to work with</h3><p>Reports with reproduction steps, severity and supporting screenshots or clips where useful.</p></article>
+        <article><span class="benefit-icon"><Icon name="tabler:route" aria-hidden="true" /></span><h3>Things that stop players</h3><p>Progression bugs, soft locks, broken objectives and odd edge cases in your gameplay.</p></article>
+        <article><span class="benefit-icon"><Icon name="tabler:device-gamepad-2" aria-hidden="true" /></span><h3>Things that annoy players</h3><p>Controller quirks, confusing UI and the moments where players get stuck or lost.</p></article>
+        <article><span class="benefit-icon"><Icon name="tabler:clipboard-check" aria-hidden="true" /></span><h3>Reports you can use</h3><p>Every bug comes with steps to reproduce it, a severity rating and screenshots or clips where they help.</p></article>
       </div>
     </section>
 
     <section class="milestone"><div class="container">
-      <p class="eyebrow">THE RIGHT TIME FOR QA</p>
-      <h2>A demo coming up?<br /><em>Let's give it a proper test.</em></h2>
-      <p>If you’re working alone, it can be difficult to see problems in a game you know inside out. Tell me what you're getting ready for and we'll work out what needs checking.</p>
+      <p class="eyebrow">GOT SOMETHING COMING UP?</p>
+      <h2>Next Fest, a showcase<br /><em>or a launch?</em></h2>
+      <p>When you've been working on the same game for months, it's really hard to spot its problems. Tell me what you're getting ready for and we'll work out what needs checking first.</p>
       <a href={enquiry('Milestone testing')} class="text-cta">Tell me about your game <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
     </div></section>
 
     <section id="packages" class="section container pricing">
-      <div class="center"><p class="eyebrow orange">FIXED PRICES · FLEXIBLE SCOPE</p><h2>Affordable testing.<br /><em>No fuss.</em></h2><p>You pick a package, we agree the priorities, and I tell you exactly what you'll get.</p></div>
+      <div class="center"><p class="eyebrow orange">PRICES</p><h2>Pick a package,<br /><em>or ask for something else.</em></h2><p>Each package is a set number of hours, including writing up the report. Before I start, we'll agree what to focus on.</p></div>
       <div class="plans">
         {packages.map((pkg) => <article class="plan">
           <p class="plan-hours">{pkg.hours} total · testing + reporting</p>
@@ -128,30 +128,30 @@ function enquiry(name: string) {
           <a class="plan-link" href={enquiry(pkg.name)}>Enquire about {pkg.name} <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a>
         </article>)}
       </div>
-      <p class="pricing-fine">Package prices in GBP, or US dollars for clients outside the UK, subject to agreed scope and device compatibility. One build per package. Retesting and further builds are separate. Applicable VAT, if any, will be confirmed in the quote; no VAT status is implied here.</p>
-      <div class="custom"><Icon name="tabler:messages" aria-hidden="true" /><div><strong>Need ongoing testing instead?</strong><p>£32 / US$40 an hour, or £28 / US$35 an hour for a monthly block of 10 hours or more. Regular builds, bigger milestones or unusual requirements? Ask for a quote.</p></div><a href={enquiry('Custom testing')}>Let's talk <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
+      <p class="pricing-fine">Prices are in pounds, or US dollars if you're outside the UK. Each package covers one build, so retests and later builds are quoted separately. I'll confirm the price, platforms and any VAT before we start.</p>
+      <div class="custom"><Icon name="tabler:messages" aria-hidden="true" /><div><strong>Need ongoing testing?</strong><p>£32 / US$40 an hour, or £28 / US$35 an hour if you book 10 hours or more a month. Good for regular builds, bigger milestones or anything that doesn't fit a package.</p></div><a href={enquiry('Custom testing')}>Get in touch <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
     </section>
 
     <section class="section container sample-section">
-      <div class="heading-grid"><div><p class="eyebrow orange">PROOF IN THE PROCESS</p><h2>See what a useful<br /><em>bug report looks like.</em></h2></div><div><p>Your developer shouldn't need to ask “what did you do to cause this?”. We aim to give you enough context to reproduce an issue quickly.</p><p class="sample-disclaimer">Illustrative fictional example below; not a report from an actual client.</p></div></div>
+      <div class="heading-grid"><div><p class="eyebrow orange">EXAMPLE BUG REPORT</p><h2>What a bug report<br /><em>from me looks like.</em></h2></div><div><p>You shouldn't have to come back and ask “what did you do to cause this?”. Every report gives you enough detail to reproduce the bug quickly.</p><p class="sample-disclaimer">This is a made-up example, not a real client's report.</p></div></div>
       <div class="sample">
         <div class="sample-top"><div><span>EXAMPLE ISSUE / BUG-001</span><h3>Character cannot move after closing inventory</h3></div><strong><Icon name="tabler:alert-triangle" aria-hidden="true" /> HIGH PRIORITY</strong></div>
         <div class="sample-details"><div><small>PLATFORM</small><strong>Windows / Controller</strong></div><div><small>BUILD</small><strong>Example 0.1.0</strong></div><div><small>REPRO</small><strong>3 of 3 attempts</strong></div><div><small>STATUS</small><strong>New</strong></div></div>
-        <div class="sample-grid"><div><h4>STEPS TO REPRODUCE</h4><ol><li>Load the example checkpoint save.</li><li>Open the inventory using a controller.</li><li>Close it with the back button.</li><li>Attempt to move the character.</li></ol></div><div><h4>EXPECTED</h4><p>Player movement resumes normally.</p><h4>ACTUAL</h4><p>Camera moves, but player movement stays locked until reloading.</p><h4>EVIDENCE</h4><p>A real report includes relevant screenshots, clips or save details when useful.</p></div></div>
+        <div class="sample-grid"><div><h4>STEPS TO REPRODUCE</h4><ol><li>Load the example checkpoint save.</li><li>Open the inventory using a controller.</li><li>Close it with the back button.</li><li>Attempt to move the character.</li></ol></div><div><h4>EXPECTED</h4><p>Player movement resumes normally.</p><h4>ACTUAL</h4><p>Camera moves, but player movement stays locked until reloading.</p><h4>EVIDENCE</h4><p>Real reports include screenshots, clips or save files where they help.</p></div></div>
       </div>
     </section>
 
     <section class="booking"><div class="container booking-grid">
-      <div><p class="eyebrow">SIMPLE FROM THE FIRST EMAIL</p><h2>A straightforward way<br /><em>to get your game tested.</em></h2><p>We don't take payment on this page. We check your game and agree what you'll get first. Then you receive an invoice, so everything is clear before work starts.</p><a class="btn light" href={enquiry('New project')}>Start an enquiry <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
-      <ol><li><span>01</span><div><strong>Tell us about your game</strong><p>Share your platform, build requirements and next milestone.</p></div></li><li><span>02</span><div><strong>Agree your package</strong><p>We confirm compatibility, focus areas, the delivery date and price.</p></div></li><li><span>03</span><div><strong>Approve and pay</strong><p>We send an invoice with payment instructions. Small bookings are paid upfront.</p></div></li><li><span>04</span><div><strong>Get your findings</strong><p>Receive prioritised issues, evidence where relevant and a short summary.</p></div></li></ol>
+      <div><p class="eyebrow">HOW IT WORKS</p><h2>From first email<br /><em>to bug report.</em></h2><p>There's no checkout on this page. We'll talk about your game first and agree what you're getting, then I'll send an invoice so it's all clear before I start.</p><a class="btn light" href={enquiry('New project')}>Get in touch <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div>
+      <ol><li><span>01</span><div><strong>Tell me about your game</strong><p>Your platform, how I get the build, and what's coming up next.</p></div></li><li><span>02</span><div><strong>Agree the details</strong><p>We agree the platforms, what to focus on, the price and when you'll get the report.</p></div></li><li><span>03</span><div><strong>Pay the invoice</strong><p>I'll send an invoice with payment details. Small one-off packages are paid before I start.</p></div></li><li><span>04</span><div><strong>Get your report</strong><p>Bugs ranked by priority, with evidence and a short summary.</p></div></li></ol>
     </div></section>
 
     <section class="section container faq">
-      <div class="heading-grid"><div><p class="eyebrow orange">QUESTIONS?</p><h2>A few things<br /><em>worth knowing.</em></h2></div><p>No surprises. Here's how booking works and what you can expect. If you need something different, just ask.</p></div>
+      <div class="heading-grid"><div><p class="eyebrow orange">FAQ</p><h2>Common<br /><em>questions.</em></h2></div><p>If your question isn't here, just email me and ask.</p></div>
       <div class="faq-list">{faqs.map(([question, answer]) => <details><summary>{question}<Icon name="tabler:plus" aria-hidden="true" /></summary><p>{answer}</p></details>)}</div>
     </section>
 
-    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">KI10 GAMES / QA SERVICES</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Send me a little information about your game and I'll let you know how I can help. No pressure.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
+    <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">KI10 GAMES / QA SERVICES</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Tell me a bit about your game and I'll let you know how I can help.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
   </main>
 </Layout>
 <style>
