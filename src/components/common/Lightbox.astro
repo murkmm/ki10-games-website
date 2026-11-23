@@ -5,9 +5,9 @@ import { Icon } from 'astro-icon/components';
 <dialog
   id="ki10-lightbox"
   aria-label="Media gallery viewer"
-  class="fixed inset-0 z-50 m-auto max-h-[94vh] max-w-[94vw] overflow-visible bg-transparent p-0 backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+  class="fixed inset-0 z-50 m-auto max-h-[94vh] max-w-[96vw] overflow-visible bg-transparent p-0 backdrop:bg-black/85 backdrop:backdrop-blur-sm sm:max-w-[94vw]"
 >
-  <div class="relative flex max-h-[92vh] max-w-[92vw] flex-col items-center justify-center">
+  <div class="relative flex max-h-[92vh] max-w-[94vw] flex-col items-center justify-center sm:max-w-[92vw]">
     <div class="mb-3 flex w-full items-center justify-between gap-4 text-white">
       <span
         id="ki10-lightbox-counter"
@@ -28,7 +28,7 @@ import { Icon } from 'astro-icon/components';
         type="button"
         id="ki10-lightbox-prev"
         aria-label="Previous item"
-        class="absolute -left-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/65 text-white ring-1 ring-white/20 transition hover:bg-black/85 sm:-left-14"
+        class="absolute left-2 z-10 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black/70 text-white ring-1 ring-white/20 transition hover:bg-black/90 sm:-left-14 sm:h-11 sm:w-11"
       >
         <Icon name="tabler:chevron-left" class="h-6 w-6" />
       </button>
@@ -37,7 +37,7 @@ import { Icon } from 'astro-icon/components';
         id="ki10-lightbox-img"
         src=""
         alt=""
-        class="hidden max-h-[76vh] max-w-[88vw] rounded-xl object-contain shadow-2xl sm:max-w-[80vw]"
+        class="hidden max-h-[74vh] max-w-[92vw] rounded-xl object-contain shadow-2xl sm:max-h-[76vh] sm:max-w-[80vw]"
       />
 
       <video
@@ -45,14 +45,14 @@ import { Icon } from 'astro-icon/components';
         controls
         loop
         playsinline
-        class="hidden max-h-[76vh] max-w-[88vw] rounded-xl bg-black object-contain shadow-2xl sm:max-w-[80vw]"
+        class="hidden max-h-[74vh] max-w-[92vw] rounded-xl bg-black object-contain shadow-2xl sm:max-h-[76vh] sm:max-w-[80vw]"
       ></video>
 
       <button
         type="button"
         id="ki10-lightbox-next"
         aria-label="Next item"
-        class="absolute -right-2 z-10 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/65 text-white ring-1 ring-white/20 transition hover:bg-black/85 sm:-right-14"
+        class="absolute right-2 z-10 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black/70 text-white ring-1 ring-white/20 transition hover:bg-black/90 sm:-right-14 sm:h-11 sm:w-11"
       >
         <Icon name="tabler:chevron-right" class="h-6 w-6" />
       </button>

@@ -147,6 +147,11 @@
   }
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 #header.scroll > div:first-child {
   background-color: rgb(250 249 245 / 92%);
   backdrop-filter: blur(10px);
@@ -158,15 +163,6 @@
   background-color: rgb(19 20 26 / 92%);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--aw-color-border);
-}
-
-#header.expanded nav {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 70px !important;
-  padding: 0 5px;
 }
 
 .dropdown:focus .dropdown-menu,

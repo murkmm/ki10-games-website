@@ -46,8 +46,10 @@ import { UI } from 'astrowind:config';
     toggle?.setAttribute('aria-expanded', String(expanded));
     document.body.classList.toggle('overflow-hidden', expanded);
     const header = document.getElementById('header');
-    ['h-screen', 'expanded', 'bg-page'].forEach((name) => header?.classList.toggle(name, expanded));
-    document.querySelector('#header nav')?.classList.toggle('hidden', !expanded);
+    ['expanded', 'bg-page'].forEach((name) => header?.classList.toggle(name, expanded));
+    const nav = document.querySelector('#header nav');
+    nav?.classList.toggle('hidden', !expanded);
+    nav?.classList.toggle('flex', expanded);
   }
 
   document.addEventListener('keydown', (event) => {
@@ -63,8 +65,8 @@ import { UI } from 'astrowind:config';
     let lastKnownScrollPosition = window.scrollY;
     let ticking = true;
 
-    attachEvent('#header nav', 'click', function (event) {
-      if (event.target.closest('a')) setMenuExpanded(false);
+    attachEvent('#header nav', 'click', function (event, navElem) {
+      if (event.target.closest('a') || event.target === navElem) setMenuExpanded(false);
     });
 
     attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {

@@ -142,7 +142,7 @@ const metadata = {
           Inspired by Supergiant, Devolver & Playtonic: art & gameplay first.
        ===================================================================== -->
   <section class="hero-stage relative overflow-hidden bg-[#0c0d11] text-white" aria-label="Featured Ki10 Games">
-    <div class="relative min-h-[540px] sm:min-h-[600px] lg:min-h-[650px]">
+    <div class="relative min-h-[520px] sm:min-h-[600px] lg:min-h-[650px]">
       {
         heroSlides.map((slide, index) => (
           <div
@@ -198,41 +198,41 @@ const metadata = {
             </div>
 
             {/* Clean, clutter-free Foreground Content */}
-            <div class="ki10-container relative z-10 pb-28 pt-24 sm:pb-32 md:pb-36">
+            <div class="ki10-container relative z-10 pb-24 pt-12 sm:pb-32 sm:pt-20 md:pb-36">
               <div class="max-w-xl">
                 <p
-                  class="text-xs font-extrabold uppercase tracking-[0.16em]"
+                  class="text-[0.7rem] font-extrabold uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.16em]"
                   style={`color: ${slide.accent};`}
                 >
                   {slide.eyebrow}
                 </p>
 
                 {slide.logo ? (
-                  <div class="mt-4">
+                  <div class="mt-3 sm:mt-4">
                     <h2 class="sr-only">{slide.title}</h2>
                     <img
                       src={slide.logo}
                       alt={slide.logoAlt ?? slide.title}
                       class:list={[
-                        'h-auto w-auto max-w-[260px] object-contain drop-shadow-[0_6px_24px_rgba(0,0,0,0.8)] sm:max-w-[340px]',
-                        slide.pixelArt ? 'pixel-art max-h-[115px] sm:max-h-[135px]' : 'max-h-[100px] sm:max-h-[115px]',
+                        'h-auto w-auto max-w-[215px] object-contain drop-shadow-[0_6px_24px_rgba(0,0,0,0.8)] sm:max-w-[340px]',
+                        slide.pixelArt ? 'pixel-art max-h-[96px] sm:max-h-[135px]' : 'max-h-[86px] sm:max-h-[115px]',
                       ]}
                     />
                   </div>
                 ) : (
-                  <h2 class="mt-3 font-heading text-4xl font-extrabold leading-[1.02] tracking-tight text-white drop-shadow sm:text-6xl">
+                  <h2 class="mt-3 font-heading text-3xl font-extrabold leading-[1.04] tracking-tight text-white drop-shadow sm:text-5xl lg:text-6xl">
                     {slide.title}
                   </h2>
                 )}
 
-                <p class="mt-4 max-w-lg text-base leading-relaxed text-white/85 sm:text-lg">{slide.tagline}</p>
+                <p class="mt-3 max-w-lg text-sm leading-relaxed text-white/85 sm:mt-4 sm:text-lg">{slide.tagline}</p>
 
-                <div class="mt-7 flex flex-wrap items-center gap-3">
+                <div class="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-7 sm:gap-3">
                   <a
                     href={slide.primaryCta.href}
                     target={slide.primaryCta.external ? '_blank' : undefined}
                     rel={slide.primaryCta.external ? 'noopener noreferrer' : undefined}
-                    class="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-extrabold text-[#0c0d11] transition hover:brightness-110 sm:text-base"
+                    class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-extrabold text-[#0c0d11] transition hover:brightness-110 sm:px-5 sm:py-3 sm:text-base"
                     style={`background-color: ${slide.accent};`}
                   >
                     <Icon name={slide.primaryCta.icon} class="h-4 w-4" />
@@ -244,7 +244,7 @@ const metadata = {
                       href={slide.secondaryCta.href}
                       target={slide.secondaryCta.external ? '_blank' : undefined}
                       rel={slide.secondaryCta.external ? 'noopener noreferrer' : undefined}
-                      class="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/20 sm:text-base"
+                      class="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-bold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/20 sm:px-5 sm:py-3 sm:text-base"
                     >
                       {slide.secondaryCta.icon && <Icon name={slide.secondaryCta.icon} class="h-4 w-4" />}
                       {slide.secondaryCta.label}
@@ -257,8 +257,8 @@ const metadata = {
         ))
       }
 
-      {/* Subtle Next/Prev controls (especially handy on mobile) */}
-      <div class="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 hidden items-center justify-between px-3 sm:flex lg:px-5">
+      {/* Desktop/Tablet Side Chevrons */}
+      <div class="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 hidden items-center justify-between px-3 md:flex lg:px-5">
         <button
           type="button"
           data-hero-prev
@@ -277,10 +277,61 @@ const metadata = {
         </button>
       </div>
 
-      {/* Sleek Console-Storefront Switcher Dock */}
-      <div class="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-[#0c0d11]/80 backdrop-blur-md">
+      {/* Responsive Switcher Dock: clean progress bar + Prev/Next on mobile, 5-column storefront tabs on md+ */}
+      <div class="absolute bottom-0 left-0 right-0 z-20 border-t border-white/10 bg-[#0c0d11]/85 backdrop-blur-md">
         <div class="ki10-container">
-          <div class="grid grid-cols-5 gap-1 sm:gap-2" role="tablist" aria-label="Choose a featured game">
+          {/* Mobile Dock (< 768px): zero text collision, full touch controls */}
+          <div class="py-2.5 md:hidden">
+            <div class="grid grid-cols-5 gap-1.5" role="tablist" aria-label="Featured game progress">
+              {
+                heroSlides.map((slide, index) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`Show ${slide.title}`}
+                    data-hero-tab={index}
+                    data-hero-title={slide.slug === 'kit-knight-in-training' ? 'KIT' : slide.title}
+                    style={`--tab-accent: ${slide.accent};`}
+                    class:list={[
+                      'hero-tab group relative py-1.5 text-left',
+                      index === 0 ? 'is-active' : '',
+                    ]}
+                  >
+                    <span class="hero-tab-bar block h-[3px] w-full overflow-hidden rounded-full bg-white/15">
+                      <span class="hero-tab-fill block h-full w-0 rounded-full" />
+                    </span>
+                  </button>
+                ))
+              }
+            </div>
+            <div class="mt-1.5 flex items-center justify-between gap-2">
+              <button
+                type="button"
+                data-hero-prev
+                aria-label="Previous game"
+                class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/85 active:bg-white/15"
+              >
+                <Icon name="tabler:chevron-left" class="h-4 w-4" />
+              </button>
+              <div class="flex min-w-0 items-center gap-2 text-xs">
+                <span data-hero-mobile-count class="shrink-0 font-bold tabular-nums text-white/55">01 / 05</span>
+                <span aria-hidden="true" class="text-white/30">·</span>
+                <span data-hero-mobile-title class="truncate font-bold text-white">{heroSlides[0].title}</span>
+              </div>
+              <button
+                type="button"
+                data-hero-next
+                aria-label="Next game"
+                class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/85 active:bg-white/15"
+              >
+                <Icon name="tabler:chevron-right" class="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop / Tablet Dock (>= 768px): 5-column storefront bar with strict truncation */}
+          <div class="hidden grid-cols-5 gap-3 md:grid" role="tablist" aria-label="Choose a featured game">
             {
               heroSlides.map((slide, index) => (
                 <button
@@ -288,19 +339,20 @@ const metadata = {
                   role="tab"
                   aria-selected={index === 0 ? 'true' : 'false'}
                   data-hero-tab={index}
+                  data-hero-title={slide.slug === 'kit-knight-in-training' ? 'KIT' : slide.title}
                   style={`--tab-accent: ${slide.accent};`}
                   class:list={[
-                    'hero-tab group relative flex flex-col items-start py-3.5 text-left transition sm:py-4',
+                    'hero-tab group relative flex min-w-0 w-full flex-col items-start overflow-hidden py-4 text-left transition',
                     index === 0 ? 'is-active text-white' : 'text-white/55 hover:text-white/85',
                   ]}
                 >
                   <span class="hero-tab-bar absolute left-0 right-0 top-0 h-[3px] bg-white/10">
                     <span class="hero-tab-fill block h-full w-0" />
                   </span>
-                  <span class="hidden text-[0.65rem] font-bold uppercase tracking-widest opacity-60 sm:block">
+                  <span class="text-[0.65rem] font-bold uppercase tracking-widest opacity-60">
                     0{index + 1}
                   </span>
-                  <span class="truncate text-xs font-bold sm:mt-0.5 sm:text-sm">
+                  <span class="mt-0.5 block w-full truncate text-sm font-bold">
                     {slide.slug === 'kit-knight-in-training' ? 'KIT' : slide.title}
                   </span>
                 </button>
@@ -672,7 +724,7 @@ const metadata = {
             </a>
           ))
         }
-        <a href="/press" class="ml-auto text-sm font-bold text-muted transition hover:text-secondary hover:underline">
+        <a href="/press" class="text-sm font-bold text-muted transition hover:text-secondary hover:underline sm:ml-auto">
           Need logos or screenshots? Press kit &rarr;
         </a>
       </div>
@@ -732,7 +784,9 @@ const metadata = {
 
       const slides = Array.from(stage.querySelectorAll('[data-hero-slide]'));
       const tabs = Array.from(stage.querySelectorAll('[data-hero-tab]'));
-      if (!slides.length || slides.length !== tabs.length) return;
+      const mobileCount = stage.querySelector('[data-hero-mobile-count]');
+      const mobileTitle = stage.querySelector('[data-hero-mobile-title]');
+      if (!slides.length || !tabs.length) return;
 
       let active = 0;
       let timer = null;
@@ -760,12 +814,17 @@ const metadata = {
           }
         });
 
-        tabs.forEach((tab, idx) => {
+        let activeTitle = '';
+        tabs.forEach((tab) => {
+          const idx = Number(tab.getAttribute('data-hero-tab'));
           const isCurrent = idx === active;
           tab.classList.toggle('is-active', isCurrent);
           tab.classList.toggle('text-white', isCurrent);
           tab.classList.toggle('text-white/55', !isCurrent);
           tab.setAttribute('aria-selected', String(isCurrent));
+          if (isCurrent && !activeTitle) {
+            activeTitle = tab.getAttribute('data-hero-title') || '';
+          }
 
           // Restart the CSS progress animation cleanly when switching tabs
           const fill = tab.querySelector('.hero-tab-fill');
@@ -775,6 +834,13 @@ const metadata = {
             fill.style.animation = '';
           }
         });
+
+        if (mobileCount) {
+          mobileCount.textContent = `0${active + 1} / 0${slides.length}`;
+        }
+        if (mobileTitle && activeTitle) {
+          mobileTitle.textContent = activeTitle;
+        }
       };
 
       const startCycle = () => {
@@ -785,21 +851,52 @@ const metadata = {
         }, 7500);
       };
 
-      tabs.forEach((tab, idx) => {
+      tabs.forEach((tab) => {
         tab.addEventListener('click', () => {
+          const idx = Number(tab.getAttribute('data-hero-tab'));
           setActive(idx);
           startCycle();
         });
       });
 
-      stage.querySelector('[data-hero-prev]')?.addEventListener('click', () => {
-        setActive(active - 1);
-        startCycle();
+      stage.querySelectorAll('[data-hero-prev]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setActive(active - 1);
+          startCycle();
+        });
       });
-      stage.querySelector('[data-hero-next]')?.addEventListener('click', () => {
-        setActive(active + 1);
-        startCycle();
+      stage.querySelectorAll('[data-hero-next]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setActive(active + 1);
+          startCycle();
+        });
       });
+
+      // Touch swipe navigation on mobile
+      let touchStartX = 0;
+      let touchStartY = 0;
+      stage.addEventListener(
+        'touchstart',
+        (event) => {
+          if (event.touches.length !== 1) return;
+          touchStartX = event.touches[0].clientX;
+          touchStartY = event.touches[0].clientY;
+        },
+        { passive: true }
+      );
+      stage.addEventListener(
+        'touchend',
+        (event) => {
+          if (!event.changedTouches.length) return;
+          const dx = event.changedTouches[0].clientX - touchStartX;
+          const dy = event.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            setActive(dx < 0 ? active + 1 : active - 1);
+            startCycle();
+          }
+        },
+        { passive: true }
+      );
 
       stage.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') {

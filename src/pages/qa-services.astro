@@ -66,7 +66,7 @@ function enquiry(name: string) {
 ---
 
 <Layout metadata={metadata}>
-  <main class="qa">
+  <div class="qa">
     <section class="hero container">
       <div class="hero-copy">
         <p class="eyebrow hero-kicker"><span class="pulse"></span> KI10 GAMES / QA SERVICES</p>
@@ -152,16 +152,16 @@ function enquiry(name: string) {
     </section>
 
     <section class="bottom container"><div class="bottom-panel"><p class="eyebrow">KI10 GAMES / QA SERVICES</p><h2>Got a build<br /><em>you'd like checked?</em></h2><p>Tell me a bit about your game and I'll let you know how I can help.</p><div class="buttons"><a class="btn primary" href={enquiry('Project enquiry')}>Get a testing quote <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a><a class="btn outline" href="/projects">See our games <Icon name="tabler:arrow-up-right" aria-hidden="true" /></a></div><p class="email">Or email <a href="mailto:business@ki10games.com">business@ki10games.com</a></p></div></section>
-  </main>
+  </div>
 </Layout>
 <style>
-.qa{--line:var(--aw-color-border);--surface:var(--aw-color-bg-card);--ink:var(--aw-color-text-heading);--muted:var(--aw-color-text-muted);--ember:var(--aw-color-primary);--ember-text:var(--aw-color-secondary);color:var(--ink)}
+.qa{--line:var(--aw-color-border);--surface:var(--aw-color-bg-card);--ink:var(--aw-color-text-heading);--muted:var(--aw-color-text-muted);--ember:var(--aw-color-primary);--ember-text:var(--aw-color-secondary);color:var(--ink);overflow-x:clip}
 :global(.dark) .qa{--line:var(--aw-color-border);--surface:var(--aw-color-bg-card);--ink:var(--aw-color-text-heading);--muted:var(--aw-color-text-muted);--ember:var(--aw-color-primary);--ember-text:var(--aw-color-secondary)}
 .qa h1,.qa h2,.qa h3,.qa h4,.qa .price{font-family:var(--aw-font-heading),sans-serif}
 .container{max-width:1200px;width:calc(100% - 3rem);margin-inline:auto}
 .eyebrow{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-text)}
 .hero{display:grid;grid-template-columns:1.3fr .8fr;align-items:center;gap:4rem;padding-block:4.3rem 4.7rem}
-.hero h1{font-size:clamp(2.8rem,5vw,4.7rem);line-height:1.06;letter-spacing:-.04em;font-weight:800;max-width:13ch;margin:1rem 0 1.6rem}
+.hero h1{font-size:clamp(2.15rem,5vw,4.7rem);line-height:1.06;letter-spacing:-.04em;font-weight:800;max-width:13ch;margin:1rem 0 1.6rem}
 .hero-sub{font-size:1.08rem;line-height:1.85;color:var(--muted);max-width:55ch}
 .hero-sub strong{color:var(--ink)}
 .buttons{display:flex;flex-wrap:wrap;align-items:center;gap:1.3rem;margin:2rem 0 1rem}
