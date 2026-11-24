@@ -15,7 +15,7 @@ const metadata = {
 const releasedCount = games.filter((g) => g.status === 'released').length;
 
 const studioFacts = [
-  { label: 'Studio', value: studio.name },
+  { label: 'Studio', value: `${studio.name} (pronounced “Kitten Games”)` },
   { label: 'Founded', value: studio.founded },
   { label: 'Based in', value: studio.location },
   { label: 'Team size', value: '2 (Mark McManus & Scott Hamilton)' },
@@ -24,7 +24,7 @@ const studioFacts = [
 ];
 
 const studioBio =
-  'Ki10 Games is a two-person independent game studio in the UK, founded by Mark McManus (design, programming and QA) and Scott Hamilton (art and world building). Part of the reason the studio is called Ki10 is their original goal of selling ten copies. They don’t stick to one genre: their released games are Skill Check (daily gaming trivia) and The One Bullet Job (turn-based heist puzzle), and they are currently building Save File 0 (first-person survival horror for Game Boy Color), Boop n Burn (floor-is-lava party brawler), and KIT: Knight in Training.';
+  'Ki10 Games (pronounced “Kitten Games”) is a two-person independent game studio in the UK, founded by Mark McManus (design, programming and QA) and Scott Hamilton (art and world building). Part of the reason the studio is called Ki10 is their original goal of selling ten copies. They don’t stick to one genre: their released games are Skill Check (daily gaming trivia) and The One Bullet Job (turn-based heist puzzle), and they are currently building Save File 0 (first-person survival horror for Game Boy Color), Boop n Burn (floor-is-lava party brawler), and KIT: Knight in Training.';
 
 const factSheetCopyText = [
   ...studioFacts.map((f) => `${f.label}: ${f.value}`),
