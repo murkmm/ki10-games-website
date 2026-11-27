@@ -1,0 +1,249 @@
+---
+publishDate: 2026-12-01T17:00:00Z
+author: Mark
+title: 'Devlog #14: Boop n Burn Is on Steam'
+excerpt: "Boop n Burn finally has a Steam page! Here's the trailer, the seven arenas, how we made the store art out of the game itself, and what's coming before Next Fest."
+image: '../../assets/images/bnb-steam-capsule.webp'
+cardImage: '../../assets/images/bnb-steam-capsule.webp'
+category: Devlog
+draft: true
+tags:
+  - devlog
+  - announcement
+  - behind the scenes
+  - Boop n Burn
+  - Steam
+metadata:
+  canonical: https://ki10games.com/devlog-14-boop-n-burn-is-on-steam
+---
+
+import { Image } from 'astro:assets';
+
+import yardBoop from '../../assets/images/bnb-yard-boop.webp';
+import puckOff from '../../assets/images/bnb-puck-off.webp';
+import chainReaction from '../../assets/images/bnb-chain-reaction.webp';
+import darkShoves from '../../assets/images/bnb-dark-shoves.webp';
+import tippingPoint from '../../assets/images/bnb-tipping-point.webp';
+import broadside from '../../assets/images/bnb-broadside.webp';
+import capsuleSketch from '../../assets/images/bnb-capsule-sketch.webp';
+import steamCapsule from '../../assets/images/bnb-steam-capsule.webp';
+import lobby from '../../assets/images/bnb-lobby.webp';
+import achievements from '../../assets/images/bnb-achievements.webp';
+
+export const steamLink = 'https://store.steampowered.com/app/2988610/';
+
+It's finally on Steam!
+
+**Boop n Burn** has its own store page, and you can wishlist it [right here](https://store.steampowered.com/app/2988610/). I've been sat on this one for a few weeks, so I'm glad I can finally just tell you.
+
+If you're new round here, a quick word on wishlists, because they matter a lot more than people think. When you wishlist a game, Steam lets you know the moment it comes out or goes on sale. And the more wishlists a game has, the more Steam puts it in front of other people. For a little studio like us, that's massive. It's free and takes a couple of clicks, so if you like the look of it, I'd really appreciate it.
+
+Here's the trailer first, so you know what I'm on about:
+
+<figure class="flex flex-col items-center">
+  <video
+    class="w-full rounded-md"
+    controls
+    playsinline
+    preload="none"
+    poster="/videos/bnb-trailer-steam-poster.jpg"
+    aria-label="Boop n Burn trailer"
+  >
+    <source src="/videos/bnb-trailer-steam.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The trailer. Every shot is from a real match played by the game's bots. Music: "Voxel Revolution" by Kevin MacLeod
+    (incompetech.com), licensed under{' '}
+    <a href="https://creativecommons.org/licenses/by/4.0/" class="underline">CC BY 4.0</a>.
+  </figcaption>
+</figure>
+
+### **So What Is Boop n Burn?**
+
+If you've not read the earlier devlogs, here's the idea. Up to **sixteen players** get dropped into an arena, and the lava rises the whole round. There's no health bar, and no respawns. You stay out of the lava and you shove everyone else into it. Last one standing wins the round, and first to three wins the match.
+
+Pretty much everything comes down to the shove. **The faster you're running, the harder you hit**, so a full-speed tackle sends people flying, while a little tap from standing still barely moves them. You can climb walls, double jump and air dash, but they all use stamina, so you can't just camp on top of a wall all round. And if someone catches you mid-climb, you're coming off it.
+
+<figure class="flex flex-col items-center">
+  <video
+    class="w-full rounded-md"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A dinosaur shoves another player on a wooden deck high above the lava, and they go flying off the edge."
+  >
+    <source src="/videos/bnb-boop.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    A boop. You'll be seeing a lot of these.
+  </figcaption>
+</figure>
+
+You can play online, or get up to four of you on the sofa with a controller each. If there aren't enough people about, **bots fill the empty spots**, so you're never stood in a lobby waiting for a match. And if someone joins halfway through a round, they take over one of the bots instead of sitting there spectating.
+
+<figure class="flex flex-col items-center">
+  <video
+    class="w-full rounded-md"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="A packed lobby of players scrambling across the container roofs of The Yard."
+  >
+    <source src="/videos/bnb-sixteen-players.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Sixteen in, one out.
+  </figcaption>
+</figure>
+
+### **Seven Arenas**
+
+There are seven arenas in the game, and each one has its own gimmick on top of the lava:
+
+- **The Yard**: shipping containers at sunset, with a crane moving the stacks around while you're stood on them.
+- **Free Fall**: the cargo hold of a plane that's going down. The cargo breaks loose and slides out the back, and you go with it if you're in the way.
+- **Puck Off**: an air hockey table in an old arcade. There's barely any grip, so once someone boops you, you're going wherever they sent you.
+- **Dark Shoves**: a fortress full of swinging axes, gates and trapdoors that open under your feet.
+- **Tipping Point**: one giant plate balanced on a pivot, and whoever's stood on it decides which way it tips.
+- **Chain Reaction**: bombs that set each other off in lines across the floor, with blocks to duck behind.
+- **Broadside**: a pirate fleet on rolling waves of lava. The ships sink and rise on the swell, the gangplanks snap if they drift too far apart, and the cannons actually launch people now.
+
+<figure class="flex flex-col items-center">
+  <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+    <Image src={yardBoop} alt="Two characters fighting on top of the shipping containers in The Yard, with lava below." class="w-full rounded-md" />
+    <Image src={puckOff} alt="Players sliding across the white air hockey table in Puck Off, with pink lava around it." class="w-full rounded-md" />
+    <Image src={darkShoves} alt="A knight and a wizard scrapping on a fortress wall in Dark Shoves, over red lava." class="w-full rounded-md" />
+    <Image src={tippingPoint} alt="A crowd of players on the big tilting plate in Tipping Point." class="w-full rounded-md" />
+    <Image src={chainReaction} alt="Players dodging bomb blasts between blocks in Chain Reaction." class="w-full rounded-md" />
+    <Image src={broadside} alt="The pirate fleet in Broadside, with ships joined by gangplanks over the lava." class="w-full rounded-md" />
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The Yard, Puck Off, Dark Shoves, Tipping Point, Chain Reaction and Broadside.
+  </figcaption>
+</figure>
+
+There used to be twenty, believe it or not. The other thirteen were experiments: early test levels, a load of town layouts and a couple of big hand-built ones. None of them were anywhere near as good as these seven, and they'd been hidden from the menu for months anyway. A couple of weeks ago I finally bit the bullet and deleted them, and about **5,000 lines of code** and over **a gigabyte** of art went with them. It's a bit sad seeing that much work go, but the game's better for it.
+
+### **Making the Store Page Out of the Game**
+
+I set myself one rule for the store page: everything on it had to come out of the actual game. I didn't want a lovely painted capsule of something you'll never see when you play. If it's on the store page, it's in the game.
+
+It started with a sketch from **Scott**, with the logo in the top left, someone flying through the air below it and the shover stood on a container on the right.
+
+<figure class="flex flex-col items-center">
+  <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 w-full max-w-full justify-center">
+    <div class="md:w-1/2">
+      <Image src={capsuleSketch} alt="Scott's sketch of the store capsule: the Boop 'n' Burn logo top left, a character flying below it and another stood on a box to the right." class="w-full rounded-md" />
+    </div>
+    <div class="md:w-1/2">
+      <Image src={steamCapsule} alt="The finished Steam capsule: a hooded rogue boops a clown off a container stack into the lava, with a crowd cheering behind." class="w-full rounded-md" />
+    </div>
+  </div>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    Scott's sketch, and how it ended up.
+  </figcaption>
+</figure>
+
+The finished version is set up inside The Yard. We built a tower out of the arena's own shipping containers, posed each character using frames from their own animations, and rendered the whole thing at double the size Steam asks for. The outlines, speed lines and the big impact burst went on afterwards, so they always line up between the fist and the face.
+
+The victim is a clown, by the way, because a face still reads when the image is tiny. Plus a clown getting booped into lava doesn't really need explaining.
+
+Making the art actually turned up a proper bug. One of the people who gave us feedback said the lava looked "low-res", like a badly compressed video. I put that down to the camera being too close. It wasn't. The maths behind the lava's pattern falls apart the further you get from the middle of the map, and it was breaking the surface up into hard-edged tiles. It had been doing that in every arena the whole time. Nothing had ever been close enough to the lava for anyone to notice. It's fixed now, and the lava looks a lot nicer up close.
+
+### **Cutting the Trailer**
+
+The trailer has had a few goes. The first cut opened on four seconds of our studio logo on a black screen, which I thought was fine. Then I found out Steam plays trailers with the sound off, and most people decide in about three seconds whether to keep watching. So now it opens straight on someone getting launched into the lava, and our logo's moved to the end where it belongs.
+
+A few other things came up while I was on it. For the first 24 seconds, the trailer only showed The Yard, which is rusty red containers on orange lava. Shrink that down to a thumbnail and it's basically one colour, while five other arenas sat waiting their turn. Moving the shots round sorted that out. The sparks were a pain too. Every shove throws them, and with the glow turned up, each one was a big white blob right on top of the two characters you're meant to be watching. So oddly enough, it looked better once I turned the glow down.
+
+The screenshots got the same treatment. We pulled 165 frames from real matches to pick the 11 on the store page, and nearly every keeper was taken a few frames *before* the hit. Just after it, the person getting booped has already flown out of shot.
+
+### **Bots That Play Like People**
+
+I'll talk about the bots properly next time, but this one's too good to leave out.
+
+A playtest note came back saying the bots kept getting stuck trying to climb into overhangs. You could watch one wedge its head under a ledge, hang there doing nothing, drop off, then walk back and try the exact same wall again. So I measured it across six arenas, and every single stuck climb was a bot with its head against something. Now a bot checks what's above it before it climbs, and if there's a ledge in the way, it shuffles sideways round it like a player would. Bots used to spend **3 to 8 seconds a minute** stuck under ledges. Now it's **zero**.
+
+I want the bots to feel like other players, so they play by the same rules as you. When I noticed bots could rest on a wall to get their stamina back and players couldn't, I didn't take it off the bots. I let players do it too.
+
+### **The Lobby, the Characters and 27 Achievements**
+
+The game used to have a little 3D town as its lobby, and you started a match by walking onto a glowing pad. It looked worse than the rest of the game, and having to walk somewhere just to start playing was a bit daft. So that's gone, and there's a proper lobby screen instead. Your party stands in a line, the match rules are on the side, and START is one button away. Couch players can join on their own controller and change their character without holding anyone else up.
+
+<figure class="flex flex-col items-center">
+  <Image src={lobby} alt="The lobby screen: three players stood on a container roof, the player list on the left and the match rules on the right." class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The new lobby, with two couch players and seven bots on the way.
+  </figcaption>
+</figure>
+
+You can also make your own character, with bodies, parts, colours, props and effects that you unlock by playing. There's nothing to buy.
+
+<figure class="flex flex-col items-center">
+  <video
+    class="w-full rounded-md"
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    aria-label="The character creator cycling through bodies, parts, colours and effects, with a new character every second."
+  >
+    <source src="/videos/bnb-creator.mp4" type="video/mp4" />
+  </video>
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    The character creator, going through twelve looks in ten seconds.
+  </figcaption>
+</figure>
+
+And there are **27 Steam achievements**. Steam needs two pictures for every achievement, one for when you've got it and one for when it's locked, so that's 54 images. That's usually the bit that gets left until last and ends up as a pile of generic trophy icons. I didn't want that, so every one is a little scene set up on top of a container in The Yard, with the real lava underneath.
+
+<figure class="flex flex-col items-center">
+  <Image src={achievements} alt="A sheet of all 54 achievement icons, each a small scene on a container over lava, with greyed-out locked versions underneath." class="max-w-full rounded-md" />
+  <figcaption class="mt-2 text-center text-sm italic text-gray-500 dark:text-gray-400">
+    All 27 achievements, unlocked and locked. Yes, one of them is fishing in the lava with a staff.
+  </figcaption>
+</figure>
+
+### **The Demo and Next Fest**
+
+There's a **free demo** coming in the new year, with six of the seven arenas. Broadside is staying back for the full game. I'll share the date in the next few weeks, and we're aiming to be part of **Steam Next Fest in February**.
+
+The demo's already been on a bit of a diet, mind. The first build came out at **1.8 GB**, which is a lot for a party game people are going to try on a whim. It turned out it was bundling every prop from every art pack we own, including packs that no arena even uses. So I had the game play through every arena with a full lobby of bots and keep a list of every file it loaded. Out of about 30,000 files, it needed roughly **3,450**. The demo's now around **0.9 GB**, and nothing you can actually see or play in it was taken out.
+
+### **What's Next**
+
+- **Next devlog:** the design side of things. The shove, the stamina, and how the bots decide who to go for.
+- **Over Christmas:** finishing off and polishing the demo.
+- **In the new year:** the demo date, then the demo itself, then Next Fest.
+
+If you want a game with us, or just want to tell me what you think of the trailer, come and say hi on [Discord](https://discord.gg/NqtVzsmj3A). And if you can spare a couple of clicks, a wishlist really is the best way to help us out right now.
+
+<figure class="flex flex-col items-center">
+  <iframe
+    class="w-full max-w-2xl rounded-md"
+    src="https://store.steampowered.com/widget/2988610/"
+    title="Boop n Burn on Steam"
+    height="190"
+    style={{ border: 0 }}
+    loading="lazy"
+  ></iframe>
+</figure>
+
+<div class="not-prose my-8 flex justify-center">
+  <a href={steamLink} class="btn-primary px-6 py-3" target="_blank" rel="noopener">
+    Wishlist Boop n Burn on Steam
+  </a>
+</div>
+
+Thanks for reading,
+
+Mark
+
+<p class="text-sm italic text-gray-500 dark:text-gray-400">
+  All footage and screenshots were captured in the game from real matches, and some things may change before release.
+</p>
